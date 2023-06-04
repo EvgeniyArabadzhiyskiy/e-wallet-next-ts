@@ -1,12 +1,13 @@
 // import { Container } from "@/components/Container/Container.styled";
+import LoginPageLayout from "@/components/LoginPageLayout/LoginPageLayout";
 import { Section, Wrapper, 
   Container
  } from "../_components/LoginPage.styled";
 
-import stl from "./Login.module.css";
+// import stl from "./Login.module.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <LoginPageLayout>{children}</LoginPageLayout>;
 }
 
 // export default function Layout({ children }: { children: React.ReactNode }) {
