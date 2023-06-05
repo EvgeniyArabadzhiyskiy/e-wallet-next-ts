@@ -1,8 +1,16 @@
-const breakpointsValue = {
+export const breakpointsValue = {
     mobile: 320,
     tablet: 768,
     desctop: 1280,
   };
+
+  // export const breakpoints = {
+  //   small: `${breakpointsValue.tablet - 0.1}px`,  // max 767
+  
+  //   medium: `${breakpointsValue.tablet}px`,       // min 768
+
+  //   large: `${breakpointsValue.desctop}px`,       // min 1280
+  // };
   
   export const breakpoints = {
     small: `(max-width: ${breakpointsValue.tablet - 0.1}px)`,  // max 767
@@ -13,3 +21,12 @@ const breakpointsValue = {
   
     large: `(min-width: ${breakpointsValue.desctop}px)`,       // min 1280
   };
+
+
+//   export const LogoWallet = styled.img`
+//   margin-right: 16px;
+
+//   @media (min-width: ${props => props.theme.breakpoints.sm}) and (max-width: ${props => props.theme.breakpoints.lg}) {
+//     margin-right: 20px;
+//   }
+// `;
