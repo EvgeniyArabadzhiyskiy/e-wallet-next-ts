@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@artsy/fresnel": "^6.1.0",
     "@tanstack/react-query": "^4.29.7",
     "abort-controller": "^3.0.0",
     "abortcontroller-polyfill": "^1.7.5",
