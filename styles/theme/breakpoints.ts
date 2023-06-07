@@ -1,7 +1,8 @@
 export const breakpointsValue = {
-    mobile: 320,
-    tablet: 768,
-    desctop: 1280,
+    sm: 0,
+    md: 768,
+    lg: 1280,
+    // xlg:1440,
   };
 
   // export const breakpoints = {
@@ -13,13 +14,13 @@ export const breakpointsValue = {
   // };
   
   export const breakpoints = {
-    small: `(max-width: ${breakpointsValue.tablet - 0.1}px)`,  // max 767
+    small: `(max-width: ${breakpointsValue.md - 0.1}px)`,  // max 767
   
-    medium: `(min-width: ${breakpointsValue.tablet}px)`,       // min 768
+    medium: `(min-width: ${breakpointsValue.md}px)`,       // min 768
   
-    mediumToLarge: `(min-width: ${breakpointsValue.tablet}px) and (max-width: ${breakpointsValue.desctop - 0.1}px)`,   // min 768 max 1279
+    mediumToLarge: `(min-width: ${breakpointsValue.md}px) and (max-width: ${breakpointsValue.lg - 0.1}px)`,   // min 768 max 1279
   
-    large: `(min-width: ${breakpointsValue.desctop}px)`,       // min 1280
+    large: `(min-width: ${breakpointsValue.lg}px)`,       // min 1280
   };
 
 
