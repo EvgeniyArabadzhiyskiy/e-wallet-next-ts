@@ -1,5 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { setCookie } from "nookies";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -53,20 +54,21 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
 
-      // const { iat, exp, jti, ...rest } = token as any;
+      const { iat, exp, jti, ...rest } = token as any;
 
-      // session.user = rest;
-      // return session;
+      session.user = rest;
+      return session;
+      
 
-      return {
-        ...session,
+      // return {
+      //   ...session,
 
-        user: {
-          ...session.user,
-          token: token.token,
-          user: token.user,
-        },
-      };
+      //   user: {
+      //     ...session.user,
+      //     token: token.token,
+      //     user: token.user,
+      //   },
+      // };
     },
 
  
@@ -79,4 +81,13 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
+
+  // events: {
+  //   async signIn(message) { 
+  //      setCookie(null, "authToken", `${'wallet-project-token'}`, {
+  //     maxAge: 30 * 24 * 60 * 60,
+  //     path: "/",
+  //   });
+  //   },
+  // }
 };
