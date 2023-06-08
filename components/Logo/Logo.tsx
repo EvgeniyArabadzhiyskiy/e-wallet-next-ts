@@ -1,14 +1,12 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffectOnce, useMedia } from "react-use";
+import { useMedia } from "react-use";
 
 import logo from "../../public/images/logo.png";
 import logoBig from "../../public/images/logoBig.png";
-import Link from "next/link";
 import { LogoBox, LogoLink, LogoText, Wrapper } from "./Logo.styled";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
 import stl from "./Logo.module.scss";
 import MobileOnly from "../MobileOnly/MobileOnly";
@@ -17,10 +15,7 @@ import Statistic from "../Statistic/Statistic";
 
 import { Media } from "@/lib/media";
 
-interface IProps {
-  width: number;
-  height: number;
-}
+
 
 function Logo() {
   const pathName = usePathname();
