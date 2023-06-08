@@ -1,6 +1,5 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { setCookie } from "nookies";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -81,13 +80,4 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
-
-  // events: {
-  //   async signIn(message) { 
-  //      setCookie(null, "authToken", `${'wallet-project-token'}`, {
-  //     maxAge: 30 * 24 * 60 * 60,
-  //     path: "/",
-  //   });
-  //   },
-  // }
 };
