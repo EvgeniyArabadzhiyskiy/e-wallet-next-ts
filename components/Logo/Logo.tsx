@@ -8,10 +8,6 @@ import logoBig from "../../public/images/logoBig.png";
 import { LogoBox, LogoLink, LogoText, Wrapper } from "./Logo.styled";
 import Image from "next/image";
 
-import stl from "./Logo.module.scss";
-import MobileOnly from "../MobileOnly/MobileOnly";
-import DesctopOnly from "../DesctopOnly/DesctopOnly";
-import Statistic from "../Statistic/Statistic";
 
 import { Media } from "@/lib/media";
 
@@ -27,10 +23,11 @@ function Logo() {
   return (
     <LogoBox>
       
-      <LogoLink href="/">
+      <LogoLink href="/" >
 
         <Wrapper>
-          <Image  src={logo} alt="logo" fill sizes="(max-width: 1279px) 100vw" style={{objectFit: 'cover'}}   />
+          {/* <Image  src={logo} alt="logo" fill sizes="(max-width: 1279px) 100vw" style={{objectFit: 'cover'}}   /> */}
+          {/* <Image  src={logo} alt="logo" width={30} height={30}   /> */}
         </Wrapper>
 
         <LogoText $isLoginPage={isLoginPage}>Wallet</LogoText>
