@@ -14,6 +14,11 @@ const nextConfig = {
   //   appDir: true,
   // },
 
+  env: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET
+  },
+
 
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
