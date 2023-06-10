@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  // return <LoginPageLayout>{children}</LoginPageLayout>;
-  return <>{children}</>;
+  return <LoginPageLayout>{children}</LoginPageLayout>;
+  // return <>{children}</>;
 }
 
 // export default function Layout({ children }: { children: React.ReactNode }) {
