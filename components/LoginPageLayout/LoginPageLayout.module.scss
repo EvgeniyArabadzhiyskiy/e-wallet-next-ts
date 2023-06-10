@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    justify-content: flex-end;
+  }
+
+  & h1:hover {
+    color: rgb(21, 18, 209);
+  }
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100vh;
+
+  /* // background: url("../../public/images/mobile.webp");
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+
+  // @media screen and (min-width: 768px) {
+  //   background: url("../../public/images/tablet.webp");
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  // }
+
+  // @media screen and (min-width: 1280px) {
+  //   background: url("../../public/images/desctop-webp.webp");
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  // } */
+}
