@@ -90,11 +90,11 @@ export default function LoginPage() {
 
   return (
 
-    <LoginPageLayout>
+    <>
       <Link href="/">HOME</Link>
       <Text>Login Page</Text>
 
       <LoginForm />
-    </LoginPageLayout>
+    </>
   );
 }
