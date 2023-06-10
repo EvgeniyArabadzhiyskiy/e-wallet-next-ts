@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import StyledComponentsRegistry from "@/lib/registry";
-// import "modern-normalize";
-// import "../styles/globals.css";
+import "modern-normalize";
+import "../styles/globals.css";
 
 import { Providers } from "@/components/Providers/Providers";
 import AuthMenu from "@/components/AuthMenu/AuthMenu";
