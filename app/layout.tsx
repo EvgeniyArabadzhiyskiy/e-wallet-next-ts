@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import StyledComponentsRegistry from "@/lib/registry";
 import "modern-normalize";
 import "../styles/globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 
 import { Providers } from "@/components/Providers/Providers";
 import AuthMenu from "@/components/AuthMenu/AuthMenu";
