@@ -11,6 +11,8 @@ import {
   BorderProps,
   flexbox,
   FlexboxProps,
+  position,
+  PositionProps,
   typography,
   TypographyProps,
 } from "styled-system";
@@ -20,6 +22,7 @@ import {
     LayoutProps &
     BorderProps &
     FlexboxProps &
+    PositionProps&
     TypographyProps;
 
 
@@ -39,5 +42,6 @@ export const Box = styled.div<BoxingProps>(
   layout,
   border,
   flexbox,
+  position,
   typography
 );
