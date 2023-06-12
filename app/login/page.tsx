@@ -9,13 +9,14 @@ import {
   Text,
   Wrapper,
   Container,
-} from "../_components/LoginPage.styled";
+} from "../_components/LoginLayout.styled";
 import Statistic from "@/components/Statistic/Statistic";
 // import { Container } from "@/components/Container/Container.styled";
 import WrapperLogin from "@/components/WrapperLogin";
 import Logo from "@/components/Logo/Logo";
 import { Media, MediaContextProvider } from "@/lib/media";
 import LoginPageLayout from "@/components/LoginPageLayout/LoginPageLayout";
+// import { useEffect } from "react";
 
 // export default  function LoginPage() {
 //   //   const res = await fetch(
@@ -60,41 +61,33 @@ const wait = async (time: number) => {
   });
 };
 
-// export default function LoginPage() {
+// export default  function LoginPage() {
 //   // await wait(5000)
-//   // const res = await fetch(
-//   //   "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10"
-//   // );
-//   // const { results } = await res.json();
+//   const res = await fetch(
+//     "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10"
+//   );
+//   const { results } = await res.json();
 
 //   return (
 //     <>
 //         <Logo  />
 //         <Link href="/">HOME</Link>
-//         <Statistic pokemons={results} />
+//         {/* <Statistic pokemons={results} /> */}
 //     </>
 //   );
 // }
 
 export default function LoginPage() {
-  const session = useSession()
-  // console.log("LoginPage session:", session.data);
+  const session = useSession();
+  // console.log("LoginPage session:", session.status);
 
-  if (session.status === 'loading' ) {
-    return <h1>Session loading ...</h1>
-  }
+  // if (session.status === "loading") {
+  //   return <h1>Session loading ...</h1>;
+  // }
 
-  if (session.status === 'authenticated' ) {
-    // redirect("/home");
-  }
+  // if (session.status === "authenticated") {
+  //   // redirect("/home");
+  // }
 
-  return (
-
-    <>
-      <Link href="/">HOME</Link>
-      <Text>Login Page</Text>
-
-      <LoginForm />
-    </>
-  );
+  return <LoginForm />;
 }
