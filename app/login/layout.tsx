@@ -1,8 +1,10 @@
+// "use client"
+
 import LoginPageLayout from "@/components/LoginPageLayout/LoginPageLayout";
 import // Section,
 // Wrapper,
 // Container
-"../_components/LoginPage.styled";
+"../_components/LoginLayout.styled";
 import { Metadata } from "next";
 // import { Container } from "@/components/Container/Container";
 
