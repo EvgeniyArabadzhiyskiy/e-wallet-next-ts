@@ -1,13 +1,15 @@
 import React from "react";
 import { ErrorText, Input, Label } from "./FormInput.styled";
-// import Image from "next/image";
 
 interface IProps {
   name: string;
   type: string;
   inputBtn?: any;
   icon?: any;
-//   src?: string | undefined;
+  placeholder?: string;
+  autoComplete?: string; 
+  // [key: string]: any;
+
 }
 
 const FormInput: React.FC<IProps> = ({
@@ -15,13 +17,11 @@ const FormInput: React.FC<IProps> = ({
   type = "text",
   inputBtn = null,
   icon = null,
-//   src,
   ...allProps
 }) => {
   return (
     <Label>
       {icon}
-      {/* <Image src={src} alt={name} /> */}
       <Input type={type} name={name} {...allProps} />
       {inputBtn}
       <ErrorText component="div" name={name} />
