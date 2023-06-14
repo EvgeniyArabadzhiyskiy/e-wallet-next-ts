@@ -59,9 +59,7 @@ export default function RegistrationForm() {
         onSubmit={handleSubmit}
         initialValues={initialValues}
         validationSchema={schema.register}
-        render={(formik: FormikProps<IRegisterValues>) => (
-          <RegisterFormFields formik={formik} />
-        )}
+        render={(formik: FormikProps<IRegisterValues>) => <RegisterFormFields formik={formik} />}
       />
     </FormWrap>
   );
