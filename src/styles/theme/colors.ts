@@ -1,0 +1,47 @@
+const defaultColors = {
+  white: "#FFFFFF",
+  primaryText: "#000000",
+  primaryBtn: "#FFFFFF",
+  primaryBgBtn: "#24CCA7",
+  hoverBgBtn: "#2be2ba",
+  secondaryBtn: "#4A56E2",
+  secondaryBgBtn: "transparent",
+  primaryPasswordIndicator: "#24CCA7",
+  secondaryPasswordIndicator: "#E5F1EF",
+  navIconBg: "#6E78E8",
+  navIconBgActive: "#4A56E2",
+  expense: "#FF6596",
+  basicStat: "#FED057",
+  productsStat: "#FFD8D0",
+  carStat: "#FD9498",
+  selfStat: "#C5BAFF",
+  childrenStat: "#2d38be",
+  houseStat: "#4A56E2",
+  educationStat: "#81E1FF",
+  leisureStat: "#24CCA7",
+  otherStat: "#00AD84",
+};
+
+export const colors = {
+  LIGHT: {
+    ...defaultColors,
+    primaryBg: "#FFFFFF",
+    secondaryBg: "rgba(255, 255, 255, 0.4)",
+    loginPageBg: "#E7EAF2",
+    secondaryText: "#787272",
+    secondaryDarkText: "#A6A6A6",
+    secondaryLightText: "#E0E0E0",
+    gradient: "linear-gradient(rgba(47, 48, 58, 0),rgba(47, 48, 58, 0))",
+  },
+
+  DARK: {
+    ...defaultColors,
+    primaryBg: "#38398F",
+    secondaryBg: "#9B91C7",
+    loginPageBg: "#685AA2",
+    secondaryText: "#ffffff",
+    secondaryDarkText: "#DAD8D8",
+    secondaryLightText: "#ECEAEA",
+    gradient: "linear-gradient(rgba(47, 48, 58, 0.35),rgba(47, 48, 58, 0.35))",
+  },
+};
