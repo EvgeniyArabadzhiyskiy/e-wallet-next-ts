@@ -1,6 +1,6 @@
 "use client"
 
-import { Section, Wrapper } from "@/app/_components/LoginLayout.styled";
+import { Section, Wrapper } from "@/src/app/_components/LoginLayout.styled";
 import Link from "next/link";
 import { Text } from "./Statistic/Statistic.styled";
 import Statistic from "./Statistic/Statistic";
