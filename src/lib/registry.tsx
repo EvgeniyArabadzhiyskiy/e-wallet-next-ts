@@ -15,7 +15,7 @@ export default function StyledComponentsRegistry({
 
   useServerInsertedHTML(() => {
     const styles = styledComponentsStyleSheet.getStyleElement();
-    // styledComponentsStyleSheet.instance.clearTag();   // "styled-components": "6.0.0-beta.2"
+    styledComponentsStyleSheet.instance.clearTag();   // "styled-components": "6.0.0-beta.2"
     return <>{styles}</>;
   });
 
