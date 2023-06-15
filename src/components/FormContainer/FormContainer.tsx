@@ -2,27 +2,6 @@ import { ILoginValues } from "@/src/types/loginValues";
 import { IRegisterValues } from "@/src/types/registerValues";
 import { Form, Formik, FormikProps, FormikHelpers } from "formik";
 
-// interface IProps {
-//   initialValues: ILoginValues;
-//   validationSchema: any;
-//   onSubmit: (values: ILoginValues, formikHelpers: FormikHelpers<ILoginValues>) => Promise<void>;
-//   render: (formik: FormikProps<ILoginValues>) => React.ReactNode;
-// }
-
-// interface IFormValues {
-//   email: string;
-//   password: string;
-//   confirmPassword?: string;
-//   name?: string | undefined;
-// }
-
-// interface IProps<T> {
-//   initialValues: T;
-//   validationSchema: any;
-//   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => Promise<void>;
-//   render: (formik: FormikProps<T>) => React.ReactNode;
-// }
-
 interface IProps<T> {
   initialValues: T;
   validationSchema: any;
@@ -30,7 +9,7 @@ interface IProps<T> {
   render: (formik: FormikProps<T>) => React.ReactNode;
 }
 
-const FormContainer: React.FC<IProps<any>> = ({
+const FormContainer: React.FC<IProps<ILoginValues | IRegisterValues>> = ({
   initialValues,
   validationSchema,
   onSubmit,
