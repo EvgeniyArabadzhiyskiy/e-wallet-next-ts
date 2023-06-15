@@ -10,6 +10,7 @@ import { Providers } from "../components/Providers/Providers";
 import AuthMenu from "../components/AuthMenu/AuthMenu";
 
 import { mediaStyles } from "../lib/media";
+import AuthProvider from "../components/AuthProvider/AuthProvider";
 
 
 export const metadata: Metadata = {
@@ -31,7 +32,9 @@ async function RootLayout({ children }: IProps) {
       <body>
         <Providers>
           <AuthMenu />
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          <AuthProvider>
+            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          </AuthProvider>
         </Providers>
       </body>
     </html>
