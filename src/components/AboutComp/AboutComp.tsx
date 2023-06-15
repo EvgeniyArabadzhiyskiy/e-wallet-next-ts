@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const AboutComp = () => {
   const session = useSession()
-  console.log("AboutComp  session:", session.data);
+  // console.log("AboutComp  session:", session.data);
 
   return (
     <div>
