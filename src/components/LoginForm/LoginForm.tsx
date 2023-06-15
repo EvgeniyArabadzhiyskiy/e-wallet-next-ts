@@ -17,6 +17,7 @@ import { ILoginValues } from "@/src/types/loginValues";
 import Link from "next/link";
 import Spinner from "../Spinner/Spinner";
 import {Title} from "../Title/Title.styled";
+import { IRegisterValues } from "@/src/types/registerValues";
 
 // const login = async (credentials: any) => {
 //   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
@@ -47,6 +48,9 @@ export default function LoginForm () {
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
 
+  
+  
+  
   // const session = useSession()
   // console.log("LoginForm  session:", session.status);
   // const isLoading = session.status === "loading"
@@ -62,7 +66,9 @@ export default function LoginForm () {
     password: "",
   };
 
-  const handleSubmit = async (values: ILoginValues, { resetForm }: FormikHelpers<ILoginValues>) => {
+  const handleSubmit = async (values: ILoginValues, 
+    { resetForm }: FormikHelpers<ILoginValues>
+    ) => {
     
     setIsLoading(true);
 
@@ -85,8 +91,8 @@ export default function LoginForm () {
 
   return (
     <FormWrap $isScale={isScale}>
-      {isLoading && <Spinner />}
-      <Title as='h2' mb={5} color='expense' fontSize={["ml"]} textAlign='center' >Login Page</Title>
+      {isLoading && <h1>Loading...</h1>}
+      <Title as='h2' mb={5} color='expense' fontSize={["ml"]}  >Login Page</Title>
       <Logo />
 
       <FormContainer 
