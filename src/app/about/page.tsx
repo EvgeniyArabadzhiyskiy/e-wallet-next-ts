@@ -9,7 +9,7 @@ export default async  function AboutPage() {
 
   return (
     <main>
-      <AboutComp />
+      <AboutComp session={session} />
     </main>
   );
 }
