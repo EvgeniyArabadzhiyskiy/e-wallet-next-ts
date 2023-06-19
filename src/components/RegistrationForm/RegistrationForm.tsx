@@ -16,34 +16,48 @@ import RegisterFormFields from "../RegisterFormFields/RegisterFormFields";
 import { useMutation } from "@tanstack/react-query";
 import { USER_REGISTER } from "@/src/constants/apiPath";
 import { BASE_URL } from "@/src/constants/apiPath";
+import axios from "axios";
+import { setCookie } from "nookies";
+import { useRouter } from "next/navigation";
 
 const register = async (credentials: IRegisterValues) => {
-  const options = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials),
-  };
-  const result = await fetch(`${BASE_URL}${USER_REGISTER}`, options);
-  const user = await result.json();
+  // const options = {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(credentials),
+  // };
+  // const result = await fetch(`${BASE_URL}${USER_REGISTER}`, options);
+  // const user = await result.json();
+  // return user;
 
-  return user;
+  try {
+    const { data } = await axios.post(`${BASE_URL}${USER_REGISTER}`, credentials);
+    return data;
+
+  } catch (error) {
+    throw error;
+  }
+
 };
 
 export default function RegistrationForm() {
+  const router = useRouter();
   const isScale = useScaleForm();
-  // const [isLoading, setIsLoading] = useState(false);
 
-  const { mutate: registerUser, isLoading,  } = useMutation({
+  const { mutate: registerUser, isLoading } = useMutation({
     mutationFn: register,
     onSuccess: (data) => {
-      console.log("RegistrationForm  data:", data);
+      const { token, ...rest } = data;
 
-      // signIn(undefined, { callbackUrl: "/" });
-    }
+      setCookie(null, "authToken", `${token}`, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
 
+      router.push("/home");
+    },
   });
-  // console.log("RegistrationForm  data:", data);
-
+  
   const initialValues: IRegisterValues = {
     email: "",
     password: "",
@@ -57,10 +71,8 @@ export default function RegistrationForm() {
   ) => {
     const userCredentials = { email, password, firstName };
 
-    const user = await registerUser(userCredentials);
+    registerUser(userCredentials);
     resetForm();
-
-    signIn(undefined, {redirect: true, callbackUrl: "/" });
   };
 
   return (
@@ -72,7 +84,6 @@ export default function RegistrationForm() {
         color="expense"
         fontSize={["l"]}
         // textAlign="center"
-        
       >
         Register Page
       </Title>
