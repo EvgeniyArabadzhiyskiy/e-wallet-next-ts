@@ -1,7 +1,7 @@
 export { default } from "next-auth/middleware";
 
 export const config = {
-  matcher: ["/about"],
+  matcher: ["/home"],
 };
 
 // =================================================================
@@ -25,10 +25,8 @@ export const config = {
 
 //   {
 //     callbacks: {
-//       authorized: ({ token, req }) => {
-//         return !!token
-
-//         return false;
+//       authorized: () => {
+//        return true
 //       },
 //     },
 //   }
