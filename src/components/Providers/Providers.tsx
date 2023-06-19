@@ -21,9 +21,9 @@ export const Providers = ({ children }: IProps) => {
       <ThemeProvider theme={dayTheme}>
         <MediaContextProvider disableDynamicMediaQueries>
           <QueryClientProvider client={queryClient}>
-            {/* <SessionProvider> */}
+            <SessionProvider>
               {children}
-            {/* </SessionProvider> */}
+            </SessionProvider>
           </QueryClientProvider>
         </MediaContextProvider>
       </ThemeProvider>
