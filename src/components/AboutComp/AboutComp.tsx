@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 const AboutComp = () => {
-  const session = useSession()
+  // const session = useSession()
   // console.log("AboutComp  session:", session.data);
 
   return (
