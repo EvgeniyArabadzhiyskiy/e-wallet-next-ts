@@ -1,11 +1,17 @@
-"use client";
+// "use client";
 
 import Link from "next/link";
 import Statistic from "@/src/components/Statistic/Statistic";
 import { useSession } from "next-auth/react";
-import { useQuery } from "@tanstack/react-query";
+import { Hydrate, dehydrate, useQuery } from "@tanstack/react-query";
+import { parseCookies } from "nookies";
+import TransactionList from "@/src/components/TransactionList/TransactionList";
+import { cookies } from "next/headers";
+import getQueryClient from "@/src/lib/getQueryClient";
+import { getUser } from "@/src/helpers/getUser";
+import { redirect } from "next/navigation";
 
-const getAllTransactions = async (authToken: any) => {
+const getAllTransactions = async (authToken: any, pageNum: number) => {
   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
   const TRANSACTIONS = "/transactions";
 
@@ -18,37 +24,86 @@ const getAllTransactions = async (authToken: any) => {
     },
   };
 
-  const resFetch = await fetch(`${BASE_URL}${TRANSACTIONS}`, options);
-  const user = (await resFetch.json()) as any;
+  const resFetch = await fetch(
+    `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
+    options
+  );
+  const transactions = (await resFetch.json()) as any;
 
-  return user;
+  return transactions;
 };
 
-export default function HomePage() {
-  const session = useSession();
-  const authToken = session.data?.user.token;
-  // console.log("HomePage  authToken:", authToken);
+export default async function HomePage() {
+  // const { authToken } = parseCookies();
 
-  const { data } = useQuery({
-    queryKey: ["transactions"],
-    queryFn: () => getAllTransactions(authToken),
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    enabled: !!authToken,
-  });
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("authToken")?.value;
+
+  const queryUserData = authToken && await getUser(authToken);
+  // console.log("HomePage  queryUserData:", queryUserData);
+
+  if (!queryUserData) {
+    redirect("/login");
+  }
+
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(["Transactions", 1], () =>
+    getAllTransactions(authToken, 1)
+  );
+  const dehydratedState = dehydrate(queryClient);
+
+  // const { data, isFetching } = useQuery({
+  //   queryKey: ["transactions"],
+  //   queryFn: () => getAllTransactions(authToken),
+  //   staleTime: Infinity,
+  //   refetchOnWindowFocus: false,
+  //   // enabled: !!authToken,
+  // });
   // console.log("HomePage  data:", data);
 
+  // if (isFetching) {
+  //   return <h1>Loading...</h1>
+  // }
   return (
     <>
-      <h1>HOME PAGE</h1>
+      {/* <h1>HOME PAGE</h1>
       <Link href="/">HOME</Link>
+
       {data &&
         data.transactions.map((item: any) => {
           return <li key={item._id}>{item.category}</li>;
-        })}
+        })} */}
+
+      <Hydrate state={dehydratedState}>
+        <TransactionList authToken={authToken} />
+      </Hydrate>
     </>
   );
 }
+
+// export default function HomePage() {
+//   const session = useSession();
+//   const authToken = session.data?.user.token;
+
+//   const { data } = useQuery({
+//     queryKey: ["transactions"],
+//     queryFn: () => getAllTransactions(authToken),
+//     staleTime: Infinity,
+//     refetchOnWindowFocus: false,
+//     enabled: !!authToken,
+//   });
+
+//   return (
+//     <>
+//       <h1>HOME PAGE</h1>
+//       <Link href="/">HOME</Link>
+//       {data &&
+//         data.transactions.map((item: any) => {
+//           return <li key={item._id}>{item.category}</li>;
+//         })}
+//     </>
+//   );
+// }
 
 // const res = await fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10")
 //   const {results} = await res.json()
