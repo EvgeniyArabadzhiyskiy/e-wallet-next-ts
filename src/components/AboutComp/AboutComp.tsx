@@ -14,7 +14,7 @@ const AboutComp = ({session}: {session: any}) => {
     <div>
       <Link href="/">HOME</Link>
       <h1>{userName}</h1>
-      <h1>SERVER USER: {session?.user.user.firstName}</h1>
+      {/* <h1>SERVER USER: {session?.user.user.firstName}</h1> */}
 
       
       {/* <div style={{ position: "fixed", width: "300px", height: "200px", overflowX: "hidden", 
