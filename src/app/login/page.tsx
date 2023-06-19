@@ -26,14 +26,12 @@ export default async function LoginPage() {
   const authToken = cookieStore.get("authToken")?.value;
   // const  authToken  = undefined;
   // throw new AuthRequiredError("Something Error")
-
   // const queryUserData = authToken && await getUser(authToken);
-
   // const isLoggedIn = !!queryUserData?.email;
 
-  if (authToken) {
-    redirect("/home");
-  }
+  // if (authToken) {
+  //   redirect("/home");
+  // }
 
   // useEffect(() => {
   //   if (authToken) {
