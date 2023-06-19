@@ -4,7 +4,8 @@ import { useSession } from "next-auth/react";
 // import Image from "next/image";
 import Link from "next/link";
 
-const AboutComp = () => {
+const AboutComp = ({session}: {session: any}) => {
+  console.log("AboutComp  session:", session);
   // const session = useSession()
   // console.log("AboutComp  session:", session.data);
 
