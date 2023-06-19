@@ -45,6 +45,56 @@ const login = async (credentials: ILoginValues) => {
   }
 };
 
+//==============================================================================
+export default function LoginForm () {
+  const router = useRouter();
+  const isScale = useScaleForm();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const initialValues: ILoginValues = {
+    email: "",
+    password: "",
+  };
+
+  const handleSubmit = async (values: ILoginValues,
+    { resetForm }: FormikHelpers<ILoginValues>
+    ) => {
+
+    setIsLoading(true);
+
+    try {
+      const user = await signIn('credentials', {
+        email: values.email,
+        password: values.password,
+        redirect: true,
+        callbackUrl: '/home'
+      });
+
+      resetForm({ values: { email: '', password: '' } });
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <FormWrap $isScale={isScale}>
+      {isLoading && <h1>Loading...</h1>}
+      <Title as='h2' mb={5} color='expense' fontSize={["ml"]}  >Login Page</Title>
+      <Logo />
+
+      <FormContainer
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+        validationSchema={schema.login}
+        render={(formik: FormikProps<ILoginValues>) => <LoginFormFields formik={formik} />}
+      />
+
+    </FormWrap>
+  );
+}
+
+//=====================================================================================
 // export default function LoginForm() {
 //   const router = useRouter();
 //   const isScale = useScaleForm();
@@ -102,54 +152,7 @@ const login = async (credentials: ILoginValues) => {
 //   );
 // }
 
-//==============================================================================
-export default function LoginForm () {
-  const router = useRouter();
-  const isScale = useScaleForm();
-  const [isLoading, setIsLoading] = useState(false);
 
-  const initialValues: ILoginValues = {
-    email: "",
-    password: "",
-  };
-
-  const handleSubmit = async (values: ILoginValues,
-    { resetForm }: FormikHelpers<ILoginValues>
-    ) => {
-
-    setIsLoading(true);
-
-    try {
-      const user = await signIn('credentials', {
-        email: values.email,
-        password: values.password,
-        redirect: true,
-        callbackUrl: '/home'
-      });
-
-      resetForm({ values: { email: '', password: '' } });
-    } catch (error) {
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return (
-    <FormWrap $isScale={isScale}>
-      {isLoading && <h1>Loading...</h1>}
-      <Title as='h2' mb={5} color='expense' fontSize={["ml"]}  >Login Page</Title>
-      <Logo />
-
-      <FormContainer
-        onSubmit={handleSubmit}
-        initialValues={initialValues}
-        validationSchema={schema.login}
-        render={(formik: FormikProps<ILoginValues>) => <LoginFormFields formik={formik} />}
-      />
-
-    </FormWrap>
-  );
-}
 
 
 //==============================================================================
