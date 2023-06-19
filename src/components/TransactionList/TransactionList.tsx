@@ -54,7 +54,7 @@ const [pageNum, setPageNum] = useState(2)
       <Link href="/">HOME</Link>
 
       {data &&
-        data.transactions.map((item: any) => {
+        data?.transactions?.map((item: any) => {
           return <li key={item._id}>{item.category}</li>;
         })}
     </>
