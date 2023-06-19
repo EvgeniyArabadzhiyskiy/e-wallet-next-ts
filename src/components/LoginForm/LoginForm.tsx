@@ -1,6 +1,6 @@
 "use client";
 
-// import { signIn, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
 import { FormWrap } from "./LoginForm.styled";
 import { useScaleForm } from "@/src/hooks/useScaleForm";
@@ -45,109 +45,112 @@ const login = async (credentials: ILoginValues) => {
   }
 };
 
-export default function LoginForm() {
-  const router = useRouter();
-  const isScale = useScaleForm();
-
-  const initialValues: ILoginValues = {
-    email: "",
-    password: "",
-  };
-
-  const { mutate: signInUser, isLoading } = useMutation({
-    mutationFn: login,
-
-    onSuccess: (data) => {
-      // console.log("LoginForm  data:", data);
-      const { token, ...rest } = data;
-      // queryClient.setQueryData(["currentUser"], rest);
-
-      setCookie(null, "authToken", `${token}`, {
-        maxAge: 30 * 24 * 60 * 60,
-        path: "/",
-      });
-
-      router.push("/home");
-      // const ddd = queryClient.getQueryData(['currentUser'])
-      // console.log("LoginForm  ddd:", ddd);
-    },
-  });
-
-  const handleSubmit = async (
-    values: ILoginValues,
-    { resetForm }: FormikHelpers<ILoginValues>
-  ) => {
-    signInUser({ email: values.email, password: values.password });
-
-    resetForm({ values: { email: "", password: "" } });
-  };
-
-  return (
-    <FormWrap $isScale={isScale}>
-      {isLoading && <h1>Loading...</h1>}
-      <Title as="h2" mb={5} color="expense" fontSize={["ml"]}>
-        Login Page
-      </Title>
-      <Logo />
-
-      <FormContainer
-        onSubmit={handleSubmit}
-        initialValues={initialValues}
-        validationSchema={schema.login}
-        render={(formik: FormikProps<ILoginValues>) => (
-          <LoginFormFields formik={formik} />
-        )}
-      />
-    </FormWrap>
-  );
-}
-
-// export default function LoginForm () {
+// export default function LoginForm() {
+//   const router = useRouter();
 //   const isScale = useScaleForm();
-//   const [isLoading, setIsLoading] = useState(false);
 
 //   const initialValues: ILoginValues = {
 //     email: "",
 //     password: "",
 //   };
 
-//   const handleSubmit = async (values: ILoginValues,
-//     { resetForm }: FormikHelpers<ILoginValues>
-//     ) => {
+//   const { mutate: signInUser, isLoading } = useMutation({
+//     mutationFn: login,
 
-//     setIsLoading(true);
+//     onSuccess: (data) => {
+//       // console.log("LoginForm  data:", data);
+//       const { token, ...rest } = data;
+//       // queryClient.setQueryData(["currentUser"], rest);
 
-//     try {
-//       const user = await signIn('credentials', {
-//         email: values.email,
-//         password: values.password,
-//         redirect: false,
+//       setCookie(null, "authToken", `${token}`, {
+//         maxAge: 30 * 24 * 60 * 60,
+//         path: "/",
 //       });
 
-//       resetForm({ values: { email: '', password: '' } });
-//     } catch (error) {
-//     } finally {
-//       setIsLoading(false);
-//     }
+//       router.push("/home");
+//       // const ddd = queryClient.getQueryData(['currentUser'])
+//       // console.log("LoginForm  ddd:", ddd);
+//     },
+//   });
+
+//   const handleSubmit = async (
+//     values: ILoginValues,
+//     { resetForm }: FormikHelpers<ILoginValues>
+//   ) => {
+//     signInUser({ email: values.email, password: values.password });
+
+//     resetForm({ values: { email: "", password: "" } });
 //   };
 
 //   return (
 //     <FormWrap $isScale={isScale}>
 //       {isLoading && <h1>Loading...</h1>}
-//       <Title as='h2' mb={5} color='expense' fontSize={["ml"]}  >Login Page</Title>
+//       <Title as="h2" mb={5} color="expense" fontSize={["ml"]}>
+//         Login Page
+//       </Title>
 //       <Logo />
 
 //       <FormContainer
 //         onSubmit={handleSubmit}
 //         initialValues={initialValues}
 //         validationSchema={schema.login}
-//         render={(formik: FormikProps<ILoginValues>) => <LoginFormFields formik={formik} />}
+//         render={(formik: FormikProps<ILoginValues>) => (
+//           <LoginFormFields formik={formik} />
+//         )}
 //       />
-
 //     </FormWrap>
 //   );
 // }
 
+//==============================================================================
+export default function LoginForm () {
+  const isScale = useScaleForm();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const initialValues: ILoginValues = {
+    email: "",
+    password: "",
+  };
+
+  const handleSubmit = async (values: ILoginValues,
+    { resetForm }: FormikHelpers<ILoginValues>
+    ) => {
+
+    setIsLoading(true);
+
+    try {
+      const user = await signIn('credentials', {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+      });
+
+      resetForm({ values: { email: '', password: '' } });
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <FormWrap $isScale={isScale}>
+      {isLoading && <h1>Loading...</h1>}
+      <Title as='h2' mb={5} color='expense' fontSize={["ml"]}  >Login Page</Title>
+      <Logo />
+
+      <FormContainer
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+        validationSchema={schema.login}
+        render={(formik: FormikProps<ILoginValues>) => <LoginFormFields formik={formik} />}
+      />
+
+    </FormWrap>
+  );
+}
+
+
+//==============================================================================
 // function LoginForm() {
 //   const [email, setEmail] = useState("");
 //   const [password, setPassword] = useState("");
@@ -193,6 +196,7 @@ export default function LoginForm() {
 
 // export default LoginForm;
 
+//==============================================================================
 // const mutation = useMutation({
 //   mutationFn: login,
 
