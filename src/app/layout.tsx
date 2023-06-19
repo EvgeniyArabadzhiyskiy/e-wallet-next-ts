@@ -31,10 +31,10 @@ async function RootLayout({ children }: IProps) {
       </head>
       <body>
         <Providers>
-          <AuthMenu />
-          <AuthProvider>
+          {/* <AuthMenu /> */}
+          {/* <AuthProvider> */}
             <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-          </AuthProvider>
+          {/* </AuthProvider> */}
         </Providers>
       </body>
     </html>
