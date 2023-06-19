@@ -104,6 +104,7 @@ const login = async (credentials: ILoginValues) => {
 
 //==============================================================================
 export default function LoginForm () {
+  const router = useRouter();
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -122,7 +123,8 @@ export default function LoginForm () {
       const user = await signIn('credentials', {
         email: values.email,
         password: values.password,
-        redirect: false,
+        redirect: true,
+        callbackUrl: '/home'
       });
 
       resetForm({ values: { email: '', password: '' } });
