@@ -10,6 +10,8 @@ import { cookies } from "next/headers";
 import getQueryClient from "@/src/lib/getQueryClient";
 import { getUser } from "@/src/helpers/getUser";
 import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/src/lib/auth";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
@@ -34,23 +36,24 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 };
 
 export default async function HomePage() {
-  // const { authToken } = parseCookies();
+  // const cookieStore = cookies();
+  // const authToken = cookieStore.get("authToken")?.value;
+  // const queryUserData = authToken && await getUser(authToken);
 
-  const cookieStore = cookies();
-  const authToken = cookieStore.get("authToken")?.value;
+  // if (!queryUserData) {
+  //   redirect("/login");
+  // }
 
-  const queryUserData = authToken && await getUser(authToken);
-  // console.log("HomePage  queryUserData:", queryUserData);
-
-  if (!queryUserData) {
-    redirect("/login");
-  }
+  const session = await getServerSession(authOptions);
+  const authToken = session?.user.token;
 
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(["Transactions", 1], () =>
     getAllTransactions(authToken, 1)
   );
   const dehydratedState = dehydrate(queryClient);
+
+  
 
   // const { data, isFetching } = useQuery({
   //   queryKey: ["transactions"],
