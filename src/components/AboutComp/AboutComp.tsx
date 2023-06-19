@@ -5,13 +5,15 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 const AboutComp = ({session}: {session: any}) => {
-  console.log("AboutComp  session:", session);
-  // const session = useSession()
-  // console.log("AboutComp  session:", session.data);
+  console.log("SERVER  session:", session);
+  const user = useSession()
+  const userName = user.data?.user.user.firstName
+  console.log("AboutComp  userName:", userName);
 
   return (
     <div>
       <Link href="/">HOME</Link>
+      <h1>{userName}</h1>
       
       {/* <div style={{ position: "fixed", width: "300px", height: "200px", overflowX: "hidden", 
        zIndex: -1
