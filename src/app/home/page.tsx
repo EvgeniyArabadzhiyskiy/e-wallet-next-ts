@@ -12,6 +12,7 @@ import { getUser } from "@/src/helpers/getUser";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
+import Header from "@/src/components/Header/Header";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
@@ -36,14 +37,6 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 };
 
 export default async function HomePage() {
-  // const cookieStore = cookies();
-  // const authToken = cookieStore.get("authToken")?.value;
-  // const queryUserData = authToken && await getUser(authToken);
-
-  // if (!queryUserData) {
-  //   redirect("/login");
-  // }
-
   const session = await getServerSession(authOptions);
   const authToken = session?.user.token;
 
@@ -53,31 +46,11 @@ export default async function HomePage() {
   );
   const dehydratedState = dehydrate(queryClient);
 
-  
 
-  // const { data, isFetching } = useQuery({
-  //   queryKey: ["transactions"],
-  //   queryFn: () => getAllTransactions(authToken),
-  //   staleTime: Infinity,
-  //   refetchOnWindowFocus: false,
-  //   // enabled: !!authToken,
-  // });
-  // console.log("HomePage  data:", data);
-
-  // if (isFetching) {
-  //   return <h1>Loading...</h1>
-  // }
   return (
     <>
-      {/* <h1>HOME PAGE</h1>
-      <Link href="/">HOME</Link>
-
-      {data &&
-        data.transactions.map((item: any) => {
-          return <li key={item._id}>{item.category}</li>;
-        })} */}
-
       <Hydrate state={dehydratedState}>
+        <Header currentUser={session} />
         <TransactionList authToken={authToken} />
       </Hydrate>
     </>
