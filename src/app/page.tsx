@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { LogoutButton } from "../components/AuthButtons/AuthButtons";
 
 export default async function Home() {
   return (
@@ -11,9 +10,8 @@ export default async function Home() {
           <Link href="/login">LOGIN</Link>
         </pre>
         <pre>
-          <Link href="/home/product">PRODUCT</Link>
+          {/* <Link href="/home/product">PRODUCT</Link> */}
         </pre>
-        {/* <LogoutButton /> */}
       </div>
 
     
