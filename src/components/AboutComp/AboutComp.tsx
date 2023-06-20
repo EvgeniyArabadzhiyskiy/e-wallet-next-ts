@@ -5,10 +5,11 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 const AboutComp = ({session}: {session: any}) => {
-  console.log("SERVER  session:", session?.user.user.firstName);
+  // console.log("SERVER  session:", session?.user.user.firstName);
+
   const user = useSession()
   const userName = user.data?.user.user.firstName
-  console.log("AboutComp  userName:", userName);
+  // console.log("AboutComp  userName:", userName);
 
   return (
     <div>
