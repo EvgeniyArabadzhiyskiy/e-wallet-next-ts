@@ -18,40 +18,9 @@ import { parseCookies } from "nookies";
 // import { useEffect } from "react";
 
 export default async function LoginPage() {
-  // const router = useRouter();
-  // const { authToken } = parseCookies();
-  // console.log("LoginPage  authToken:", authToken);
-
-  const cookieStore = cookies();
-  const authToken = cookieStore.get("authToken")?.value;
-  // const  authToken  = undefined;
   // throw new AuthRequiredError("Something Error")
   // const queryUserData = authToken && await getUser(authToken);
-  // const isLoggedIn = !!queryUserData?.email;
 
-  // if (authToken) {
-  //   redirect("/home");
-  // }
-
-  // useEffect(() => {
-  //   if (authToken) {
-  //     router.push("/home");
-  //   }
-  // }, [authToken, router]);
-
-  //======================================================================
-  // const session = useSession();
-  // console.log("LoginPage session:", session.status);
-
-  // if (session.status === "loading") {
-  //   return <h1>Session loading ...</h1>;
-  // }
-
-  // if (session.status === "authenticated") {
-  //   // redirect("/home");
-  // }
-
-  //======================================================================
   return <LoginForm />;
 }
 
