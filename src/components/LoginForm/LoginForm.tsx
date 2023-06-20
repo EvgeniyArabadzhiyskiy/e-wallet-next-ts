@@ -47,7 +47,6 @@ const login = async (credentials: ILoginValues) => {
 
 //==============================================================================
 export default function LoginForm () {
-  const router = useRouter();
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
 
