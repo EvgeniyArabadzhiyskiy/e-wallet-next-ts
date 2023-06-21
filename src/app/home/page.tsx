@@ -20,7 +20,7 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 
   // const { authToken } = parseCookies();
 
-  const options = {
+  const options: RequestInit = {
     method: "GET",
     headers: {
       Authorization: `Bearer ${authToken}`,
