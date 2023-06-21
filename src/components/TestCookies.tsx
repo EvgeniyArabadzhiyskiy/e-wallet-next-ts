@@ -1,8 +1,9 @@
 "use client";
 
+import { cookies } from "next/headers";
 import { setCookie } from "nookies";
 
-const TestCookies = () => {
+const TestCookies = ({ children }: { children: React.ReactNode }) => {
   const rrr = () => {
     setCookie(null, "authToken", `${"DjonSuperPuper"}`, {
       maxAge: 30 * 24 * 60 * 60,
@@ -12,6 +13,7 @@ const TestCookies = () => {
 
   return (
     <>
+      {children}
       <button type="button" onClick={rrr}>
         CLICK
       </button>
