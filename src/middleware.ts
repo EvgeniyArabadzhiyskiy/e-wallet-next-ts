@@ -14,11 +14,15 @@ export default withAuth(
     const isLoggedIn = !!req.nextauth.token;
     // console.log("========================", isLoggedIn);
 
-    if (!isLoggedIn && req.nextUrl.pathname.startsWith("/home")) {
+    const isAuthPage =
+      req.nextUrl.pathname.startsWith("/login") ||
+      req.nextUrl.pathname.startsWith("/register");
+
+    if (!isLoggedIn && !isAuthPage) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
 
-    if (isLoggedIn && req.nextUrl.pathname.startsWith("/login")) {
+    if (isLoggedIn && isAuthPage) {
       return NextResponse.redirect(new URL("/home", req.url));
     }
   },
@@ -26,14 +30,10 @@ export default withAuth(
   {
     callbacks: {
       authorized: () => {
-       return true
+        return true;
       },
     },
   }
 );
 
-export const config = { matcher: [
-  "/about",
-  "/home",
-  "/login",
-] };
+export const config = { matcher: ["/about", "/home", "/login", "/register"] };
