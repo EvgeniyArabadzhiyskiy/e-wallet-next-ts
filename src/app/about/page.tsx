@@ -1,14 +1,24 @@
+// "use client";
+
 import AboutComp from "@/src/components/AboutComp/AboutComp";
 import { LogoutButton } from "@/src/components/AuthButtons/AuthButtons";
 import AuthCookie from "@/src/components/AuthCookie";
+import { GlobalContext } from "@/src/components/GlobalProvider/GlobalProvider";
+import Header from "@/src/components/Header/Header";
+import ModalBox from "@/src/components/ModalBox";
+import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
+import ModalWindow from "@/src/components/ModalWindow/ModalWindow";
 import TestCookies from "@/src/components/TestCookies";
 import { authOptions } from "@/src/lib/auth";
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, useContext } from "react";
+// import { useState } from "react";
 
 export default async function AboutPage() {
+  // const { isModalOpen, setIsModalOpen } = useContext(GlobalContext);
+
   // const session = await getServerSession(authOptions);
   // console.log("AboutPage  session:", session);
 
@@ -16,19 +26,35 @@ export default async function AboutPage() {
   // const authToken = cookieStore.get("authToken")?.value;
   // console.log("AboutPage  authToken:", authToken);
 
-  
-  return (
-    <main>
-      <Link href="/">HOME</Link>
-      {/* <h1>Cookies{authToken}</h1> */}
-      {/* <TestCookies> */}
-     
+  // const onOpenModal = () => {
+  //   // document.body.classList.toggle('open-modal')
+  //   setIsOpen(true);
+  // };
 
-        <AuthCookie />
-      
-      {/* </TestCookies> */}
-      <LogoutButton />
-      {/* <AboutComp session={session} /> */}
-    </main>
+  // console.log("Page re-re");
+
+  return (
+    <>
+      <main>
+        <Link href="/">HOME</Link>
+        <Header />
+        {/* <button type="button" onClick={() => setIsModalOpen(true)}>Open</button> */}
+        {/* <button type="button" onClick={onOpenModal}>
+          Open
+        </button> */}
+        {/* <h1>Cookies{authToken}</h1> */}
+        {/* <TestCookies> */}
+
+        {/* <AuthCookie /> */}
+
+        {/* </TestCookies> */}
+        {/* <LogoutButton /> */}
+        {/* <AboutComp session={session} /> */}
+        {/* {isOpen && <ModalWindow isOpen={isOpen} setIsOpen={setIsOpen} />} */}
+        <ModalBox>
+          <ModalLogOut />
+        </ModalBox>
+      </main>
+    </>
   );
 }
