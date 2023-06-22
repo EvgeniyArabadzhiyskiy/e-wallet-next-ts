@@ -30,7 +30,7 @@ const TransactionList = (
     ) => {
 // const { authToken } = parseCookies();
 // const queryClient = useQueryClient();
-const [pageNum, setPageNum] = useState(2)
+const [pageNum, setPageNum] = useState(1)
 
   const { data, isFetching } = useQuery({
     queryKey: ["Transactions", pageNum],
