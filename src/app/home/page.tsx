@@ -39,6 +39,7 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
   const authToken = session?.user.token;
+  console.log("HomePage  authToken>>>>>>>>>>>>>>>>>>>>>>>>>>>>", authToken);
 
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(["Transactions", 1], () =>
