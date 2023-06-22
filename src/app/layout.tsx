@@ -11,7 +11,7 @@ import AuthMenu from "../components/AuthMenu/AuthMenu";
 
 import { mediaStyles } from "../lib/media";
 import AuthProvider from "../components/AuthProvider/AuthProvider";
-
+import GlobalProvider from "../components/GlobalProvider/GlobalProvider";
 
 export const metadata: Metadata = {
   title: "Next.js",
@@ -30,10 +30,11 @@ async function RootLayout({ children }: IProps) {
         {/* <style type="text/css" dangerouslySetInnerHTML={{ __html: mediaStyles }}/> */}
       </head>
       <body>
+        <div id="modal-root"></div>
         <Providers>
           {/* <AuthMenu /> */}
           {/* <AuthProvider> */}
-            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
           {/* </AuthProvider> */}
         </Providers>
       </body>
