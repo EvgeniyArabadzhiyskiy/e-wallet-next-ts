@@ -3,10 +3,12 @@
 import AboutComp from "@/src/components/AboutComp/AboutComp";
 import { LogoutButton } from "@/src/components/AuthButtons/AuthButtons";
 import AuthCookie from "@/src/components/AuthCookie";
+import LogoutBtn from "@/src/components/Buttons/LogoutBtn/LogoutBtn";
 import { GlobalContext } from "@/src/components/GlobalProvider/GlobalProvider";
 import Header from "@/src/components/Header/Header";
 import ModalBox from "@/src/components/ModalBox";
 import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
+import ModalSignUp from "@/src/components/ModalSignUp";
 import ModalWindow from "@/src/components/ModalWindow/ModalWindow";
 import TestCookies from "@/src/components/TestCookies";
 import { authOptions } from "@/src/lib/auth";
@@ -16,7 +18,7 @@ import Link from "next/link";
 import { Suspense, useContext } from "react";
 // import { useState } from "react";
 
-export default async function AboutPage() {
+export default  function AboutPage() {
   // const { isModalOpen, setIsModalOpen } = useContext(GlobalContext);
 
   // const session = await getServerSession(authOptions);
@@ -51,9 +53,14 @@ export default async function AboutPage() {
         {/* <LogoutButton /> */}
         {/* <AboutComp session={session} /> */}
         {/* {isOpen && <ModalWindow isOpen={isOpen} setIsOpen={setIsOpen} />} */}
-        <ModalBox>
+        <ModalBox modalName="logout">
           <ModalLogOut />
         </ModalBox>
+
+        {/* <ModalBox modalName="signup">
+          <ModalSignUp />
+        </ModalBox>
+        <LogoutBtn modalName="signup" type="exit" /> */}
       </main>
     </>
   );
