@@ -13,6 +13,8 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import Header from "@/src/components/Header/Header";
+import ModalBox from "@/src/components/ModalBox";
+import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
@@ -52,7 +54,11 @@ export default async function HomePage() {
     <>
       <Hydrate state={dehydratedState}>
         <Header currentUser={session} />
-        <TransactionList authToken={authToken} />
+        {/* <TransactionList authToken={authToken} /> */}
+
+        <ModalBox modalName="logout">
+          <ModalLogOut />
+        </ModalBox>
       </Hydrate>
     </>
   );
