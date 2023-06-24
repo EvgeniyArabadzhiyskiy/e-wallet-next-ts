@@ -21,6 +21,7 @@ export const UserBox = styled.div`
 
 
 export const TextName = styled.div`
+  width: 50px;
   font-size: 24px;
   margin-left: 8px;
 `;
