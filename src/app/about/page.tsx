@@ -17,6 +17,14 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense, useContext } from "react";
 // import { useState } from "react";
+import { useServerInsertedHTML } from 'next/navigation';
+import { Inter, Fira_Code } from "next/font/google";
+ 
+const inter = Inter({
+  subsets: ["latin"],
+  weight: "400",
+  preload: true
+});
 
 export default  function AboutPage() {
   // const { isModalOpen, setIsModalOpen } = useContext(GlobalContext);
@@ -40,6 +48,7 @@ export default  function AboutPage() {
       <main>
         <Link href="/">HOME</Link>
         <Header />
+        <h1  >Next Font</h1>
         {/* <button type="button" onClick={() => setIsModalOpen(true)}>Open</button> */}
         {/* <button type="button" onClick={onOpenModal}>
           Open
