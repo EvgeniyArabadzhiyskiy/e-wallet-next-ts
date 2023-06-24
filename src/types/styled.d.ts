@@ -1,20 +1,9 @@
-import { dayTheme } from "@/styles/theme/theme";
+import { lightTheme, darkTheme } from "../styles/theme/theme";
 import "styled-components";
 
-type CustomTheme = typeof dayTheme;
+export type CustomTheme = typeof lightTheme & typeof darkTheme;
 
 declare module "styled-components" {
   export interface DefaultTheme extends CustomTheme {}
 }
 
-// declare module "styled-components" {
-//   export interface DefaultTheme {
-//     borderRadius: string;
-
-//     colors: {
-//       main: string;
-//       secondary: string;
-//       prymary: string;
-//     };
-//   }
-// }
