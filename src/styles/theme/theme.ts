@@ -1,4 +1,3 @@
-import { DefaultTheme } from "styled-components";
 import { colors } from "./colors";
 import { breakpoints } from "./breakpoints";
 
@@ -41,12 +40,14 @@ const commonTheme = {
   media: breakpoints,
 };
 
-export const dayTheme: DefaultTheme = {
+export const lightTheme = {
   ...commonTheme,
   colors: colors.LIGHT,
+  type: "light"
 };
 
-export const nightTheme = {
+export const darkTheme = {
   ...commonTheme,
   colors: colors.DARK,
+  type: "dark"
 };
