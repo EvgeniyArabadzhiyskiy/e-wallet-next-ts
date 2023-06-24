@@ -1,30 +1,28 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 import { MediaContextProvider } from "@/src/lib/media";
-import { dayTheme } from "@/src/styles/theme/theme";
 import { GlobalStyle } from "@/src/styles/theme/GlobalStyle";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "styled-components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import GlobalProvider from "../GlobalProvider/GlobalProvider";
+import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 
 interface IProps {
   children?: React.ReactNode;
 }
 
 export const Providers = ({ children }: IProps) => {
-  const [queryClient] = React.useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient());
+  const { theme } = useGlobalState();
 
   return (
     <>
-      <ThemeProvider theme={dayTheme}>
+      <ThemeProvider theme={theme}>
         <MediaContextProvider disableDynamicMediaQueries>
-          <GlobalProvider>
-            <QueryClientProvider client={queryClient}>
-              <SessionProvider>{children}</SessionProvider>
-            </QueryClientProvider>
-          </GlobalProvider>
+          <QueryClientProvider client={queryClient}>
+            <SessionProvider>{children}</SessionProvider>
+          </QueryClientProvider>
         </MediaContextProvider>
       </ThemeProvider>
       {/* <GlobalStyle /> */}
