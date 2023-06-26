@@ -1,7 +1,7 @@
 "use client"
 
-import { useContext } from "react";
-import { GlobalContext, ModalState } from "../../GlobalProvider/GlobalProvider";
+
+import {  ModalState, useGlobalState } from "../../GlobalProvider/GlobalProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 import styled from "styled-components";
@@ -51,7 +51,7 @@ export default function LogoutBtn({
   modalName: string;
   type: string;
 }) {
-  const { isModalOpen, setIsModalOpen } = useContext(GlobalContext);
+  const { isModalOpen, setIsModalOpen } = useGlobalState();
 
   const onToggleModal = () => {
     setIsModalOpen((prev: ModalState) => {
