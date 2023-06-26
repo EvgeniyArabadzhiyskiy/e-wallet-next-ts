@@ -23,7 +23,7 @@ export const ImgWrapper = styled.div`
 `;
 
 export const LogoText = styled.span<{ $isLoginPage: boolean }>`
-  font-family: ${(p) => p.theme.fonts.headingBold};
+  /* font-family: ${(p) => p.theme.fonts.headingBold}; */
   font-size: 23px;
 
   @media ${(p) => p.theme.media.medium} {
