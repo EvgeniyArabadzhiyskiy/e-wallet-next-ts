@@ -34,7 +34,6 @@ const poppins = localFont({
 const myFont = localFont({
   src: "../../../public/fonts/Poppins-Regular.ttf",
   weight: "400",
-  style: "italic",
   display: "swap",
 });
 
@@ -77,8 +76,8 @@ export default async function HomePage() {
       {/* <Header currentUser={session} /> */}
       <Header />
       {/* <TransactionList authToken={authToken} /> */}
-      <h1 style={{ marginBottom: 100 }} className="title__poppins">
-        Title Poppins CSS import
+      <h1 style={{ marginBottom: 100 }} >
+        Title Poppins CSS import aaa
       </h1>
       <h1 className={myFont.className}>Title Poppins Next/Local import</h1>
 
