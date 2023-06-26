@@ -22,8 +22,8 @@ export const ImgWrapper = styled.div`
   }
 `;
 
+/* font-family: ${(p) => p.theme.fonts.inter}; */
 export const LogoText = styled.span<{ $isLoginPage: boolean }>`
-  font-family: ${(p) => p.theme.fonts.poppins};
   font-size: 23px;
   font-weight: 700;
 
