@@ -20,10 +20,14 @@ import { Suspense, useContext } from "react";
 import { useServerInsertedHTML } from 'next/navigation';
 import { Inter, Fira_Code } from "next/font/google";
  
-const inter = Inter({
+const fira = Fira_Code({
   subsets: ["latin"],
   weight: "400",
   preload: true
+});
+
+const inter = Inter({
+  subsets: ["latin"],
 });
 
 export default  function AboutPage() {
@@ -48,7 +52,11 @@ export default  function AboutPage() {
       <main>
         <Link href="/">HOME</Link>
         <Header />
-        <h1  >Next Font</h1>
+        <h1  >Next Font aaaa</h1>
+        <h2 className={fira.className} >Fira Fontas</h2>
+
+        <h2 className={inter.className} >Inter Fontas</h2>
+
         {/* <button type="button" onClick={() => setIsModalOpen(true)}>Open</button> */}
         {/* <button type="button" onClick={onOpenModal}>
           Open
