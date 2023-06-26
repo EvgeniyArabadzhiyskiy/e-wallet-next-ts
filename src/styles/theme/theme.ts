@@ -4,8 +4,10 @@ import { poppins } from "@/src/lib/fonts";
 
 const commonTheme = {
   fonts: {
-    // heading: "Poppins-Regular, sans-serif",
-    headingBold: poppins.style.fontFamily,
+    body: "Circe-Regular, sans-serif",
+    bodyBold: "Circe-Bold, sans-serif",
+    heading: "Poppins-Regular, sans-serif",
+    poppins: poppins.style.fontFamily,
   },
   space: [0, 8, 12, 16, 20, 28, 36, 40, 60],
   fontSizes: {
