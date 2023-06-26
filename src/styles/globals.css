@@ -1,9 +1,11 @@
-@font-face {
+/* Плохо оптимизировано Происходит Flush при перезагрузке страницы */
+
+/* @font-face {
   font-family: "Poppins-Regular";
   src: url("../../public//fonts/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
-}
+} */
 
 /* @font-face {
   font-family: "Poppins-Bold";
@@ -12,16 +14,24 @@
   font-display: swap;
 } */
 
-body {
-  margin: 0;
-  background-color: rgb(93, 94, 148);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* background-color: red; */
-}
-
-.title__poppins {
+/* .title__poppins {
   font-family: "Poppins-Regular";
+} */
+
+@import "modern-normalize";
+
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+} */
+
+body {
+  font-family: var(--font-family);
+  background-color: rgb(93, 94, 148);
+  color: #000;
+  font-size: 24px;
+  letter-spacing: 0.03em;
 }
 
 h1,
@@ -29,12 +39,19 @@ h2,
 h3,
 h4,
 h5,
-h6,
+h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
 p {
   margin: 0;
 }
 
-ul {
+ul,
+ol,
+dd {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -44,19 +61,17 @@ a {
   text-decoration: none;
   font-family: inherit;
   color: inherit;
-}
-
-button {
-  outline: none;
-  border: none;
   cursor: pointer;
 }
 
-/* img {
-  display: block;
-  width: 100%;
-  height: auto;
-} */
+button {
+  /* background-color: transparent; */
+  outline: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+}
 
 ::-webkit-scrollbar {
   width: 8px; /* ширина для вертикального скролла */
@@ -73,50 +88,22 @@ code {
     monospace;
 }
 
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
+/* input[type=number]::-webkit-inner-spin-button {    ????????????
+  -webkit-appearance: textfield;   ИЛИ  none
+} */
+
 /* input[type="number"] {
   -moz-appearance: textfield;
 } */
-
-/* @media (max-width: 767px) {
-  .mobile {
-    display: block;
-  }
-  .desctop {
-    display: none;
-  }
-}
-
-@media (min-width: 768px) {
-  .mobile {
-    display: none;
-  }
-  .desctop {
-    display: block;
-  }
-} */
-
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.section {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  min-height: 100vh;
-}
-
-.container {
-  margin: 0 auto;
-
-  width: 1280px;
-  background-color: rgb(189, 227, 227);
-}
