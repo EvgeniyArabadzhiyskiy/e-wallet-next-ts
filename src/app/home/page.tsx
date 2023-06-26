@@ -39,27 +39,29 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 };
 
 export default async function HomePage() {
-  const session = await getServerSession(authOptions);
-  const authToken = session?.user.token;
-  console.log("HomePage  authToken>>>>>>>>>>>>>>>>>>>>>>>>>>>>", authToken);
+  // const session = await getServerSession(authOptions);
+  // const authToken = session?.user.token;
+  // console.log("HomePage  authToken>>>>>>>>>>>>>>>>>>>>>>>>>>>>", authToken);
 
-  const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(["Transactions", 1], () =>
-    getAllTransactions(authToken, 1)
-  );
-  const dehydratedState = dehydrate(queryClient);
+  // const queryClient = getQueryClient();
+  // await queryClient.prefetchQuery(["Transactions", 1], () =>
+  //   getAllTransactions(authToken, 1)
+  // );
+  // const dehydratedState = dehydrate(queryClient);
 
 
   return (
     <>
-      <Hydrate state={dehydratedState}>
-        <Header currentUser={session} />
+      {/* <Hydrate state={dehydratedState}> */}
+        {/* <Header currentUser={session} /> */}
+        <Header  />
         {/* <TransactionList authToken={authToken} /> */}
+        <h1 className="title__poppins">Title Poppins aaa</h1>
 
         <ModalBox modalName="logout">
           <ModalLogOut />
         </ModalBox>
-      </Hydrate>
+      {/* </Hydrate> */}
     </>
   );
 }
