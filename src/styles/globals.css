@@ -1,9 +1,25 @@
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url('../../public//fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url('../../public/fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
 body {
   margin: 0;
   background-color: rgb(93, 94, 148);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-color: red; */
+}
+
+.title__poppins {
+  font-family: 'Poppins-Regular';
 }
 
 h1,
