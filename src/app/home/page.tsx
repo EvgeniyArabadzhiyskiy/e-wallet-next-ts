@@ -31,6 +31,13 @@ const poppins = localFont({
   display: "swap",
 });
 
+const myFont = localFont({
+  src: "../../../public/fonts/Poppins-Regular.ttf",
+  weight: "400",
+  style: "italic",
+  display: "swap",
+});
+
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
   const TRANSACTIONS = "/transactions";
@@ -73,9 +80,7 @@ export default async function HomePage() {
       <h1 style={{ marginBottom: 100 }} className="title__poppins">
         Title Poppins CSS import
       </h1>
-      <h1 className={poppins.style.fontFamily}>
-        Title Poppins Next/Local import
-      </h1>
+      <h1 className={myFont.className}>Title Poppins Next/Local import</h1>
 
       <ModalBox modalName="logout">
         <ModalLogOut />
