@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 const poppi = Poppins({
   subsets: ["latin"],
   weight: "400",
+  display: "swap",
   // preload: true
 });
 
