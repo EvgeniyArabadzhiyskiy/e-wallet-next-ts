@@ -17,22 +17,16 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense, useContext } from "react";
 // import { useState } from "react";
-import { useServerInsertedHTML } from "next/navigation";
+import { useServerInsertedHTML } from 'next/navigation';
 import { Inter, Fira_Code } from "next/font/google";
-
-const fira = Fira_Code({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  preload: true,
-});
-
+ 
 const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
+  weight: "400",
+  preload: true
 });
 
-export default function AboutPage() {
+export default  function AboutPage() {
   // const { isModalOpen, setIsModalOpen } = useContext(GlobalContext);
 
   // const session = await getServerSession(authOptions);
@@ -54,11 +48,7 @@ export default function AboutPage() {
       <main>
         <Link href="/">HOME</Link>
         <Header />
-        <h1>Next Font aaaa</h1>
-        <h2 className={fira.className}>Fira Fontas</h2>
-
-        <h2 className={inter.className}>Inter Fontas</h2>
-
+        <h1  >Next Font</h1>
         {/* <button type="button" onClick={() => setIsModalOpen(true)}>Open</button> */}
         {/* <button type="button" onClick={onOpenModal}>
           Open
