@@ -37,7 +37,7 @@ export default function Header({ currentUser }: { currentUser?: any }) {
     }
   }
 
-  console.log("Header re-re");
+  // console.log("Header re-re");
 
   return (
     <StyledHeader>
