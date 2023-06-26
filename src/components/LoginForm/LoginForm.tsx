@@ -10,7 +10,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import LoginFormFields from "../LoginFormFields/LoginFormFields";
 import FormContainer from "../FormContainer/FormContainer";
 import schema from "@/src/helpers/formValidation";
-import { dayTheme } from "@/src/styles/theme/theme";
 import { Box } from "../Box/Box";
 import { FormikHelpers, FormikProps } from "formik";
 import { ILoginValues } from "@/src/types/loginValues";
