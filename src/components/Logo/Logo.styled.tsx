@@ -23,8 +23,11 @@ export const ImgWrapper = styled.div`
 `;
 
 export const LogoText = styled.span<{ $isLoginPage: boolean }>`
-  /* font-family: ${(p) => p.theme.fonts.headingBold}; */
+  /* font-family:"'__Poppins_c17214', '__Poppins_Fallback_c17214'"; */
+  /* font-family: var(--global-font); */
+  font-family: ${(p) => p.theme.fonts.headingBold};
   font-size: 23px;
+  font-weight: 700;
 
   @media ${(p) => p.theme.media.medium} {
     font-size: 30px;
