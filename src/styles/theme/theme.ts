@@ -1,12 +1,12 @@
 import { colors } from "./colors";
 import { breakpoints } from "./breakpoints";
-import { poppins } from "@/src/lib/fonts";
+import { inter, poppins } from "@/src/lib/fonts";
 
 const commonTheme = {
   fonts: {
     body: "Circe-Regular, sans-serif",
     bodyBold: "Circe-Bold, sans-serif",
-    heading: "Poppins-Regular, sans-serif",
+    inter: inter.style.fontFamily,
     poppins: poppins.style.fontFamily,
   },
   space: [0, 8, 12, 16, 20, 28, 36, 40, 60],
