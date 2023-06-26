@@ -68,4 +68,4 @@ export const Text = styled.p`
   color: ${p => p.theme.colors.secondaryText};
 `;
 
- /* font-family: ${p => p.theme.fonts.headingBold}; */
+ /* font-family: ${p => p.theme.fonts.poppins}; */
