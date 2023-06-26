@@ -15,19 +15,20 @@ import { authOptions } from "@/src/lib/auth";
 import Header from "@/src/components/Header/Header";
 import ModalBox from "@/src/components/ModalBox";
 import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 
 const poppins = localFont({
   src: [
     {
-      path: '../../../public/fonts/Poppins-Regular.ttf',
-      weight: '400',
+      path: "../../../public/fonts/Poppins-Regular.ttf",
+      weight: "400",
     },
     {
-      path: '../../../public/fonts/Poppins-Bold.ttf',
-      weight: '700',
+      path: "../../../public/fonts/Poppins-Bold.ttf",
+      weight: "700",
     },
   ],
+  display: "swap",
 });
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
@@ -63,19 +64,22 @@ export default async function HomePage() {
   // );
   // const dehydratedState = dehydrate(queryClient);
 
-
   return (
     <>
       {/* <Hydrate state={dehydratedState}> */}
-        {/* <Header currentUser={session} /> */}
-        <Header  />
-        {/* <TransactionList authToken={authToken} /> */}
-        <h1 style={{marginBottom: 100}} className="title__poppins">Title Poppins CSS import</h1>
-        <h1 className={poppins.style.fontFamily}>Title Poppins Next/Local import</h1>
+      {/* <Header currentUser={session} /> */}
+      <Header />
+      {/* <TransactionList authToken={authToken} /> */}
+      <h1 style={{ marginBottom: 100 }} className="title__poppins">
+        Title Poppins CSS import
+      </h1>
+      <h1 className={poppins.style.fontFamily}>
+        Title Poppins Next/Local import
+      </h1>
 
-        <ModalBox modalName="logout">
-          <ModalLogOut />
-        </ModalBox>
+      <ModalBox modalName="logout">
+        <ModalLogOut />
+      </ModalBox>
       {/* </Hydrate> */}
     </>
   );
