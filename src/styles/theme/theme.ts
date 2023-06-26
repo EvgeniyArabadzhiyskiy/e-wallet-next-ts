@@ -1,12 +1,11 @@
 import { colors } from "./colors";
 import { breakpoints } from "./breakpoints";
+import { poppins } from "@/src/lib/fonts";
 
 const commonTheme = {
   fonts: {
-    body: "Circe-Regular, sans-serif",
-    bodyBold: "Circe-Bold, sans-serif",
-    heading: "Poppins-Regular, sans-serif",
-    headingBold: "Poppins-Bold, sans-serif",
+    // heading: "Poppins-Regular, sans-serif",
+    headingBold: poppins.style.fontFamily,
   },
   space: [0, 8, 12, 16, 20, 28, 36, 40, 60],
   fontSizes: {
@@ -43,11 +42,11 @@ const commonTheme = {
 export const lightTheme = {
   ...commonTheme,
   colors: colors.LIGHT,
-  type: "light"
+  type: "light",
 };
 
 export const darkTheme = {
   ...commonTheme,
   colors: colors.DARK,
-  type: "dark"
+  type: "dark",
 };
