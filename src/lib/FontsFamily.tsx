@@ -10,7 +10,9 @@ export default function Fonts() {
         dangerouslySetInnerHTML={{
           __html: `
       :root {
-        --font-family: '-apple-system',  ${poppins.style.fontFamily}, 'system-ui', 'Segoe UI', sans-serif;
+        --font-family:   ${poppins.style.fontFamily}, system-ui, -apple-system, 
+        BlinkMacSystemFont, "Segoe UI", Roboto,  Oxygen, Ubuntu, Cantarell, 
+        "Open Sans", "Helvetica Neue", sans-serif;
       }
     `,
         }}
