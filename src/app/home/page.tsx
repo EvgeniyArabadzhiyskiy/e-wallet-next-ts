@@ -54,7 +54,7 @@ export default async function HomePage() {
     <>
       <Hydrate state={dehydratedState}>
         <Header currentUser={session} />
-        <TransactionList authToken={authToken} />
+        {/* <TransactionList authToken={authToken} /> */}
 
         <ModalBox modalName="logout">
           <ModalLogOut />
