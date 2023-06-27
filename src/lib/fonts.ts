@@ -7,7 +7,6 @@ export const poppins = Poppins({
   variable: "--font-poppins",
   display: "swap",
 });
-console.log("poppins:", poppins.variable);
 
 export const inter = Inter({
   subsets: ["latin"],
