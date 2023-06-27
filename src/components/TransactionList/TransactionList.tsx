@@ -32,7 +32,7 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
   // const { authToken } = parseCookies();
   // const queryClient = useQueryClient();
-  const [pageNum, setPageNum] = useState(1);
+  const [pageNum, setPageNum] = useState(2);
   const session = useSession();
   const userToken = session.data?.user.token;
 
