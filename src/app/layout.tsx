@@ -42,11 +42,8 @@ async function RootLayout({ children }: IProps) {
         <link rel="icon" href="/vercel.svg" />
         {/* <style type="text/css" dangerouslySetInnerHTML={{ __html: mediaStyles }}/> */}
         <Fonts />
-      
       </head>
-      <body
-      //  className={poppins.className}
-      >
+      <body>
         <div id="modal-root"></div>
         <GlobalProvider>
           <Providers>
