@@ -5,6 +5,7 @@ import { darkTheme, lightTheme } from "@/src/styles/theme/theme";
 import { CustomTheme } from "@/src/types/styled";
 import React, { useContext, useState } from "react";
 import { createContext } from "react";
+import { useLocaleeStorage } from "../ThemeToggle/ThemeToggle";
 
 export interface ModalState  {
   [key: string]: boolean;
@@ -13,14 +14,18 @@ export interface ModalState  {
 interface GlobalContextType {
   isModalOpen: ModalState;
   setIsModalOpen: React.Dispatch<React.SetStateAction<ModalState>>;
-  theme: CustomTheme;
-  setTheme: React.Dispatch<React.SetStateAction<CustomTheme>>;
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+  // theme: CustomTheme;
+  // setTheme: React.Dispatch<React.SetStateAction<CustomTheme>>;
 }
 
 export const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export default function GlobalProvider({children}: {children: React.ReactNode}) {
-  const [theme, setTheme] = useState<CustomTheme>(lightTheme);
+
+  // const [theme, setTheme] = useState<CustomTheme>(lightTheme);
+  const [theme, setTheme] = useState<string>("light");
   const [isModalOpen, setIsModalOpen] = useState<ModalState>({});
 
   return (
