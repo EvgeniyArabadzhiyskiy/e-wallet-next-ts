@@ -6,7 +6,8 @@ export const LogoWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 60px;
+  
+  /* margin-bottom: 60px; */
 `;
 
 export const ImgWrapper = styled.div`
