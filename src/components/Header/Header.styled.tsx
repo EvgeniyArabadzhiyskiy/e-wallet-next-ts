@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  background-color: #74a887;
+  background-color: ${p => p.theme.colors.primaryBg};
   /* height: 100px; */
 `;
 
@@ -11,6 +11,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 0;
 `;
 
 export const UserBox = styled.div`
