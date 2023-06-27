@@ -15,27 +15,6 @@ import { authOptions } from "@/src/lib/auth";
 import Header from "@/src/components/Header/Header";
 import ModalBox from "@/src/components/ModalBox";
 import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
-import localFont from "next/font/local";
-
-const poppins = localFont({
-  src: [
-    {
-      path: "../../../public/fonts/Poppins-Regular.ttf",
-      weight: "400",
-    },
-    {
-      path: "../../../public/fonts/Poppins-Bold.ttf",
-      weight: "700",
-    },
-  ],
-  display: "swap",
-});
-
-const myFont = localFont({
-  src: "../../../public/fonts/Poppins-Regular.ttf",
-  weight: "400",
-  display: "swap",
-});
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
@@ -60,31 +39,27 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 };
 
 export default async function HomePage() {
-  // const session = await getServerSession(authOptions);
-  // const authToken = session?.user.token;
+  const session = await getServerSession(authOptions);
+  const authToken = session?.user.token;
   // console.log("HomePage  authToken>>>>>>>>>>>>>>>>>>>>>>>>>>>>", authToken);
 
-  // const queryClient = getQueryClient();
-  // await queryClient.prefetchQuery(["Transactions", 1], () =>
-  //   getAllTransactions(authToken, 1)
-  // );
-  // const dehydratedState = dehydrate(queryClient);
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(["Transactions", 1], () =>
+    getAllTransactions(authToken, 1)
+  );
+  const dehydratedState = dehydrate(queryClient);
+
 
   return (
     <>
-      {/* <Hydrate state={dehydratedState}> */}
-      {/* <Header currentUser={session} /> */}
-      <Header />
-      {/* <TransactionList authToken={authToken} /> */}
-      <h1 style={{ marginBottom: 100 }} >
-        Title Poppins CSS import aaa
-      </h1>
-      <h1 className={myFont.className}>Title Poppins Next/Local import</h1>
+      <Hydrate state={dehydratedState}>
+        <Header currentUser={session} />
+        <TransactionList authToken={authToken} />
 
-      <ModalBox modalName="logout">
-        <ModalLogOut />
-      </ModalBox>
-      {/* </Hydrate> */}
+        <ModalBox modalName="logout">
+          <ModalLogOut />
+        </ModalBox>
+      </Hydrate>
     </>
   );
 }
