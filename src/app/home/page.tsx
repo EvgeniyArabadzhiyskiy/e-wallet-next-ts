@@ -56,9 +56,9 @@ export default async function HomePage() {
         {/* <Header currentUser={session} /> */}
         <TransactionList authToken={authToken} />
 
-        {/* <ModalBox modalName="logout">
+        <ModalBox modalName="logout">
           <ModalLogOut />
-        </ModalBox> */}
+        </ModalBox>
       {/* </Hydrate> */}
     </>
   );
