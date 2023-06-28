@@ -5,7 +5,6 @@ import { darkTheme, lightTheme } from "@/src/styles/theme/theme";
 import { CustomTheme } from "@/src/types/styled";
 import React, { useContext, useState } from "react";
 import { createContext } from "react";
-import { useLocaleeStorage } from "../ThemeToggle/ThemeToggle";
 
 export interface ModalState  {
   [key: string]: boolean;
