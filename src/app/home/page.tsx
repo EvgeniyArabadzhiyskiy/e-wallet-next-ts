@@ -43,23 +43,23 @@ export default async function HomePage() {
   const authToken = session?.user.token;
   // console.log("HomePage  authToken>>>>>>>>>>>>>>>>>>>>>>>>>>>>", authToken);
 
-  const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(["Transactions", 1], () =>
-    getAllTransactions(authToken, 1)
-  );
-  const dehydratedState = dehydrate(queryClient);
+  // const queryClient = getQueryClient();
+  // await queryClient.prefetchQuery(["Transactions", 1], () =>
+  //   getAllTransactions(authToken, 1)
+  // );
+  // const dehydratedState = dehydrate(queryClient);
 
 
   return (
     <>
-      <Hydrate state={dehydratedState}>
-        <Header currentUser={session} />
+      {/* <Hydrate state={dehydratedState}> */}
+        {/* <Header currentUser={session} /> */}
         <TransactionList authToken={authToken} />
 
-        <ModalBox modalName="logout">
+        {/* <ModalBox modalName="logout">
           <ModalLogOut />
-        </ModalBox>
-      </Hydrate>
+        </ModalBox> */}
+      {/* </Hydrate> */}
     </>
   );
 }
