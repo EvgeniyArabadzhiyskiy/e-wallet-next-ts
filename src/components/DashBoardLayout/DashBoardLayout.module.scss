@@ -1,0 +1,17 @@
+.section {
+  background-color: rgb(174, 144, 139);
+  min-height: 100vh;
+  @media screen and (min-width: 768px) {
+    // background-image: ${p => p.theme.colors.gradient}, url(${p => p.bgImg});
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-size: cover;
+  }
+}
+
+.wrapper {
+  @media screen and (min-width: 1280px) {
+    // display: flex;
+    // justify-content: space-between;
+  }
+}
