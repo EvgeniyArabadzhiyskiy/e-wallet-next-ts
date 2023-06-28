@@ -1,9 +1,10 @@
 "use client";
 
+import { parseCookies, setCookie } from "nookies";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 import { useEffect, useState } from "react";
 
-export const getStorageTheme = (key: string, initialValue: any) => {
+export const getStorageTheme = (key: string, initialValue: string) => {
   if (typeof window === "undefined") {
     return initialValue;
   }
@@ -13,32 +14,46 @@ export const getStorageTheme = (key: string, initialValue: any) => {
   return userTheme || initialValue;
 };
 
-export const useLocaleeStorage = (key: string, initialValue: any) => {
+export const useLocalStorage = (key: string, initialValue: string) => {
+  const {theme} = parseCookies()
   const [storageItem, setStorageItem] = useState(getStorageTheme(key, initialValue));
 
   useEffect(() => {
     window.localStorage.setItem(key, storageItem);
   }, [key, storageItem]);
 
-  return [storageItem, setStorageItem];
+  return {storageItem, setStorageItem};
+};
+
+export const useCookies = () => {
+  const { theme } = parseCookies()
+  const [storageItem, setStorageItem] = useState(theme);
+
+  useEffect(() => {
+    setCookie(null, "theme", `${storageItem}`, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: "/",
+    });
+  }, [storageItem]);
+
+  return {storageItem, setStorageItem};
 };
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useGlobalState();
 
-//   const [theme1, setTheme1] = useLocaleeStorage("theme", "light");
-
-
   const onToggleTheme = () => {
-    if (theme === "light") {
-    //   setTheme1("dark");
-      setTheme("dark");
-    }
+    setTheme(theme === "light" ? "dark" : "light")
 
-    if (theme === "dark") {
-    //   setTheme1("light");
-      setTheme("light");
-    }
+    // if (theme === "light") {
+    //   // setStorageItem("dark");
+    //   setTheme("dark");
+    // }
+
+    // if (theme === "dark") {
+    //   // setStorageItem("light");
+    //   setTheme("light");
+    // }
   };
 
   return (
@@ -50,35 +65,4 @@ export default function ThemeToggle() {
   );
 }
 
-//==========================================================
-// export default function ThemeToggle() {
-//   const [theme, setTheme] = useState<string | null>(null);
-//   console.log("ThemeToggle  theme:", theme);
 
-//   useEffect(() => {
-//     if (typeof window !== "undefined") {
-//       const storedTheme = window.localStorage.getItem("theme");
-//       if (storedTheme) {
-//         setTheme(storedTheme);
-//       } else {
-//         setTheme("light");
-//       }
-//     }
-//   }, []);
-
-//   const onToggle = () => {
-//     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-//   };
-
-//   useEffect(() => {
-//     if (typeof window !== "undefined" && theme !== null) {
-//       window.localStorage.setItem("theme", theme);
-//     }
-//   }, [theme]);
-
-//   return (
-//     <button type="button" onClick={onToggle}>
-//       Theme
-//     </button>
-//   );
-// }
