@@ -1,8 +1,6 @@
 "use client";
 
-import { DefaultTheme } from "styled-components";
-import { darkTheme, lightTheme } from "@/src/styles/theme/theme";
-import { CustomTheme } from "@/src/types/styled";
+import { useThemeCookies } from "@/src/hooks/useThemeCookies";
 import React, { useContext, useState } from "react";
 import { createContext } from "react";
 
@@ -13,22 +11,20 @@ export interface ModalState  {
 interface GlobalContextType {
   isModalOpen: ModalState;
   setIsModalOpen: React.Dispatch<React.SetStateAction<ModalState>>;
-  theme: string;
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
-  // theme: CustomTheme;
-  // setTheme: React.Dispatch<React.SetStateAction<CustomTheme>>;
+  
+  isLoading: boolean;
+  theme: string | null;
+  setTheme: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export default function GlobalProvider({children}: {children: React.ReactNode}) {
-
-  // const [theme, setTheme] = useState<CustomTheme>(lightTheme);
-  const [theme, setTheme] = useState<string>("light");
+  const { isLoading, theme, setTheme } = useThemeCookies();
   const [isModalOpen, setIsModalOpen] = useState<ModalState>({});
 
   return (
-    <GlobalContext.Provider value={{ isModalOpen, setIsModalOpen, theme, setTheme }}>
+    <GlobalContext.Provider value={{ isModalOpen, setIsModalOpen, isLoading, theme, setTheme }}>
       {children}
     </GlobalContext.Provider>
   );
