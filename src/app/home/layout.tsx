@@ -7,5 +7,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomeLayout({children} : {children: React.ReactNode}) {
-  return <DashBoardLayout>{children}</DashBoardLayout>;
+  return <>{children}</>;
+  // return <DashBoardLayout>{children}</DashBoardLayout>;
 }
