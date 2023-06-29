@@ -7,10 +7,14 @@ import stl from "./DashBoardLayout.module.scss";
 export default function DashBoardLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Header />
+      
       <div className={stl.section}>
         <Container>
-          <div className={stl.wrapper}>{children}</div>
+          <div className={stl.wrapper}>
+             <div className={stl.sidebar}></div>
+            
+            {children}
+            </div>
         </Container>
       </div>
     </>
