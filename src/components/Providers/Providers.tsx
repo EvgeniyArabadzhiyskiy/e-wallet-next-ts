@@ -15,8 +15,12 @@ interface IProps {
 
 export const Providers = ({ children }: IProps) => {
   const [queryClient] = useState(() => new QueryClient());
-  const { theme } = useGlobalState();
- 
+  const { isLoading, theme } = useGlobalState();
+
+  if (isLoading) {
+    return <h1>Loading Theme..</h1>;
+  }
+
   return (
     <>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
