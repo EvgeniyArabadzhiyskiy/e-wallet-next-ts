@@ -38,17 +38,8 @@ export default function Header({ currentUser }: { currentUser?: any }) {
             {/* <TextName>SERVER USER {currentUser?.user.user.firstName}</TextName> */}
             <LogoutBtn modalName="logout" type="exit" />
           </UserBox>
-          {/* <AuthMenu /> */}
           {/* <h2>Balance: {currentUser?.user.user.balance}</h2> */}
-          {/* <button type="button" onClick={() => setIsModalOpen(true)}>Open</button> */}
-          {/* <button
-        type="button"
-        onClick={() =>
-          setIsModalOpen((prev: any) => ({ ...prev, logout: true }))
-        }
-      >
-        Open
-      </button> */}
+         
         </HeaderWrapper>
       </Container>
     </StyledHeader>
