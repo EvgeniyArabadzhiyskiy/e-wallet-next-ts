@@ -1,20 +1,14 @@
 // "use client";
 
-import Link from "next/link";
-import Statistic from "@/src/components/Statistic/Statistic";
-import { useSession } from "next-auth/react";
 import { Hydrate, dehydrate, useQuery } from "@tanstack/react-query";
-import { parseCookies } from "nookies";
 import TransactionList from "@/src/components/TransactionList/TransactionList";
-import { cookies } from "next/headers";
 import getQueryClient from "@/src/lib/getQueryClient";
-import { getUser } from "@/src/helpers/getUser";
-import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import Header from "@/src/components/Header/Header";
 import ModalBox from "@/src/components/ModalBox";
 import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
+import DashBoardLayout from "@/src/components/DashBoardLayout/DashBoardLayout";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
@@ -49,17 +43,24 @@ export default async function HomePage() {
   // );
   // const dehydratedState = dehydrate(queryClient);
 
-
   return (
     <>
-      {/* <Hydrate state={dehydratedState}> */}
+      <Header />
+
+      <DashBoardLayout>
+        {/* <Hydrate state={dehydratedState}> */}
         {/* <Header currentUser={session} /> */}
+
+        {/* <SideBar></SideBar> */}
+
         <TransactionList authToken={authToken} />
 
-        <ModalBox modalName="logout">
-          <ModalLogOut />
-        </ModalBox>
-      {/* </Hydrate> */}
+        {/* </Hydrate> */}
+      </DashBoardLayout>
+
+      <ModalBox modalName="logout">
+        <ModalLogOut />
+      </ModalBox>
     </>
   );
 }
