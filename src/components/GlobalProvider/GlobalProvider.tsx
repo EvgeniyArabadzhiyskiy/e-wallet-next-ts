@@ -20,6 +20,7 @@ interface GlobalContextType {
 export const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export default function GlobalProvider({children}: {children: React.ReactNode}) {
+  // const {  theme, setTheme } = useState("light");
   const { isLoading, theme, setTheme } = useThemeCookies();
   const [isModalOpen, setIsModalOpen] = useState<ModalState>({});
 
