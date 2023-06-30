@@ -17,9 +17,9 @@ export const Providers = ({ children }: IProps) => {
   const [queryClient] = useState(() => new QueryClient());
   const { isLoading, theme } = useGlobalState();
 
-  if (isLoading) {
-    return <h1>Loading Theme..</h1>;
-  }
+  // if (isLoading) {
+  //   return <h1>Loading Theme..</h1>;
+  // }
 
   return (
     <>
