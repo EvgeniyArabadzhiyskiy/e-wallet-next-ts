@@ -12,6 +12,7 @@ import AuthProvider from "../components/AuthProvider/AuthProvider";
 import GlobalProvider from "../components/GlobalProvider/GlobalProvider";
 import { poppins } from "../lib/fonts";
 import Fonts from "../lib/FontsFamily";
+import Navigation from "../components/Navigation/Navigation";
 
 export const metadata: Metadata = {
   title: "Next.js",
@@ -34,6 +35,7 @@ async function RootLayout({ children }: IProps) {
         <div id="modal-root"></div>
         <GlobalProvider>
           <Providers>
+          {/* <Navigation /> */}
             {/* <AuthMenu /> */}
             {/* <AuthProvider> */}
             <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
