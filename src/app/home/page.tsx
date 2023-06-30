@@ -9,6 +9,7 @@ import Header from "@/src/components/Header/Header";
 import ModalBox from "@/src/components/ModalBox";
 import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
 import DashBoardLayout from "@/src/components/DashBoardLayout/DashBoardLayout";
+import { Title } from "@/src/components/Title/Title.styled";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
@@ -23,6 +24,7 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
     },
   };
 
+//   await new Promise(res => setTimeout(() => res(777), 5000))
   const resFetch = await fetch(
     `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
     options
@@ -37,30 +39,30 @@ export default async function HomePage() {
   const authToken = session?.user.token;
   // console.log("HomePage  authToken>>>>>>>>>>>>>>>>>>>>>>>>>>>>", authToken);
 
-  // const queryClient = getQueryClient();
-  // await queryClient.prefetchQuery(["Transactions", 1], () =>
-  //   getAllTransactions(authToken, 1)
-  // );
-  // const dehydratedState = dehydrate(queryClient);
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(["Transactions", 1], () =>
+    getAllTransactions(authToken, 1)
+  );
+  const dehydratedState = dehydrate(queryClient);
 
   return (
     <>
-      <Header />
+      <Hydrate state={dehydratedState}>
+        <Header />
 
-      <DashBoardLayout>
-        {/* <Hydrate state={dehydratedState}> */}
-        {/* <Header currentUser={session} /> */}
+        <DashBoardLayout>
+          {/* {typeof window !== 'undefined' &&  <Title>Home Title</Title>} */}
+          {/* <Header currentUser={session} /> */}
 
-        {/* <SideBar></SideBar> */}
+          {/* <SideBar></SideBar> */}
 
-        <TransactionList authToken={authToken} />
+          <TransactionList authToken={authToken} />
+        </DashBoardLayout>
 
-        {/* </Hydrate> */}
-      </DashBoardLayout>
-
-      <ModalBox modalName="logout">
-        <ModalLogOut />
-      </ModalBox>
+        <ModalBox modalName="logout">
+          <ModalLogOut />
+        </ModalBox>
+      </Hydrate>
     </>
   );
 }
