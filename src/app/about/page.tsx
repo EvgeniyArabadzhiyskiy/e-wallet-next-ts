@@ -19,6 +19,7 @@ import { Suspense, useContext } from "react";
 // import { useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { Inter, Fira_Code } from "next/font/google";
+import Navigation from "@/src/components/Navigation/Navigation";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function AboutPage() {
       <main>
         <Header />
         <h1>Next Font</h1>
+        <Navigation />
 
         {/* <AuthCookie /> */}
 
