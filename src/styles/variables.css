@@ -1,0 +1,51 @@
+:root {
+  --white: #ffffff;
+  --primary-text: #000000;
+  --primary-btn: #ffffff;
+  --primary-bg-btn: #24cca7;
+  --hover-bg-btn: #2be2ba;
+  --secondary-btn: #4a56e2;
+  --secondary-bg-btn: transparent;
+  --primary-password-indicator: #24cca7;
+  --secondary-password-indicator: #e5f1ef;
+  --nav-icon-bg: #6e78e8;
+  --nav-icon-bg-active: #4a56e2;
+  --expense: #ff6596;
+  --basic-stat: #fed057;
+  --products-stat: #ffd8d0;
+  --car-stat: #fd9498;
+  --self-stat: #c5baff;
+  --children-stat: #2d38be;
+  --house-stat: #4a56e2;
+  --education-stat: #81e1ff;
+  --leisure-stat: #24cca7;
+  --other-stat: #00ad84;
+
+  /* light theme */
+  --primary-bg-lgt: #ffffff;
+  --secondary-bg-lgt: rgba(255, 255, 255, 0.4);
+  --loginPage-bg-lgt: #e7eaf2;
+  --secondary-text-lgt: #787272;
+  --secondary-dark-text-lgt: #a6a6a6;
+  --secondary-light-text-lgt: #e0e0e0;
+
+  /* dark theme */
+  --primary-bg-drk: #38398f;
+  --secondary-bg-drk: #9b91c7;
+  --loginPage-bg-drk: #685aa2;
+  --secondary-text-drk: #ffffff;
+  --secondary-dark-text-drk: #dad8d8;
+  --secondary-light-text-drk: #eceaea;
+
+  /* Fonts Sizes */
+  --font-xs: 12px;
+  --font-s: 16px;
+  --font-m: 18px;
+  --font-ml: 28px;
+  --font-l: 30px;
+  --font-xl: 40px;
+
+  /* Fonts Weights */
+  --normal: 400;
+  --bold: 700;
+}
