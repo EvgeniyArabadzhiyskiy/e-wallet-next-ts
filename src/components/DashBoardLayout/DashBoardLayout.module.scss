@@ -1,5 +1,8 @@
+
+
 .section {
-  background-color: rgb(174, 144, 139);
+  // background-color: $main-color;
+  background-color: var(--children-stat);
   min-height: 100vh;
   @media screen and (min-width: 768px) {
     // background-image: ${p => p.theme.colors.gradient}, url(${p => p.bgImg});
