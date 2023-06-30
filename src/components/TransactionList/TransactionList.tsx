@@ -5,6 +5,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { parseCookies } from "nookies";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { Title } from "../Title/Title.styled";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
@@ -32,7 +33,7 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
   // const { authToken } = parseCookies();
   // const queryClient = useQueryClient();
-  const [pageNum, setPageNum] = useState(2);
+  const [pageNum, setPageNum] = useState(1);
   const session = useSession();
   const userToken = session.data?.user.token;
 
@@ -41,7 +42,7 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
     queryFn: () => getAllTransactions(userToken, pageNum), // ИЛИ authToken
     staleTime: Infinity,
     refetchOnWindowFocus: false,
-    enabled: !!userToken,  // При authToken  Удалить
+    enabled: !!userToken, // При authToken  Удалить
   });
   // console.log("HomePage  data:", data);
 
@@ -55,13 +56,17 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
   return (
     <>
       <h1>HOME PAGE</h1>
+      <Title>Title</Title>
       <Link href="/">HOME</Link>
-      <button type="button" onClick={() => setPageNum(p => p + 1)}>Next Page</button>
-
-      {data &&
-        data?.transactions?.map((item: any) => {
-          return <li key={item._id}>{item.category}</li>;
-        })}
+      <button type="button" onClick={() => setPageNum((p) => p + 1)}>
+        Next Page
+      </button>
+      <ul>
+        {data &&
+          data?.transactions?.map((item: any) => {
+            return <li key={item._id}>{item.category}</li>;
+          })}
+      </ul>
     </>
   );
 };
