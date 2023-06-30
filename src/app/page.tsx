@@ -6,6 +6,7 @@ export default async function Home() {
       <div>
         <Link href="/home">HOME</Link>
         <Link href="/about">About</Link>
+        <Link href="/currency">Currency</Link>
         <pre>
           <Link href="/login">LOGIN</Link>
         </pre>
