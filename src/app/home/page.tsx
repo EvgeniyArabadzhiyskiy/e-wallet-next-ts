@@ -10,28 +10,42 @@ import ModalBox from "@/src/components/ModalBox";
 import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
 import DashBoardLayout from "@/src/components/DashBoardLayout/DashBoardLayout";
 import { Title } from "@/src/components/Title/Title.styled";
+import { isITransactions } from "@/src/helpers/isITransactions";
+import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
+import { ITransactions } from "@/src/types/transactions";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
-  const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
-  const TRANSACTIONS = "/transactions";
-
-  // const { authToken } = parseCookies();
-
-  const options: RequestInit = {
+  const options = {
     method: "GET",
     headers: {
       Authorization: `Bearer ${authToken}`,
     },
   };
 
-//   await new Promise(res => setTimeout(() => res(777), 5000))
-  const resFetch = await fetch(
-    `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
-    options
-  );
-  const transactions = (await resFetch.json()) as any;
+  try {
+    //   await new Promise(res => setTimeout(() => res(777), 5000))
+    const response = await fetch(
+      `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
+      options
+    );
+    const data = await response.json();
 
-  return transactions;
+    if (!response.ok) {
+      const errorMessage = response.statusText || "An error occurred";
+      throw new Error(errorMessage);
+    }
+
+    if (!isITransactions(data)) {
+      throw new Error("Invalid data format");
+    }
+
+    const transactions: ITransactions = data;
+
+    return transactions;
+  } catch (error) {
+    console.log(error);
+    throw new Error((error as Error).message || "An error occurred");
+  }
 };
 
 export default async function HomePage() {
