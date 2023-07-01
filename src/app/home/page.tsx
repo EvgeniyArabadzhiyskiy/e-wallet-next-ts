@@ -28,12 +28,13 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
       `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
       options
     );
-    const data = await response.json();
 
     if (!response.ok) {
       const errorMessage = response.statusText || "An error occurred";
       throw new Error(errorMessage);
     }
+    
+    const data = await response.json();
 
     if (!isITransactions(data)) {
       throw new Error("Invalid data format");
