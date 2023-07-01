@@ -97,38 +97,3 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 };
 
 export default TransactionList;
-
-// type Species = "cat" | "dog";
-
-// interface Pet {
-//   species: Species
-// }
-
-// interface Cat extends Pet {
-
-// }
-
-// function petIsCat(pet: Pet): pet is Cat {
-//   return pet.species === "cat";
-// }
-// console.log("petIsCat  petIsCat:", petIsCat({
-//   species: 'dog'
-// }));
-
-interface Pet {
-  species: string;
-  name: string;
-}
-
-// function petIsCat(pet: any): pet is Pet {
-//   return 'species' in pet || 'name' in pet
-// }
-// console.log("petIsCat  petIsCat:", petIsCat({
-//   species: 'dog'
-// }));
-
-// function getBonusSalary(balance: number) {
-//   return balance * 10 - 200;
-// }
-
-// const bonus = getBonusSalary(transactions.userBalance);
