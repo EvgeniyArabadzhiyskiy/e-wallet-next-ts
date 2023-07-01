@@ -6,13 +6,11 @@ import { parseCookies } from "nookies";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { Title } from "../Title/Title.styled";
+import { ITransaction, ITransactions } from "@/src/types/transactions";
+import { isITransactions } from "@/src/helpers/isITransactions";
+import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
-  const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
-  const TRANSACTIONS = "/transactions";
-
-  // const { authToken } = parseCookies();
-
   const options = {
     method: "GET",
     headers: {
@@ -20,30 +18,48 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
     },
   };
 
-  //   await new Promise(res => setTimeout(() => res(777), 5000))
-  const resFetch = await fetch(
-    `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
-    options
-  );
-  const transactions = (await resFetch.json()) as any;
+  try {
+    const response = await fetch(
+      `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
+      options
+    );
+    const data = await response.json();
 
-  return transactions;
+    if (!response.ok) {
+      const errorMessage = response.statusText || "An error occurred";
+      throw new Error(errorMessage);
+    }
+
+    if (!isITransactions(data)) {
+      throw new Error("Invalid data format");
+    }
+
+    const transactions: ITransactions = data;
+
+    return transactions;
+  } catch (error) {
+    console.log(error);
+    throw new Error((error as Error).message || "An error occurred");
+  }
 };
 
 const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
   // const { authToken } = parseCookies();
   // const queryClient = useQueryClient();
-  const [pageNum, setPageNum] = useState(2);
+  const [pageNum, setPageNum] = useState(1);
   const session = useSession();
   const userToken = session.data?.user.token;
 
-  const { data, isFetching } = useQuery({
+  const { data, isError, error, isFetching, refetch } = useQuery({
     queryKey: ["Transactions", pageNum],
     queryFn: () => getAllTransactions(userToken, pageNum), // ИЛИ authToken
     staleTime: Infinity,
     refetchOnWindowFocus: false,
+    retry: 0,
     enabled: !!userToken, // При authToken  Удалить
   });
+  // console.log("TransactionList  error:", error);
+
   // console.log("HomePage  data:", data);
 
   //   const queryUserData = queryClient.getQueriesData<any>(["Transactions"]);
@@ -51,6 +67,15 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 
   if (isFetching) {
     return <h1>Loading Transactions...</h1>;
+  }
+
+  if (isError) {
+    return (
+      <>
+        <h1>{(error as Error).message}</h1>
+        <button onClick={() => refetch()}>Retry</button>
+      </>
+    );
   }
 
   return (
@@ -72,3 +97,38 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 };
 
 export default TransactionList;
+
+// type Species = "cat" | "dog";
+
+// interface Pet {
+//   species: Species
+// }
+
+// interface Cat extends Pet {
+
+// }
+
+// function petIsCat(pet: Pet): pet is Cat {
+//   return pet.species === "cat";
+// }
+// console.log("petIsCat  petIsCat:", petIsCat({
+//   species: 'dog'
+// }));
+
+interface Pet {
+  species: string;
+  name: string;
+}
+
+// function petIsCat(pet: any): pet is Pet {
+//   return 'species' in pet || 'name' in pet
+// }
+// console.log("petIsCat  petIsCat:", petIsCat({
+//   species: 'dog'
+// }));
+
+// function getBonusSalary(balance: number) {
+//   return balance * 10 - 200;
+// }
+
+// const bonus = getBonusSalary(transactions.userBalance);
