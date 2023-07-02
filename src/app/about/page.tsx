@@ -42,7 +42,7 @@ export default function AboutPage() {
         <h1>Next Font</h1>
         <Navigation />
 
-        {/* <AuthCookie /> */}
+        <AuthCookie />
 
         {/* </TestCookies> */}
         {/* <AboutComp session={session} /> */}
