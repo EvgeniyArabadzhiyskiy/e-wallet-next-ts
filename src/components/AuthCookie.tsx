@@ -1,8 +1,8 @@
-// "use client";
+"use client";
 
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
-import { use } from "react";
+import { use, useEffect } from "react";
 import { authOptions } from "../lib/auth";
 import axios, { AxiosError } from "axios";
 import { useQuery } from "@tanstack/react-query";
@@ -11,27 +11,23 @@ import { useQuery } from "@tanstack/react-query";
 
 // "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10"
 const getPokemons = async () => {
-  // console.log("getPokemons  response:", response);
-
-  // if (!response.ok) {
-  //   throw new Error("Not Found");
-  // }
-
   try {
     const response = await fetch(
-      "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10"
+      "https://pokeapi.co/api/v2/pokemo?offset=0&limit=10"
     );
     // console.log("getPokemons  response:", response.status);
 
     if (!response.ok) {
       throw new Error("Not Found");
+      // throw new Error(response.statusText);
     }
 
     const data = await response.json();
 
     return data;
   } catch (error) {
-    throw new Error("Network Error");
+    // throw new Error("Network Error");
+    throw error;
   }
 };
 
@@ -59,7 +55,7 @@ const getPokemonsAxios = async () => {
 // .catch((err: AxiosError) => console.log(err.message));
 // .catch((err) => console.log(err.response.data))
 
-export default async function AuthCookie() {
+export default  function AuthCookie() {
   // const { data, isError, error } = useQuery({
   //   queryKey: ["Pokemon"],
   //   queryFn: getPokemons,
@@ -67,6 +63,14 @@ export default async function AuthCookie() {
   //   refetchOnWindowFocus: false,
   //   retry: 0,
   // });
+
+  useEffect(() => {
+    throw new Error("Custom Error");
+  }, []);
+
+  // getPokemons()
+  // .then((data) => console.log(data))
+  // .catch((err) => console.log(err.message));
 
   // console.log("AuthCookie  error:", error);
   // console.log("AuthCookie  data:", data);
@@ -80,8 +84,8 @@ export default async function AuthCookie() {
   // const session = use(getServerSession(authOptions))
   // console.log("AuthCookie  session:", session);
 
-  const data = await getPokemonsAxios();
-  console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
+  // const data = await getPokemonsAxios();
+  // console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
 
   // if (isError) {
   //   return (
@@ -100,4 +104,4 @@ export default async function AuthCookie() {
   );
 }
 
-AuthCookie;
+
