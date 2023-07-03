@@ -20,6 +20,7 @@ import { Suspense, useContext } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { Inter, Fira_Code } from "next/font/google";
 import Navigation from "@/src/components/Navigation/Navigation";
+import ErrorBoundary from "@/src/components/ErrorBoundary";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,18 +43,19 @@ export default function AboutPage() {
         <h1>Next Font</h1>
         <Navigation />
 
-        <AuthCookie />
+        <ErrorBoundary>
+          <AuthCookie />
+        </ErrorBoundary>
 
         {/* </TestCookies> */}
         {/* <AboutComp session={session} /> */}
-        
       </main>
 
       <ModalBox modalName="logout">
-          <ModalLogOut />
-        </ModalBox>
+        <ModalLogOut />
+      </ModalBox>
 
-        {/* <ModalBox modalName="signup">
+      {/* <ModalBox modalName="signup">
           <ModalSignUp />
         </ModalBox>
         <LogoutBtn modalName="signup" type="exit" /> */}
