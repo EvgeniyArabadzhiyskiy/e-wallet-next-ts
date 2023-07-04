@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 export const getPokemons = async () => {
   try {
     const response = await fetch(
-      "https://pokeapi.co/api/v2/pokemo?offset=0&limit=10"
+      "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10"
     );
     // console.log("getPokemons  response:", response.status);
 
