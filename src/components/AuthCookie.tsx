@@ -1,8 +1,8 @@
-"use client";
+// "use client";
 
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
-import { use, useEffect } from "react";
+import { use, useEffect, useState } from "react";
 import { authOptions } from "../lib/auth";
 import axios, { AxiosError } from "axios";
 import { useQuery } from "@tanstack/react-query";
@@ -10,7 +10,8 @@ import { useQuery } from "@tanstack/react-query";
 // export const dynamic = 'force-dynamic'
 
 // "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10"
-const getPokemons = async () => {
+
+export const getPokemons = async () => {
   try {
     const response = await fetch(
       "https://pokeapi.co/api/v2/pokemo?offset=0&limit=10"
@@ -55,7 +56,9 @@ const getPokemonsAxios = async () => {
 // .catch((err: AxiosError) => console.log(err.message));
 // .catch((err) => console.log(err.response.data))
 
-export default  function AuthCookie() {
+export default async  function AuthCookie() {
+  // const [counter, setCounter] = useState(0);
+
   // const { data, isError, error } = useQuery({
   //   queryKey: ["Pokemon"],
   //   queryFn: getPokemons,
@@ -64,9 +67,9 @@ export default  function AuthCookie() {
   //   retry: 0,
   // });
 
-  useEffect(() => {
-    throw new Error("Custom Error");
-  }, []);
+  // useEffect(() => {
+  //   throw new Error("Custom Error");
+  // }, []);
 
   // getPokemons()
   // .then((data) => console.log(data))
@@ -84,7 +87,7 @@ export default  function AuthCookie() {
   // const session = use(getServerSession(authOptions))
   // console.log("AuthCookie  session:", session);
 
-  // const data = await getPokemonsAxios();
+  const data = await getPokemons();
   // console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
 
   // if (isError) {
@@ -96,12 +99,22 @@ export default  function AuthCookie() {
   //   );
   // }
 
+  // const handleClick = () => {
+  //   setCounter((prev) => prev + 1);
+  // };
+
+  // if (counter === 3) {
+  //   throw new Error("I crashed!");
+  // }
+
   return (
     <>
-      {/* <><pre>{JSON.stringify(data.results[0], null, 2)}</pre></> */}
+      {/* <h1>{counter}</h1>
+      <button type="button" onClick={handleClick}>
+        Click
+      </button> */}
+      {/* {data && <><pre>{JSON.stringify(data.results[0], null, 2)}</pre></>} */}
       {/* <h1>Auth Token: {authToken}</h1> */}
     </>
   );
 }
-
-
