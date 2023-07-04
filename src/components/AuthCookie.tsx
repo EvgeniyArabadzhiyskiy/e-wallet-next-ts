@@ -56,7 +56,7 @@ const getPokemonsAxios = async () => {
 // .catch((err: AxiosError) => console.log(err.message));
 // .catch((err) => console.log(err.response.data))
 
-export default async  function AuthCookie() {
+export default   function AuthCookie() {
   const [counter, setCounter] = useState(0);
 
   // const { data, isError, error } = useQuery({
