@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
@@ -57,7 +57,7 @@ const getPokemonsAxios = async () => {
 // .catch((err) => console.log(err.response.data))
 
 export default async  function AuthCookie() {
-  // const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0);
 
   // const { data, isError, error } = useQuery({
   //   queryKey: ["Pokemon"],
@@ -87,7 +87,7 @@ export default async  function AuthCookie() {
   // const session = use(getServerSession(authOptions))
   // console.log("AuthCookie  session:", session);
 
-  const data = await getPokemons();
+  // const data = await getPokemons();
   // console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
 
   // if (isError) {
@@ -99,20 +99,20 @@ export default async  function AuthCookie() {
   //   );
   // }
 
-  // const handleClick = () => {
-  //   setCounter((prev) => prev + 1);
-  // };
+  const handleClick = () => {
+    setCounter((prev) => prev + 1);
+  };
 
-  // if (counter === 3) {
-  //   throw new Error("I crashed!");
-  // }
+  if (counter === 3) {
+    throw new Error("I crashed!");
+  }
 
   return (
     <>
-      {/* <h1>{counter}</h1>
+      <h1>{counter}</h1>
       <button type="button" onClick={handleClick}>
         Click
-      </button> */}
+      </button>
       {/* {data && <><pre>{JSON.stringify(data.results[0], null, 2)}</pre></>} */}
       {/* <h1>Auth Token: {authToken}</h1> */}
     </>
