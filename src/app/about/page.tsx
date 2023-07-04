@@ -43,9 +43,9 @@ export default function AboutPage() {
         <h1>Next Font</h1>
         <Navigation />
 
-        <ErrorBoundary>
+        <>
           <AuthCookie />
-        </ErrorBoundary>
+        </>
 
         {/* </TestCookies> */}
         {/* <AboutComp session={session} /> */}
