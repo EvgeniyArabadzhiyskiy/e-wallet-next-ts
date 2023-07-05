@@ -18,7 +18,7 @@ export default function Error({
   
   return (
     <>
-      <h1>Sorry Error</h1>
+      <h1>{error.message}</h1>
       <button type="button" onClick={reset}>
         Try Again
       </button>
