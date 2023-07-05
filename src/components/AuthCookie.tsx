@@ -99,8 +99,8 @@ const getTrans = async () => {
 
   try {
     const data = await axios(
-      // "https://wallet-backend-xmk0.onrender.com/api/transactions",
-      "http://localhost:4001/api/transactions",
+      "https://wallet-backend-xmk0.onrender.com/api/transactions",
+      // "http://localhost:4001/api/transactions",
       {
         headers: {
           Authorization: `Bearer ${authToken}`,
