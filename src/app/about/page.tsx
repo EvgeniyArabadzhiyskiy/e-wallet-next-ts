@@ -16,11 +16,9 @@ import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense, useContext } from "react";
-// import { useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { Inter, Fira_Code } from "next/font/google";
 import Navigation from "@/src/components/Navigation/Navigation";
-import ErrorBoundary from "@/src/components/ErrorBoundary";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,7 +26,10 @@ const inter = Inter({
   preload: true,
 });
 
-export default function AboutPage() {
+export default function AboutPage({searchParams}: {searchParams: any}) {
+
+  const url = searchParams.url
+  console.log("AboutPage  url:", url);
   // const session = await getServerSession(authOptions);
   // console.log("AboutPage  session:", session);
 
@@ -43,9 +44,7 @@ export default function AboutPage() {
         <h1>Next Font</h1>
         <Navigation />
 
-        <>
-          <AuthCookie />
-        </>
+        <AuthCookie url={url} />
 
         {/* </TestCookies> */}
         {/* <AboutComp session={session} /> */}
