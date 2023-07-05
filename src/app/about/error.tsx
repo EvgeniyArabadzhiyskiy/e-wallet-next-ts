@@ -9,7 +9,7 @@ export default function Error({
   error: Error;
   reset: () => void;
 }) {
-  console.log("error:", error.message);
+  // console.log("error:", error.message);
 
   // useEffect(() => {
   //   // Log the error to an error reporting service
