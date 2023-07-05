@@ -95,24 +95,24 @@ const getTrans = async () => {
   };
 
   try {
-
     const data = await axios(
-      'https://wallet-backend-xmk0.onrender.com/api/transactions',{
-        headers:{
-          Authorization: `Bearer ${"yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
-        }
+      // "https://wallet-backend-xmk0.onrender.com/api/transactions",
+      "http://localhost:4001/api/transactions",
+      {
+        headers: {
+          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
+        },
       }
-      
     );
-   
-    return data.data
+
+    return data.data;
 
     // const response = await fetch(
     //   'https://wallet-backend-xmk0.onrender.com/api/transactions',
     //   // "http://localhost:4001/api/transactions",
     //   options
     // );
-    
+
     // console.log("getTrans  response:", response.statusText);
     // if (!response.ok) {
     //   throw new Error(`Request failed with status ${response.status}`);
