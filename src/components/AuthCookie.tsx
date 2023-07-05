@@ -86,30 +86,31 @@ const getPok = async () => {
 };
 
 const getTrans = async () => {
-  const options = {
+  const options: RequestInit = {
     method: "GET",
     headers: {
       Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
     },
+    cache: "no-store",
   };
 
- try {
-  const response = await fetch(
-    "http://localhost:4001/api/transactions",
-    options
-  );
+  try {
+    const response = await fetch(
+      "http://localhost:4001/api/transactions",
+      options
+    );
 
-  if (!response.ok) {
-    throw new Error("Not Found");
+    if (!response.ok) {
+      throw new Error("Not Found");
+    }
+
+    const data = await response.json();
+    console.log("getTrans  data:", data);
+    return data;
+  } catch (error) {
+    console.log("getTrans  error:", (error as Error).message);
+    throw error;
   }
- 
-  const data = await response.json();
-  console.log("getTrans  data:", data);
-  return data;
- } catch (error) {
-  console.log("getTrans  error:",  (error as Error).message  );
-  throw error
- }
 };
 
 // getPok()
