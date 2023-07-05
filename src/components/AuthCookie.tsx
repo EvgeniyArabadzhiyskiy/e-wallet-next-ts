@@ -79,8 +79,37 @@ const httpFetcher = async <T,>(url: string): Promise<HttpResponse<T>> => {
 //   return response;
 // }
 
-const getPok = async (url: string) => {
-  return await fetchData<IPokemons>(url);
+const getPok = async () => {
+  return await fetchData<IPokemons>(
+    "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10"
+  );
+};
+
+const getTrans = async () => {
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
+    },
+  };
+
+ try {
+  const response = await fetch(
+    "http://localhost:4001/api/transactions",
+    options
+  );
+
+  if (!response.ok) {
+    throw new Error("Not Found");
+  }
+ 
+  const data = await response.json();
+  console.log("getTrans  data:", data);
+  return data;
+ } catch (error) {
+  console.log("getTrans  error:",  (error as Error).message  );
+  throw error
+ }
 };
 
 // getPok()
@@ -132,7 +161,7 @@ const getPokemonsAxios = async () => {
 // .catch((err: AxiosError) => console.log(err.message));
 // .catch((err) => console.log(err.response.data))
 
-export default async function AuthCookie({url}: {url:string}) {
+export default async function AuthCookie() {
   // const [counter, setCounter] = useState(0);
   // const [data, setData] = useState<IPokemons>();
   // const [error, setError] = useState<any>(null);
@@ -172,8 +201,9 @@ export default async function AuthCookie({url}: {url:string}) {
   // const session = use(getServerSession(authOptions))
   // console.log("AuthCookie  session:", session);
 
-  const data = await getPok(url);
-  console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
+  const data = await getTrans();
+  console.log("AuthCookie  data:", data.transactions[0]._id);
+  // console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
 
   // if (error) {
   //   console.log("AuthCookie  error:", (error as Error).message);
@@ -203,7 +233,7 @@ export default async function AuthCookie({url}: {url:string}) {
 
       {data && (
         <>
-          <pre>{JSON.stringify(data.results[0], null, 2)}</pre>
+          <pre>{JSON.stringify(data.transactions[0], null, 2)}</pre>
         </>
       )}
 
