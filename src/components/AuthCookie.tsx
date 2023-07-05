@@ -204,8 +204,8 @@ export default async function AuthCookie() {
   // const session = use(getServerSession(authOptions))
   // console.log("AuthCookie  session:", session);
 
-  const data = await getTrans();
-  console.log("AuthCookie  data:", data.transactions[0]._id);
+  // const data = await getTrans();
+  // console.log("AuthCookie  data:", data.transactions[0]._id);
   // console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
 
   // if (error) {
@@ -225,7 +225,18 @@ export default async function AuthCookie() {
   // if (counter === 3) {
   //   throw new Error("I crashed!");
   // }
+  
+  const eee = () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        // res(console.log("DJON COOL"))
+        // throw new Error("I crashed!");
+        rej(console.log("DJON COOL"))
+      }, 5000);
+    })
+  }
 
+  await eee()
   return (
     <>
       <h1>About</h1>
@@ -234,11 +245,11 @@ export default async function AuthCookie() {
         Click
       </button> */}
 
-      {data && (
+      {/* {data && (
         <>
           <pre>{JSON.stringify(data.transactions[0], null, 2)}</pre>
         </>
-      )}
+      )} */}
 
       {/* <h1>Auth Token: {authToken}</h1> */}
     </>
