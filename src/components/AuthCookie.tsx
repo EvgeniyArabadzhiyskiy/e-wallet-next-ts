@@ -96,7 +96,8 @@ const getTrans = async () => {
 
   try {
     const response = await fetch(
-      "http://localhost:4001/api/transactions",
+      'https://wallet-backend-xmk0.onrender.com/api/transaction',
+      // "http://localhost:4001/api/transactions",
       options
     );
 
