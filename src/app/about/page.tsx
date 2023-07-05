@@ -26,10 +26,7 @@ const inter = Inter({
   preload: true,
 });
 
-export default function AboutPage({searchParams}: {searchParams: any}) {
-
-  const url = searchParams.url
-  console.log("AboutPage  url:", url);
+export default function AboutPage() {
   // const session = await getServerSession(authOptions);
   // console.log("AboutPage  session:", session);
 
@@ -44,7 +41,7 @@ export default function AboutPage({searchParams}: {searchParams: any}) {
         <h1>Next Font</h1>
         <Navigation />
 
-        <AuthCookie url={url} />
+        <AuthCookie />
 
         {/* </TestCookies> */}
         {/* <AboutComp session={session} /> */}
