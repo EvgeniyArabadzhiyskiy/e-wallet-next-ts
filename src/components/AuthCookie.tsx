@@ -163,7 +163,7 @@ const getPokemonsAxios = async () => {
 // .catch((err: AxiosError) => console.log(err.message));
 // .catch((err) => console.log(err.response.data))
 
-export default async function AuthCookie() {
+export default async function AuthCookie({isTrue}: {isTrue: string}) {
   // const [counter, setCounter] = useState(0);
   // const [data, setData] = useState<IPokemons>();
   // const [error, setError] = useState<any>(null);
@@ -223,8 +223,12 @@ export default async function AuthCookie() {
   // };
 
   // if (counter === 3) {
-    throw new Error("I crashed!");
+    // throw new Error("I crashed!");
   // }
+
+  if (isTrue === 'true') {
+    throw new Error("I crashed!");
+  }
   
   // const eee = () => {
   //   return new Promise((res, rej) => {
