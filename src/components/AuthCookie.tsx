@@ -94,13 +94,16 @@ const getTrans = async () => {
     cache: "no-store",
   };
 
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("authToken")?.value;
+
   try {
     const data = await axios(
-      // "https://wallet-backend-xmk0.onrender.com/api/transactions",
-      "http://localhost:4001/api/transactions",
+      "https://wallet-backend-xmk0.onrender.com/api/transactions",
+      // "http://localhost:4001/api/transactions",
       {
         headers: {
-          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
+          Authorization: `Bearer ${authToken}`,
         },
       }
     );
