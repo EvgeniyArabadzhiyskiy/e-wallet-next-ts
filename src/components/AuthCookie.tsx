@@ -163,7 +163,7 @@ const getPokemonsAxios = async () => {
 // .catch((err: AxiosError) => console.log(err.message));
 // .catch((err) => console.log(err.response.data))
 
-export default async function AuthCookie({isTrue}: {isTrue: string}) {
+export default async function AuthCookie() {
   // const [counter, setCounter] = useState(0);
   // const [data, setData] = useState<IPokemons>();
   // const [error, setError] = useState<any>(null);
@@ -204,8 +204,8 @@ export default async function AuthCookie({isTrue}: {isTrue: string}) {
   // const session = use(getServerSession(authOptions))
   // console.log("AuthCookie  session:", session);
 
-  // const data = await getTrans();
-  // console.log("AuthCookie  data:", data.transactions[0]._id);
+  const data = await getTrans();
+  console.log("AuthCookie  data:", data.transactions[0]._id);
   // console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
 
   // if (error) {
@@ -223,24 +223,9 @@ export default async function AuthCookie({isTrue}: {isTrue: string}) {
   // };
 
   // if (counter === 3) {
-    // throw new Error("I crashed!");
+  //   throw new Error("I crashed!");
   // }
 
-  if (isTrue === 'true') {
-    throw new Error("I crashed!");
-  }
-  
-  // const eee = () => {
-  //   return new Promise((res, rej) => {
-  //     setTimeout(() => {
-  //       // res(console.log("DJON COOL"))
-  //       // throw new Error("I crashed!");
-  //       rej(console.log("DJON COOL"))
-  //     }, 5000);
-  //   })
-  // }
-
-  // await eee()
   return (
     <>
       <h1>About</h1>
@@ -249,11 +234,11 @@ export default async function AuthCookie({isTrue}: {isTrue: string}) {
         Click
       </button> */}
 
-      {/* {data && (
+      {data && (
         <>
           <pre>{JSON.stringify(data.transactions[0], null, 2)}</pre>
         </>
-      )} */}
+      )}
 
       {/* <h1>Auth Token: {authToken}</h1> */}
     </>
