@@ -223,20 +223,20 @@ export default async function AuthCookie() {
   // };
 
   // if (counter === 3) {
-  //   throw new Error("I crashed!");
+    throw new Error("I crashed!");
   // }
   
-  const eee = () => {
-    return new Promise((res, rej) => {
-      setTimeout(() => {
-        // res(console.log("DJON COOL"))
-        // throw new Error("I crashed!");
-        rej(console.log("DJON COOL"))
-      }, 5000);
-    })
-  }
+  // const eee = () => {
+  //   return new Promise((res, rej) => {
+  //     setTimeout(() => {
+  //       // res(console.log("DJON COOL"))
+  //       // throw new Error("I crashed!");
+  //       rej(console.log("DJON COOL"))
+  //     }, 5000);
+  //   })
+  // }
 
-  await eee()
+  // await eee()
   return (
     <>
       <h1>About</h1>
