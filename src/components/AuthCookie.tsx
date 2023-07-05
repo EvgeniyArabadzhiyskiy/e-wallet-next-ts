@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
@@ -167,13 +167,14 @@ export default async function AuthCookie() {
   // const [data, setData] = useState<IPokemons>();
   // const [error, setError] = useState<any>(null);
 
-  // const { data, isError, error } = useQuery({
-  //   queryKey: ["Pokemon"],
-  //   queryFn: getPok,
-  //   staleTime: Infinity,
-  //   refetchOnWindowFocus: false,
-  //   retry: 0,
-  // });
+  const { data, isError, error } = useQuery({
+    queryKey: ["Pokemon"],
+    queryFn: getTrans,
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    retry: 0,
+  });
+  console.log("AuthCookie  data:", data);
 
   // useEffect(() => {
   //   (async () => {
@@ -202,19 +203,19 @@ export default async function AuthCookie() {
   // const session = use(getServerSession(authOptions))
   // console.log("AuthCookie  session:", session);
 
-  const data = await getTrans();
-  console.log("AuthCookie  data:", data.transactions[0]._id);
+  // const data = await getTrans();
+  // console.log("AuthCookie  data:", data.transactions[0]._id);
   // console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
 
-  // if (error) {
-  //   console.log("AuthCookie  error:", (error as Error).message);
-  //   return (
-  //     <>
-  //       {/* <h1>{(error as AxiosError).message}</h1> */}
-  //       <h1>{(error as Error).message}</h1>
-  //     </>
-  //   );
-  // }
+  if (error) {
+    console.log("AuthCookie  error:", (error as Error).message);
+    return (
+      <>
+        {/* <h1>{(error as AxiosError).message}</h1> */}
+        <h1>{(error as Error).message}</h1>
+      </>
+    );
+  }
 
   // const handleClick = () => {
   //   setCounter((prev) => prev + 1);
