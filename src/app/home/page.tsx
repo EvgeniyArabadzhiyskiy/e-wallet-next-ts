@@ -13,6 +13,7 @@ import { Title } from "@/src/components/Title/Title.styled";
 import { isITransactions } from "@/src/helpers/isITransactions";
 import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
 import { ITransactions } from "@/src/types/transactions";
+import { cookies } from "next/headers";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const options = {
@@ -50,9 +51,11 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 };
 
 export default async function HomePage() {
-  const session = await getServerSession(authOptions);
-  const authToken = session?.user.token;
-  // console.log("HomePage  authToken>>>>>>>>>>>>>>>>>>>>>>>>>>>>", authToken);
+  // const session = await getServerSession(authOptions);
+  // const authToken = session?.user.token;
+
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("authToken")?.value;
 
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(["Transactions", 1], () =>
