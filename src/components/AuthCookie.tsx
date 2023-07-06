@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
@@ -88,13 +88,13 @@ const getPok = async () => {
 const getTrans = async () => {
  
 
-  // const cookieStore = cookies();
-  // const authToken = cookieStore.get("authToken")?.value;
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("authToken")?.value;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${'authToken'}`,
+      Authorization: `Bearer ${authToken}`,
       // Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
     },
     cache: "no-store",
@@ -126,12 +126,12 @@ const getTrans = async () => {
     }
 
     const data = await response.json();
-    // return data;
-    return { data, error: null}
+    return data;
+    // return { data, error: null}
   } catch (error) {
     console.log("getTrans  Error:", (error as Error).message);
-    return { data: null, error}
-    // throw error;
+    // return { data: null, error}
+    throw error;
   }
 };
 
@@ -184,8 +184,8 @@ const getPokemonsAxios = async () => {
 // .catch((err: AxiosError) => console.log(err.message));
 // .catch((err) => console.log(err.response.data))
 
-export default  function AuthCookie() {
-  const [counter, setCounter] = useState(0);
+export default async  function AuthCookie() {
+  // const [counter, setCounter] = useState(0);
   // const [data, setData] = useState<any>(null);
   // const [error, setError] = useState<any>(null);
 
@@ -243,31 +243,38 @@ export default  function AuthCookie() {
   //   );
   // }
 
-  const handleClick = () => {
-    setCounter((prev) => prev + 1);
-  };
+  // const handleClick = () => {
+  //   setCounter((prev) => prev + 1);
+  // };
 
-  if (counter === 3) {
-    throw new Error("I crashed!");
-  }
+  // if (counter === 3) {
+  //   throw new Error("I crashed!");
+  // }
+
+ try {
+  
+  const data = await getTrans();
 
   return (
     <>
       <h1>About</h1>
-      <h1>{counter}</h1>
+      {/* <h1>{counter}</h1>
       <button type="button" onClick={handleClick}>
         Click
-      </button>
+      </button> */}
 
-      {/* {data && (
+      {data && (
         <>
           <pre>{JSON.stringify(data.transactions[0], null, 2)}</pre>
         </>
-      )} */}
+      )}
 
       {/* <h1>Auth Token: {authToken}</h1> */}
     </>
   );
+ } catch (error) {
+  throw new Error((error as Error).message);
+ }
 }
 
 
