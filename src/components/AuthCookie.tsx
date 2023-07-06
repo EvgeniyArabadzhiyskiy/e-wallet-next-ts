@@ -1,7 +1,7 @@
 // "use client";
 
 import { getServerSession } from "next-auth";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import { use, useEffect, useState } from "react";
 import { authOptions } from "../lib/auth";
 import axios, { AxiosError } from "axios";
@@ -88,16 +88,16 @@ const getPok = async () => {
 const getTrans = async () => {
  
 
-  const cookieStore = cookies();
-  const authToken = cookieStore.get("authToken")?.value;
+  // const cookieStore = cookies();
+  // const authToken = cookieStore.get("authToken")?.value;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${authToken}`,
-      // Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
+      // Authorization: `Bearer ${authToken}`,
+      Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
     },
-    cache: "no-store",
+    // cache: "no-store",
   };
 
   try {
@@ -115,8 +115,8 @@ const getTrans = async () => {
 
     //===============================================
     const response = await fetch(
-      'https://wallet-backend-xmk0.onrender.com/api/transactions',
-      // "http://localhost:4001/api/transactions",
+      // 'https://wallet-backend-xmk0.onrender.com/api/transactions',
+      "http://localhost:4001/api/transactions",
       options
     );
 
@@ -273,8 +273,8 @@ export default async  function AuthCookie() {
     </>
   );
  } catch (error) {
-  // throw new Error((error as Error).message);
-  throw error
+  throw new Error((error as Error).message);
+  // throw error
  }
 }
 
