@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
@@ -86,47 +86,52 @@ const getPok = async () => {
 };
 
 const getTrans = async () => {
+ 
+
+  // const cookieStore = cookies();
+  // const authToken = cookieStore.get("authToken")?.value;
+
   const options: RequestInit = {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
+      Authorization: `Bearer ${'authToken'}`,
+      // Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
     },
     cache: "no-store",
   };
 
-  const cookieStore = cookies();
-  const authToken = cookieStore.get("authToken")?.value;
-
   try {
-    const data = await axios(
-      "https://wallet-backend-xmk0.onrender.com/api/transactions",
-      // "http://localhost:4001/api/transactions",
-      {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      }
-    );
-
-    return data.data;
-
-    // const response = await fetch(
-    //   'https://wallet-backend-xmk0.onrender.com/api/transactions',
+    // const data = await axios(
+    //   "https://wallet-backend-xmk0.onrender.com/api/transactions",
     //   // "http://localhost:4001/api/transactions",
-    //   options
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${authToken}`,
+    //     },
+    //   }
     // );
 
-    // console.log("getTrans  response:", response.statusText);
-    // if (!response.ok) {
-    //   throw new Error(`Request failed with status ${response.status}`);
-    // }
+    // return data.data;
 
-    // const data = await response.json();
-    // console.log("getTrans  data:", data);
+    //===============================================
+    const response = await fetch(
+      'https://wallet-backend-xmk0.onrender.com/api/transactions',
+      // "http://localhost:4001/api/transactions",
+      options
+    );
+
+    // console.log("getTrans  response:", response.statusText);
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const data = await response.json();
     // return data;
+    return { data, error: null}
   } catch (error) {
-    console.log("getTrans  error:", (error as Error).message);
-    throw error;
+    console.log("getTrans  Error:", (error as Error).message);
+    return { data: null, error}
+    // throw error;
   }
 };
 
@@ -179,9 +184,9 @@ const getPokemonsAxios = async () => {
 // .catch((err: AxiosError) => console.log(err.message));
 // .catch((err) => console.log(err.response.data))
 
-export default async function AuthCookie() {
-  // const [counter, setCounter] = useState(0);
-  // const [data, setData] = useState<IPokemons>();
+export default  function AuthCookie() {
+  const [counter, setCounter] = useState(0);
+  // const [data, setData] = useState<any>(null);
   // const [error, setError] = useState<any>(null);
 
   // const { data, isError, error } = useQuery({
@@ -195,15 +200,19 @@ export default async function AuthCookie() {
 
   // useEffect(() => {
   //   (async () => {
-  //     try {
-  //       const pokemon = await getPok();
-  //       setData(pokemon);
-  //     } catch (error) {
-  //       console.log("getPok  error:", (error as Error).message);
-  //       // throw error;
+  //     // try {
+  //     //   const pokemon = await getPok();
+  //     //   setData(pokemon);
+  //     // } catch (error) {
+  //     //   console.log("getPok  error:", (error as Error).message);
+  //     //   // throw error;
 
-  //       setError(error)
-  //     }
+  //     //   setError(error)
+  //     // }
+
+  //     const {data, error} = await getTrans();
+  //     setData(data);
+  //     setError(error)
   //   })();
   // }, []);
 
@@ -220,8 +229,8 @@ export default async function AuthCookie() {
   // const session = use(getServerSession(authOptions))
   // console.log("AuthCookie  session:", session);
 
-  const data = await getTrans();
-  console.log("AuthCookie  data:", data.transactions[0]._id);
+  // const {data, error} = await getTrans();
+  // console.log("AuthCookie  data:", data.transactions[0]._id);
   // console.log("AuthCookie  data:+++++++++++++++++++++++++", data.results[0]);
 
   // if (error) {
@@ -234,29 +243,77 @@ export default async function AuthCookie() {
   //   );
   // }
 
-  // const handleClick = () => {
-  //   setCounter((prev) => prev + 1);
-  // };
+  const handleClick = () => {
+    setCounter((prev) => prev + 1);
+  };
 
-  // if (counter === 3) {
-  //   throw new Error("I crashed!");
-  // }
+  if (counter === 3) {
+    throw new Error("I crashed!");
+  }
 
   return (
     <>
       <h1>About</h1>
-      {/* <h1>{counter}</h1>
+      <h1>{counter}</h1>
       <button type="button" onClick={handleClick}>
         Click
-      </button> */}
+      </button>
 
-      {data && (
+      {/* {data && (
         <>
           <pre>{JSON.stringify(data.transactions[0], null, 2)}</pre>
         </>
-      )}
+      )} */}
 
       {/* <h1>Auth Token: {authToken}</h1> */}
     </>
   );
 }
+
+
+
+
+
+// export const fetchData = async () => {
+//   try {
+//     const response = await fetch("https://pokeapi.co/api/v2/pokemo?offset=0&limit=10");
+
+//     if (!response.ok) {
+//       throw new Error(`Request failed with status ${response.status}`);
+//     }
+
+//     const data = await response.json();
+
+//     return { data, error: null };
+//   } catch (error) {
+//     return { data: null, error };
+//   }
+// };
+
+// export default function AuthCookie() {
+//   const [data, setData] = useState(null);
+//   const [error, setError] = useState(null);
+
+//   useEffect(() => {
+//     (async () => {
+//       const { data, error } = await fetchData();
+
+//       setData(data);
+//       setError(error);
+//     })();
+//   }, []);
+
+//   if (error) {
+//     return <h1>{error.message}</h1>;
+//   }
+
+//   // Отображение данных в UI
+//   // ...
+
+//   return (
+//     <>
+//       <h1>About</h1>
+//       {/* Отображение данных в UI */}
+//     </>
+//   );
+// }
