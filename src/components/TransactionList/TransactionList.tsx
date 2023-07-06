@@ -53,7 +53,7 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 
   const { data, isError, error, isFetching, refetch } = useQuery({
     queryKey: ["Transactions", pageNum],
-    queryFn: () => getAllTransactions(userToken, pageNum), // ИЛИ authToken
+    queryFn: () => getAllTransactions('userToken', pageNum), // ИЛИ authToken
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     retry: 0,
