@@ -273,7 +273,8 @@ export default async  function AuthCookie() {
     </>
   );
  } catch (error) {
-  throw new Error((error as Error).message);
+  // throw new Error((error as Error).message);
+  throw error
  }
 }
 
