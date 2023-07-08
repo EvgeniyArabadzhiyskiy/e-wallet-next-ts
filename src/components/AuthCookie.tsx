@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import { getServerSession } from "next-auth";
 // import { cookies } from "next/headers";
@@ -25,51 +25,35 @@ interface IPokemons {
   results: IPokemon[];
 }
 
-async function fetchData<T>(url: string): Promise<T> {
-  try {
-    const response = await fetch(url);
+async function fetchData<T>(url: RequestInfo, options?: RequestInit): Promise<T> {
+  const response = await fetch(url,options);
 
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
-    }
-
-    const data: T = await response.json();
-
-    return data;
-  } catch (error) {
-    console.log("getPok  error:", (error as Error).message);
-    throw error;
-    // throw new Error("Not Found");
+  if (!response.ok) {
+    throw new Error(`Request failed with status ${response.status}`);
   }
+
+  const data: T = await response.json();
+
+  return data;
 }
 
-// const httpFetcher = async (url: string) => {
-//   const response = await fetch(url);
 
-//   const data = await response.json();
-
-//   if (!response.ok) {
-//     throw new Error("Not Found");
-//   }
-
-//   return data
-// }
 
 interface HttpResponse<T> extends Response {
   parseBody?: T;
 }
 
-const httpFetcher = async <T,>(url: string): Promise<HttpResponse<T>> => {
-  const response: HttpResponse<T> = await fetch(url);
+// const httpFetcher = async <T,>(url: string): Promise<HttpResponse<T>> => {
+//   const response: HttpResponse<T> = await fetch(url);
 
-  if (!response.ok) {
-    throw new Error("Not Found");
-  }
+//   if (!response.ok) {
+//     throw new Error("Not Found");
+//   }
 
-  response.parseBody = await response.json();
+//   response.parseBody = await response.json();
 
-  return response;
-};
+//   return response;
+// };
 
 // async function httpFetcher<T>(url: string): Promise<HttpResponse<T>> {
 //   const response: HttpResponse<T> = await fetch(url);
@@ -86,8 +70,6 @@ const getPok = async () => {
 };
 
 const getTrans = async () => {
- 
-
   // const cookieStore = cookies();
   // const authToken = cookieStore.get("authToken")?.value;
 
@@ -97,7 +79,7 @@ const getTrans = async () => {
       // Authorization: `Bearer ${authToken}`,
       Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4ODQwNTUyNiwiZXhwIjoxNjg5NjE1MTI2fQ.nTUHoyF8mdoMniLDqUw5ZphOVBqWFWx4thg-DM3dVhg"}`,
     },
-    // cache: "no-store",
+    cache: "no-store",
   };
 
   try {
@@ -115,7 +97,7 @@ const getTrans = async () => {
 
     //===============================================
     const response = await fetch(
-      'https://wallet-backend-xmk0.onrender.com/api/transactions',
+      "https://wallet-backend-xmk0.onrender.com/api/transactions",
       // "http://localhost:4001/api/transactions",
       options
     );
@@ -184,8 +166,10 @@ const getPokemonsAxios = async () => {
 // .catch((err: AxiosError) => console.log(err.message));
 // .catch((err) => console.log(err.response.data))
 
-export default async  function AuthCookie() {
-  // const [counter, setCounter] = useState(0);
+
+
+export default function AuthCookie() {
+  const [counter, setCounter] = useState(0);
   // const [data, setData] = useState<any>(null);
   // const [error, setError] = useState<any>(null);
 
@@ -243,44 +227,35 @@ export default async  function AuthCookie() {
   //   );
   // }
 
-  // const handleClick = () => {
-  //   setCounter((prev) => prev + 1);
-  // };
+  const handleClick = () => {
+    setCounter((prev) => prev + 1);
+  };
 
-  // if (counter === 3) {
-  //   throw new Error("I crashed!");
-  // }
+  if (counter === 3) {
+    throw new Error("I crashed!");
+    // const ddd = counter.sss.ffff
+  }
 
- try {
-  
-  const data = await getTrans();
+ 
 
   return (
     <>
       <h1>About</h1>
-      {/* <h1>{counter}</h1>
+      <h1>{counter}</h1>
       <button type="button" onClick={handleClick}>
         Click
-      </button> */}
+      </button>
 
-      {data && (
+      {/* {data && (
         <>
           <pre>{JSON.stringify(data.transactions[0], null, 2)}</pre>
         </>
-      )}
+      )} */}
 
       {/* <h1>Auth Token: {authToken}</h1> */}
     </>
   );
- } catch (error) {
-  throw new Error((error as Error).message);
-  // throw error
- }
 }
-
-
-
-
 
 // export const fetchData = async () => {
 //   try {
