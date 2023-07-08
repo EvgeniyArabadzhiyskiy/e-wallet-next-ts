@@ -25,7 +25,7 @@ interface IPokemons {
   results: IPokemon[];
 }
 
-async function fetchData<T>(url: RequestInfo, options?: RequestInit): Promise<T> {
+async function fetcher<T>(url: RequestInfo, options?: RequestInit): Promise<T> {
   const response = await fetch(url,options);
 
   if (!response.ok) {
@@ -64,7 +64,7 @@ interface HttpResponse<T> extends Response {
 // }
 
 const getPok = async () => {
-  return await fetchData<IPokemons>(
+  return await fetcher<IPokemons>(
     "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10"
   );
 };
@@ -257,7 +257,7 @@ export default function AuthCookie() {
   );
 }
 
-// export const fetchData = async () => {
+// export const fetcher = async () => {
 //   try {
 //     const response = await fetch("https://pokeapi.co/api/v2/pokemo?offset=0&limit=10");
 
@@ -279,7 +279,7 @@ export default function AuthCookie() {
 
 //   useEffect(() => {
 //     (async () => {
-//       const { data, error } = await fetchData();
+//       const { data, error } = await fetcher();
 
 //       setData(data);
 //       setError(error);
