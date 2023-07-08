@@ -7,6 +7,7 @@ import Navigation from "../Navigation/Navigation";
 import stl from "./DashBoardLayout.module.scss";
 
 export default function DashBoardLayout({ children }: { children: React.ReactNode }) {
+  
   return (
     <> 
       <div className={stl.section}>
