@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { List, ItemLink, NavLink, LinkText  } from "./Navigation.styled";
+import { List, ItemLink, NavLink, LinkText } from "./Navigation.styled";
 import Image from "next/image";
 // import HomeSvg from "../../../public/images/home.svg";
 // import StatSvg from "../../../public/images/statistic.svg";
@@ -16,15 +16,20 @@ export default function Navigation() {
       <List>
         <ItemLink>
           <NavLink href="/home" $isActive={path === "/home"}>
-            <HomeSvg width={18} height={18}  />
-            <LinkText >Home</LinkText>
+            <HomeSvg width={18} height={18} />
+            <LinkText>Home</LinkText>
           </NavLink>
         </ItemLink>
         <ItemLink>
-          <NavLink href="/about" $isActive={path === "/about"}>
-            {/* <StatSvg width={18} height={18}  /> */}
-              <StatisticSvg width={18} height={18}  />
-            <LinkText >Statistic</LinkText>
+          <NavLink href="/home/transactions" $isActive={path === "/home/transactions"}>
+            <HomeSvg width={18} height={18} />
+            <LinkText>Transactions</LinkText>
+          </NavLink>
+        </ItemLink>
+        <ItemLink>
+          <NavLink href="/home/statistic" $isActive={path === "/home/statistic"}>
+            <StatisticSvg width={18} height={18} />
+            <LinkText>Statistic</LinkText>
           </NavLink>
         </ItemLink>
       </List>
