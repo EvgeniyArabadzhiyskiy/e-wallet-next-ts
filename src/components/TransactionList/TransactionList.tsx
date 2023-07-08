@@ -9,6 +9,7 @@ import { Title } from "../Title/Title.styled";
 import { ITransaction, ITransactions } from "@/src/types/transactions";
 import { isITransactions } from "@/src/helpers/isITransactions";
 import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
+import { apiWallet } from "@/src/apiWallet/apiWallet";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const options = {
@@ -53,7 +54,7 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 
   const { data, isError, error, isFetching, refetch } = useQuery({
     queryKey: ["Transactions", pageNum],
-    queryFn: () => getAllTransactions('userToken', pageNum), // ИЛИ authToken
+    queryFn: () => apiWallet.getAllTransactions(userToken, pageNum), // ИЛИ authToken
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     retry: 0,
