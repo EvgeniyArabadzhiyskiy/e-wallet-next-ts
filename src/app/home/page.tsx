@@ -13,53 +13,78 @@ import { Title } from "@/src/components/Title/Title.styled";
 import { isITransactions } from "@/src/helpers/isITransactions";
 import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
 import { ITransactions } from "@/src/types/transactions";
-import { cookies } from "next/headers";
+import { fetchData } from "@/src/helpers/fetchData";
+import { apiWallet } from "@/src/apiWallet/apiWallet";
 
-const getAllTransactions = async (authToken: any, pageNum: number) => {
-  const options = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
+// const getAllTransactions = async (authToken: string | undefined, pageNum: number) => {
+//   const options: RequestInit = {
+//     method: "GET",
+//     headers: {
+//       Authorization: `Bearer ${authToken}`
+//     },
+//     cache: "no-store",
+//   };
 
-  try {
-    //   await new Promise(res => setTimeout(() => res(777), 5000))
-    const response = await fetch(
-      `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
-      options
-    );
-
-    if (!response.ok) {
-      const errorMessage = response.statusText || "An error occurred";
-      throw new Error(errorMessage);
-    }
+//   try {
+//     const data = await fetchData<any>(`${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`, options);
     
-    const data = await response.json();
+//     if (!isITransactions(data)) {
+//       throw new Error("Invalid data format");
+//     }
 
-    if (!isITransactions(data)) {
-      throw new Error("Invalid data format");
-    }
+//     const transactions: ITransactions = data;
 
-    const transactions: ITransactions = data;
+//     return transactions;
 
-    return transactions;
-  } catch (error) {
-    console.log(error);
-    throw new Error((error as Error).message || "An error occurred");
-  }
-};
+//   } catch (error) {
+//     console.log("getTrans  Error:", (error as Error).message);
+//     throw error
+//   }
+// }
+
+// const getAllTransactions = async (authToken: any, pageNum: number) => {
+//   const options = {
+//     method: "GET",
+//     headers: {
+//       Authorization: `Bearer ${authToken}`,
+//     },
+//   };
+
+//   try {
+//     //   await new Promise(res => setTimeout(() => res(777), 5000))
+//     const response = await fetch(
+//       `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
+//       options
+//     );
+
+//     if (!response.ok) {
+//       const errorMessage = response.statusText || "An error occurred";
+//       throw new Error(errorMessage);
+//     }
+    
+//     const data = await response.json();
+
+//     if (!isITransactions(data)) {
+//       throw new Error("Invalid data format");
+//     }
+
+//     const transactions: ITransactions = data;
+
+//     return transactions;
+//   } catch (error) {
+//     console.log(error);
+//     throw new Error((error as Error).message || "An error occurred");
+//   }
+// };
 
 export default async function HomePage() {
-  // const session = await getServerSession(authOptions);
-  // const authToken = session?.user.token;
-
-  const cookieStore = cookies();
-  const authToken = cookieStore.get("authToken")?.value;
+  const session = await getServerSession(authOptions);
+  const authToken = session?.user.token;
+  // console.log("HomePage  authToken>>>>>>>>>>>>>>>>>>>>>>>>>>>>", authToken);
 
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(["Transactions", 1], () =>
-    getAllTransactions(authToken, 1)
+  apiWallet.getAllTransactions(authToken, 1)
   );
   const dehydratedState = dehydrate(queryClient);
 
@@ -69,7 +94,6 @@ export default async function HomePage() {
         <Header />
 
         <DashBoardLayout>
-          {/* {typeof window !== 'undefined' &&  <Title>Home Title</Title>} */}
           {/* <Header currentUser={session} /> */}
 
           {/* <SideBar></SideBar> */}
