@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   min-width: 280px;
   height: 80px;
   margin-bottom: 32px;
