@@ -1,6 +1,6 @@
 import { ITransaction, ITransactions } from "../types/transactions";
 
-function isITransaction(transaction: any): transaction is ITransaction {
+function isITransaction(transaction: ITransaction): transaction is ITransaction {
   return (
     typeof transaction === "object" &&
     typeof transaction._id === "string" &&
@@ -16,12 +16,12 @@ function isITransaction(transaction: any): transaction is ITransaction {
   );
 }
 
-export function isITransactions(data: any): data is ITransactions {
-  const isITransactions =
+export function isITransactions(data: ITransactions): data is ITransactions {
+  const isValidITransactions =
     typeof data === "object" &&
     Array.isArray(data.transactions) &&
     data.transactions.every(isITransaction) &&
     typeof data.userBalance === "number";
 
-  return isITransactions;
+  return isValidITransactions;
 }
