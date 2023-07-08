@@ -12,20 +12,20 @@ interface GlobalContextType {
   isModalOpen: ModalState;
   setIsModalOpen: React.Dispatch<React.SetStateAction<ModalState>>;
   
-  isLoading: boolean;
-  theme: string | null;
-  setTheme: React.Dispatch<React.SetStateAction<string | null>>;
+  // isLoading: boolean;
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export default function GlobalProvider({children}: {children: React.ReactNode}) {
-  // const {  theme, setTheme } = useState("light");
-  const { isLoading, theme, setTheme } = useThemeCookies();
+  const [theme, setTheme] = useState("light");
+  // const { isLoading, theme, setTheme } = useThemeCookies();
   const [isModalOpen, setIsModalOpen] = useState<ModalState>({});
 
   return (
-    <GlobalContext.Provider value={{ isModalOpen, setIsModalOpen, isLoading, theme, setTheme }}>
+    <GlobalContext.Provider value={{ isModalOpen, setIsModalOpen,  theme, setTheme }}>
       {children}
     </GlobalContext.Provider>
   );
