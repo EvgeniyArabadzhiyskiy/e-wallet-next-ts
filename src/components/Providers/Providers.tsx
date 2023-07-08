@@ -15,7 +15,7 @@ interface IProps {
 
 export const Providers = ({ children }: IProps) => {
   const [queryClient] = useState(() => new QueryClient());
-  const { isLoading, theme } = useGlobalState();
+  const { theme } = useGlobalState();
 
   // if (isLoading) {
   //   return <h1>Loading Theme..</h1>;
