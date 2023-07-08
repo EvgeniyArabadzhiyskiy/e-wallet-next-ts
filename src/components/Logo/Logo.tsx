@@ -19,7 +19,7 @@ function Logo() {
   // const isMobile = useMedia("(max-width: 767px)", false);
 
   return (
-    <Link href="/">
+    <Link href="/home">
 
         <LogoWrap>
           <ImgWrapper>
