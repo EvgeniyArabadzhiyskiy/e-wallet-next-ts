@@ -49,9 +49,9 @@ export default async function PageTransactions() {
     <Hydrate state={dehydratedState}>
       <Link href="/">HOME</Link>
       <h1>Page Transactions</h1>
-      <div style={{ height: 250, backgroundColor: "red" }}></div>
-
       <TransactionList authToken={authToken} />
+      <div style={{ height: 250, backgroundColor: "grey" }}></div>
+
 
       <ModalBox modalName="logout">
         <ModalLogOut />
