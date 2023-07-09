@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { parseCookies } from "nookies";
-import { useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { Title } from "../Title/Title.styled";
 import { ITransaction, ITransactions } from "@/src/types/transactions";
@@ -24,14 +24,14 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
       `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
       options
     );
-    
+
     if (!response.ok) {
       const errorMessage = response.statusText || "An error occurred";
       throw new Error(errorMessage);
     }
-    
+
     const data = await response.json();
-    
+
     if (!isITransactions(data)) {
       throw new Error("Invalid data format");
     }
@@ -48,6 +48,11 @@ const getAllTransactions = async (authToken: any, pageNum: number) => {
 const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
   // const { authToken } = parseCookies();
   // const queryClient = useQueryClient();
+
+  const observerElem = useRef<any>(null);
+  // obs.current = "djon"
+  // console.log("TransactionList  obs:", obs.current);
+
   const [pageNum, setPageNum] = useState(1);
   const session = useSession();
   const userToken = session.data?.user.token;
@@ -66,6 +71,36 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 
   //   const queryUserData = queryClient.getQueriesData<any>(["Transactions"]);
   //   console.log("Header  queryUserData:", queryUserData);
+
+  // console.log("observe");
+
+  const handleObserver = useCallback(
+  (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+    console.log("entries", entries[0].isIntersecting);
+
+    const { isIntersecting, target } = entries[0];
+
+    if (isIntersecting) {
+      console.log("Target is Intersect");
+
+      // observer.unobserve(target);
+    }
+  },[]);
+
+  useEffect(() => {
+    const target = observerElem.current;
+
+    let observer = new IntersectionObserver(handleObserver, {
+      rootMargin: "10px",
+    });
+    observer.observe(target);
+
+    return () => {
+      console.log("Unmount");
+      observer.unobserve(target);
+
+    };
+  }, [handleObserver]);
 
   if (isFetching) {
     return <h1>Loading Transactions...</h1>;
@@ -88,11 +123,22 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
       <button type="button" onClick={() => setPageNum((p) => p + 1)}>
         Next Page
       </button>
-      <ul>
+
+      {/* <button onClick={() => ddd()}>Observ</button> */}
+
+      <ul style={{ height: 250, overflowY: "scroll" }}>
         {data &&
           data?.transactions?.map((item: any) => {
-            return <li key={item._id}>{item.category}</li>;
+            return (
+              <li style={{ height: 50 }} key={item._id}>
+                {item.category}
+              </li>
+            );
           })}
+
+        <div ref={observerElem} style={{ height: 50, background: "tomato" }}>
+          Observer Target
+        </div>
       </ul>
     </>
   );
