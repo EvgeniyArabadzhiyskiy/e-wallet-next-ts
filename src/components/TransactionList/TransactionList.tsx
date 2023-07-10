@@ -1,9 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  useInfiniteQuery,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { parseCookies } from "nookies";
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import { useSession } from "next-auth/react";
 import { Title } from "../Title/Title.styled";
 import { ITransaction, ITransactions } from "@/src/types/transactions";
@@ -57,37 +67,57 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
   const session = useSession();
   const userToken = session.data?.user.token;
 
-  const { data, isError, error, isFetching, refetch } = useQuery({
-    queryKey: ["Transactions", pageNum],
-    queryFn: () => apiWallet.getAllTransactions(userToken, pageNum), // ИЛИ authToken
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    retry: 0,
-    enabled: !!userToken, // При authToken  Удалить
-  });
-  // console.log("TransactionList  error:", error);
+  // const { data, isError, error, isFetching, refetch } = useQuery({
+  //   queryKey: ["Transactions", pageNum],
+  //   queryFn: () => apiWallet.getAllTransactions(userToken, pageNum), // ИЛИ authToken
+  //   staleTime: Infinity,
+  //   refetchOnWindowFocus: false,
+  //   retry: 0,
+  //   enabled: !!userToken, // При authToken  Удалить
+  // });
 
-  // console.log("HomePage  data:", data);
+  const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["TransactionsList"],
+      queryFn: ({ pageParam = 1 }) =>
+        apiWallet.getAllTransactions(userToken, pageParam),
+      getNextPageParam: (lastPage, allPages) => {
+        const nextPage = allPages.length + 1;
+
+        return lastPage.transactions.length !== 0 ? nextPage : undefined;
+      },
+
+      staleTime: Infinity,
+      enabled: !!userToken,
+    });
+
+  // const allTransactions = data?.pages.map(({transactions}) => transactions).flat();
+  // console.log("TransactionList  allTransactions:", allTransactions);
+
+  const allTransactions = useMemo(() => {
+    return data?.pages.map(({ transactions }) => transactions).flat();
+  }, [data?.pages]);
 
   //   const queryUserData = queryClient.getQueriesData<any>(["Transactions"]);
   //   console.log("Header  queryUserData:", queryUserData);
 
-  // console.log("observe");
-
   const handleObserver = useCallback(
-  (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-    console.log("entries", entries[0].isIntersecting);
+    (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+      const { isIntersecting, target } = entries[0];
+      // console.log("TransactionList  isIntersecting:", isIntersecting);
 
-    const { isIntersecting, target } = entries[0];
-
-    if (isIntersecting) {
-      console.log("Target is Intersect");
-
-      // observer.unobserve(target);
-    }
-  },[]);
+      if (isIntersecting && hasNextPage) {
+        fetchNextPage();
+        // console.log("Target is Intersect");
+        // setPageNum((p) => p + 1)
+        // observer.unobserve(target);
+      }
+    },
+    [fetchNextPage, hasNextPage]
+  );
 
   useEffect(() => {
+    console.log("useEffect");
     const target = observerElem.current;
 
     let observer = new IntersectionObserver(handleObserver, {
@@ -98,37 +128,41 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
     return () => {
       console.log("Unmount");
       observer.unobserve(target);
-
     };
   }, [handleObserver]);
 
-  if (isFetching) {
-    return <h1>Loading Transactions...</h1>;
-  }
+  // if (isFetching) {
+  //   return <h1>Loading Transactions...</h1>;
+  // }
 
-  if (isError) {
-    return (
-      <>
-        <h1>{(error as Error).message}</h1>
-        <button onClick={() => refetch()}>Retry</button>
-      </>
-    );
-  }
+  // if (isError) {
+  //   return (
+  //     <>
+  //       <h1>{(error as Error).message}</h1>
+  //       <button onClick={() => refetch()}>Retry</button>
+  //     </>
+  //   );
+  // }
+
+  console.log("Rerender");
 
   return (
     <>
       <h1>HOME PAGE</h1>
       <Title>Title</Title>
       <Link href="/">HOME</Link>
-      <button type="button" onClick={() => setPageNum((p) => p + 1)}>
+      <button type="button" onClick={() => fetchNextPage()}>
         Next Page
       </button>
 
-      {/* <button onClick={() => ddd()}>Observ</button> */}
+      <button type="button" onClick={() => setPageNum((p) => p + 1)}>
+        Click
+      </button>
+
 
       <ul style={{ height: 250, overflowY: "scroll" }}>
-        {data &&
-          data?.transactions?.map((item: any) => {
+        {allTransactions &&
+          allTransactions.map((item) => {
             return (
               <li style={{ height: 50 }} key={item._id}>
                 {item.category}
@@ -145,3 +179,85 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 };
 
 export default TransactionList;
+
+// const TransactionList = () => {
+//   const observerElem = useRef<any>(null);
+
+//   const [pageNum, setPageNum] = useState(1);
+//   const session = useSession();
+//   const userToken = session.data?.user.token;
+
+//   const { data, isError, error, isFetching, refetch } = useQuery({
+//     queryKey: ["Transactions", pageNum],
+//     queryFn: () => apiWallet.getAllTransactions(userToken, pageNum),
+//     staleTime: Infinity,
+//     refetchOnWindowFocus: false,
+//     retry: 0,
+//     enabled: !!userToken,
+//   });
+
+//   const handleObserver = useCallback(
+//     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+//       const { isIntersecting, target } = entries[0];
+//       console.log("TransactionList  isIntersecting:", isIntersecting);
+
+//       if (isIntersecting) {
+//         setPageNum((p) => p + 1)
+//       }
+//     },
+//     []
+//   );
+
+//   useEffect(() => {
+//     const target = observerElem.current;
+
+//     const observer = new IntersectionObserver(handleObserver, {
+//       rootMargin: "10px",
+//     });
+//     observer.observe(target);
+
+//     return () => {
+//       observer.unobserve(target);
+//     };
+//   }, [handleObserver]);
+
+//   if (isFetching) {
+//     return <h1>Loading Transactions...</h1>;
+//   }
+
+//   if (isError) {
+//     return (
+//       <>
+//         <h1>{(error as Error).message}</h1>
+//         <button onClick={() => refetch()}>Retry</button>
+//       </>
+//     );
+//   }
+
+//   console.log("Rerender");
+
+//   return (
+//     <>
+//       <h1>HOME PAGE</h1>
+//       <Title>Title</Title>
+//       <Link href="/">HOME</Link>
+
+//       <ul style={{ height: 250, overflowY: "scroll" }}>
+//         {data &&
+//           data?.transactions.map((item) => {
+//             return (
+//               <li style={{ height: 50 }} key={item._id}>
+//                 {item.category}
+//               </li>
+//             );
+//           })}
+
+//         <div ref={observerElem} style={{ height: 50, background: "tomato" }}>
+//           Observer Target
+//         </div>
+//       </ul>
+//     </>
+//   );
+// };
+
+// export default TransactionList;
