@@ -4,7 +4,7 @@ import { isITransactions } from "../helpers/isITransactions";
 import { ITransaction, ITransactions } from "../types/transactions";
 
 export const getAllTransactions = 
-async (authToken: string | undefined, pageNum: number): Promise<ITransactions> => {
+async (authToken: string | undefined, pageNum: number) => {
 
   const options: RequestInit = {
     method: "GET",
