@@ -20,7 +20,7 @@ import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
 
 //   try {
 //     const data = await fetcher<any>(`${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`, options);
-    
+
 //     if (!isITransactions(data)) {
 //       throw new Error("Invalid data format");
 //     }
@@ -41,21 +41,42 @@ export default async function PageTransactions() {
   // console.log("HomePage  authToken>>>>>>>>>>>>>>>>>>>>>>>>>>>>", authToken);
 
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(["Transactions", 1], () =>
-    apiWallet.getAllTransactions(authToken, 1)
-  );
-  const dehydratedState = dehydrate(queryClient);
+  // await queryClient.prefetchQuery(["Transactions", 1], () =>
+  //   apiWallet.getAllTransactions(authToken, 1)
+  // );
+  // const dehydratedState = dehydrate(queryClient);
+
+//===============================================================================
+  // const firstPageData = await apiWallet.getAllTransactions(authToken, 1)
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ["TransactionsList"],
+    queryFn: ({ pageParam = 1 }) => apiWallet.getAllTransactions(authToken, pageParam),
+    
+    // initialData: {
+    //   pages: [{ data: firstPageData }],
+    //   pageParams: [0],
+    //   // pageParams: [1], // при возврате с другой страницы кэш обнуляется
+    // }
+  });
+
+  // const dehydratedState = dehydrate(queryClient);
+
+  const dehydratedState =  JSON.parse(JSON.stringify(dehydrate(queryClient)));
+
+
   return (
-    <Hydrate state={dehydratedState}>
-      <Link href="/">HOME</Link>
-      <h1>Page Transactions</h1>
-      <TransactionList authToken={authToken} />
-      <div style={{ height: 250, backgroundColor: "grey" }}></div>
+    <>
+      <Hydrate state={dehydratedState}>
+        <Link href="/">HOME</Link>
+        <h1>Page Transactions</h1>
+        <TransactionList authToken={authToken} />
+        <div style={{ height: 250, backgroundColor: "grey" }}></div>
 
-
-      <ModalBox modalName="logout">
-        <ModalLogOut />
-      </ModalBox>
-    </Hydrate>
+        <ModalBox modalName="logout">
+          <ModalLogOut />
+        </ModalBox>
+      </Hydrate>
+    </>
   );
 }
