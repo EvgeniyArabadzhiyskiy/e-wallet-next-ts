@@ -49,25 +49,25 @@ export default async function PageTransactions() {
 //===============================================================================
   // const firstPageData = await apiWallet.getAllTransactions(authToken, 1)
 
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: ["TransactionsList"],
-    queryFn: ({ pageParam = 1 }) => apiWallet.getAllTransactions(authToken, pageParam),
+  // await queryClient.prefetchInfiniteQuery({
+  //   queryKey: ["TransactionsList"],
+  //   queryFn: ({ pageParam = 1 }) => apiWallet.getAllTransactions(authToken, pageParam),
     
-    // initialData: {
-    //   pages: [{ data: firstPageData }],
-    //   pageParams: [0],
-    //   // pageParams: [1], // при возврате с другой страницы кэш обнуляется
-    // }
-  });
+  //   // initialData: {
+  //   //   pages: [{ data: firstPageData }],
+  //   //   pageParams: [0],
+  //   //   // pageParams: [1], // при возврате с другой страницы кэш обнуляется
+  //   // }
+  // });
 
   // const dehydratedState = dehydrate(queryClient);
 
-  const dehydratedState =  JSON.parse(JSON.stringify(dehydrate(queryClient)));
+  // const dehydratedState =  JSON.parse(JSON.stringify(dehydrate(queryClient)));
 
 
   return (
     <>
-      <Hydrate state={dehydratedState}>
+      {/* <Hydrate state={dehydratedState}> */}
         <Link href="/">HOME</Link>
         <h1>Page Transactions</h1>
         <TransactionList authToken={authToken} />
@@ -76,7 +76,7 @@ export default async function PageTransactions() {
         <ModalBox modalName="logout">
           <ModalLogOut />
         </ModalBox>
-      </Hydrate>
+      {/* </Hydrate> */}
     </>
   );
 }
