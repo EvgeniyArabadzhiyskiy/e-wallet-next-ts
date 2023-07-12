@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { apiWallet } from "../apiWallet/apiWallet";
 
@@ -10,7 +10,7 @@ export const useLazyTransactions = () => {
   const session = useSession();
   const userToken = session.data?.user.token;
 
-  const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  const queryData = useInfiniteQuery({
     queryKey: ["TransactionsList"],
     queryFn: ({ pageParam = 1 }) =>
       apiWallet.getAllTransactions(userToken, pageParam),
@@ -23,6 +23,8 @@ export const useLazyTransactions = () => {
     staleTime: Infinity,
     enabled: !!userToken,
   });
+
+  const { data, fetchNextPage, hasNextPage } = queryData
 
   useEffect(() => {
     const target = observerElem.current;
@@ -49,5 +51,13 @@ export const useLazyTransactions = () => {
     };
   }, [fetchNextPage, hasNextPage]);
 
-  return { data, isFetching, listElem, observerElem };
+  const allTransactions = useMemo(() => {
+    return data?.pages.map(({ transactions }) => transactions).flat();
+  }, [data?.pages]);
+
+  return { 
+    ...queryData,
+    data: allTransactions,
+    listElem, 
+    observerElem };
 };
