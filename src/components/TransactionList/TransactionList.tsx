@@ -20,6 +20,7 @@ import { ITransaction, ITransactions } from "@/src/types/transactions";
 import { isITransactions } from "@/src/helpers/isITransactions";
 import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
 import { apiWallet } from "@/src/apiWallet/apiWallet";
+import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const options = {
@@ -59,13 +60,15 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
   // const { authToken } = parseCookies();
   // const queryClient = useQueryClient();
 
-  const observerElem = useRef<any>(null);
-  // obs.current = "djon"
-  // console.log("TransactionList  obs:", obs.current);
+  // const { data, isFetching, listElem, observerElem } = useLazyTransactions()
+
+  const listElem = useRef<HTMLUListElement>(null);
+  const observerElem = useRef<HTMLDivElement>(null);
 
   const [pageNum, setPageNum] = useState(1);
   const session = useSession();
   const userToken = session.data?.user.token;
+
 
   // const { data, isError, error, isFetching, refetch } = useQuery({
   //   queryKey: ["Transactions", pageNum],
@@ -76,64 +79,76 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
   //   enabled: !!userToken, // При authToken  Удалить
   // });
 
-  const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ["TransactionsList"],
-      queryFn: ({ pageParam = 1 }) =>
-        apiWallet.getAllTransactions(userToken, pageParam),
-      getNextPageParam: (lastPage, allPages) => {
-        const nextPage = allPages.length + 1;
+  const { data: { pages } = {}, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
+    queryKey: ["TransactionsList"],
+    queryFn: ({ pageParam = 1 }) =>
+      apiWallet.getAllTransactions(userToken, pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = allPages.length + 1;
 
-        return lastPage.transactions.length !== 0 ? nextPage : undefined;
-      },
+      return lastPage.transactions.length !== 0 ? nextPage : undefined;
+    },
 
-      staleTime: Infinity,
-      enabled: !!userToken,
-    });
+    staleTime: Infinity,
+    enabled: !!userToken,
+    select: (data) => {
+      const transactions = data.pages.map(({ transactions }) => transactions).flat();
+      return {
+        ...data,
+        pages: transactions
+      }
+    }
+  });
+
+
+  // console.log("TransactionList  data:", allTransactions?.pages);
+  // console.log("TransactionList  data:", allTransactions);
 
   // const allTransactions = data?.pages.map(({transactions}) => transactions).flat();
   // console.log("TransactionList  allTransactions:", allTransactions);
 
-  const allTransactions = useMemo(() => {
-    return data?.pages.map(({ transactions }) => transactions).flat();
-  }, [data?.pages]);
+  // const allTransactions = useMemo(() => {
+  //   return data?.pages.map(({ transactions }) => transactions).flat();
+  // }, [data?.pages]);
 
   //   const queryUserData = queryClient.getQueriesData<any>(["Transactions"]);
   //   console.log("Header  queryUserData:", queryUserData);
 
-  const handleObserver = useCallback(
-    (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-      const { isIntersecting, target } = entries[0];
-      // console.log("TransactionList  isIntersecting:", isIntersecting);
+  // const handleObserver = useCallback(
+  //   (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+  //     const { isIntersecting, target } = entries[0];
+
+  //     if (isIntersecting && hasNextPage) {
+  //       fetchNextPage();
+  //       // console.log("Target is Intersect");
+  //       // setPageNum((p) => p + 1)
+  //     }
+  //   },
+  //   [fetchNextPage, hasNextPage]
+  // );
+
+  useEffect(() => {
+    const target = observerElem.current;
+
+    const observer = new IntersectionObserver((entries) => {
+      const { isIntersecting } = entries[0];
 
       if (isIntersecting && hasNextPage) {
         fetchNextPage();
-        // console.log("Target is Intersect");
-        // setPageNum((p) => p + 1)
-        // observer.unobserve(target);
       }
-    },
-    [fetchNextPage, hasNextPage]
-  );
+    }, 
+    { root: listElem.current, rootMargin: "10px" });
 
-  useEffect(() => {
-    console.log("useEffect");
-    const target = observerElem.current;
-
-    let observer = new IntersectionObserver(handleObserver, {
-      rootMargin: "10px",
-    });
-    observer.observe(target);
+    if (target) {
+      observer.observe(target);
+    }
 
     return () => {
-      console.log("Unmount");
-      observer.unobserve(target);
+      if (target) {
+        observer.unobserve(target);
+      }
     };
-  }, [handleObserver]);
-
-  // if (isFetching) {
-  //   return <h1>Loading Transactions...</h1>;
-  // }
+  }, [fetchNextPage, hasNextPage]);
 
   // if (isError) {
   //   return (
@@ -151,22 +166,25 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
       <h1>HOME PAGE</h1>
       <Title>Title</Title>
       <Link href="/">HOME</Link>
-      <button type="button" onClick={() => fetchNextPage()}>
+      {/* <button type="button" onClick={() => fetchNextPage()}>
         Next Page
-      </button>
+      </button> */}
 
       <button type="button" onClick={() => setPageNum((p) => p + 1)}>
         Click
       </button>
 
-
-      <ul style={{ height: 250, overflowY: "scroll" }}>
-        {allTransactions &&
-          allTransactions.map((item) => {
+      <ul ref={listElem} style={{ height: 240, overflowY: "scroll" }}>
+        {pages &&
+          pages.map((item) => {
             return (
-              <li style={{ height: 50 }} key={item._id}>
-                {item.category}
-              </li>
+              <div key={item._id}>
+                {isFetching ? (
+                  <div style={{ height: 50 }}>Loading Transactions...</div>
+                ) : (
+                  <div style={{ height: 50 }}>{item.category}</div>
+                )}
+              </div>
             );
           })}
 
@@ -180,21 +198,27 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 
 export default TransactionList;
 
-// const TransactionList = () => {
+// const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 //   const observerElem = useRef<any>(null);
 
 //   const [pageNum, setPageNum] = useState(1);
 //   const session = useSession();
 //   const userToken = session.data?.user.token;
 
-//   const { data, isError, error, isFetching, refetch } = useQuery({
+//   const { data: {transactions} = {} , isError, error, isFetching, refetch } = useQuery({
 //     queryKey: ["Transactions", pageNum],
 //     queryFn: () => apiWallet.getAllTransactions(userToken, pageNum),
 //     staleTime: Infinity,
 //     refetchOnWindowFocus: false,
 //     retry: 0,
 //     enabled: !!userToken,
+//     // select: (data) => {
+//     //   console.log("TransactionList  data:", data);
+      
+//     //   return data.transactions
+//     // }
 //   });
+//   console.log("TransactionList  transactions:", transactions);
 
 //   const handleObserver = useCallback(
 //     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
@@ -221,18 +245,18 @@ export default TransactionList;
 //     };
 //   }, [handleObserver]);
 
-//   if (isFetching) {
-//     return <h1>Loading Transactions...</h1>;
-//   }
+//   // if (isFetching) {
+//   //   return <h1>Loading Transactions...</h1>;
+//   // }
 
-//   if (isError) {
-//     return (
-//       <>
-//         <h1>{(error as Error).message}</h1>
-//         <button onClick={() => refetch()}>Retry</button>
-//       </>
-//     );
-//   }
+//   // if (isError) {
+//   //   return (
+//   //     <>
+//   //       <h1>{(error as Error).message}</h1>
+//   //       <button onClick={() => refetch()}>Retry</button>
+//   //     </>
+//   //   );
+//   // }
 
 //   console.log("Rerender");
 
@@ -243,8 +267,8 @@ export default TransactionList;
 //       <Link href="/">HOME</Link>
 
 //       <ul style={{ height: 250, overflowY: "scroll" }}>
-//         {data &&
-//           data?.transactions.map((item) => {
+//         {transactions &&
+//           transactions.map((item) => {
 //             return (
 //               <li style={{ height: 50 }} key={item._id}>
 //                 {item.category}
