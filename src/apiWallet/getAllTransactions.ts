@@ -22,9 +22,7 @@ async (authToken: string | undefined, pageNum: number) => {
       throw new Error("Invalid data format");
     }
 
-    const transactions: ITransactions = data;
-
-    return transactions;
+    return data;
 
   } catch (error) {
     console.log("Error:", (error as Error).message);
