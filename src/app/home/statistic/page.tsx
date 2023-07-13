@@ -7,19 +7,18 @@ import { useEffect, useState } from "react";
 
 export default function PageStatistic() {
   const [pageNum, setPageNum] = useState(1);
-  // console.log("PageStatistic  pageNum:", pageNum);
 
   const session = useSession();
   const userToken = session.data?.user.token;
   console.log("PageStatistic  userToken:", userToken);
 
-    const { data, isError, error, isFetching, refetch } = useQuery({
+    const { data, isError, error, isFetching } = useQuery({
     queryKey: ["Transactions", 1],
-    queryFn: () => apiWallet.getAllTransactions(userToken, 1), // ИЛИ authToken
+    queryFn: () => apiWallet.getAllTransactions(userToken, 1), 
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     retry: 0,
-    enabled: !!userToken, // При authToken  Удалить
+    enabled: !!userToken, 
   });
     console.log("PageStatistic  data:", data);
 
