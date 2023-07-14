@@ -95,56 +95,43 @@ export default TransactionList;
 //   // const { authToken } = parseCookies();
 //   // const queryClient = useQueryClient();
 
-//   const { data: allTransactions = [], isFetching, listElem, observerElem } = useLazyTransactions()
 
-//   // const listElem = useRef<HTMLUListElement>(null);
-//   // const observerElem = useRef<HTMLDivElement>(null);
+//   const listElem = useRef<HTMLUListElement>(null);
+//   const observerElem = useRef<HTMLDivElement>(null);
 
 //   const [pageNum, setPageNum] = useState(1);
 //   const session = useSession();
 //   const userToken = session.data?.user.token;
 
 
-//   // const { data, isError, error, isFetching, refetch } = useQuery({
-//   //   queryKey: ["Transactions", pageNum],
-//   //   queryFn: () => apiWallet.getAllTransactions(userToken, pageNum), // ИЛИ authToken
-//   //   staleTime: Infinity,
-//   //   refetchOnWindowFocus: false,
-//   //   retry: 0,
-//   //   enabled: !!userToken, // При authToken  Удалить
-//   // });
+//   const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
+//     queryKey: ["TransactionsList"],
+//     queryFn: ({ pageParam = 1 }) =>
+//       apiWallet.getAllTransactions(userToken, pageParam),
+//     getNextPageParam: (lastPage, allPages) => {
+//       const nextPage = allPages.length + 1;
 
-//   // const { data: { pages } = {}, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
-//   //   queryKey: ["TransactionsList"],
-//   //   queryFn: ({ pageParam = 1 }) =>
-//   //     apiWallet.getAllTransactions(userToken, pageParam),
-//   //   getNextPageParam: (lastPage, allPages) => {
-//   //     const nextPage = allPages.length + 1;
+//       return lastPage.transactions.length !== 0 ? nextPage : undefined;
+//     },
 
-//   //     return lastPage.transactions.length !== 0 ? nextPage : undefined;
-//   //   },
-
-//   //   staleTime: Infinity,
-//   //   enabled: !!userToken,
-//   //   select: (data) => {
-//   //     const transactions = data.pages.map(({ transactions }) => transactions).flat();
-//   //     return {
-//   //       ...data,
-//   //       pages: transactions
-//   //     }
-//   //   }
-//   // });
+//     staleTime: Infinity,
+//     enabled: !!userToken,
+//     // select: (data) => {
+//     //   const transactions = data.pages.map(({ transactions }) => transactions).flat();
+//     //   return {
+//     //     ...data,
+//     //     pages: transactions
+//     //   }
+//     // }
+//   });
 
 
-//   // console.log("TransactionList  data:", allTransactions?.pages);
-//   // console.log("TransactionList  data:", allTransactions);
+  
 
-//   // const allTransactions = data?.pages.map(({transactions}) => transactions).flat();
-//   // console.log("TransactionList  allTransactions:", allTransactions);
 
-//   // const allTransactions = useMemo(() => {
-//   //   return data?.pages.map(({ transactions }) => transactions).flat();
-//   // }, [data?.pages]);
+//   const allTransactions = useMemo(() => {
+//     return data?.pages.map(({ transactions }) => transactions).flat();
+//   }, [data?.pages]);
 
 //   //   const queryUserData = queryClient.getQueriesData<any>(["Transactions"]);
 //   //   console.log("Header  queryUserData:", queryUserData);
@@ -162,28 +149,28 @@ export default TransactionList;
 //   //   [fetchNextPage, hasNextPage]
 //   // );
 
-//   // useEffect(() => {
-//   //   const target = observerElem.current;
+//   useEffect(() => {
+//     const target = observerElem.current;
 
-//   //   const observer = new IntersectionObserver((entries) => {
-//   //     const { isIntersecting } = entries[0];
+//     const observer = new IntersectionObserver((entries) => {
+//       const { isIntersecting } = entries[0];
 
-//   //     if (isIntersecting && hasNextPage) {
-//   //       fetchNextPage();
-//   //     }
-//   //   }, 
-//   //   { root: listElem.current, rootMargin: "10px" });
+//       if (isIntersecting && hasNextPage) {
+//         fetchNextPage();
+//       }
+//     }, 
+//     { root: listElem.current, rootMargin: "10px" });
 
-//   //   if (target) {
-//   //     observer.observe(target);
-//   //   }
+//     if (target) {
+//       observer.observe(target);
+//     }
 
-//   //   return () => {
-//   //     if (target) {
-//   //       observer.unobserve(target);
-//   //     }
-//   //   };
-//   // }, [fetchNextPage, hasNextPage]);
+//     return () => {
+//       if (target) {
+//         observer.unobserve(target);
+//       }
+//     };
+//   }, [fetchNextPage, hasNextPage]);
 
 //   // if (isError) {
 //   //   return (
@@ -210,7 +197,7 @@ export default TransactionList;
 //       </button>
 
 //       <ul ref={listElem} style={{ height: 240, overflowY: "scroll" }}>
-//         { allTransactions.map((item) => {
+//         { allTransactions?.map((item) => {
 //             return (
 //               <div key={item._id}>
 //                 {isFetching ? (
@@ -231,6 +218,8 @@ export default TransactionList;
 // };
 
 // export default TransactionList;
+
+//=======================================================================
 
 // const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 //   const observerElem = useRef<any>(null);
