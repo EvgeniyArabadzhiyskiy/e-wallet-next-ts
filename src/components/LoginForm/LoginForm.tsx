@@ -81,11 +81,11 @@ export default function LoginForm () {
       <Title as='h2' mb={5} color='expense' fontSize={["ml"]}  >Login Page</Title>
       <Logo />
 
-      <FormContainer
+      <FormContainer<ILoginValues>
         onSubmit={handleSubmit}
         initialValues={initialValues}
         validationSchema={schema.login}
-        render={(formik: FormikProps<ILoginValues>) => <LoginFormFields formik={formik} />}
+        render={(formik) => <LoginFormFields formik={formik} />}
       />
 
     </FormWrap>
