@@ -4,7 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { FormikHelpers, FormikProps } from "formik";
 import { useScaleForm } from "@/src/hooks/useScaleForm";
-import { IRegisterValues } from "@/src/types/registerValues";
+import { ICredentials, IRegisterValues } from "@/src/types/registerValues";
 import schema from "@/src/helpers/formValidation";
 
 import Logo from "../Logo/Logo";
@@ -20,7 +20,7 @@ import axios from "axios";
 import { setCookie } from "nookies";
 import { useRouter } from "next/navigation";
 
-const register = async (credentials: IRegisterValues) => {
+const register = async (credentials: ICredentials) => {
   // const options = {
   //   method: "POST",
   //   headers: { "Content-Type": "application/json" },
@@ -31,13 +31,14 @@ const register = async (credentials: IRegisterValues) => {
   // return user;
 
   try {
-    const { data } = await axios.post(`${BASE_URL}${USER_REGISTER}`, credentials);
+    const { data } = await axios.post(
+      `${BASE_URL}${USER_REGISTER}`,
+      credentials
+    );
     return data;
-
   } catch (error) {
     throw error;
   }
-
 };
 
 export default function RegistrationForm() {
@@ -57,7 +58,7 @@ export default function RegistrationForm() {
       router.push("/home");
     },
   });
-  
+
   const initialValues: IRegisterValues = {
     email: "",
     password: "",
@@ -89,13 +90,11 @@ export default function RegistrationForm() {
       </Title>
       <Logo />
 
-      <FormContainer
+      <FormContainer<IRegisterValues>
         onSubmit={handleSubmit}
         initialValues={initialValues}
         validationSchema={schema.register}
-        render={(formik: FormikProps<IRegisterValues>) => (
-          <RegisterFormFields formik={formik} />
-        )}
+        render={(formik) => <RegisterFormFields formik={formik} />}
       />
     </FormWrap>
   );
