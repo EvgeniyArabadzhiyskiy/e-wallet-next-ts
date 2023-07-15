@@ -5,6 +5,5 @@ export async function fetcher<T>(url: RequestInfo, options?: RequestInit): Promi
     throw new Error(`Request failed with status ${response.status}`);
   }
 
-  const data: T = await response.json();
-  return data;
+  return await response.json();
 }
