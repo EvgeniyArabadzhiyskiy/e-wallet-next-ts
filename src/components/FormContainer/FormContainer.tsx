@@ -21,6 +21,8 @@ import { Form, Formik, FormikProps, FormikHelpers, FormikValues } from "formik";
 //   render: (formik: FormikProps<T>) => JSX.Element;
 // }
 
+type FormValues = ILoginValues | IRegisterValues | ITransactionValue 
+
 interface IProps<T> {
   initialValues: T;
   validationSchema: any;
@@ -28,14 +30,14 @@ interface IProps<T> {
   render: (formik: FormikProps<T>) => JSX.Element;
 }
 
-function FormContainer <T extends FormikValues>({ initialValues, validationSchema, onSubmit, render }: IProps<T>) {
+function FormContainer <T extends FormValues>(props: IProps<T>) {
   return (
     <Formik
-      onSubmit={onSubmit}
-      initialValues={initialValues}
-      validationSchema={validationSchema}
+      onSubmit={props.onSubmit}
+      initialValues={props.initialValues}
+      validationSchema={props.validationSchema}
     >
-      {(formik) => <Form>{render(formik)}</Form>}
+      {(formik) => <Form>{props.render(formik)}</Form>}
     </Formik>
   );
 }
