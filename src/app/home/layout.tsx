@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import DashBoardLayout from "@/src/components/DashBoardLayout/DashBoardLayout";
 import Header from "@/src/components/Header/Header";
 import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
-import ModalBox from "@/src/components/ModalBox";
+import ModalBox from "@/src/components/ModalWindow/ModalBox";
 import SideBar from "@/src/components/SideBar/SideBar";
 import Navigation from "@/src/components/Navigation/Navigation";
 
