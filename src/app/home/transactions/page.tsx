@@ -6,8 +6,9 @@ import { Hydrate, dehydrate, useQuery } from "@tanstack/react-query";
 import { apiWallet } from "@/src/apiWallet/apiWallet";
 import getQueryClient from "@/src/lib/getQueryClient";
 import TransactionList from "@/src/components/TransactionList/TransactionList";
-import ModalBox from "@/src/components/ModalBox";
+import ModalBox from "@/src/components/ModalWindow/ModalBox";
 import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
+import FlipCard from "@/src/components/FlipCard/FlipCard";
 
 // const getAllTransactions = async (authToken: string | undefined, pageNum: number) => {
 //   const options: RequestInit = {
@@ -46,14 +47,15 @@ export default async function PageTransactions() {
   // );
   // const dehydratedState = dehydrate(queryClient);
 
-//===============================================================================
+  //===============================================================================
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["TransactionsList"],
-    queryFn: ({ pageParam = 1 }) => apiWallet.getAllTransactions(authToken, pageParam),
+    queryFn: ({ pageParam = 1 }) =>
+      apiWallet.getAllTransactions(authToken, pageParam),
   });
 
   const dehydratedState = dehydrate(queryClient);
-  
+
   return (
     <>
       <Hydrate state={dehydratedState}>
@@ -64,6 +66,10 @@ export default async function PageTransactions() {
 
         <ModalBox modalName="logout">
           <ModalLogOut />
+        </ModalBox>
+
+        <ModalBox modalName="transaction">
+          <FlipCard />
         </ModalBox>
       </Hydrate>
     </>
