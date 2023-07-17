@@ -10,7 +10,7 @@ export default function FlipCard ()  {
   
     return (
       <Card>
-        <InnerCard isFlipped={isIncome}>
+        <InnerCard $isFlipped={isIncome}>
           <CardFront>
             <TransactionForm setIsIncome={setIsIncome} isIncome={isIncome} />
           </CardFront>
