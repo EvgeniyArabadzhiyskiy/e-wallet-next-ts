@@ -3,24 +3,6 @@ import { IRegisterValues } from "@/src/types/registerValues";
 import { ITransactionValue } from "@/src/types/transactionValue";
 import { Form, Formik, FormikProps, FormikHelpers, FormikValues } from "formik";
 
-// export interface IFormValues {
-//   email?: string;
-//   password?: string;
-//   confirmPassword?: string;
-//   name?: string;
-//   comment?: string;
-//   amount?: string;
-//   category?: string;
-//   date?: string;
-// }
-
-// interface IProps<T extends IFormValues> {
-//   initialValues: T;
-//   validationSchema: any;
-//   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => Promise<void>;
-//   render: (formik: FormikProps<T>) => JSX.Element;
-// }
-
 type FormValues = ILoginValues | IRegisterValues | ITransactionValue 
 
 interface IProps<T> {
