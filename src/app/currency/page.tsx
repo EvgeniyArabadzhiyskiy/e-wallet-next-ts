@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useMedia } from "react-use";
+import { number } from "yup";
 
 // Пример обобщенного компонента
 interface Props<T, K> {
@@ -163,14 +164,44 @@ const user = {
   mouse: [{ name: "Djon", age: 34 }],
 };
 
+interface IP1 {
+  name: string;
+  age: number;
+}
+
+interface IP2 {
+  email: string;
+  password: string;
+}
+
+interface IP3 {
+  product: string;
+  amount: number;
+  isSale: boolean;
+}
+
+type SummaryProps = IP1 | IP2 | IP3
+
+// const sumary: SummaryProps = {
+//   name: 'Djon',
+//   age: 34,
+
+//   // email: "djon@mail.com",
+//   // password: "A235c#iio",
+
+//   // product: "Phone",
+//   // amount: 300,
+//   // isSale: true,
+  
+// }
+
 interface AllProps {
-  // name: string;
-  // age: number;
-  [field: string]: any
+  name: string;
+  age: number;
+  // [field: string]: any
 }
 
 // {name: string; age: number}
-// {string: any; string: any}
 
 interface IProps<T> {
   userName: string;
@@ -180,18 +211,23 @@ interface IProps<T> {
 
 
 
-function processAnimal<T extends AllProps>(p: IProps<T>): void {
-  // const prop = {
-  //   userName: "string",
-  //   userAge: 555,
-  //   mouse: [{ name: "Djon", age: 34 }],
-  // };
-  // p.
-  // console.log("props.userName:", p.userAge);
-  console.log("props.userAge:", p.mouse.map((s) => s.age).join(''));
-}
+// function processAnimal<T extends SummaryProps >(p: IProps<T>) {
+function processAnimal<T extends [{dda: string}, {name: string; city: string}] >(p: T) { 
+// function processAnimal(p: IProps<SummaryProps>) {
+  // p.length
+//  (typeof p).length
+//  console.log("processAnimal  typeof p:", typeof p);
 
-processAnimal(user);
+  // console.log("props.userName:", p.userAge);
+  // console.log("props.userAge:", p.mouse.map((s) => s.age).join(''));
+  return p
+}
+// processAnimal([{dda: "sss"}, {name: "djon", city: 'Lviv', age: 345}])
+processAnimal([{dda: "sss"}, {name: "djon", city: 'Lviv', age: 345}])
+// const data =  processAnimal(user);
+// data.mouse.map((s) => s.age)
+// data.userAge
+
 
 // function processAnimal<T extends Animal>(animal: T): void {
 //   console.log("animal.name:", animal.name);
