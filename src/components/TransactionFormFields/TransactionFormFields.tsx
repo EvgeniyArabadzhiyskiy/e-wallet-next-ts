@@ -1,3 +1,5 @@
+
+import '../../styles/rdt-styles.css'
 import moment from "moment";
 import Select from 'react-select';
 import Datetime from 'react-datetime';
@@ -17,6 +19,7 @@ import DateInput from "./DateInput";
 import { verifyFutureDate } from "@/src/helpers/verifyFutureDate";
 import { optionsExpense, optionsIncome } from "@/src/constants/selectOptions";
 import { ITransactionValue } from "@/src/types/transactionValue";
+import { ModalState, useGlobalState } from "../GlobalProvider/GlobalProvider";
 
 interface IProps {
   isIncome: boolean;
@@ -29,6 +32,8 @@ export default function TransactionFormFields({
   setIsIncome,
   isIncome,
 }: IProps) {
+  const { setIsModalOpen } = useGlobalState()
+
   const { setFieldValue, isValid, dirty, isSubmitting, values } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
@@ -44,6 +49,12 @@ export default function TransactionFormFields({
 
   const onCancelClick = () => {
     // dispatch(modalClose(false));
+    setIsModalOpen((prev: ModalState) => {
+      return {
+        ...prev,
+        transaction: false
+      }
+    })
   };
 
   const onSelectChange = (data: any) => {
@@ -77,6 +88,7 @@ export default function TransactionFormFields({
         </SumWrapper>
 
         <Datetime
+          // name="date"
           closeOnSelect
           initialValue={currentDate}
           dateFormat="DD.MM.YYYY"
@@ -88,8 +100,8 @@ export default function TransactionFormFields({
             setFieldValue("date", selectedDate.toString());
           }}
           inputProps={{ onKeyDown: (e) => e.preventDefault() }}
-          renderInput={(p, openCalendar) => (
-            <DateInput  props={p} onOpen={openCalendar} />
+          renderInput={(props, openCalendar) => (
+            <DateInput  props={props} onOpen={openCalendar} />
           )}
         />
       </DateWrapper>
@@ -104,6 +116,7 @@ export default function TransactionFormFields({
       </Box>
 
       <EnterButton type="submit" enterText="Add" disabled={isDisabled} />
+      <button type="button" onClick={onCancelClick}>Cancel</button>
       {/* <CancelButton cancelText="cancel" onClick={onCancelClick} />             */}
     </>
   );
