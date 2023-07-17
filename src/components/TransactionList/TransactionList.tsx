@@ -21,6 +21,7 @@ import { isITransactions } from "@/src/helpers/isITransactions";
 import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
 import { apiWallet } from "@/src/apiWallet/apiWallet";
 import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
+import { ModalState, useGlobalState } from "../GlobalProvider/GlobalProvider";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const options = {
@@ -60,11 +61,23 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 
   const { data: allTransactions = [], isFetching, listElem, observerElem } = useLazyTransactions()
 
+  const {isModalOpen, setIsModalOpen } = useGlobalState()
+
+  const onModalOpen = () => {
+    setIsModalOpen((prev: ModalState) => {
+      return {
+        ...prev,
+        transaction: true
+      }
+    })
+  }
+
   return (
     <>
       <h1>HOME PAGE</h1>
       <Title>Title</Title>
       <Link href="/">HOME</Link>
+      <button type="button" onClick={onModalOpen}>OPEN</button>
       
       <ul ref={listElem} style={{ height: 240, overflowY: "scroll" }}>
         { allTransactions.map((item) => {
