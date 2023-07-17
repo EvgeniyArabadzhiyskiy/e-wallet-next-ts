@@ -18,7 +18,7 @@ interface IProps {
 export default function SwithChecbox({ isIncome, onChangeSwitch }: IProps) {
   return (
     <CheckBoxWrapper>
-      <TextIncome isIncome={isIncome}>Income</TextIncome>
+      <TextIncome $isIncome={isIncome}>Income</TextIncome>
       <CheckBoxLabel>
         <CheckBox
           type="checkbox"
@@ -28,9 +28,9 @@ export default function SwithChecbox({ isIncome, onChangeSwitch }: IProps) {
           onChange={onChangeSwitch}
         />
         {/* <Switch isIncome={isIncome}>{isIncome ? <Plus /> : <Minus />}</Switch> */}
-        <Switch isIncome={isIncome}>{isIncome ? "+" : "-"}</Switch>
+        <Switch $isIncome={isIncome}>{isIncome ? "+" : "-"}</Switch>
       </CheckBoxLabel>
-      <TextExpense isExpense={!isIncome}>Expense</TextExpense>
+      <TextExpense $isExpense={!isIncome}>Expense</TextExpense>
     </CheckBoxWrapper>
   );
 }
