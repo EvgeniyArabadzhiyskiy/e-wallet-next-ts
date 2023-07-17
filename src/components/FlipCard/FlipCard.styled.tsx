@@ -12,7 +12,7 @@ export const Card = styled.div`
   }
 `;
 
-export const InnerCard = styled.div`
+export const InnerCard = styled.div<{$isFlipped: boolean}>`
   position: relative;
   height: 100%;
   width: 100%;
@@ -20,7 +20,7 @@ export const InnerCard = styled.div`
   transition: transform 1000ms;
   transform-style: preserve-3d;
 
-  transform: ${(p) => p.isFlipped && "rotateY(180deg)"};
+  transform: ${(p) => p.$isFlipped ? "rotateY(180deg)" : ''};
 `;
 
 const CardFace = styled.div`
