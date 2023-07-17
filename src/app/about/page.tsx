@@ -6,7 +6,7 @@ import AuthCookie from "@/src/components/AuthCookie";
 import LogoutBtn from "@/src/components/Buttons/LogoutBtn/LogoutBtn";
 import { GlobalContext } from "@/src/components/GlobalProvider/GlobalProvider";
 import Header from "@/src/components/Header/Header";
-import ModalBox from "@/src/components/ModalBox";
+import ModalBox from "@/src/components/ModalWindow/ModalBox";
 import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
 import ModalSignUp from "@/src/components/ModalSignUp";
 import ModalWindow from "@/src/components/ModalWindow/ModalWindow";
