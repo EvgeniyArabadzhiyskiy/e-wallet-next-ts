@@ -8,30 +8,32 @@ import { ModalState } from "../GlobalProvider/GlobalProvider";
 interface IProps {
   children: React.ReactNode;
   modalName: string;
-  setIsModalOpen: any;
+  setModalToggle: any;
 }
 
-export default function ModalWindow({ children, modalName, setIsModalOpen }: IProps) {
+export default function ModalWindow({ children, modalName, setModalToggle }: IProps) {
   const modalRoot = document.querySelector("#modal-root");
 
-  const onToggleModal = () => {
-    setIsModalOpen((prev: ModalState) => {
-      return {
-        ...prev,
-        [modalName]: !prev[modalName],
-      };
-    });
-  };
+  // const onToggleModal = () => {
+  //   // setIsModalOpen((prev: ModalState) => {
+  //   //   return {
+  //   //     ...prev,
+  //   //     [modalName]: !prev[modalName],
+  //   //   };
+  //   // });
+  // };
 
   const onBackdropClick = (e: any) => {
     if (e.target === e.currentTarget) {
-      onToggleModal();
+      // onToggleModal(modalName);
+      setModalToggle(modalName)
     }
   };
 
   const onEscPress = (e: any) => {
     if (e.code === "Escape") {
-      onToggleModal();
+      // onToggleModal(modalName);
+      setModalToggle(modalName)
     }
   };
 
