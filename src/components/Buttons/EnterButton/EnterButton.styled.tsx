@@ -37,7 +37,7 @@ export const StyledEnterBtn = styled.button`
 
   /* transition: border 300ms linear; */
 
-  :disabled {
+  &:disabled {
     opacity: 0.7;
   }
 
