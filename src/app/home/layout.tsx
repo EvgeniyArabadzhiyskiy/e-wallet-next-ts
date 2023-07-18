@@ -22,9 +22,9 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
         {children}
       </DashBoardLayout>
 
-      <ModalBox modalName="logout">
+      {/* <ModalBox modalName="logout">
         <ModalLogOut />
-      </ModalBox>
+      </ModalBox> */}
     </>
   );
   // return <DashBoardLayout>{children}</DashBoardLayout>;
