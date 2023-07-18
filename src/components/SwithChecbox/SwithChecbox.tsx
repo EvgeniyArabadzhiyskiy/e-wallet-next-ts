@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import {
   CheckBox,
   CheckBoxLabel,
@@ -27,8 +29,10 @@ export default function SwithChecbox({ isIncome, onChangeSwitch }: IProps) {
           checked={isIncome}
           onChange={onChangeSwitch}
         />
-        {/* <Switch isIncome={isIncome}>{isIncome ? <Plus /> : <Minus />}</Switch> */}
-        <Switch $isIncome={isIncome}>{isIncome ? "+" : "-"}</Switch>
+
+        <Switch $isIncome={isIncome}>
+          <FontAwesomeIcon icon={isIncome ? faPlus : faMinus} size="xl" color="white" />
+        </Switch>
       </CheckBoxLabel>
       <TextExpense $isExpense={!isIncome}>Expense</TextExpense>
     </CheckBoxWrapper>
