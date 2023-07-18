@@ -195,10 +195,25 @@ type SummaryProps = IP1 | IP2 | IP3
   
 // }
 
-interface AllProps {
+interface AllProps<TAge = number> {
   name: string;
-  age: number;
-  // [field: string]: any
+  age: TAge;
+}
+
+const oldUser: AllProps = {
+  name: "Poly",
+  age: 30,
+}
+
+interface ExtendProps extends AllProps<string> {
+  user: string;
+}
+
+const newUser: ExtendProps = {
+  name: "Djon",
+  age: '30',
+  user: "Super"
+
 }
 
 // {name: string; age: number}
@@ -212,7 +227,7 @@ interface IProps<T> {
 
 
 // function processAnimal<T extends SummaryProps >(p: IProps<T>) {
-function processAnimal<T extends [{dda: string}, {name: string; city: string}] >(p: T) { 
+function processAnimal<T extends Dog | (Dog | string | number)[]>(p: T) { 
 // function processAnimal(p: IProps<SummaryProps>) {
   // p.length
 //  (typeof p).length
@@ -223,7 +238,7 @@ function processAnimal<T extends [{dda: string}, {name: string; city: string}] >
   return p
 }
 // processAnimal([{dda: "sss"}, {name: "djon", city: 'Lviv', age: 345}])
-processAnimal([{dda: "sss"}, {name: "djon", city: 'Lviv', age: 345}])
+processAnimal([{name: 'ss', age:23, bark: ()=> {}, owner: 'dd', }, 'ddd', 444])
 // const data =  processAnimal(user);
 // data.mouse.map((s) => s.age)
 // data.userAge
