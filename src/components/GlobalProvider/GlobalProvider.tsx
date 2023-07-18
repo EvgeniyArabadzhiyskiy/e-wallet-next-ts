@@ -10,9 +10,9 @@ export interface ModalState  {
 
 interface GlobalContextType {
   isModalOpen: ModalState;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<ModalState>>;
+  setModalToggle: (key: string) => void;
+  // setIsModalOpen: React.Dispatch<React.SetStateAction<ModalState>>;
   
-  // isLoading: boolean;
   theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -21,11 +21,19 @@ export const GlobalContext = createContext<GlobalContextType | undefined>(undefi
 
 export default function GlobalProvider({children}: {children: React.ReactNode}) {
   const [theme, setTheme] = useState("light");
-  // const { isLoading, theme, setTheme } = useThemeCookies();
   const [isModalOpen, setIsModalOpen] = useState<ModalState>({});
 
+  const setModalToggle = (key: string) => {
+    setIsModalOpen((prev: ModalState) => {
+      return {
+        ...prev,
+        [key]: !prev[key],
+      };
+    });
+  }
+
   return (
-    <GlobalContext.Provider value={{ isModalOpen, setIsModalOpen,  theme, setTheme }}>
+    <GlobalContext.Provider value={{ isModalOpen, setModalToggle,  theme, setTheme }}>
       {children}
     </GlobalContext.Provider>
   );
