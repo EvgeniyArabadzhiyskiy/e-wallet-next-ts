@@ -64,9 +64,9 @@ export default async function PageTransactions() {
         <TransactionList authToken={authToken} />
         <div style={{ height: 250, backgroundColor: "grey" }}></div>
 
-        <ModalBox modalName="logout">
+        {/* <ModalBox modalName="logout">
           <ModalLogOut />
-        </ModalBox>
+        </ModalBox> */}
 
         <ModalBox modalName="transaction">
           <FlipCard />
