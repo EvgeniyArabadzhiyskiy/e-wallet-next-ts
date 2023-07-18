@@ -1,9 +1,14 @@
-"use client"
+"use client";
 
-
-import {  ModalState, useGlobalState } from "../../GlobalProvider/GlobalProvider";
+import {
+  ModalState,
+  useGlobalState,
+} from "../../GlobalProvider/GlobalProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightFromBracket, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowRightFromBracket,
+  faDoorOpen,
+} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 export const ButtonExit = styled.button`
@@ -13,17 +18,17 @@ export const ButtonExit = styled.button`
   border-color: transparent;
   cursor: pointer;
 
-  color: ${p => p.theme.colors.secondaryText};
+  color: ${(p) => p.theme.colors.secondaryText};
   font-family: inherit;
-  font-size: ${p => p.theme.fontSizes.m};
+  font-size: ${(p) => p.theme.fontSizes.m};
 
   padding-right: 0;
 
-  @media ${p => p.theme.media.small} {
+  @media ${(p) => p.theme.media.small} {
     padding-left: 8px;
   }
 
-  @media ${p => p.theme.media.medium} {
+  @media ${(p) => p.theme.media.medium} {
     padding-left: 12px;
     margin-left: 12px;
     border-left: 1px solid #bdbdbd;
@@ -38,7 +43,7 @@ export const ButtonExit = styled.button`
 `;
 
 export const Text = styled.span`
-  @media ${p => p.theme.media.small} {
+  @media ${(p) => p.theme.media.small} {
     display: none;
   }
   margin-left: 8px;
@@ -51,22 +56,11 @@ export default function LogoutBtn({
   modalName: string;
   type: string;
 }) {
-  const { isModalOpen, setIsModalOpen } = useGlobalState();
-
-  const onToggleModal = () => {
-    setIsModalOpen((prev: ModalState) => {
-      return {
-        ...prev,
-        [modalName]: !prev[modalName],
-      };
-    });
-  };
-
-//   console.log("re-render");
+  const { isModalOpen, setModalToggle } = useGlobalState();
 
   if (type === "cancel") {
     return (
-      <button type="button" onClick={onToggleModal}>
+      <button type="button" onClick={() => setModalToggle(modalName)}>
         Cancel
       </button>
     );
@@ -74,8 +68,8 @@ export default function LogoutBtn({
 
   if (type === "exit") {
     return (
-      <ButtonExit type="button" onClick={onToggleModal}>
-        <FontAwesomeIcon icon={faDoorOpen} width={30} height={30} />
+      <ButtonExit type="button" onClick={() => setModalToggle(modalName)}>
+        <FontAwesomeIcon icon={faDoorOpen}  />
         <Text>Exit</Text>
       </ButtonExit>
     );
