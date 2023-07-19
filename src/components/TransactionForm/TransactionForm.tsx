@@ -1,45 +1,31 @@
 "use client";
 
-import { ITransactionValue } from "@/src/types/transactionValue";
-import FormContainer from "../FormContainer/FormContainer";
-import { Title } from "./TransactionForm.styled";
-import { getTypeOperation } from "@/src/helpers/getTypeOperation";
-import TransactionFormFields from "../TransactionFormFields/TransactionFormFields";
-import { Form, Formik, FormikProps, FormikHelpers } from "formik";
-import { ILoginValues } from "@/src/types/loginValues";
-import { createTransaction } from "@/src/apiWallet/createTransaction";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { FormikHelpers } from "formik";
+import { useSession } from "next-auth/react";
+import { useMutation } from "@tanstack/react-query";
+import { ITransactionData, ITransactionValue } from "@/src/types/transactionValue";
+
 import schema from "@/src/helpers/formValidation";
-import axios from "axios";
-import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
+import { useGlobalState } from "../GlobalProvider/GlobalProvider";
+import { getTypeOperation } from "@/src/helpers/getTypeOperation";
+import { createTransaction } from "@/src/apiWallet/createTransaction";
+import TransactionFormFields from "../TransactionFormFields/TransactionFormFields";
 
-const transData = {
-  amount: 500,
-  category: "Next Js",
-  typeOperation: "expense",
-  comment: "Fruits",
-  // date: "Sun Apr 09 2023 16:49:02 GMT+0300 (Восточная Европа, летнее время)",
-  // date: "Wed Apr 05 2023 21:41:36 GMT+0300 (Восточная Европа, летнее время)",
-  date: new Date().toString(),
-};
-
-// export const create = async (transaction: any) => {
-//   const token =
-//     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4OTE0NjM0NSwiZXhwIjoxNjkwMzU1OTQ1fQ.GuTYaKcbkLR4odPZ3iJBd6ORIDPHZaAXwVKRfmSpoco";
-
-//   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-//   const { data } = await axios.post(`${BASE_URL}${TRANSACTIONS}`, transaction);
-//   console.log("SecondPage  data:", data);
-//   return data;
-// };
+import { Title } from "./TransactionForm.styled";
+import FormContainer from "../FormContainer/FormContainer";
 
 interface IProps {
   setIsIncome: any;
   isIncome: boolean;
 }
 
+
+
 export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
+  const { setModalToggle } = useGlobalState();
+  const session = useSession();
+  const token = session.data?.user.token;
+
   const initialValues: ITransactionValue = {
     comment: "",
     amount: "",
@@ -48,16 +34,17 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
   };
 
   const mutation = useMutation({
-    mutationFn: createTransaction,
-    
+    mutationFn: (transaction: ITransactionData) =>
+      createTransaction(transaction, token),
+
     onSuccess: (data) => {
-      console.log("onSuccess  data:", data);
+      console.log("onSuccess data:", data);
     },
   });
 
-  const handleSubmit = async (
+  const onFormSubmit = async (
     values: ITransactionValue,
-    formikHelpers: FormikHelpers<ITransactionValue>
+    { resetForm }: FormikHelpers<ITransactionValue>
   ) => {
     const typeOperation = getTypeOperation(isIncome);
 
@@ -68,6 +55,8 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
     };
 
     mutation.mutate(transaction);
+    resetForm();
+    setModalToggle("transaction");
   };
 
   return (
@@ -77,7 +66,7 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
       <FormContainer<ITransactionValue>
         initialValues={initialValues}
         validationSchema={schema.transactionShema}
-        onSubmit={handleSubmit}
+        onSubmit={onFormSubmit}
         render={(formik) => (
           <TransactionFormFields
             formik={formik}
