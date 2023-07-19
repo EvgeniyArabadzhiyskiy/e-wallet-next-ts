@@ -47,9 +47,9 @@ export default function AboutPage() {
         {/* <AboutComp session={session} /> */}
       </main>
 
-      <ModalBox modalName="logout">
+      {/* <ModalBox modalName="logout">
         <ModalLogOut />
-      </ModalBox>
+      </ModalBox> */}
 
       {/* <ModalBox modalName="signup">
           <ModalSignUp />
