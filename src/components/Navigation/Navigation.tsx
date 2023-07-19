@@ -7,6 +7,7 @@ import Image from "next/image";
 // import StatSvg from "../../../public/images/statistic.svg";
 import StatisticSvg from "../SvgComponent/StatisticSvg";
 import HomeSvg from "../SvgComponent/HomeSvg";
+import TransactionSvg from "../SvgComponent/TransactionSvg";
 
 export default function Navigation() {
   const path = usePathname();
@@ -22,7 +23,7 @@ export default function Navigation() {
         </ItemLink>
         <ItemLink>
           <NavLink href="/home/transactions" $isActive={path === "/home/transactions"}>
-            <HomeSvg width={18} height={18} />
+            <TransactionSvg width={18} height={18} />
             <LinkText>Transactions</LinkText>
           </NavLink>
         </ItemLink>
