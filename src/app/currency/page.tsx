@@ -1,5 +1,6 @@
 "use client";
 
+import { ITransaction } from "@/src/types/transactions";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useMedia } from "react-use";
@@ -214,6 +215,25 @@ const newUser: ExtendProps = {
   age: '30',
   user: "Super"
 
+}
+
+type IOmit = Omit<ITransaction, 'timestamps' | 'createdAt' | 'balanceAfterTransaction'  | '_id'>
+
+const omit: IOmit = {
+  owner: 'Djon',
+  typeOperation: 'expense',
+  amount: 100000,
+  category: "Car",
+  comment: "My New Car",
+  date: '01 01 2024',
+}
+
+type IPick = Pick<ITransaction, 'amount' | 'comment' | 'owner'>
+
+const pick: IPick = {
+  amount: 10000,
+  comment: "My  lacshery resort",
+  owner: "Djon",
 }
 
 // {name: string; age: number}
