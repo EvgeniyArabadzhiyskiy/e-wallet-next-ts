@@ -1,6 +1,10 @@
-export interface ITransactionValue {
+export interface ITransactionValue<TAmount = string> {
   comment: string;
-  amount: string;
+  amount: TAmount;
   category: string;
   date: string;
+}
+
+export interface ITransactionData extends ITransactionValue<number> {
+  typeOperation: string | undefined;
 }
