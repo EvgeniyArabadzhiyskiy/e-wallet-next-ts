@@ -32,7 +32,7 @@ export default function TransactionFormFields({
   setIsIncome,
   isIncome,
 }: IProps) {
-  const { setIsModalOpen } = useGlobalState()
+  const { setModalToggle } = useGlobalState()
 
   const { setFieldValue, isValid, dirty, isSubmitting, values } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
@@ -45,16 +45,6 @@ export default function TransactionFormFields({
   const onChangeSwitch = (e: any) => {
     setIsIncome(e.target.checked);
     selectInputRef.current.clearValue();
-  };
-
-  const onCancelClick = () => {
-    // dispatch(modalClose(false));
-    setIsModalOpen((prev: ModalState) => {
-      return {
-        ...prev,
-        transaction: false
-      }
-    })
   };
 
   const onSelectChange = (data: any) => {
@@ -106,7 +96,7 @@ export default function TransactionFormFields({
         />
       </DateWrapper>
 
-      <Box mb={5}>
+      <Box mt={5}>
         <FormInput
           type="text"
           name="comment"
@@ -116,7 +106,7 @@ export default function TransactionFormFields({
       </Box>
 
       <EnterButton type="submit" enterText="Add" disabled={isDisabled} />
-      <button type="button" onClick={onCancelClick}>Cancel</button>
+      <button type="button" onClick={() => setModalToggle("transaction")}>Cancel</button>
       {/* <CancelButton cancelText="cancel" onClick={onCancelClick} />             */}
     </>
   );
