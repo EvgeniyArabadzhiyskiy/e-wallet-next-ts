@@ -61,26 +61,33 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 
   const { data: allTransactions = [], isFetching, listElem, observerElem } = useLazyTransactions()
 
-  const {isModalOpen, setIsModalOpen } = useGlobalState()
+  const {isModalOpen, setModalToggle } = useGlobalState()
 
-  const onModalOpen = () => {
-    setIsModalOpen((prev: ModalState) => {
-      return {
-        ...prev,
-        transaction: true
-      }
+  const transactions = useMemo(() => {
+    return allTransactions.map((item) => {
+      return (
+        <div key={item._id}>
+          {isFetching ? (
+            <div style={{ height: 50 }}>Loading Transactions...</div>
+          ) : (
+            <div style={{ height: 50 }}>{item.category}</div>
+          )}
+        </div>
+      );
     })
-  }
+  }, [allTransactions, isFetching])
 
   return (
     <>
       <h1>HOME PAGE</h1>
       <Title>Title</Title>
       <Link href="/">HOME</Link>
-      <button type="button" onClick={onModalOpen}>OPEN</button>
+      <button type="button" onClick={() => setModalToggle("transaction")}>OPEN</button>
       
       <ul ref={listElem} style={{ height: 240, overflowY: "scroll" }}>
-        { allTransactions.map((item) => {
+
+        {transactions}
+        {/* { allTransactions.map((item) => {
             return (
               <div key={item._id}>
                 {isFetching ? (
@@ -90,7 +97,7 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
                 )}
               </div>
             );
-          })}
+          })} */}
 
         <div ref={observerElem} style={{ height: 50, background: "tomato" }}>
           Observer Target
