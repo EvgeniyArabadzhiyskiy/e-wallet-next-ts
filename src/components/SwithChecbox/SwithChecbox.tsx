@@ -8,13 +8,14 @@ import {
   TextExpense,
   TextIncome,
 } from "./SwithChecbox.styled";
+import { ChangeEvent } from "react";
 
 // import { ReactComponent as Plus } from "../../images/plus.svg";
 // import { ReactComponent as Minus } from "../../images/minus.svg";
 
 interface IProps {
   isIncome: boolean;
-  onChangeSwitch: (e: any) => void;
+  onChangeSwitch: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function SwithChecbox({ isIncome, onChangeSwitch }: IProps) {
