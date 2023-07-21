@@ -1,10 +1,11 @@
-
-import '../../styles/rdt-styles.css'
+import "../../styles/rdt-styles.css";
 import moment from "moment";
-import Select from 'react-select';
-import Datetime from 'react-datetime';
+import Datetime from "react-datetime";
+import  { GroupBase,  OptionProps } from "react-select";
+import Select from "react-select/dist/declarations/src/Select";
+
 import { Box } from "../Box/Box";
-import { MouseEventHandler, useRef } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import {
   DateWrapper,
   ErrorText,
@@ -19,7 +20,9 @@ import DateInput from "./DateInput";
 import { verifyFutureDate } from "@/src/helpers/verifyFutureDate";
 import { optionsExpense, optionsIncome } from "@/src/constants/selectOptions";
 import { ITransactionValue } from "@/src/types/transactionValue";
-import { ModalState, useGlobalState } from "../GlobalProvider/GlobalProvider";
+import { useGlobalState } from "../GlobalProvider/GlobalProvider";
+import CustomSelect from "../SelectComponent/SelectComponent";
+import { IOptionData } from "@/src/types/optionData";
 
 interface IProps {
   isIncome: boolean;
@@ -27,43 +30,64 @@ interface IProps {
   formik: FormikProps<ITransactionValue>;
 }
 
+interface OptionType {value: string; label: string;}
+
 export default function TransactionFormFields({
   formik,
   setIsIncome,
   isIncome,
 }: IProps) {
-  const { setModalToggle } = useGlobalState()
+  const { setModalToggle } = useGlobalState();
 
   const { setFieldValue, isValid, dirty, isSubmitting, values } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
-  // const dispatch = useDispatch();
-  const selectInputRef = useRef<any>(null);
+  
+  const selectInputRef =
+    useRef<Select<unknown, boolean, GroupBase<unknown>>>(null);
 
   const currentDate = moment().format("DD.MM.YYYY");
 
-  const onChangeSwitch = (e: any) => {
+  
+
+  const onChangeSwitch = (e: ChangeEvent<HTMLInputElement>) => {
     setIsIncome(e.target.checked);
-    selectInputRef.current.clearValue();
+    // selectInputRef.current?.clearValue();
   };
 
   const onSelectChange = (data: any) => {
-    setFieldValue("category", data?.label)
+    
+    setFieldValue("category", data?.label);
   };
+
+
+  
 
   return (
     <>
       <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
 
       <Box mb={5} position="relative">
-        <Select
+        {/* <ReactSelect
           ref={selectInputRef}
           name="category"
           options={isIncome ? optionsIncome : optionsExpense}
           placeholder="Select a category"
-          onChange={onSelectChange}
+          onChange={(data: any) => {
+            // setFieldValue("category", data?.label);
+          }}
           styles={selectStyles}
-        />
+        /> */}
+        
+        <CustomSelect<OptionType, false, GroupBase<OptionType>>
+          isIncome={isIncome}
+          setFieldValue={setFieldValue}
+          // selectRef={selectInputRef}
+
+          // placeholder="Select a category"
+          // options={isIncome ? optionsIncome : optionsExpense}
+          // styles={selectStyles}
+         />
         <ErrorText component="div" name="category" />
       </Box>
 
@@ -86,12 +110,13 @@ export default function TransactionFormFields({
           isValidDate={verifyFutureDate}
           //   onChange={(e) => setFieldValue("date", new Date(e).toString())}
           onChange={(evt) => {
-            const selectedDate = typeof evt === 'string' ? new Date(evt) : evt.toDate();
+            const selectedDate =
+              typeof evt === "string" ? new Date(evt) : evt.toDate();
             setFieldValue("date", selectedDate.toString());
           }}
           inputProps={{ onKeyDown: (e) => e.preventDefault() }}
           renderInput={(props, openCalendar) => (
-            <DateInput  props={props} onOpen={openCalendar} />
+            <DateInput props={props} onOpen={openCalendar} />
           )}
         />
       </DateWrapper>
@@ -106,7 +131,9 @@ export default function TransactionFormFields({
       </Box>
 
       <EnterButton type="submit" enterText="Add" disabled={isDisabled} />
-      <button type="button" onClick={() => setModalToggle("transaction")}>Cancel</button>
+      <button type="button" onClick={() => setModalToggle("transaction")}>
+        Cancel
+      </button>
       {/* <CancelButton cancelText="cancel" onClick={onCancelClick} />             */}
     </>
   );
