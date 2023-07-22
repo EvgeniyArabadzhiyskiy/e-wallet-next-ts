@@ -5,7 +5,6 @@ import { signIn } from "next-auth/react";
 import { FormikHelpers, FormikProps } from "formik";
 import { useScaleForm } from "@/src/hooks/useScaleForm";
 import { ICredentials, IRegisterValues } from "@/src/types/registerValues";
-import schema from "@/src/helpers/formValidation";
 
 import Logo from "../Logo/Logo";
 import Spinner from "../Spinner/Spinner";
@@ -19,6 +18,7 @@ import { BASE_URL } from "@/src/constants/apiPath";
 import axios from "axios";
 import { setCookie } from "nookies";
 import { useRouter } from "next/navigation";
+import { registerSchema } from "@/src/helpers/formValidation";
 
 const register = async (credentials: ICredentials) => {
   // const options = {
@@ -93,7 +93,7 @@ export default function RegistrationForm() {
       <FormContainer<IRegisterValues>
         onSubmit={handleSubmit}
         initialValues={initialValues}
-        validationSchema={schema.register}
+        validationSchema={registerSchema}
         render={(formik) => <RegisterFormFields formik={formik} />}
       />
     </FormWrap>
