@@ -9,7 +9,6 @@ import { setCookie } from "nookies";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import LoginFormFields from "../LoginFormFields/LoginFormFields";
 import FormContainer from "../FormContainer/FormContainer";
-import schema from "@/src/helpers/formValidation";
 import { Box } from "../Box/Box";
 import { FormikHelpers, FormikProps } from "formik";
 import { ILoginValues } from "@/src/types/loginValues";
@@ -20,6 +19,7 @@ import { IRegisterValues } from "@/src/types/registerValues";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { BASE_URL, USER_LOGIN } from "@/src/constants/apiPath";
+import { loginSchema } from "@/src/helpers/formValidation";
 
 const login = async (credentials: ILoginValues) => {
   // const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
@@ -84,7 +84,7 @@ export default function LoginForm () {
       <FormContainer<ILoginValues>
         onSubmit={handleSubmit}
         initialValues={initialValues}
-        validationSchema={schema.login}
+        validationSchema={loginSchema}
         render={(formik) => <LoginFormFields formik={formik} />}
       />
 
