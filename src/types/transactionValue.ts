@@ -5,6 +5,6 @@ export interface ITransactionValue<TAmount = string> {
   date: string;
 }
 
-export interface ITransactionData extends ITransactionValue<number> {
+export interface ITransactionData extends ITransactionValue {
   typeOperation: string | undefined;
 }
