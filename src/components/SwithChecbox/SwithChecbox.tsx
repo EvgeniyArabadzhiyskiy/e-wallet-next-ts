@@ -1,17 +1,15 @@
+import { ChangeEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+
 import {
+  Switch,
   CheckBox,
+  TextIncome,
+  TextExpense,
   CheckBoxLabel,
   CheckBoxWrapper,
-  Switch,
-  TextExpense,
-  TextIncome,
 } from "./SwithChecbox.styled";
-import { ChangeEvent } from "react";
-
-// import { ReactComponent as Plus } from "../../images/plus.svg";
-// import { ReactComponent as Minus } from "../../images/minus.svg";
 
 interface IProps {
   isIncome: boolean;
