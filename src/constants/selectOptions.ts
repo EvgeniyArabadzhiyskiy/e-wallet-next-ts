@@ -1,6 +1,6 @@
-import { IOptionData } from "../types/optionData";
+import { OptionType } from "../types/optionType";
 
-export const optionsExpense = [
+export const optionsExpense: OptionType[] = [
   { value: "main", label: "Main" },
   { value: "food", label: "Food" },
   { value: "auto", label: "Auto" },
@@ -11,6 +11,6 @@ export const optionsExpense = [
   { value: "other", label: "Other expenses" },
 ];
 
-export const optionsIncome = [
+export const optionsIncome: OptionType[] = [
   { value: "regular", label: "Regular Income" },
 ];
