@@ -1,3 +1,4 @@
+import { ValidationSchema } from "@/src/helpers/formValidation";
 import { ILoginValues } from "@/src/types/loginValues";
 import { IRegisterValues } from "@/src/types/registerValues";
 import { ITransactionValue } from "@/src/types/transactionValue";
@@ -7,7 +8,7 @@ type FormValues = ILoginValues | IRegisterValues | ITransactionValue
 
 interface IProps<T> {
   initialValues: T;
-  validationSchema: any;
+  validationSchema: ValidationSchema;
   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => Promise<void>;
   render: (formik: FormikProps<T>) => JSX.Element;
 }
