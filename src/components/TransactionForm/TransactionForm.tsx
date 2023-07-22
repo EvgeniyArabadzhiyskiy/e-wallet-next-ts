@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
 import { ITransactionData, ITransactionValue } from "@/src/types/transactionValue";
 
-import schema from "@/src/helpers/formValidation";
+// import schema from "@/src/helpers/formValidation";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 import { getTypeOperation } from "@/src/helpers/getTypeOperation";
 import { createTransaction } from "@/src/apiWallet/createTransaction";
@@ -13,6 +13,7 @@ import TransactionFormFields from "../TransactionFormFields/TransactionFormField
 
 import { Title } from "./TransactionForm.styled";
 import FormContainer from "../FormContainer/FormContainer";
+import { transactionShema } from "@/src/helpers/formValidation";
 
 interface IProps {
   setIsIncome: any;
@@ -38,7 +39,7 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
       createTransaction(transaction, token),
 
     onSuccess: (data) => {
-      console.log("onSuccess data:", data);
+      // console.log("onSuccess data:", data);
     },
   });
 
@@ -46,11 +47,11 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
     values: ITransactionValue,
     { resetForm }: FormikHelpers<ITransactionValue>
   ) => {
+    console.log("TransactionForm  values:", typeof values.amount);
     const typeOperation = getTypeOperation(isIncome);
 
-    const transaction = {
+    const transaction: ITransactionData = {
       ...values,
-      amount: Number(values.amount),
       typeOperation,
     };
 
@@ -65,7 +66,7 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
 
       <FormContainer<ITransactionValue>
         initialValues={initialValues}
-        validationSchema={schema.transactionShema}
+        validationSchema={transactionShema}
         onSubmit={onFormSubmit}
         render={(formik) => (
           <TransactionFormFields
