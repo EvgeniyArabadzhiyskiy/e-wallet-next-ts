@@ -29,7 +29,7 @@ export const CheckBox = styled(Field)`
   visibility: hidden;
 `;
 
-export const Switch = styled.p<{$isIncome: boolean}>`
+export const Switch = styled.p<{ $isIncome: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,15 +44,16 @@ export const Switch = styled.p<{$isIncome: boolean}>`
   background-color: ${(p) => p.theme.colors.expense};
   transition: transform 300ms linear;
 
-  background-color: ${(prop) => (prop.$isIncome ? "#24CCA7" : "#FF6596")};
-  transform: ${(prop) =>
-    prop.$isIncome ? "translateX(0)" : "translateX(40px)"};
+  background-color: ${(p) =>
+    p.$isIncome ? p.theme.colors.primaryBgBtn : p.theme.colors.expense};
+  transform: ${(p) =>
+    p.$isIncome ? "translateX(0)" : "translateX(40px)"};
 `;
 
-export const TextIncome = styled.p<{$isIncome: boolean}>`
-  color: ${(prop) => (prop.$isIncome ? "#24CCA7" : "#e0e0e0")};
+export const TextIncome = styled.p<{ $isIncome: boolean }>`
+  color: ${(p) => (p.$isIncome ? "#24cca7" : "#e0e0e0")};
 `;
 
-export const TextExpense = styled.p<{$isExpense: boolean}>`
-  color: ${(prop) => (prop.$isExpense ? "#ff6596" : "#e0e0e0")};
+export const TextExpense = styled.p<{ $isExpense: boolean }>`
+  color: ${(prop) => (prop.$isExpense ? "#FF6596" : "#e0e0e0")};
 `;
