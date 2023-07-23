@@ -181,7 +181,7 @@ interface IP3 {
   isSale: boolean;
 }
 
-type SummaryProps = IP1 | IP2 | IP3
+type SummaryProps = IP1 | IP2 | IP3;
 
 // const sumary: SummaryProps = {
 //   name: 'Djon',
@@ -193,7 +193,7 @@ type SummaryProps = IP1 | IP2 | IP3
 //   // product: "Phone",
 //   // amount: 300,
 //   // isSale: true,
-  
+
 // }
 
 interface AllProps<TAge = number> {
@@ -204,7 +204,7 @@ interface AllProps<TAge = number> {
 const oldUser: AllProps = {
   name: "Poly",
   age: 30,
-}
+};
 
 interface ExtendProps extends AllProps<string> {
   user: string;
@@ -212,29 +212,66 @@ interface ExtendProps extends AllProps<string> {
 
 const newUser: ExtendProps = {
   name: "Djon",
-  age: '30',
-  user: "Super"
+  age: "30",
+  user: "Super",
+};
 
-}
-
-type IOmit = Omit<ITransaction, 'timestamps' | 'createdAt' | 'balanceAfterTransaction'  | '_id'>
+type IOmit = Omit<
+  ITransaction,
+  "timestamps" | "createdAt" | "balanceAfterTransaction" | "_id"
+>;
 
 const omit: IOmit = {
-  owner: 'Djon',
-  typeOperation: 'expense',
+  owner: "Djon",
+  typeOperation: "expense",
   amount: 100000,
   category: "Car",
   comment: "My New Car",
-  date: '01 01 2024',
-}
+  date: "01 01 2024",
+};
 
-type IPick = Pick<ITransaction, 'amount' | 'comment' | 'owner'>
+type IPick = Pick<ITransaction, "amount" | "comment" | "owner">;
 
 const pick: IPick = {
   amount: 10000,
   comment: "My  lacshery resort",
   owner: "Djon",
+};
+
+type Union = "button" | "submit" | "reset";
+const buttonType: Union = "button";
+
+interface Cat {
+  name: string;
+  age: number;
+  meow(): void;
 }
+
+interface Dog {
+  name: string;
+  age: number;
+  owner: string;
+  bark: () => void;
+}
+
+type CatOrDog = Cat | Dog;
+
+const myDog: CatOrDog = {
+  name: "Tom",
+  age: 12,
+  owner: "Djon",
+  bark() {
+    console.log("Dog say Woof");
+  },
+};
+console.log("catOrDog:", myDog.owner);  // Djon
+ myDog.bark(); // Dog say Woof
+
+function processAnimals() {
+}
+processAnimals()
+
+
 
 // {name: string; age: number}
 
@@ -244,25 +281,27 @@ interface IProps<T> {
   mouse: Array<T>;
 }
 
-
-
 // function processAnimal<T extends SummaryProps >(p: IProps<T>) {
-function processAnimal<T extends Dog | (Dog | string | number)[]>(p: T) { 
-// function processAnimal(p: IProps<SummaryProps>) {
+function processAnimal<T extends Dog | (Dog | string | number)[]>(p: T) {
+  
+  // function processAnimal(p: IProps<SummaryProps>) {
   // p.length
-//  (typeof p).length
-//  console.log("processAnimal  typeof p:", typeof p);
+  //  (typeof p).length
+  //  console.log("processAnimal  typeof p:", typeof p);
 
   // console.log("props.userName:", p.userAge);
   // console.log("props.userAge:", p.mouse.map((s) => s.age).join(''));
-  return p
+  return p;
 }
 // processAnimal([{dda: "sss"}, {name: "djon", city: 'Lviv', age: 345}])
-processAnimal([{name: 'ss', age:23, bark: ()=> {}, owner: 'dd', }, 'ddd', 444])
+processAnimal([
+  { name: "ss", age: 23, bark: () => {}, owner: "dd" },
+  "ddd",
+  444,
+]);
 // const data =  processAnimal(user);
 // data.mouse.map((s) => s.age)
 // data.userAge
-
 
 // function processAnimal<T extends Animal>(animal: T): void {
 //   console.log("animal.name:", animal.name);
