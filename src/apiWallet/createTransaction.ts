@@ -1,6 +1,7 @@
 import { fetcher } from "../helpers/fetcher";
-import { BASE_URL, TRANSACTIONS } from "../constants/apiPath";
+import { NewTransaction } from "../types/transactions";
 import { ITransactionData } from "../types/transactionValue";
+import { BASE_URL, TRANSACTIONS } from "../constants/apiPath";
 
 export const createTransaction = async (transaction: ITransactionData, token: string | undefined) => {
 
@@ -13,7 +14,7 @@ export const createTransaction = async (transaction: ITransactionData, token: st
     body: JSON.stringify(transaction),
   };
   
-  const data = await fetcher(`${BASE_URL}${TRANSACTIONS}`, options);
+  const data = await fetcher<NewTransaction>(`${BASE_URL}${TRANSACTIONS}`, options);
 
   return data;
 };
