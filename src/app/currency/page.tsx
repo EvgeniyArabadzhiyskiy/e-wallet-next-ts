@@ -264,10 +264,15 @@ const myDog: CatOrDog = {
     console.log("Dog say Woof");
   },
 };
-console.log("catOrDog:", myDog.owner);  // Djon
- myDog.bark(); // Dog say Woof
 
 function processAnimals() {
+  if ("owner" in myDog) {
+    console.log("Animal's owner:", myDog.owner);
+    myDog.bark();
+  } 
+  else {
+    console.log("This animal is a Cat.");
+  }
 }
 processAnimals()
 
