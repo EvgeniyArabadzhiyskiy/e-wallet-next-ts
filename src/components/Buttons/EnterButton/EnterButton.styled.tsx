@@ -25,7 +25,7 @@ export const StyledEnterBtn = styled.button`
   ${baseBtnStyle}
 
   position: relative;
-  color: ${p => p.theme.colors.primaryBg};
+  color: ${p => p.theme.palette.background.primaryBg};
   border: 7px solid rgba(55, 53, 53, 0.4);
   margin-top: ${p => p.theme.space[5]}px;
   background-color: ${p => p.theme.colors.primaryBgBtn};
