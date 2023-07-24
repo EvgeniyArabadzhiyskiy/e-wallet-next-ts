@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  background-color: ${p => p.theme.colors.primaryBg};
+  background-color: ${p => p.theme.palette.background.primaryBg};
   /* height: 100px; */
 `;
 
@@ -17,7 +17,7 @@ export const HeaderWrapper = styled.div`
 export const UserBox = styled.div`
   display: flex;
   align-items: center;
-  color: ${p => p.theme.colors.secondaryText};
+  color: ${p => p.theme.palette.text.secondaryText};
 `;
 
 
