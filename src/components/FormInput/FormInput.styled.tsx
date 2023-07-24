@@ -5,7 +5,7 @@ export const Label = styled.label`
   position: relative;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${p => p.theme.colors.secondaryLightText};
+  border-bottom: 1px solid ${p => p.theme.palette.text.secondaryLightText};
 
   padding-left: 10px;
 `;
