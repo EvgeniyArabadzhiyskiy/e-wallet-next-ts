@@ -1,4 +1,4 @@
-import { colors } from "./colors";
+import { colors, defaultColors } from "./colors";
 import { breakpoints } from "./breakpoints";
 import { inter, poppins } from "@/src/lib/fonts";
 
@@ -43,12 +43,46 @@ const commonTheme = {
 
 export const lightTheme = {
   ...commonTheme,
-  colors: colors.LIGHT,
+  colors: {
+    ...defaultColors,
+    ...colors.LIGHT,
+  },
+
+  palette: {
+    background: {
+      primaryBg: colors.LIGHT.primaryBg,
+      secondaryBg: colors.LIGHT.secondaryBg,
+      loginPageBg: colors.LIGHT.loginPageBg,
+    },
+
+    text: {
+      secondaryText: colors.LIGHT.secondaryText,
+      secondaryDarkText: colors.LIGHT.secondaryDarkText,
+      secondaryLightText: colors.LIGHT.secondaryLightText,
+    },
+  },
   type: "light",
 };
 
 export const darkTheme = {
   ...commonTheme,
-  colors: colors.DARK,
+  colors: {
+    ...defaultColors,
+    ...colors.DARK,
+  },
+
+  palette: {
+    background: {
+      primaryBg: colors.DARK.primaryBg,
+      secondaryBg: colors.DARK.secondaryBg,
+      loginPageBg: colors.DARK.loginPageBg,
+    },
+
+    text: {
+      secondaryText: colors.DARK.secondaryText,
+      secondaryDarkText: colors.DARK.secondaryDarkText,
+      secondaryLightText: colors.DARK.secondaryLightText,
+    },
+  },
   type: "dark",
 };
