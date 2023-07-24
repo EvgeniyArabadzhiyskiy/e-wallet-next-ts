@@ -5,7 +5,7 @@ import Datetime from "react-datetime";
 // import Select from "react-select/dist/declarations/src/Select";
 
 import { Box } from "../Box/Box";
-import { ChangeEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   DateWrapper,
   ErrorText,
@@ -51,7 +51,7 @@ export default function TransactionFormFields({
   const [value, setValue] = useState<OptionType | null>(null);
 
 
-  const onChangeSwitch = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeSwitch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsIncome(e.target.checked);
     setValue(null)
     // selectInputRef.current?.clearValue();
