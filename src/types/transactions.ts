@@ -1,17 +1,22 @@
 export interface ITransaction {
-  _id: string;
-  owner: string;
-  typeOperation: string;
   amount: number;
+  balanceAfterTransaction: string;
   category: string;
   comment: string;
-  date: string;
-  balanceAfterTransaction: string;
   createdAt: string;
+  date: string;
+  owner: string;
   timestamps: number;
+  typeOperation: string;
+  _id: string;
 }
 
 export interface ITransactions {
   transactions: ITransaction[];
   userBalance: number;
+}
+
+export interface NewTransaction extends ITransaction {
+  position: number;
+  updatedAt: string;
 }
