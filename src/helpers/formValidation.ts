@@ -5,11 +5,6 @@ import { ILoginValues } from "../types/loginValues";
 
 type TransactionSchema = ITransactionValue<number>;
 
-// export type ValidationType =
-//   | typeof registerSchema
-//   | typeof loginSchema
-//   | typeof transactionShema;
-
 export type ValidationSchema = yup.SchemaOf<
   ILoginValues | IRegisterValues | TransactionSchema
 >;
