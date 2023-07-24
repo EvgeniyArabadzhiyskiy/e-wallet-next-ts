@@ -3,12 +3,11 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Modal, Overlay } from "./ModalWindow.styled";
-import { ModalState } from "../GlobalProvider/GlobalProvider";
 
 interface IProps {
-  children: React.ReactNode;
   modalName: string;
   setModalToggle: any;
+  children: React.ReactNode;
 }
 
 export default function ModalWindow({ children, modalName, setModalToggle }: IProps) {
@@ -23,17 +22,15 @@ export default function ModalWindow({ children, modalName, setModalToggle }: IPr
   //   // });
   // };
 
-  const onBackdropClick = (e: any) => {
+  const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
-      // onToggleModal(modalName);
-      setModalToggle(modalName)
+      setModalToggle(modalName);
     }
   };
 
-  const onEscPress = (e: any) => {
+  const onEscPress = (e: KeyboardEvent) => {
     if (e.code === "Escape") {
-      // onToggleModal(modalName);
-      setModalToggle(modalName)
+      setModalToggle(modalName);
     }
   };
 
