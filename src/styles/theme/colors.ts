@@ -1,4 +1,4 @@
-const defaultColors = {
+export const defaultColors = {
   white: "var(--white)",
   primaryText: "var(--primary-text)",
   primaryBtn: "var(--primary-btn)",
@@ -24,7 +24,7 @@ const defaultColors = {
 
 export const colors = {
   LIGHT: {
-    ...defaultColors,
+    // ...defaultColors,
     primaryBg: "var(--primary-bg-lgt)",
     secondaryBg: "var(--secondary-bg-lgt)",
     loginPageBg: "var(--loginPage-bg-lgt)",
@@ -35,7 +35,7 @@ export const colors = {
   },
 
   DARK: {
-    ...defaultColors,
+    // ...defaultColors,
     primaryBg: "var(--primary-bg-drk)",
     secondaryBg: "var(--secondary-bg-drk)",
     loginPageBg: "var(--loginPage-bg-drk)",
