@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   padding: 8px 40px;
   border-radius: 30px;
 
-  background-color: ${p => p.theme.colors.primaryBg};
+  background-color: ${p => p.theme.palette.background.primaryBg};
 
   @media ${p => p.theme.media.mediumToLarge} {
     width: 336px;
@@ -27,7 +27,7 @@ export const Title = styled.p`
   font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.5;
 
-  color: ${p => p.theme.colors.secondaryText};
+  color: ${p => p.theme.palette.text.secondaryText};
   text-transform: uppercase;
 `;
 
