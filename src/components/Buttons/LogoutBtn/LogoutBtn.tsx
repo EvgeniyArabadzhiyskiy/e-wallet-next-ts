@@ -18,7 +18,7 @@ export const ButtonExit = styled.button`
   border-color: transparent;
   cursor: pointer;
 
-  color: ${(p) => p.theme.colors.secondaryText};
+  color: ${(p) => p.theme.palette.text.secondaryText};
   font-family: inherit;
   font-size: ${(p) => p.theme.fontSizes.m};
 
