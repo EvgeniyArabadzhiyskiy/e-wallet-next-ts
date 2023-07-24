@@ -65,7 +65,7 @@ export const Text = styled.p`
   font-size: 30px;
   line-height: 1.5;
 
-  color: ${p => p.theme.colors.secondaryText};
+  color: ${p => p.theme.palette.text.secondaryText};
 `;
 
  /* font-family: ${p => p.theme.fonts.poppins}; */
