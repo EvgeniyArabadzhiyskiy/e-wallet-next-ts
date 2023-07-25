@@ -5,7 +5,7 @@ import Datetime from "react-datetime";
 // import Select from "react-select/dist/declarations/src/Select";
 
 import { Box } from "../Box/Box";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   DateWrapper,
   ErrorText,
@@ -23,6 +23,7 @@ import { ITransactionValue } from "@/src/types/transactionValue";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 import CustomSelect from "../CustomSelect/CustomSelect";
 import { OptionType } from "@/src/types/optionType";
+import CancelButton from "../Buttons/CancelButton/CancelButton";
 
 
 
@@ -56,6 +57,10 @@ export default function TransactionFormFields({
     setValue(null)
     // selectInputRef.current?.clearValue();
   };
+
+  const onCancelClick = () => {
+    setModalToggle("transaction")
+  }
 
   
   return (
@@ -126,10 +131,7 @@ export default function TransactionFormFields({
       </Box>
 
       <EnterButton type="submit" enterText="Add" disabled={isDisabled} />
-      <button type="button" onClick={() => setModalToggle("transaction")}>
-        Cancel
-      </button>
-      {/* <CancelButton cancelText="cancel" onClick={onCancelClick} />             */}
+      <CancelButton cancelText="cancel" onClick={onCancelClick} />            
     </>
   );
 }
