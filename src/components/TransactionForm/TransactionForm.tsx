@@ -17,6 +17,8 @@ import { apiWallet } from "@/src/apiWallet/apiWallet";
 import axios from "axios";
 import { useState } from "react";
 import { NewTransaction } from "@/src/types/transactions";
+import CancelButton from "../Buttons/CancelButton/CancelButton";
+import { useUser } from "@/src/hooks/useUser";
 
 interface IProps {
   setIsIncome: any;
@@ -41,8 +43,7 @@ interface IProps {
 
 
 export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
-  const session = useSession();
-  const token = session.data?.user.token;
+  const { token } = useUser();
 
   const { setModalToggle } = useGlobalState();
   const [error, setError] = useState<Error | null>(null);
@@ -91,9 +92,7 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
       <>
         <h1 style={{ color: "white" }}>Произошла ошибка:</h1>
         <h2 style={{ color: "white" }}>{error.message}</h2>
-        <button type="button" onClick={() => setModalToggle("transaction")}>
-          Cancel
-        </button>
+        <CancelButton cancelText="cancel" onClick={() => setModalToggle("transaction")} /> 
       </>
     );
   }
@@ -117,14 +116,3 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
     </>
   );
 }
-
-// const renderForm = (props: FormikProps<ITransactionValue>) => (
-//   <TransactionFormFields
-//     formik={props}
-//     isIncome={isIncome}
-//     setIsIncome={setIsIncome}
-//   />
-// );
-
-// (values: ITransactionValue, { resetForm }: FormikHelpers<ITransactionValue>) => void
-//  (values: ITransactionValue, formikHelpers: FormikHelpers<ITransactionValue>) => Promise<void>
