@@ -22,6 +22,7 @@ import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
 import { apiWallet } from "@/src/apiWallet/apiWallet";
 import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
 import { ModalState, useGlobalState } from "../GlobalProvider/GlobalProvider";
+import { useBalanceList } from "@/src/hooks/useBalanceList";
 
 const getAllTransactions = async (authToken: any, pageNum: number) => {
   const options = {
@@ -63,8 +64,9 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 
   const {isModalOpen, setModalToggle } = useGlobalState()
 
-  const transactions = useMemo(() => {
-    return allTransactions.map((item) => {
+  const balanceList = useBalanceList(allTransactions)
+
+  const transactions =  allTransactions.map((item) => {
       return (
         <div key={item._id}>
           {isFetching ? (
@@ -75,7 +77,7 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
         </div>
       );
     })
-  }, [allTransactions, isFetching])
+  
 
   return (
     <>
@@ -87,18 +89,7 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
       <ul ref={listElem} style={{ height: 240, overflowY: "scroll" }}>
 
         {transactions}
-        {/* { allTransactions.map((item) => {
-            return (
-              <div key={item._id}>
-                {isFetching ? (
-                  <div style={{ height: 50 }}>Loading Transactions...</div>
-                ) : (
-                  <div style={{ height: 50 }}>{item.category}</div>
-                )}
-              </div>
-            );
-          })} */}
-
+      
         <div ref={observerElem} style={{ height: 50, background: "tomato" }}>
           Observer Target
         </div>
