@@ -6,7 +6,6 @@ import {
   TextName,
   UserBox,
 } from "./Header.styled";
-import { useSession } from "next-auth/react";
 
 import LogoutBtn from "../Buttons/LogoutBtn/LogoutBtn";
 import Container from "../Container/Container";
@@ -14,6 +13,9 @@ import Logo from "../Logo/Logo";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import ModalBox from "../ModalWindow/ModalBox";
 import ModalLogOut from "../ModalLogOut/ModalLogOut";
+import AuthButton from "../Buttons/AuthButton/AuthButton";
+import { useUser } from "@/src/hooks/useUser";
+import Link from "next/link";
 
 interface UserData {
   email: string;
@@ -22,10 +24,7 @@ interface UserData {
 }
 
 export default function Header({ currentUser }: { currentUser?: any }) {
-  const user = useSession();
-  const isLading = user.status === "loading";
-
-  // console.log("Header re-re");
+  const { user, isLoading } = useUser()
 
   return (
     <>
@@ -36,10 +35,11 @@ export default function Header({ currentUser }: { currentUser?: any }) {
             <UserBox>
               <ThemeToggle />
               <TextName>
-                {isLading ? <>Load</> : user.data?.user.user.firstName}
+                {isLoading ? <>Loa</> : user?.firstName}
               </TextName>
               {/* <TextName>SERVER USER {currentUser?.user.user.firstName}</TextName> */}
-              <LogoutBtn modalName="logout" type="exit" />
+              {/* <LogoutBtn modalName="logout" type="exit" /> */}
+              <AuthButton /> 
             </UserBox>
             {/* <h2>Balance: {currentUser?.user.user.balance}</h2> */}
           </HeaderWrapper>
