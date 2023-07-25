@@ -20,3 +20,7 @@ export interface NewTransaction extends ITransaction {
   position: number;
   updatedAt: string;
 }
+
+export interface IBalance {
+  userBalance: number;
+}
