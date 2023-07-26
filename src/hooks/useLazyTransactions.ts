@@ -2,8 +2,8 @@ import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { apiWallet } from "../apiWallet/apiWallet";
-import { useUser } from "./useUser";
 import { ITransactions } from "../types/transactions";
+import { useUser } from "./useUser";
 
 export const useLazyTransactions = () => {
   const listElem = useRef<HTMLUListElement>(null);
