@@ -1,6 +1,7 @@
 import { ITransaction } from "../types/transactions";
 
 export const balanceAfterTransaction = (data: ITransaction[], totalBalance: number) => {
+  
   // нужно сделать проверку тиров data: ITransaction[], totalBalance: number
   
   const balances = data.reduce(
@@ -14,7 +15,6 @@ export const balanceAfterTransaction = (data: ITransaction[], totalBalance: numb
     },
     [totalBalance]
   );
-  console.log("balanceAfterTransaction  balances:", balances);
 
   return balances;
 };
