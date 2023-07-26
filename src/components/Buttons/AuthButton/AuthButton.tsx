@@ -1,10 +1,10 @@
 "use client";
 
-import { useUser } from "@/src/hooks/useUser";
 import { useGlobalState } from "../../GlobalProvider/GlobalProvider";
 import { ButtonExit, LinkSignIn, Text } from "./AuthButton.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightToBracket, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { useUser } from "@/src/hooks/useUser";
 
 function AuthButton() {
   const { user } = useUser();
