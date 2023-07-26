@@ -1,111 +1,56 @@
 "use client";
 
 import Link from "next/link";
-import {
-  useInfiniteQuery,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
-import { parseCookies } from "nookies";
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  useMemo,
-} from "react";
-import { useSession } from "next-auth/react";
 import { Title } from "../Title/Title.styled";
-import { ITransaction, ITransactions } from "@/src/types/transactions";
-import { isITransactions } from "@/src/helpers/isITransactions";
-import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
-import { apiWallet } from "@/src/apiWallet/apiWallet";
 import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
-import { ModalState, useGlobalState } from "../GlobalProvider/GlobalProvider";
+import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 import { useBalanceList } from "@/src/hooks/useBalanceList";
+import HomeTableDesctop from "../HomeTab/HomeTableDesctop/HomeTableDesctop";
+import { useQueryClient } from "@tanstack/react-query";
 
-const getAllTransactions = async (authToken: any, pageNum: number) => {
-  const options = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
+const TransactionList = () => {
+  const queryClient = useQueryClient();
 
-  try {
-    const response = await fetch(
-      `${BASE_URL}${TRANSACTIONS}?page=${pageNum}&limit=10`,
-      options
-    );
+  const {
+    data: allTransactions = [],
+    isFetching,
+    listElem,
+    observerElem,
+  } = useLazyTransactions();
 
-    if (!response.ok) {
-      const errorMessage = response.statusText || "An error occurred";
-      throw new Error(errorMessage);
-    }
+  const { isModalOpen, setModalToggle } = useGlobalState();
 
-    const data = await response.json();
+  const balanceList = useBalanceList(allTransactions);
 
-    if (!isITransactions(data)) {
-      throw new Error("Invalid data format");
-    }
+  // const Balance = queryClient.getQueriesData<any>(["Balance"]);
+  // console.log("TransactionList:", Balance[0][1]);
 
-    const transactions: ITransactions = data;
-
-    return transactions;
-  } catch (error) {
-    console.log(error);
-    throw new Error((error as Error).message || "An error occurred");
-  }
-};
-
-const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
-
-  const { data: allTransactions = [], isFetching, listElem, observerElem } = useLazyTransactions()
-
-  const {isModalOpen, setModalToggle } = useGlobalState()
-
-  const balanceList = useBalanceList(allTransactions)
-
-  const transactions =  allTransactions.map((item) => {
-      return (
-        <div key={item._id}>
-          {isFetching ? (
-            <div style={{ height: 50 }}>Loading Transactions...</div>
-          ) : (
-            <div style={{ height: 50 }}>{item.category}</div>
-          )}
-        </div>
-      );
-    })
-  
+  // const TransactionsList = queryClient.getQueriesData<any>(["TransactionsList"]);
+  // console.log("Header  queryUserData:", TransactionsList[0][1]?.pages);
 
   return (
     <>
-      <h1>HOME PAGE</h1>
-      <Title>Title</Title>
       <Link href="/">HOME</Link>
-      <button type="button" onClick={() => setModalToggle("transaction")}>OPEN</button>
-      
-      <ul ref={listElem} style={{ height: 240, overflowY: "scroll" }}>
+      <button type="button" onClick={() => setModalToggle("transaction")}>
+        OPEN
+      </button>
 
-        {transactions}
-      
-        <div ref={observerElem} style={{ height: 50, background: "tomato" }}>
-          Observer Target
-        </div>
-      </ul>
+      <HomeTableDesctop
+        listElem={listElem}
+        observerElem={observerElem}
+        balances={balanceList}
+        transactions={allTransactions}
+      />
     </>
   );
 };
 
 export default TransactionList;
 
-
 //=================================================================================
 // const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 //   // const { authToken } = parseCookies();
 //   // const queryClient = useQueryClient();
-
 
 //   const listElem = useRef<HTMLUListElement>(null);
 //   const observerElem = useRef<HTMLDivElement>(null);
@@ -113,7 +58,6 @@ export default TransactionList;
 //   const [pageNum, setPageNum] = useState(1);
 //   const session = useSession();
 //   const userToken = session.data?.user.token;
-
 
 //   const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
 //     queryKey: ["TransactionsList"],
@@ -135,10 +79,6 @@ export default TransactionList;
 //     //   }
 //     // }
 //   });
-
-
-  
-
 
 //   const allTransactions = useMemo(() => {
 //     return data?.pages.map(({ transactions }) => transactions).flat();
@@ -169,7 +109,7 @@ export default TransactionList;
 //       if (isIntersecting && hasNextPage) {
 //         fetchNextPage();
 //       }
-//     }, 
+//     },
 //     { root: listElem.current, rootMargin: "10px" });
 
 //     if (target) {
@@ -248,7 +188,7 @@ export default TransactionList;
 //     enabled: !!userToken,
 //     // select: (data) => {
 //     //   console.log("TransactionList  data:", data);
-      
+
 //     //   return data.transactions
 //     // }
 //   });
