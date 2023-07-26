@@ -1,17 +1,15 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { useUser } from "@/src/hooks/useUser";
+import { useQueryClient } from "@tanstack/react-query";
 import { Wrapper, CurrencySign, Text, Title } from "./Balance.styled";
-import { getBalance } from "@/src/helpers/getBalance";
 import { useUserBalance } from "@/src/hooks/useUserBalance";
 
 export default function Balance() {
-  const { data } = useUserBalance();
+  const { data = 0 } = useUserBalance();
 
-  // if (isFetching) {
-  //   return <h1>Loading</h1>
-  // }
+  // const queryClient = useQueryClient();
+  // const Balance = queryClient.getQueriesData<any>(["Balance"]);
+  // console.log(" Balance:", Balance[0][1]);
 
   return (
     <Wrapper>
