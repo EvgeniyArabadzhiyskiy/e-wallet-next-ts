@@ -15,7 +15,6 @@ import ModalBox from "../ModalWindow/ModalBox";
 import ModalLogOut from "../ModalLogOut/ModalLogOut";
 import AuthButton from "../Buttons/AuthButton/AuthButton";
 import { useUser } from "@/src/hooks/useUser";
-import Link from "next/link";
 
 interface UserData {
   email: string;
@@ -24,7 +23,7 @@ interface UserData {
 }
 
 export default function Header({ currentUser }: { currentUser?: any }) {
-  const { user, isLoading } = useUser()
+  const { user, isLoading } = useUser() 
 
   return (
     <>
