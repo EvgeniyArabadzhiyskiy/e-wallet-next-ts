@@ -28,7 +28,7 @@ async function RootLayout({ children }: IProps) {
     <html lang="en">
       <head>
         <link rel="icon" href="/vercel.svg" />
-        {/* <style type="text/css" dangerouslySetInnerHTML={{ __html: mediaStyles }}/> */}
+        <style type="text/css" dangerouslySetInnerHTML={{ __html: mediaStyles }}/>
         <Fonts />
       </head>
       <body>
