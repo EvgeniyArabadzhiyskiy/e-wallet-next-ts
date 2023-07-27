@@ -7,6 +7,8 @@ import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 import { useBalanceList } from "@/src/hooks/useBalanceList";
 import HomeTableDesctop from "../HomeTab/HomeTableDesctop/HomeTableDesctop";
 import { useQueryClient } from "@tanstack/react-query";
+import { Media } from "@/src/lib/media";
+import HomeTableMobile from "../HomeTab/HomeTableMobile/HomeTableMobile";
 
 const TransactionList = () => {
   const queryClient = useQueryClient();
@@ -30,17 +32,28 @@ const TransactionList = () => {
 
   return (
     <>
-      <Link href="/">HOME</Link>
-      <button type="button" onClick={() => setModalToggle("transaction")}>
+      {/* <button type="button" onClick={() => setModalToggle("transaction")}>
         OPEN
-      </button>
+      </button> */}
 
-      <HomeTableDesctop
-        listElem={listElem}
-        observerElem={observerElem}
-        balances={balanceList}
-        transactions={allTransactions}
-      />
+      <Media at="sm">
+        <h1>Mobile Transaction List Here</h1>
+        <HomeTableMobile
+          listElem={listElem}
+          observerElem={observerElem}
+          balances={balanceList}
+          transactions={allTransactions}
+        />
+      </Media>
+
+      <Media greaterThan="sm">
+        <HomeTableDesctop
+          listElem={listElem}
+          observerElem={observerElem}
+          balances={balanceList}
+          transactions={allTransactions}
+        />
+      </Media>
     </>
   );
 };
