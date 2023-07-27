@@ -2,7 +2,12 @@
 
 import { FormikHelpers } from "formik";
 import { useSession } from "next-auth/react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  InfiniteData,
+  Updater,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 
 import { transactionShema } from "@/src/helpers/formValidation";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
@@ -19,7 +24,11 @@ import { Title } from "./TransactionForm.styled";
 import { apiWallet } from "@/src/apiWallet/apiWallet";
 import axios from "axios";
 import { useState } from "react";
-import { NewTransaction } from "@/src/types/transactions";
+import {
+  ITransaction,
+  ITransactions,
+  NewTransaction,
+} from "@/src/types/transactions";
 import CancelButton from "../Buttons/CancelButton/CancelButton";
 import { useUser } from "@/src/hooks/useUser";
 
@@ -43,6 +52,21 @@ interface IProps {
 
 // };
 
+type OOOO = Updater<{
+  pages: {
+      transactions: ITransaction[];
+      userBalance: number;
+  }[] | undefined;
+  pageParams: unknown[];
+} | undefined, 
+{ 
+  pages: {
+    transactions: ITransaction[];
+    userBalance: number;
+  }[] | undefined;
+  pageParams: unknown[];
+} | undefined>
+
 export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
   const { token } = useUser();
   const queryClient = useQueryClient();
@@ -63,59 +87,43 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
       apiWallet.createTransaction(transaction, token),
 
     onSuccess: (data) => {
-      // console.log("onSuccess data:", data);
+      const { position, updatedAt, ...props } = data;
+      const createTransaction: ITransaction = props;
 
-      let newData = data;
-      
-      queryClient.setQueryData(['TransactionsList'], (prev: any) => {
-        // console.log("Prev:", prev);
-        
-        const updatedPages = prev.pages.map((page: any) => {
-          // console.log("Page:", page.transactions);
-          const newCache = [newData, ...page.transactions]
-          .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
-          // console.log("newCache:", newCache);
+      let newData = createTransaction;
 
-          newData = newCache.pop();
-          return newCache
-          
-        })
-        console.log("updatedPages  updatedPages:", updatedPages);
-
-        const ddd = {
-          ...prev,
-            pages: [{
-            // ...prev.pages,
-            transactions: updatedPages.flat(),
-            userBalance: -5620
-          }],
-          
+      queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"] ,(prev) => {
+        if (!prev) {
+          return undefined
         }
-        console.log("queryClient.setQueryData  ddd:", ddd);
+          
+        const updatedPages = prev.pages.map((page) => {
+          const newCache = [newData, ...page.transactions].sort(
+            (a, b) => Date.parse(b.date) - Date.parse(a.date)
+          );
 
-        return ddd
+          const lastEl = newCache.pop();
 
-     
+          if (lastEl) {
+            newData = lastEl
+          }
 
-        // const updatedPages = prev.pages.map((page: any) => {
-        //   const newCache = [newData, ...page.transactions]
-        //     .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+          return {
+            ...page,
+            transactions: newCache,
+          };
+        });
 
-        //   newData = newCache.pop();
-        //   return newCache
-        // });
-
+        return {
+          ...prev,
+          pages: updatedPages,
+        };
         
-        // return {
-        //   ...prev,
-        //   pages: updatedPages,
-        // }
-        
+
+         
       });
-      
 
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
-      // queryClient.invalidateQueries({ queryKey: ["TransactionsList"] });
       setModalToggle("transaction");
     },
 
