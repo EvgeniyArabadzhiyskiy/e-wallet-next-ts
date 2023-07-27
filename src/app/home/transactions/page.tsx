@@ -32,8 +32,7 @@ export default function PageTransactions() {
   return (
     <>
       {/* <Hydrate state={dehydratedState}> */}
-      <Link href="/">HOME</Link>
-      <h1>Page Transactions</h1>
+     
       <TransactionList />
 
       <ModalBox modalName="transaction">
