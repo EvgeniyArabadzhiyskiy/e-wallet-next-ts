@@ -13,7 +13,7 @@ interface IProps {
   itemBalance: any;
 }
 
-const TableItemDesktop = ({
+function TableItemDesktop  ({
   operationDate,
   typeOperation,
   category,
@@ -23,7 +23,7 @@ const TableItemDesktop = ({
   // isLongAmount, isLongBalance,
   // onContextMenu, isOpenMenu, isDelete, onEdit, onClearId, onDelete
 }: 
-IProps) => {
+IProps)  {
   const bodyTransaction = (
     <>
       <CategoryName>
