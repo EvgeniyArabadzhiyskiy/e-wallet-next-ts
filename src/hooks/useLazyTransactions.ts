@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { apiWallet } from "../apiWallet/apiWallet";
-import { ITransactions } from "../types/transactions";
+import { ITransaction, ITransactions } from "../types/transactions";
 import { useUser } from "./useUser";
 
 export const useLazyTransactions = () => {
@@ -20,6 +20,16 @@ export const useLazyTransactions = () => {
 
       return lastPage.transactions.length !== 0 ? nextPage : undefined;
     },
+
+    // select: (data) => {
+    //   const transactions =  data.pages.map(el => el.transactions).flat();
+
+    //   return {
+    //     pageParams: data.pageParams,
+    //     pages: transactions,
+    //   }
+    // },
+
 
     staleTime: Infinity,
     enabled: !!token,
