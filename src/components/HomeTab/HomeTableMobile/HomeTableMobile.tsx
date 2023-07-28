@@ -31,3 +31,16 @@ function HomeTabelMobile ({ listElem, observerElem, balances, transactions }: IP
 };
 
 export default HomeTabelMobile;
+{/* <div>
+        <ul><li>Word</li><li>999</li><li>Other Info</li></ul>
+        <ul><li>Word</li><li>999</li><li>Other Info</li></ul>
+        <ul><li>Word</li><li>999</li><li>Other Info</li></ul>
+        <ul><li>Word</li><li>999</li><li>Other Info</li></ul>
+      </div>
+
+      <ul>
+        <div><li><span>Word</span><span>999</span><span>Other Info</span></li></div>
+        <div><li><span>Word</span><span>999</span><span>Other Info</span></li></div>
+        <div><li><span>Word</span><span>999</span><span>Other Info</span></li></div>
+        <div><li><span>Word</span><span>999</span><span>Other Info</span></li></div>
+      </ul>  */}
