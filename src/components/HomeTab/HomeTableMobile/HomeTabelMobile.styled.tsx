@@ -7,7 +7,10 @@ export const StyledList = styled.ul`
   margin: auto;
   border-left: 5px;
 
-  ul {
+  overflow-y: scroll;
+  max-height: 1400px;
+
+  div {
     &:not(:last-child) {
       margin-bottom: 8px;
     }
