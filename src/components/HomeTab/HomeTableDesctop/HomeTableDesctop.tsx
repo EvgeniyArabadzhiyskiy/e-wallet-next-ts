@@ -6,6 +6,8 @@ import {
   StyledTableHeader,
 } from "./HomeTableDesctop.styled";
 import HomeTableItem from "../HomeTableItem/HomeTableItem";
+import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
+import { useBalanceList } from "@/src/hooks/useBalanceList";
 
 interface IProps {
   balances: number[];
@@ -14,7 +16,17 @@ interface IProps {
   observerElem: React.RefObject<HTMLDivElement>;
 }
 
-function HomeTableDesctop({ listElem, observerElem, balances, transactions }: IProps) {
+function HomeTableDesctop() {
+
+  const {
+    data: transactions = [],
+    isFetching,
+    listElem,
+    observerElem,
+  } = useLazyTransactions();
+
+
+  const balances = useBalanceList(transactions);
   return (
     <StyledTable>
       <StyledTableHeader>
