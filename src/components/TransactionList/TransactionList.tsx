@@ -57,12 +57,12 @@ const TransactionList = () => {
         />
       </Media> */}
 
-      {/* <TransactionTable 
+      <TransactionTable 
         listElem={listElem}
         observerElem={observerElem}
         balances={balanceList}
         transactions={allTransactions}
-      /> */}
+      />
     </>
   );
 };
