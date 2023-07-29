@@ -8,7 +8,7 @@ export const StyledList = styled.ul`
   border-left: 5px;
 
   overflow-y: scroll;
-  max-height: 1400px;
+  max-height: 500px;
 
   div {
     &:not(:last-child) {
