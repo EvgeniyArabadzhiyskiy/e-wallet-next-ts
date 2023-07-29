@@ -36,7 +36,6 @@ const TransactionList = () => {
       {/* <button type="button" onClick={() => setModalToggle("transaction")}>
         OPEN
       </button> */}
-      <h1>Transaction Page</h1>
 
       {/* <Media at="sm">
         <h1>Mobile Transaction List Here</h1>
