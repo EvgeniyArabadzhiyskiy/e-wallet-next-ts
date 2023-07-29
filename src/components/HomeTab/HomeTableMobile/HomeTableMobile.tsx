@@ -1,6 +1,8 @@
 import { ITransaction } from "@/src/types/transactions";
 import { StyledList } from "./HomeTabelMobile.styled";
 import HomeTableItem from "../HomeTableItem/HomeTableItem";
+import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
+import { useBalanceList } from "@/src/hooks/useBalanceList";
 
 interface IProps {
   balances: number[];
@@ -9,7 +11,16 @@ interface IProps {
   observerElem: React.RefObject<HTMLDivElement>;
 }
 
-function HomeTabelMobile ({ listElem, observerElem, balances, transactions }: IProps)  {
+function HomeTabelMobile ()  {
+  const {
+    data: transactions = [],
+    isFetching,
+    listElem,
+    observerElem,
+  } = useLazyTransactions();
+
+  const balances = useBalanceList(transactions);
+
   return (
     <StyledList ref={listElem}>
       {transactions.map((transaction, idx) => {
@@ -23,7 +34,7 @@ function HomeTabelMobile ({ listElem, observerElem, balances, transactions }: IP
           />
         );
       })}
-      <div ref={observerElem} style={{ height: 50, background: "tomato" }}>
+      <div className="Observer" ref={observerElem} style={{ height: 50, background: "green" }}>
         Observer Target
       </div>
     </StyledList>
