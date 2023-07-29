@@ -9,6 +9,7 @@ import HomeTableDesctop from "../HomeTab/HomeTableDesctop/HomeTableDesctop";
 import { useQueryClient } from "@tanstack/react-query";
 import { Media } from "@/src/lib/media";
 import HomeTableMobile from "../HomeTab/HomeTableMobile/HomeTableMobile";
+import TransactionTable from "../TransactionTable/TransactionTable";
 
 const TransactionList = () => {
   const queryClient = useQueryClient();
@@ -36,24 +37,31 @@ const TransactionList = () => {
         OPEN
       </button> */}
 
-      <Media at="sm">
+      {/* <Media at="sm">
         <h1>Mobile Transaction List Here</h1>
         <HomeTableMobile
-          listElem={listElem}
-          observerElem={observerElem}
-          balances={balanceList}
-          transactions={allTransactions}
+          // listElem={listElem}
+          // observerElem={observerElem}
+          // balances={balanceList}
+          // transactions={allTransactions}
         />
-      </Media>
+      </Media> */}
 
-      <Media greaterThan="sm">
+      {/* <Media greaterThan="sm">
         <HomeTableDesctop
-          listElem={listElem}
-          observerElem={observerElem}
-          balances={balanceList}
-          transactions={allTransactions}
+          // listElem={listElem}
+          // observerElem={observerElem}
+          // balances={balanceList}
+          // transactions={allTransactions}
         />
-      </Media>
+      </Media> */}
+
+      <TransactionTable 
+        listElem={listElem}
+        observerElem={observerElem}
+        balances={balanceList}
+        transactions={allTransactions}
+      />
     </>
   );
 };
