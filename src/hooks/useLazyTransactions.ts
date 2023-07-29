@@ -48,7 +48,7 @@ export const useLazyTransactions = () => {
           fetchNextPage();
         }
       },
-      { root: listElem.current, rootMargin: "10px" }
+      // { root: listElem.current, rootMargin: "10px" }
     );
 
     if (target) {
