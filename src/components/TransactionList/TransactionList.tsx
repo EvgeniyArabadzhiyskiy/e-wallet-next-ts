@@ -36,6 +36,7 @@ const TransactionList = () => {
       {/* <button type="button" onClick={() => setModalToggle("transaction")}>
         OPEN
       </button> */}
+      <h1>Transaction Page</h1>
 
       {/* <Media at="sm">
         <h1>Mobile Transaction List Here</h1>
@@ -56,12 +57,12 @@ const TransactionList = () => {
         />
       </Media> */}
 
-      <TransactionTable 
+      {/* <TransactionTable 
         listElem={listElem}
         observerElem={observerElem}
         balances={balanceList}
         transactions={allTransactions}
-      />
+      /> */}
     </>
   );
 };
