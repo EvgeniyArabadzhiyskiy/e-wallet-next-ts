@@ -9,6 +9,7 @@ import TransactionList from "@/src/components/TransactionList/TransactionList";
 import ModalBox from "@/src/components/ModalWindow/ModalBox";
 import FlipCard from "@/src/components/FlipCard/FlipCard";
 import { getBalance } from "@/src/helpers/getBalance";
+import TransactionTable from "@/src/components/TransactionTable/TransactionTable";
 
 
 export default function PageTransactions() {
@@ -33,7 +34,7 @@ export default function PageTransactions() {
     <>
       {/* <Hydrate state={dehydratedState}> */}
      
-      <TransactionList />
+      <TransactionTable />
 
       <ModalBox modalName="transaction">
         <FlipCard />
