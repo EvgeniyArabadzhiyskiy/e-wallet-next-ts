@@ -9,8 +9,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import { apiWallet } from "@/src/apiWallet/apiWallet";
 import { Hydrate, dehydrate } from "@tanstack/react-query";
+import Currency from "../Currency/Currency";
 
-export default async function DashBoardLayout({ children }: { children: React.ReactNode }) {
+export default async function DashBoardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const session = await getServerSession(authOptions);
   const authToken = session?.user.token;
 
@@ -24,7 +29,6 @@ export default async function DashBoardLayout({ children }: { children: React.Re
       queryFn: ({ pageParam = 1 }) =>
         apiWallet.getAllTransactions(authToken, pageParam),
     });
-  
   }
 
   const dehydratedState = dehydrate(queryClient);
@@ -38,8 +42,11 @@ export default async function DashBoardLayout({ children }: { children: React.Re
         <Container>
           <div className={stl.wrapper}>
             <div className={stl.sidebar}>
-              <Navigation />
-              {session && <Balance />}
+              <div>
+                <Navigation />
+                {session && <Balance />}
+              </div>
+              <Currency />
             </div>
 
             {children}
