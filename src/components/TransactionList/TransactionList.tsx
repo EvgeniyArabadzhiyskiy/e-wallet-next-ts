@@ -12,18 +12,18 @@ import HomeTableMobile from "../HomeTab/HomeTableMobile/HomeTableMobile";
 import TransactionTable from "../TransactionTable/TransactionTable";
 
 const TransactionList = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
-  const {
-    data: allTransactions = [],
-    isFetching,
-    listElem,
-    observerElem,
-  } = useLazyTransactions();
+  // const {
+  //   data: allTransactions = [],
+  //   isFetching,
+  //   listElem,
+  //   observerElem,
+  // } = useLazyTransactions();
 
-  const { isModalOpen, setModalToggle } = useGlobalState();
+  // const { isModalOpen, setModalToggle } = useGlobalState();
 
-  const balanceList = useBalanceList(allTransactions);
+  // const balanceList = useBalanceList(allTransactions);
 
   // const Balance = queryClient.getQueriesData<any>(["Balance"]);
   // console.log("TransactionList:", Balance[0][1]);
@@ -56,12 +56,12 @@ const TransactionList = () => {
         />
       </Media> */}
 
-      <TransactionTable 
+      {/* <TransactionTable 
         listElem={listElem}
         observerElem={observerElem}
         balances={balanceList}
         transactions={allTransactions}
-      />
+      /> */}
     </>
   );
 };
