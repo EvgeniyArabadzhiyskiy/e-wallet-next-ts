@@ -1,18 +1,19 @@
+import { Dispatch, SetStateAction } from "react";
 import { CloseBtn, DeleteBtn, Menu } from "./TransactionMenu.styled";
 
 interface IProps {
-  isOpenMenu?: boolean;
-  isDelete?: boolean;
-  onContextMenu?: any;
-  onEdit?: any;
-  onDelete?: any;
-  onClearId?: any;
+  isDelete: boolean;
+  isOpenMenu: boolean;
+  setIsOpenMenu: Dispatch<SetStateAction<boolean>>;
+  onEdit?: () => void;
+  onDelete: () => void;
+  onClearId: () => void;
 }
 
-const TransactionMenu = ({ isOpenMenu, isDelete, onContextMenu, onEdit, onDelete, onClearId }: IProps) => {
+const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete, onClearId }: IProps) => {
   return (
     <Menu $isOpenMenu={isOpenMenu} $isDelete={isDelete}>
-      <CloseBtn onClick={onContextMenu} aria-label="close">
+      <CloseBtn onClick={() => setIsOpenMenu(p => !p)} aria-label="close">
         X
       </CloseBtn>
       <DeleteBtn onClick={onEdit}>EDIT</DeleteBtn>
