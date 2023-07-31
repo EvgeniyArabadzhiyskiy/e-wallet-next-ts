@@ -5,7 +5,7 @@ import Datetime from "react-datetime";
 // import Select from "react-select/dist/declarations/src/Select";
 
 import { Box } from "../Box/Box";
-import React, { useRef, useState } from "react";
+import React, { Dispatch, SetStateAction,  useState } from "react";
 import {
   DateWrapper,
   ErrorText,
@@ -27,11 +27,9 @@ import CancelButton from "../Buttons/CancelButton/CancelButton";
 
 
 
-
-
 interface IProps {
   isIncome: boolean;
-  setIsIncome: any;
+  setIsIncome: Dispatch<SetStateAction<boolean>>;
   formik: FormikProps<ITransactionValue>;
 }
 
