@@ -22,52 +22,54 @@ import FormContainer from "../FormContainer/FormContainer";
 import TransactionFormFields from "../TransactionFormFields/TransactionFormFields";
 import { Title } from "./TransactionForm.styled";
 import { apiWallet } from "@/src/apiWallet/apiWallet";
-import axios from "axios";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import {
+  ChangedTransaction,
   ITransaction,
   ITransactions,
   NewTransaction,
 } from "@/src/types/transactions";
 import CancelButton from "../Buttons/CancelButton/CancelButton";
 import { useUser } from "@/src/hooks/useUser";
+import { fetcher } from "@/src/helpers/fetcher";
+import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
 
-interface IProps {
-  setIsIncome: any;
-  isIncome: boolean;
+
+
+const transData = {
+  amount: "500",
+  category: "WODA",
+  typeOperation: "expense",
+  comment: "Fruits",
+  // date: "Sun Apr 09 2023 16:49:02 GMT+0300 (Восточная Европа, летнее время)",
+  date: "Wed Apr 05 2023 21:41:37 GMT+0300 (Восточная Европа, летнее время)",
+  // date: new Date().toString(),
+};
+
+const editTransaction = async (id: string, transation: any, token: string | undefined) => {
+  const options: RequestInit = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(transation),
+  }
+
+  const data = await fetcher<ChangedTransaction>(`${BASE_URL}${TRANSACTIONS}/edit/${id}`, options)
+
+  console.log("editTransaction  data:", data);
+  return data
 }
 
-// export const createTransaction = async (transaction: any) => {
+interface IProps {
+  isIncome: boolean;
+  setIsIncome: Dispatch<SetStateAction<boolean>>;
+  modalKey: string;
+  editId: string;
+}
 
-//   const options = {
-//     headers: {
-//       "Content-Type": "application/json;charset=utf-8",
-//       Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY4OTE0NjM0NSwiZXhwIjoxNjkwMzU1OTQ1fQ.GuTYaKcbkLR4odPZ3iJBd6ORIDPHZaAXwVKRfmSpoco"}`,
-//     },
-//   }
-
-//   const data = await axios.post(`https://wallet-backend-xmk0.onrender.com/api/transaction`, transaction, options);
-//   console.log("createTransaction  data:", data);
-//   return data;
-
-// };
-
-type OOOO = Updater<{
-  pages: {
-      transactions: ITransaction[];
-      userBalance: number;
-  }[] | undefined;
-  pageParams: unknown[];
-} | undefined, 
-{ 
-  pages: {
-    transactions: ITransaction[];
-    userBalance: number;
-  }[] | undefined;
-  pageParams: unknown[];
-} | undefined>
-
-export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
+function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
   const { token } = useUser();
   const queryClient = useQueryClient();
 
@@ -81,7 +83,33 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
     date: new Date().toString(),
   };
 
-  const mutation = useMutation<NewTransaction, Error, ITransactionData>({
+  const setTitle = (modalKey: string) => {
+    switch (modalKey) {
+      case "ADD":
+        return "Add Transaction";
+
+      case "EDIT":
+        return "Edit Transaction";
+    
+      default:
+        return "Unknown Transaction";
+    }
+    
+  }
+   
+  const { mutate: edit } = useMutation<ChangedTransaction, Error, ITransactionData>({
+    mutationFn: (transaction) => editTransaction(editId, transaction, token),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries(["TransactionsList"])
+
+      setModalToggle("transaction");
+    }
+
+
+  })
+
+  const { mutate: create} = useMutation<NewTransaction, Error, ITransactionData>({
     // createTransaction должна возвращать тип Promise<NewTransaction>
     mutationFn: (transaction) =>
       apiWallet.createTransaction(transaction, token),
@@ -102,10 +130,10 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
             (a, b) => Date.parse(b.date) - Date.parse(a.date)
           );
 
-          const lastEl = newCache.pop();
+          const lastTransaction = newCache.pop();
 
-          if (lastEl) {
-            newData = lastEl
+          if (lastTransaction) {
+            newData = lastTransaction
           }
 
           return {
@@ -144,9 +172,16 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
       typeOperation,
     };
 
-    mutation.mutate(transaction);
-    resetForm();
-    // setModalToggle("transaction");
+    if (modalKey === "ADD") {
+      create(transaction);
+      resetForm();
+      // setModalToggle("transaction");
+    }
+
+    if (modalKey === "EDIT") {
+      edit(transaction);
+      resetForm();
+    }
   };
 
   if (error) {
@@ -164,7 +199,7 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
 
   return (
     <>
-      <Title>TransactionForm</Title>
+      <Title>{setTitle(modalKey)}</Title>
 
       <FormContainer<ITransactionValue>
         initialValues={initialValues}
@@ -181,3 +216,5 @@ export default function TransactionForm({ isIncome, setIsIncome }: IProps) {
     </>
   );
 }
+
+export default TransactionForm
