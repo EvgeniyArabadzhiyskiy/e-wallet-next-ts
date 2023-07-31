@@ -36,9 +36,10 @@ export default function PageTransactions() {
      
       <TransactionTable />
 
-      <ModalBox modalName="transaction">
+      {/* <ModalBox modalName="transaction">
         <FlipCard />
-      </ModalBox>
+      </ModalBox> */}
+
       {/* </Hydrate> */}
     </>
   );
