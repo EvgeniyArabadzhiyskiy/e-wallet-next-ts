@@ -16,7 +16,7 @@ export const Menu = styled.div<{$isDelete: boolean, isOpenMenu: boolean}>`
 
   transform: translateX(100%);
   transition: transform 300ms linear;
-  transform: ${(p) => p.$isOpenMenu && "translateX(0%)"};
+  transform: ${(p) => p.$isOpenMenu ? "translateX(0%)" : ""};
 
   &::before {
     content: "";
