@@ -6,8 +6,8 @@ import {
   StyledTableHeader,
 } from "./HomeTableDesctop.styled";
 import HomeTableItem from "../HomeTableItem/HomeTableItem";
-import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
 import { useBalanceList } from "@/src/hooks/useBalanceList";
+import { useLazyTransactions } from "@/src/apiWallet";
 
 interface IProps {
   balances: number[];
