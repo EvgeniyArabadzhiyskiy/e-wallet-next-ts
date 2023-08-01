@@ -1,13 +1,10 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { List, ItemLink, NavLink, LinkText } from "./Navigation.styled";
-import Image from "next/image";
-// import HomeSvg from "../../../public/images/home.svg";
-// import StatSvg from "../../../public/images/statistic.svg";
 import StatisticSvg from "../SvgComponent/StatisticSvg";
-import HomeSvg from "../SvgComponent/HomeSvg";
 import TransactionSvg from "../SvgComponent/TransactionSvg";
+import HomeSvg from "../SvgComponent/HomeSvg";
+import { List, ItemLink, NavLink, LinkText } from "./Navigation.styled";
 
 export default function Navigation() {
   const path = usePathname();
