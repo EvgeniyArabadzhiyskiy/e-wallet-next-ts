@@ -52,6 +52,32 @@ export const PrivatTableList = styled.ul`
   }
 `;
 
+export const CurrencyList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 16px;
+  @media ${p => p.theme.media.large} {
+    padding-top: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+`;
+
+export const CurrencyItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  margin-bottom: 12px;
+
+  @media ${p => p.theme.media.large} {
+    padding-bottom: 24px;
+  }
+`;
+
 export const TextTitle = styled.li`
   color: ${(p) => p.theme.colors.white};
 
@@ -64,6 +90,21 @@ export const TextTitle = styled.li`
   @media ${(p) => p.theme.media.large} {
     &:nth-child(2) {
       margin-right: 15px;
+    }
+  }
+`;
+
+export const Text = styled.p`
+  color: #ffffff;
+  @media ${p => p.theme.media.small} {
+    &:nth-child(1) {
+      margin-left: 5px;
+    }
+    &:nth-child(2) {
+      margin-left: 20px;
+    }
+    &:nth-child(3) {
+      margin-right: 5px;
     }
   }
 `;
