@@ -1,5 +1,6 @@
 "use client"
-import { apiWallet } from "@/src/apiWallet/apiWallet";
+
+import { getAllTransactions } from "@/src/apiWallet/transaction";
 import { useUser } from "@/src/hooks/useUser";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -13,7 +14,7 @@ export default function PageStatistic() {
 
     const { data, isError, error, isFetching } = useQuery({
     queryKey: ["Transactions", 1],
-    queryFn: () => apiWallet.getAllTransactions(token, 1), 
+    queryFn: () => getAllTransactions(token, 1), 
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     retry: 0,
