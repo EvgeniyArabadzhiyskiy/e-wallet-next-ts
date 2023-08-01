@@ -1,7 +1,7 @@
 import { ITransaction } from "@/src/types/transactions";
 import { StyledList } from "./HomeTabelMobile.styled";
 import HomeTableItem from "../HomeTableItem/HomeTableItem";
-import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
+import { useLazyTransactions } from "@/src/apiWallet";
 import { useBalanceList } from "@/src/hooks/useBalanceList";
 
 interface IProps {
