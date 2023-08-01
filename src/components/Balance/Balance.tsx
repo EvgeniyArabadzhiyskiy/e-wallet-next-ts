@@ -2,7 +2,7 @@
 
 import { useQueryClient } from "@tanstack/react-query";
 import { Wrapper, CurrencySign, Text, Title } from "./Balance.styled";
-import { useUserBalance } from "@/src/hooks/useUserBalance";
+import { useUserBalance } from "@/src/apiWallet";
 
 export default function Balance() {
   const { data = 0 } = useUserBalance();
