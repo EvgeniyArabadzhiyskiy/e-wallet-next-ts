@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useBalanceList } from "@/src/hooks/useBalanceList";
-import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
+import { useLazyTransactions } from "@/src/apiWallet";
 
 import TransactionItem from "./TransactionItem/TransactionItem";
 import ButtonAddTransactions from "../Buttons/ButtonAddTransactions/ButtonAddTransactions";
@@ -10,22 +10,12 @@ import { Category, Table, TableBody, TableHeader } from "./TransactionTable.styl
 import ModalBox from "../ModalWindow/ModalBox";
 import FlipCard from "../FlipCard/FlipCard";
 
-// interface IProps {
-//   balances: number[];
-//   transactions: ITransaction[];
-//   listElem: React.RefObject<HTMLUListElement>;
-//   observerElem: React.RefObject<HTMLDivElement>;
-// }
-
 function TransactionTable() {
   const { data: allTransactions = [], listElem, observerElem  } = useLazyTransactions();
   const balanceList = useBalanceList(allTransactions);
-  const [deleteId, setDeleteId] = useState<string[]>([]);  // под вопросом 
 
   const [editId, setEditId] = useState<string>("");
-  // console.log("TransactionTable  editId:", editId);
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD")
-  // console.log("TransactionTable  modalKey:", modalKey);
 
   return (
     <>
@@ -47,9 +37,6 @@ function TransactionTable() {
 
               return (
                 <TransactionItem
-                  deleteId={deleteId}
-                  setDeleteId={setDeleteId}
-
                   setEditId={setEditId}
                   key={transaction._id}
                   balance={balance}
