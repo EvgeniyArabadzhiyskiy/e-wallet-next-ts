@@ -4,12 +4,12 @@ import Container from "../Container/Container";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import stl from "./DashBoardLayout.module.scss";
-import { getBalance } from "@/src/helpers/getBalance";
+import { getBalance } from "@/src/apiWallet/balance/getBalance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
-import { apiWallet } from "@/src/apiWallet/apiWallet";
 import { Hydrate, dehydrate } from "@tanstack/react-query";
 import Currency from "../Currency/Currency";
+import { getAllTransactions } from "@/src/apiWallet/transaction";
 
 export default async function DashBoardLayout({
   children,
@@ -27,7 +27,7 @@ export default async function DashBoardLayout({
     await queryClient.prefetchInfiniteQuery({
       queryKey: ["TransactionsList"],
       queryFn: ({ pageParam = 1 }) =>
-        apiWallet.getAllTransactions(authToken, pageParam),
+        getAllTransactions(authToken, pageParam),
     });
   }
 
