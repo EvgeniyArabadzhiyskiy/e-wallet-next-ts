@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { balanceAfterTransaction } from "../helpers/balanceAfterTransaction";
-import { useUserBalance } from "./useUserBalance";
+import { useUserBalance } from "../apiWallet";
 import { ITransaction } from "../types/transactions";
 
 export const useBalanceList = (transactions: ITransaction[]) => {
