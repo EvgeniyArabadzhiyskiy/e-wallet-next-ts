@@ -19,6 +19,7 @@ import { Suspense, useContext } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { Inter, Fira_Code } from "next/font/google";
 import Navigation from "@/src/components/Navigation/Navigation";
+import Currency from "@/src/components/Currency/Currency";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function AboutPage() {
         <Navigation />
 
         <AuthCookie />
+        <Currency />
 
         {/* </TestCookies> */}
         {/* <AboutComp session={session} /> */}
