@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Title } from "../Title/Title.styled";
-import { useLazyTransactions } from "@/src/hooks/useLazyTransactions";
+import { useLazyTransactions } from "@/src/apiWallet";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 import { useBalanceList } from "@/src/hooks/useBalanceList";
 import HomeTableDesctop from "../HomeTab/HomeTableDesctop/HomeTableDesctop";
