@@ -3,12 +3,11 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 import { Hydrate, dehydrate, useQuery } from "@tanstack/react-query";
-import { apiWallet } from "@/src/apiWallet/apiWallet";
 import getQueryClient from "@/src/lib/getQueryClient";
 import TransactionList from "@/src/components/TransactionList/TransactionList";
 import ModalBox from "@/src/components/ModalWindow/ModalBox";
 import FlipCard from "@/src/components/FlipCard/FlipCard";
-import { getBalance } from "@/src/helpers/getBalance";
+import { getBalance } from "@/src/apiWallet/balance/getBalance";
 import TransactionTable from "@/src/components/TransactionTable/TransactionTable";
 
 
