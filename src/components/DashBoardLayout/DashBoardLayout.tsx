@@ -19,25 +19,25 @@ export default async function DashBoardLayout({
   const session = await getServerSession(authOptions);
   const authToken = session?.user.token;
 
-  const queryClient = getQueryClient();
+  // const queryClient = getQueryClient();
 
-  if (authToken) {
-    await queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
+  // if (authToken) {
+  //   await queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
 
-    await queryClient.prefetchInfiniteQuery({
-      queryKey: ["TransactionsList"],
-      queryFn: ({ pageParam = 1 }) =>
-        getAllTransactions(authToken, pageParam),
-    });
-  }
+  //   await queryClient.prefetchInfiniteQuery({
+  //     queryKey: ["TransactionsList"],
+  //     queryFn: ({ pageParam = 1 }) =>
+  //       getAllTransactions(authToken, pageParam),
+  //   });
+  // }
 
-  const dehydratedState = dehydrate(queryClient);
+  // const dehydratedState = dehydrate(queryClient);
 
   // const balance = queryClient.getQueriesData<any>(["Balance"]);
   // console.log("TransactionList  Balance:+++++++++++++++++++++++++++++++++++", balance);
 
   return (
-    <Hydrate state={dehydratedState}>
+    // <Hydrate state={dehydratedState}>
       <div className={stl.section}>
         <Container>
           <div className={stl.wrapper}>
@@ -53,6 +53,6 @@ export default async function DashBoardLayout({
           </div>
         </Container>
       </div>
-    </Hydrate>
+    // </Hydrate>
   );
 }
