@@ -91,3 +91,20 @@ function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
 }
 
 export default TransactionForm
+
+
+{/* <Formik
+onSubmit={onFormSubmit}
+initialValues={initialValues}
+validationSchema={transactionShema}
+>
+{(formik) => {
+  return (
+    <TransactionFormFields
+      formik={formik}
+      isIncome={isIncome}
+      setIsIncome={setIsIncome}
+    />
+  );
+}}
+</Formik> */}
