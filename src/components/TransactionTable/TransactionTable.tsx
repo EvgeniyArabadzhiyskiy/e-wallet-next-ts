@@ -30,7 +30,7 @@ function TransactionTable() {
           <Category>Balance</Category>
         </TableHeader>
 
-        {/* {allTransactions.length > 0 && (
+        {allTransactions.length > 0 && (
           <TableBody ref={listElem}>
             {allTransactions.map((transaction, idx) => {
               const balance = balanceList[idx];
@@ -48,12 +48,12 @@ function TransactionTable() {
 
             <div ref={observerElem} style={{ height: 5 }}></div>
           </TableBody>
-        )} */}
+        )}
       </Table>
 
-      {/* <ButtonAddTransactions setModalKey={setModalKey} />
+      <ButtonAddTransactions setModalKey={setModalKey} />
 
-      <ModalBox modalName="transaction">
+      {/* <ModalBox modalName="transaction">
         <FlipCard modalKey={modalKey} editId={editId} />
       </ModalBox> */}
     </>
