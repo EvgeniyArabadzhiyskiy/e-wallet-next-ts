@@ -10,27 +10,27 @@ import { useEffect, useState } from "react";
 export default function PageStatistic() {
   const [pageNum, setPageNum] = useState(1);
 
-  const { token } = useUser();
+  // const { token } = useUser();
 
-    const { data, isError, error, isFetching } = useQuery({
-    queryKey: ["Transactions", 1],
-    queryFn: () => getAllTransactions(token, 1), 
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    retry: 0,
-    enabled: !!token, 
-  });
-    console.log("PageStatistic  data:", data);
+  //   const { data, isError, error, isFetching } = useQuery({
+  //   queryKey: ["Transactions", 1],
+  //   queryFn: () => getAllTransactions(token, 1), 
+  //   staleTime: Infinity,
+  //   refetchOnWindowFocus: false,
+  //   retry: 0,
+  //   enabled: !!token, 
+  // });
+  //   console.log("PageStatistic  data:", data);
 
 
-  useEffect(() => {
-    console.log("useEffect");
+  // useEffect(() => {
+  //   console.log("useEffect");
     
 
-    return () => {
-      console.log("Unmount");
-    };
-  },);
+  //   return () => {
+  //     console.log("Unmount");
+  //   };
+  // },);
 
   console.log("Rerender");
   return (
