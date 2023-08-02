@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import StyledComponentsRegistry from "../lib/registry";
 import "../styles/globals.css";
+import "../styles/rdt-styles.css" // Styles React Date Time  
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
