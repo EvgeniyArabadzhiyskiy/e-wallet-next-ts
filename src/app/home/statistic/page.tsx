@@ -54,7 +54,7 @@ export default function PageStatistic() {
   console.log("Rerender");
   return (
     <>
-      <TransactionTable />
+      {/* <TransactionTable /> */}
       {/* <Link href="/">HOME</Link>
       <h1>Page Statistic </h1>
       <div style={{height:250, backgroundColor: "green"}} ></div> */}
