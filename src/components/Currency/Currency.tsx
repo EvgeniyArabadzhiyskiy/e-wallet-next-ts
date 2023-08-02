@@ -81,6 +81,9 @@ const Currency = () => {
     })();
   }, []);
 
+  console.log("Rerender");
+  
+
   // useEffect(() => {
   //   const getCurrency = async () => {
   //     setLoading(true);
