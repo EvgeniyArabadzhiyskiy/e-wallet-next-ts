@@ -21,15 +21,15 @@ export default async function DashBoardLayout({
 
   const queryClient = getQueryClient();
 
-  // if (authToken) {
-  //   await queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
+  if (authToken) {
+    await queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
 
-  //   await queryClient.prefetchInfiniteQuery({
-  //     queryKey: ["TransactionsList"],
-  //     queryFn: ({ pageParam = 1 }) =>
-  //       getAllTransactions(authToken, pageParam),
-  //   });
-  // }
+    await queryClient.prefetchInfiniteQuery({
+      queryKey: ["TransactionsList"],
+      queryFn: ({ pageParam = 1 }) =>
+        getAllTransactions(authToken, pageParam),
+    });
+  }
 
   const dehydratedState = dehydrate(queryClient);
 
