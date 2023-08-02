@@ -1,4 +1,4 @@
-import "../../styles/rdt-styles.css";
+// import "../../styles/rdt-styles.css";  // обязательно в RootLayout иначе проблема при навигации страница не сразу грузится
 import moment from "moment";
 import Datetime from "react-datetime";
 // import ReactSelect, { GroupBase, OptionProps } from "react-select";
