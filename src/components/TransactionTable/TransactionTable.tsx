@@ -53,9 +53,10 @@ function TransactionTable() {
 
       <ButtonAddTransactions setModalKey={setModalKey} />
 
-      {/* <ModalBox modalName="transaction">
-        <FlipCard modalKey={modalKey} editId={editId} />
-      </ModalBox> */}
+      <ModalBox modalName="transaction">
+        {/* <FlipCard modalKey={modalKey} editId={editId} /> */}
+        <div style={{height:500, width: 600, background: "white"}}></div>
+      </ModalBox>
     </>
   );
 }
