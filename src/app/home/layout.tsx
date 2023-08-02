@@ -5,6 +5,7 @@ import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
 import ModalBox from "@/src/components/ModalWindow/ModalBox";
 import SideBar from "@/src/components/SideBar/SideBar";
 import Navigation from "@/src/components/Navigation/Navigation";
+import FlipCard from "@/src/components/FlipCard/FlipCard";
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -22,8 +23,8 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
         {children}
       </DashBoardLayout>
 
-      {/* <ModalBox modalName="logout">
-        <ModalLogOut />
+     {/* <ModalBox modalName="transaction">
+      <FlipCard modalKey="ADD" editId={''} />
       </ModalBox> */}
     </>
   );
