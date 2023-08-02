@@ -19,7 +19,7 @@ export default function Navigation() {
           </NavLink>
         </ItemLink>
         <ItemLink>
-          <NavLink href="/home/transactions" $isActive={path === "/home/transactions"}>
+          <NavLink href="/transactions" $isActive={path === "/transactions"}>
             <TransactionSvg width={18} height={18} />
             <LinkText>Transactions</LinkText>
           </NavLink>
