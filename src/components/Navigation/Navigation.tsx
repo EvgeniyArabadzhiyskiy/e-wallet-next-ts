@@ -19,18 +19,17 @@ export default function Navigation() {
           </NavLink>
         </ItemLink>
         <ItemLink>
-          <NavLink href="/home/statistic" $isActive={path === "/home/statistic"}>
-            <StatisticSvg width={18} height={18} />
-            <LinkText>Statistic</LinkText>
-          </NavLink>
-        </ItemLink>
-        <ItemLink>
           <NavLink href="/home/transactions" $isActive={path === "/home/transactions"}>
             <TransactionSvg width={18} height={18} />
             <LinkText>Transactions</LinkText>
           </NavLink>
         </ItemLink>
-       
+        <ItemLink>
+          <NavLink href="/home/statistic" $isActive={path === "/home/statistic"}>
+            <StatisticSvg width={18} height={18} />
+            <LinkText>Statistic</LinkText>
+          </NavLink>
+        </ItemLink>
       </List>
     </>
   );
