@@ -1,5 +1,6 @@
 "use client"
 
+import { useLazyTransactions } from "@/src/apiWallet";
 import { getAllTransactions } from "@/src/apiWallet/transaction";
 import TransactionTable from "@/src/components/TransactionTable/TransactionTable";
 import { BASE_URL, TRANSACTIONS } from "@/src/constants/apiPath";
@@ -11,23 +12,24 @@ import { useEffect, useState } from "react";
 
 export default function PageStatistic() {
   // const [pageNum, setPageNum] = useState(1);
+  // const { data: allTransactions = [], listElem, observerElem  } = useLazyTransactions();
 
-  useEffect(() => {
-  const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY5MDM1ODM2NiwiZXhwIjoxNjkxNTY3OTY2fQ.cedmiiWsmHW_6KwfwPPN8fpdoVTnGtEqC5Fq7SB_Cvo'
-    const options: RequestInit = {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${authToken}`
-      },
-      // cache: "no-store",
-    };
+  // useEffect(() => {
+  // const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY5MDM1ODM2NiwiZXhwIjoxNjkxNTY3OTY2fQ.cedmiiWsmHW_6KwfwPPN8fpdoVTnGtEqC5Fq7SB_Cvo'
+  //   const options: RequestInit = {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Bearer ${authToken}`
+  //     },
+  //     // cache: "no-store",
+  //   };
 
-      fetch(`${BASE_URL}${TRANSACTIONS}?page=1&limit=10`, options).then(data => data.json()).then(data => {
+  //     fetch(`${BASE_URL}${TRANSACTIONS}?page=1&limit=10`, options).then(data => data.json()).then(data => {
 
-      // console.log("fetch  data:", data);
-      // setTransactions(data.transactions)
-    })
-  },[])
+  //     // console.log("fetch  data:", data);
+  //     // setTransactions(data.transactions)
+  //   })
+  // },[])
 
   // const { token } = useUser();
 
@@ -52,7 +54,7 @@ export default function PageStatistic() {
   console.log("Rerender");
   return (
     <>
-      {/* <TransactionTable /> */}
+      <TransactionTable />
       {/* <Link href="/">HOME</Link>
       <h1>Page Statistic </h1>
       <div style={{height:250, backgroundColor: "green"}} ></div> */}
