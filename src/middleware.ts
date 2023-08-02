@@ -37,3 +37,10 @@ export default withAuth(
 );
 
 export const config = { matcher: ["/", "/about", "/home/transactions", "/home/statistic", "/login", "/register"] };
+
+
+// import { NextRequest, NextResponse } from "next/server";
+
+// export async function middleware(req: NextRequest) {
+ 
+// }

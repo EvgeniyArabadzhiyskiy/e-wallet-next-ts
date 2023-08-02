@@ -1,4 +1,4 @@
-// "use client"
+"use client"
 
 import { getAllTransactions } from "@/src/apiWallet/transaction";
 import TransactionTable from "@/src/components/TransactionTable/TransactionTable";
@@ -7,27 +7,27 @@ import { useUser } from "@/src/hooks/useUser";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function PageStatistic() {
   // const [pageNum, setPageNum] = useState(1);
 
-  // useEffect(() => {
-  // const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY5MDM1ODM2NiwiZXhwIjoxNjkxNTY3OTY2fQ.cedmiiWsmHW_6KwfwPPN8fpdoVTnGtEqC5Fq7SB_Cvo'
-  //   const options: RequestInit = {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Bearer ${authToken}`
-  //     },
-  //     // cache: "no-store",
-  //   };
+  useEffect(() => {
+  const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY5MDM1ODM2NiwiZXhwIjoxNjkxNTY3OTY2fQ.cedmiiWsmHW_6KwfwPPN8fpdoVTnGtEqC5Fq7SB_Cvo'
+    const options: RequestInit = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      },
+      // cache: "no-store",
+    };
 
-  //     fetch(`${BASE_URL}${TRANSACTIONS}?page=1&limit=10`, options).then(data => data.json()).then(data => {
+      fetch(`${BASE_URL}${TRANSACTIONS}?page=1&limit=10`, options).then(data => data.json()).then(data => {
 
-  //     // console.log("fetch  data:", data);
-  //     // setTransactions(data.transactions)
-  //   })
-  // },[])
+      // console.log("fetch  data:", data);
+      // setTransactions(data.transactions)
+    })
+  },[])
 
   // const { token } = useUser();
 
