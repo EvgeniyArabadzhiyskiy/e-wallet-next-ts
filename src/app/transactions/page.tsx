@@ -24,7 +24,7 @@ export default function PageTransactions() {
     <>
       {/* <Hydrate state={dehydratedState}> */}
      
-      <TransactionTable />
+      {/* <TransactionTable /> */}
 
       {/* <ModalBox modalName="transaction">
         <FlipCard />
