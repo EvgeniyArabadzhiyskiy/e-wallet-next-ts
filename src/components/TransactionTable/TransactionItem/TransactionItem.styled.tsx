@@ -12,7 +12,6 @@ export const CommonStyle = css`
   align-items: center;
 `;
 
-
 export const StyledItem = styled.li<{ $borders: string }>`
   position: relative;
   overflow: hidden;
@@ -38,10 +37,6 @@ export const StyledItem = styled.li<{ $borders: string }>`
   }
 `;
 
-
-
-
-
 export const SumColorText = styled.p<{ $typeColor: string }>`
   color: ${(p) => (p.$typeColor === "+" ? "#24CCA7" : "#FF6596")};
 
@@ -56,11 +51,20 @@ export const SumColorText = styled.p<{ $typeColor: string }>`
   }
 `;
 
-
 export const CategoryName = styled.span`
   font-weight: 700;
 
   @media (min-width: 768px) {
     display: none;
+  }
+`;
+
+export const SettingsBtn = styled.button`
+  display: flex;
+  background-color: transparent;
+  transition: color 300ms linear;
+  
+  &:hover {
+    color: ${p => p.theme.colors.primaryBgBtn}
   }
 `;
