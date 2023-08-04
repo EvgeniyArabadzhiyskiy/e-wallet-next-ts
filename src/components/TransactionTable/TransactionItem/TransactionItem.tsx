@@ -2,6 +2,7 @@ import moment from "moment";
 import { Category } from "../TransactionTable.styled";
 import {
   CategoryName,
+  SettingsBtn,
   StyledItem,
   SumColorText,
 } from "./TransactionItem.styled";
@@ -15,6 +16,10 @@ import { useUser } from "@/src/hooks/useUser";
 import TransactionMenu from "../../TransactionMenu/TransactionMenu";
 import { useGlobalState } from "../../GlobalProvider/GlobalProvider";
 import { useRemoveTransaction } from "@/src/apiWallet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSliders } from "@fortawesome/free-solid-svg-icons";
+import SettingsSvg from "../../SvgComponent/SettingsSvg";
+// import { faGearComplexCode } from "@fortawesome/free-solid-svg-icons";
 
 interface IProps {
   balance: number;
@@ -64,23 +69,26 @@ function TransactionItem({
     <>
       <StyledItem $borders={typeOperation} key={transaction._id}>
         <Category>
-          <CategoryName>O</CategoryName>
-          <button type="button" onClick={() => setIsOpenMenu((prev) => !prev)}>
-            O
-          </button>
+          <SettingsBtn type="button" onClick={() => setIsOpenMenu((prev) => !prev)}>
+            <SettingsSvg width={14} height={14} />
+          </SettingsBtn>
         </Category>
+
         <Category>
           <CategoryName>Date</CategoryName>
           {operationDate}
         </Category>
+
         <Category>
           <CategoryName>Type</CategoryName>
           {getSymbolType(typeOperation)}
         </Category>
+
         <Category>
           <CategoryName>Category</CategoryName>
           {category}
         </Category>
+
         <Category>
           <CategoryName>Comment</CategoryName>
           {comment}
@@ -111,3 +119,5 @@ function TransactionItem({
 }
 
 export default TransactionItem;
+
+
