@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { CloseBtn, DeleteBtn, Menu } from "./TransactionMenu.styled";
+import CrossSvg from "../SvgComponent/CrossSvg";
 
 interface IProps {
   isDelete: boolean;
@@ -14,7 +15,7 @@ const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete
   return (
     <Menu $isOpenMenu={isOpenMenu} $isDelete={isDelete}>
       <CloseBtn onClick={() => setIsOpenMenu(p => !p)} aria-label="close">
-        X
+        <CrossSvg width={14} height={14} />
       </CloseBtn>
       <DeleteBtn onClick={onEdit}>EDIT</DeleteBtn>
       {isDelete && <DeleteBtn onClick={onDelete}>DELETE</DeleteBtn>}
