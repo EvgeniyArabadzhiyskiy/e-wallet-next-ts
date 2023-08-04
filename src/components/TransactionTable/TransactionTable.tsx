@@ -9,6 +9,7 @@ import ButtonAddTransactions from "../Buttons/ButtonAddTransactions/ButtonAddTra
 import { Category, Table, TableBody, TableHeader } from "./TransactionTable.styled";
 import ModalBox from "../ModalWindow/ModalBox";
 import FlipCard from "../FlipCard/FlipCard";
+import SettingsSvg from "../SvgComponent/SettingsSvg";
 
 function TransactionTable() {
   const { data: allTransactions = [], listElem, observerElem  } = useLazyTransactions();
@@ -21,7 +22,9 @@ function TransactionTable() {
     <>
       <Table>
         <TableHeader>
-          <Category>I</Category>
+          <Category>
+            <SettingsSvg width={14} height={14} />
+          </Category>
           <Category>Date</Category>
           <Category>Type</Category>
           <Category>Category</Category>
