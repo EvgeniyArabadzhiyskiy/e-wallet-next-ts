@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import CurrencySvg from "../SvgComponent/CurencySvg";
+import CurrencySvg from "../SvgComponent/PrimeCurencySvg";
 
 export const CurrencyBox = styled.div`
   position: relative;
