@@ -3,12 +3,12 @@ import { StyledEnterBtn } from "./EnterButton.styled";
 
 interface IProps {
   type?: "button" | "submit" | "reset" | undefined;
-  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   enterText: string;
   disabled?: boolean | undefined;
 }
 
-const EnterButton: React.FC<IProps> = ({ type = "submit", onClick, enterText, disabled, ...allProps}) => {
+function EnterButton ({ type = "submit", onClick, enterText, disabled, ...allProps}: IProps)  {
   return (
     <StyledEnterBtn type={type} onClick={onClick} disabled={disabled} {...allProps}>
       {enterText}
