@@ -6,10 +6,6 @@
   @media screen and (min-width: 768px) {
     justify-content: flex-end;
   }
-
-  & h1:hover {
-    color: rgb(21, 18, 209);
-  }
 }
 
 .section {
@@ -36,24 +32,52 @@
   //   background-repeat: no-repeat;
   //   background-size: cover;
   // } */
+
+  
+  
 }
 
 .background {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(135, 218, 218);
+  background-color: #131a26;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   z-index: -1;
-  // overflow-x: hidden;
+
+  &::after {
+    content: '';
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-color: #1e2430;
+    position: absolute;
+    top: 100px;
+    left: 200px;
+
+    z-index: -1;
+  }
+
+  // &::after {
+  //   content: '';
+  //   width: 500px;
+  //   height: 500px;
+  //   border-radius: 50%;
+  //   background-color: #212937;
+  //   position: absolute;
+   
+  //   z-index: -1;
+  // }
+
 }
 
 .background__title {
   font-size: 15vw;
   font-weight: 700;
   transform: rotate(-10deg);
+  color: var(--secondary-dark-text-lgt);
 }
