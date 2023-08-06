@@ -8,6 +8,7 @@ import LogoutBtn from "../Buttons/LogoutBtn/LogoutBtn";
 import { Border, Modal, Title } from "./ModalLogout.styled";
 import EnterButton from "../Buttons/EnterButton/EnterButton";
 import CancelButton from "../Buttons/CancelButton/CancelButton";
+import { destroyCookie } from "nookies";
 
 const ModalLogout = () => {
   const { setModalToggle } = useGlobalState();
@@ -17,7 +18,8 @@ const ModalLogout = () => {
   };
 
   const logOut =  () => {
-    signOut()
+    signOut();
+    // destroyCookie(null, "authToken", { path: "/" });
   };
 
   return (
