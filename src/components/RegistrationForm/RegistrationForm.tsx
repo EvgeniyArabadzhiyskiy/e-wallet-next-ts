@@ -19,6 +19,7 @@ import axios from "axios";
 import { setCookie } from "nookies";
 import { useRouter } from "next/navigation";
 import { registerSchema } from "@/src/helpers/formValidation";
+import { useRegisterUser } from "@/src/apiWallet";
 
 const register = async (credentials: ICredentials) => {
   // const options = {
@@ -42,22 +43,24 @@ const register = async (credentials: ICredentials) => {
 };
 
 export default function RegistrationForm() {
-  const router = useRouter();
+  // const router = useRouter();
   const isScale = useScaleForm();
 
-  const { mutate: registerUser, isLoading } = useMutation({
-    mutationFn: register,
-    onSuccess: (data) => {
-      const { token, ...rest } = data;
+  // const { mutate: registerUser, isLoading } = useMutation({
+  //   mutationFn: register,
+  //   onSuccess: (data) => {
+  //     const { token, ...rest } = data;
 
-      setCookie(null, "authToken", `${token}`, {
-        maxAge: 30 * 24 * 60 * 60,
-        path: "/",
-      });
+  //     setCookie(null, "authToken", `${token}`, {
+  //       maxAge: 30 * 24 * 60 * 60,
+  //       path: "/",
+  //     });
 
-      router.push("/home");
-    },
-  });
+  //     router.push("/home");
+  //   },
+  // });
+
+  const {mutate: registerUser, isLoading } = useRegisterUser()
 
   const initialValues: IRegisterValues = {
     email: "",
