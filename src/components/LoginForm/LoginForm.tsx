@@ -65,7 +65,7 @@ export default function LoginForm () {
         email: values.email,
         password: values.password,
         redirect: true,
-        callbackUrl: '/home'
+        callbackUrl: '/home/transactions'
       });
 
       resetForm({ values: { email: '', password: '' } });
