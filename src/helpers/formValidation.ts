@@ -64,7 +64,7 @@ export const transactionShema: ValidationSchema = yup.object().shape({
 
   comment: yup
     .string()
-    .min(2, "Must be longer than 2 letters")
+    .min(1, "Must be longer than 2 letters")
     .max(20, "Must be shorter than 20 letters")
     .required("This field is required"),
   date: yup.string().required(),
