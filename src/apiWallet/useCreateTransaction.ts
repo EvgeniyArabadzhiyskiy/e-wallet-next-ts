@@ -28,6 +28,7 @@ export const useCreateTransaction = (setError: Dispatch<SetStateAction<Error | n
       const createTransaction: ITransaction = props;
 
       let newData = createTransaction;
+      // console.log("useCreateTransaction  newData:", newData);
 
       queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
           if (!prev) {
@@ -36,13 +37,17 @@ export const useCreateTransaction = (setError: Dispatch<SetStateAction<Error | n
 
           const updatedPages = prev.pages.map((page) => {
             const newCache = [newData, ...page.transactions].sort(
-              (a, b) => Date.parse(b.date) - Date.parse(a.date)
-            );
+              (a, b) => Date.parse(b.date) - Date.parse(a.date));
+              
+              // console.log("updatedPages  newCache:", newCache);
 
-            const lastTransaction = newCache.pop();
-
-            if (lastTransaction) {
-              newData = lastTransaction;
+            if (newCache.length > 10) {
+              const lastTransaction = newCache.pop();
+              // console.log("POP Last Index");
+              
+              if (lastTransaction) {
+                newData = lastTransaction;
+              }
             }
 
             return {
