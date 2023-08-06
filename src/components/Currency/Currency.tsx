@@ -81,7 +81,7 @@ const Currency = () => {
     })();
   }, []);
 
-  console.log("Rerender");
+  // console.log("Rerender");
   
 
   // useEffect(() => {
