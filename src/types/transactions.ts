@@ -25,9 +25,7 @@ export interface RemoveTransaction extends ITransaction {
   updatedAt: string;
 }
 
-export interface ChangedTransaction extends RemoveTransaction {
-  
-}
+export interface ChangedTransaction extends RemoveTransaction {}
 
 export interface IBalance {
   userBalance: number;
