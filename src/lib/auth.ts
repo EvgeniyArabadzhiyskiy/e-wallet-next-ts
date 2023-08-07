@@ -1,5 +1,8 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { login } from "../apiWallet/user";
+import { IAuthCredentials } from "../types/user";
+// import { User } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
   // secret: process.env.NEXTAUTH_SECRET,
@@ -13,29 +16,52 @@ export const authOptions: NextAuthOptions = {
       },
 
       async authorize(credentials, req) {
-        const { email, password } = credentials as any;
+        
 
-        const res = await fetch(
-          "https://wallet-backend-xmk0.onrender.com/api/users/login",
-          {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        const user = await res.json();
+        // console.log("authorize  credentials:==============================", credentials);
+        // const { email, password,   } = credentials as any;
 
-        if (!res.ok || !user.user.email) {
-          return null;
+        // const res = await fetch(
+        //   "https://wallet-backend-xmk0.onrender.com/api/users/login",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json" 
+        //     },
+        //     body: JSON.stringify({ email, password }),
+        //   }
+        // );
+        // if (!res.ok) {
+        //   throw new Error(`Request failed with status ${res.status}`);
+        // }
+        // const user = await res.json();
+        // console.log("User:===============================================", user);
+
+        // if (!res.ok || !user.user.email) {
+        //   return null;
+        // }
+
+        // return user;
+
+
+        const userData: IAuthCredentials = {
+          email: credentials?.email,
+          password: credentials?.password,
         }
 
-        return user;
+        const user = await login(userData);
+        // console.log("authorize  user:>>>>>>>>>>>>>>>>>>>>>", user);
+
+        if (!user.user.email) {
+          return null
+        }
+
+        return { ...user, id: user.token }
       },
     }),
   ],
 
   callbacks: {
-
     // async signIn({user}) {
     //   console.log("===================================user:", user);
     //   console.log("SIGN in");
@@ -91,6 +117,7 @@ export const authOptions: NextAuthOptions = {
 
   pages: {
     signIn: "/login",
+    error: "/login",
     // newUser: 'register'
     
   },
