@@ -17,63 +17,42 @@ export const useRemoveTransaction = () => {
 
     onSuccess: async (data) => {
       const infiniteData = queryClient.getQueryData<InfiniteData<ITransactions>>(["TransactionsList"]);
-      console.log("onSuccess:  infiniteData:", infiniteData);
 
       if (!infiniteData) {
         return;
       }
 
       const lastPageNumber = infiniteData.pages.length;
-      // console.log("onSuccess:  lastPageNumber:", lastPageNumber);
+      const { transactions } = await getAllTransactions(token, lastPageNumber);
+      const lastTransaction = transactions.pop();
 
-      const { transactions, userBalance } = await getAllTransactions(
-        token,
-        lastPageNumber
-        );
-        
-      
-      const lastTransaction = transactions.pop()
-      // console.log("onSuccess:  lastTransaction:", lastTransaction);
+      const { transactions: allTransaction, userBalance } = infiniteData.pages.reduce((acc, page) => {
+        return {
+          transactions: [...acc.transactions, ...page.transactions],
+          userBalance: page.userBalance,
+        }
+      },{ transactions: [], userBalance: 0 });
 
 
-      let balance = 0
-      let allTransactions: ITransaction[][] = []
 
-      infiniteData.pages.forEach((page) => {
-        // console.log("infiniteData.pages.forEach  page:", page);
-        balance = page.userBalance;
-        allTransactions.push(page.transactions);
-      })
+      const filtredTransaction = allTransaction.filter((item) => item._id !== data._id)
 
-      
+      const isLastPage = (allTransaction.length / lastPageNumber) !== 10
 
-      const ddd = allTransactions.flat().filter((item) => item._id !== data._id)
-
-      const isLong = ((ddd.length + 1) / lastPageNumber) === 10
-
-      if (isLong) {
-        lastTransaction && ddd.push(lastTransaction)
-        
+      if (!isLastPage) {
+        lastTransaction && filtredTransaction.push(lastTransaction);
       }
       
+      const transactionArrays = [];
 
-      function splitArray(arr: any, columns: number) {
-        const result = [];
-        for (let i = 0; i < arr.length; i += columns) {
-          result.push(arr.slice(i, i + columns));
-        }
-        return result;
+      for (let i = 0; i < filtredTransaction.length; i += 10) {
+        transactionArrays.push(filtredTransaction.slice(i, i + 10));
       }
-
-      const arrayOfArrays = splitArray(ddd, 10)
-
-      const newPages = arrayOfArrays.map((item) => {
-        return{
-          transactions: item,
-          userBalance: balance,
-        }
-      })
-      //  console.log("newPages  newPages:", newPages);
+      
+      const newPages = transactionArrays.map((transactions) => ({
+        transactions,
+        userBalance,
+      }));
        
       
 
@@ -99,18 +78,12 @@ export const useRemoveTransaction = () => {
 
 
 
-      queryClient.setQueryData<InfiniteData<ITransactions>>(
-        ["TransactionsList"],
-        (prev) => {
+      queryClient.setQueryData<InfiniteData<ITransactions>>( ["TransactionsList"], (prev) => {
           if (prev) {
-            // return {
-            //   ...prev,
-            //   pages: updatedPages,
-            // };
-
             return {
               ...prev,
               pages: newPages,
+              // pages: updatedPages,
             };
           }
         }
