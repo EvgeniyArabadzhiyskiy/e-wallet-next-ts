@@ -10,6 +10,7 @@ const AboutComp = ({session}: {session: any}) => {
   const user = useSession()
   const userName = user.data?.user.user.firstName
   // console.log("AboutComp  userName:", userName);
+  
 
   return (
     <div>
