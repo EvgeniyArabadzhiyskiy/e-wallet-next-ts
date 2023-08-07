@@ -17,8 +17,6 @@ export const useLazyTransactions = () => {
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length + 1;
 
-      // console.log("length !== 0:", lastPage.transactions.length );
-      // console.log("length < 10:", lastPage.transactions.length < 10);
       // console.log("length !== 0:", lastPage.transactions.length !== 0);
       return lastPage.transactions.length === 10 ? nextPage : undefined;
     },
