@@ -17,7 +17,7 @@ import Spinner from "../Spinner/Spinner";
 import { Title } from "../Title/Title.styled";
 import { IRegisterValues } from "@/src/types/registerValues";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { BASE_URL, USER_LOGIN } from "@/src/constants/apiPath";
 import { loginSchema } from "@/src/helpers/formValidation";
 
@@ -46,6 +46,10 @@ const login = async (credentials: ILoginValues) => {
 
 //==============================================================================
 export default function LoginForm () {
+  const searchParams = useSearchParams()
+  const error = searchParams.get('error')
+  console.log("LoginPage  error:", error);
+  
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -67,9 +71,10 @@ export default function LoginForm () {
         redirect: true,
         callbackUrl: '/home/transactions'
       });
-
+    
       resetForm({ values: { email: '', password: '' } });
     } catch (error) {
+      
     } finally {
       setIsLoading(false);
     }
@@ -81,12 +86,19 @@ export default function LoginForm () {
       <Title as='h2' mb={5} color='expense' fontSize={["ml"]}  >Login Page</Title>
       <Logo />
 
-      <FormContainer<ILoginValues>
-        onSubmit={handleSubmit}
-        initialValues={initialValues}
-        validationSchema={loginSchema}
-        render={(formik) => <LoginFormFields formik={formik} />}
-      />
+      {error 
+        ? <>
+            <h1 style={{color: "green", fontSize: '24px'}}>{error}</h1>
+            <Link style={{color: "green", fontSize: '24px'}} href="/login">Back</Link>
+          </> 
+
+        : <FormContainer<ILoginValues>
+            onSubmit={handleSubmit}
+            initialValues={initialValues}
+            validationSchema={loginSchema}
+            render={(formik) => <LoginFormFields formik={formik} />}
+          />
+      }
 
     </FormWrap>
   );
