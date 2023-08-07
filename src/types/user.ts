@@ -7,3 +7,8 @@ export interface User {
     balance: number;
   };
 }
+
+export interface IAuthCredentials {
+  email: string | undefined;
+  password: string | undefined;
+}
