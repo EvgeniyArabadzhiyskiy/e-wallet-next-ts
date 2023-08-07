@@ -20,27 +20,28 @@ import { setCookie } from "nookies";
 import { useRouter } from "next/navigation";
 import { registerSchema } from "@/src/helpers/formValidation";
 import { useRegisterUser } from "@/src/apiWallet";
+import { register } from "@/src/apiWallet/user";
 
-const register = async (credentials: ICredentials) => {
-  // const options = {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(credentials),
-  // };
-  // const result = await fetch(`${BASE_URL}${USER_REGISTER}`, options);
-  // const user = await result.json();
-  // return user;
+// const register = async (credentials: ICredentials) => {
+//   // const options = {
+//   //   method: "POST",
+//   //   headers: { "Content-Type": "application/json" },
+//   //   body: JSON.stringify(credentials),
+//   // };
+//   // const result = await fetch(`${BASE_URL}${USER_REGISTER}`, options);
+//   // const user = await result.json();
+//   // return user;
 
-  try {
-    const { data } = await axios.post(
-      `${BASE_URL}${USER_REGISTER}`,
-      credentials
-    );
-    return data;
-  } catch (error) {
-    throw error;
-  }
-};
+//   try {
+//     const { data } = await axios.post(
+//       `${BASE_URL}${USER_REGISTER}`,
+//       credentials
+//     );
+//     return data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export default function RegistrationForm() {
   // const router = useRouter();
@@ -60,7 +61,7 @@ export default function RegistrationForm() {
   //   },
   // });
 
-  const {mutate: registerUser, isLoading } = useRegisterUser()
+  const { mutate: registerUser, isLoading } = useRegisterUser()
 
   const initialValues: IRegisterValues = {
     email: "",
@@ -73,9 +74,20 @@ export default function RegistrationForm() {
     { email, password, name: firstName }: IRegisterValues,
     { resetForm }: FormikHelpers<IRegisterValues>
   ) => {
-    const userCredentials = { email, password, firstName };
+    const userCredentials: ICredentials = { email, password, firstName };
 
-    registerUser(userCredentials);
+    const resulrRegistration = await register(userCredentials)
+    console.log("RegistrationForm  resulrRegistration:", resulrRegistration.user.email);
+
+    const user = await signIn('credentials', {
+      email: email,
+      password: password,
+      redirect: true,
+      callbackUrl: '/home/transactions'
+    });
+
+    // registerUser(userCredentials);
+
     resetForm();
   };
 
