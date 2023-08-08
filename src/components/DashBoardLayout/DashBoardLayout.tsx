@@ -17,7 +17,7 @@ export default async function DashBoardLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  const authToken = session?.user.token;
+  const authToken = session?.user?.token;
 
   const queryClient = getQueryClient();
 
