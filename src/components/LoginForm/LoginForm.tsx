@@ -21,34 +21,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { BASE_URL, USER_LOGIN } from "@/src/constants/apiPath";
 import { loginSchema } from "@/src/helpers/formValidation";
 
-const login = async (credentials: ILoginValues) => {
-  // const BASE_URL = "https://wallet-backend-xmk0.onrender.com/api";
-  // const USER_LOGIN = "/users/login";
 
-  // const options = {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(credentials),
-  // };
-
-  // const resFetch = await fetch(`${BASE_URL}${USER_LOGIN}`, options);
-  // const user = await resFetch.json();
-  // console.log("login  user:", user);
-
-  try {
-    const { data } = await axios.post(`${BASE_URL}${USER_LOGIN}`, credentials);
-    return data;
-    
-  } catch (error) {
-    throw error;
-  }
-};
-
-//==============================================================================
 export default function LoginForm () {
   const searchParams = useSearchParams()
   const error = searchParams.get('error')
-  console.log("LoginPage  error:", error);
+  // console.log("LoginPage  error:", error);
   
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
