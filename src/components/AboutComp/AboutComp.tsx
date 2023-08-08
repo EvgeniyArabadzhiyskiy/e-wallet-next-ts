@@ -4,18 +4,18 @@ import { useSession } from "next-auth/react";
 // import Image from "next/image";
 import Link from "next/link";
 
-const AboutComp = ({session}: {session: any}) => {
+const AboutComp = ({session}: {session?: any}) => {
   // console.log("SERVER  session:", session?.user.user.firstName);
 
   const user = useSession()
-  const userName = user.data?.user.user.firstName
+  // const userName = user.data?.user?.firstName
   // console.log("AboutComp  userName:", userName);
   
 
   return (
     <div>
       <Link href="/">HOME</Link>
-      <h1>{userName}</h1>
+      {/* <h1>{userName}</h1> */}
       {/* <h1>SERVER USER: {session?.user.user.firstName}</h1> */}
 
       
