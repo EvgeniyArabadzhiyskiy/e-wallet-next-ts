@@ -1,7 +1,7 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { login } from "../apiWallet/user";
-import { IAuthCredentials } from "../types/user";
+import { CurrentUser, IAuthCredentials } from "../types/user";
 // import { User } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
@@ -16,84 +16,54 @@ export const authOptions: NextAuthOptions = {
       },
 
       async authorize(credentials, req) {
-        
-
-        // console.log("authorize  credentials:==============================", credentials);
-        // const { email, password,   } = credentials as any;
-
-        // const res = await fetch(
-        //   "https://wallet-backend-xmk0.onrender.com/api/users/login",
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       "Content-Type": "application/json" 
-        //     },
-        //     body: JSON.stringify({ email, password }),
-        //   }
-        // );
-        // if (!res.ok) {
-        //   throw new Error(`Request failed with status ${res.status}`);
-        // }
-        // const user = await res.json();
-        // console.log("User:===============================================", user);
-
-        // if (!res.ok || !user.user.email) {
-        //   return null;
-        // }
-
-        // return user;
-
-
         const userData: IAuthCredentials = {
           email: credentials?.email,
           password: credentials?.password,
-        }
+        };
 
         const user = await login(userData);
-        // console.log("authorize  user:>>>>>>>>>>>>>>>>>>>>>", user);
 
         if (!user.user.email) {
-          return null
+          return null;
         }
 
-        return { ...user, id: user.token }
+        return { ...user, id: user.token };
       },
     }),
   ],
 
   callbacks: {
-    // async signIn({user}) {
-    //   console.log("===================================user:", user);
-    //   console.log("SIGN in");
-      
-    //   return true
-    // },
-
     async jwt({ token, user, account }) {
       // console.log("user:", user);
       // console.log("token:", token);
       // console.log("user========================",user);
-      return { ...token, ...user };
+      // return { ...token, ...user };
 
-      // if (user) {
-      //   const u = user as unknown as any;
-      //   const result = {
-      //     ...token,
-      //     token: u.token,
-      //     user: u.user,
-      //   };
-      //   console.log("result***********фффффффффф", result);
-      //   return result
-      // }
-      //  else { return token; }
+      if (user) {
+        const result = {
+          ...token,
+          token: user.token,
+          user: user.user,
+        };
+        // console.log("result***********фффффффффф", result);
+        return result;
+      } else {
+        return token;
+      }
     },
     async session({ session, token }) {
+      // const currentUser = {
+      //   user: token.user,
+      //   token: token.token,
+      // } as CurrentUser;
 
-      const { iat, exp, jti, ...rest } = token as any;
+      // return { ...session, ...currentUser };
+      //=================================================
 
-      session.user = rest;
-      return session;
-      
+      // const { iat, exp, jti, ...rest } = token as any;
+
+      // session.user = rest;
+      // return session;
 
       // return {
       //   ...session,
@@ -104,12 +74,23 @@ export const authOptions: NextAuthOptions = {
       //     user: token.user,
       //   },
       // };
+
+      
+
+      const currentUser = {
+        user: token.user,
+        token: token.token,
+      } as CurrentUser;
+   
+      return {
+        ...session,
+        user: {
+          ...currentUser.user,
+          token: currentUser.token,
+        },
+      };
     },
-
- 
   },
-
-  
 
   session: {
     strategy: "jwt",
@@ -119,6 +100,5 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
     error: "/login",
     // newUser: 'register'
-    
   },
 };
