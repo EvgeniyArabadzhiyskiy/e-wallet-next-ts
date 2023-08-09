@@ -4,12 +4,14 @@ import { useSession } from "next-auth/react";
 // import Image from "next/image";
 import Link from "next/link";
 
+
+//====================== НЕ ИСПОЛЬЗУЮ ================================
 const AboutComp = ({session}: {session?: any}) => {
   // console.log("SERVER  session:", session?.user.user.firstName);
 
   const user = useSession()
   const userName = user.data?.user?.firstName
-  // console.log("AboutComp  userName:", userName);
+  console.log("AboutComp  userName:", userName);
   
 
   return (
