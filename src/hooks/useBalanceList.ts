@@ -7,7 +7,7 @@ export const useBalanceList = (transactions: ITransaction[]) => {
   const { data: totalBalance } = useUserBalance();
 
   const balances = useMemo(() => {
-    if (totalBalance) {
+    if (totalBalance !== undefined) {
       return balanceAfterTransaction(transactions, totalBalance);
     }
   }, [totalBalance, transactions]);
