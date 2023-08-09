@@ -26,12 +26,12 @@ export const useEditTransaction = (editId: string) => {
           }
 
           const updatedPages = prev.pages.map((page) => {
-            const newCache = page.transactions.map((page) => {
-              if (page._id === data._id) {
+            const newCache = page.transactions.map((transaction) => {
+              if (transaction._id === data._id) {
                 return data;
               }
 
-              return page;
+              return transaction;
             });
 
             return {
