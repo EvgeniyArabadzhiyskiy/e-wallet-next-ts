@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { Card, CardBack, CardFront, InnerCard } from "./FlipCard.styled";
@@ -9,22 +9,31 @@ interface IProps {
   editId: string;
 }
 
-export default function FlipCard ({ modalKey, editId }: IProps)  {
-    const [isIncome, setIsIncome] = useState<boolean>(false);
-  
-    return (
-      <Card>
-        <InnerCard $isFlipped={isIncome}>
-          <CardFront>
-            <TransactionForm setIsIncome={setIsIncome} isIncome={isIncome} modalKey={modalKey} editId={editId} />
-          </CardFront>
-  
-          <CardBack>
-            <TransactionForm setIsIncome={setIsIncome} isIncome={isIncome} modalKey={modalKey} editId={editId} />
-          </CardBack>
-        </InnerCard>
-      </Card>
-    );
-  };
-  
-   
+function FlipCard({ modalKey, editId }: IProps) {
+  const [isIncome, setIsIncome] = useState<boolean>(false);
+
+  return (
+    <Card>
+      <InnerCard $isFlipped={isIncome}>
+        <CardFront>
+          <TransactionForm
+            setIsIncome={setIsIncome}
+            isIncome={isIncome}
+            modalKey={modalKey}
+            editId={editId}
+          />
+        </CardFront>
+
+        <CardBack>
+          <TransactionForm
+            setIsIncome={setIsIncome}
+            isIncome={isIncome}
+            modalKey={modalKey}
+            editId={editId}
+          />
+        </CardBack>
+      </InnerCard>
+    </Card>
+  );
+}
+export default FlipCard;
