@@ -14,9 +14,16 @@ export const StyledInput = styled.input`
 `;
 
 export const IconWrapper = styled.div`
+  width: 80%;
+  margin: 0 auto;
+
   display: flex;
   border-bottom: 1px solid #bdbdbd;
   justify-content: space-between;
+
+  @media ${(p) => p.theme.media.medium} {
+    width: 100%;
+  }
 `;
 
 export const OpenButton = styled.button`
