@@ -1,7 +1,6 @@
 import getQueryClient from "@/src/lib/getQueryClient";
 import Balance from "../Balance/Balance";
 import Container from "../Container/Container";
-import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import stl from "./DashBoardLayout.module.scss";
 import { getBalance } from "@/src/apiWallet/balance/getBalance";
