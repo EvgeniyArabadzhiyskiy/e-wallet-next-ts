@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { ErrorMessage } from "formik";
 
 export const DateWrapper = styled.div`
+  
+
   @media ${(p) => p.theme.media.medium} {
     display: flex;
     align-items: flex-end;
