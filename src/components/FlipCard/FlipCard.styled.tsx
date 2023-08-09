@@ -3,7 +3,8 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-  width: 340px;
+  /* width: 340px; */
+  width: 90vw;
   height: 600px;
   perspective: 700px;
 
@@ -24,7 +25,7 @@ export const InnerCard = styled.div<{$isFlipped: boolean}>`
 `;
 
 const CardFace = styled.div`
-  padding: 30px 20px;
+  padding: 36px 20px;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -33,8 +34,6 @@ const CardFace = styled.div`
   overflow: hidden;
   background: rgba(0, 0, 0, 0.7);
   transform-style: preserve-3d;
-  padding-left: ${(p) => p.theme.space[4]}px;
-  padding-right: ${(p) => p.theme.space[4]}px;
 
   @media ${(p) => p.theme.media.medium} {
     padding: 36px 60px;
