@@ -9,9 +9,16 @@ export const selectStyles: StylesConfig<OptionType> = {
     borderRadius: 0,
     borderBottom: "1px solid #bdbdbd",
     cursor: "pointer",
+    width: "80%",
+    marginRight: "auto",
+    marginLeft: "auto",
 
     "&:hover": {
       borderBottom: "1px solid blue",
+    },
+
+    "@media (min-width: 768px)": {
+      width: "100%",
     },
   }),
   option: (baseStyles, { isFocused, isSelected }) => ({
