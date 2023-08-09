@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import styled from "styled-components";
 
@@ -19,24 +19,13 @@ import {
   TypographyProps,
 } from "styled-system";
 
-  type BoxingProps = ColorProps &
-    SpaceProps &
-    LayoutProps &
-    BorderProps &
-    FlexboxProps &
-    PositionProps&
-    TypographyProps;
-
-
-
-// interface BoxingProps {
-//   ColorProps: ColorProps;
-//   SpaceProps: SpaceProps;
-//   LayoutProps: LayoutProps;
-//   BorderProps: BorderProps;
-//   FlexboxProps: FlexboxProps;
-//   TypographyProps: TypographyProps;
-// }
+type BoxingProps = ColorProps &
+  SpaceProps &
+  LayoutProps &
+  BorderProps &
+  FlexboxProps &
+  PositionProps &
+  TypographyProps;
 
 export const Box = styled.div<BoxingProps>(
   color,
