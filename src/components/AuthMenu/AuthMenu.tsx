@@ -7,6 +7,8 @@ import {
   LogoutButton,
 } from "../AuthButtons/AuthButtons";
 
+
+//====================== НЕ ИСПОЛЬЗУЮ ================================
 function AuthMenu() {
   // const { data: session } = useSession();
 //   console.log("AuthMenu  session:", session?.user);
