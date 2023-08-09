@@ -1,26 +1,29 @@
-import styled from 'styled-components';
-import { Field, ErrorMessage } from 'formik';
+import styled from "styled-components";
+import { Field, ErrorMessage } from "formik";
 
 export const Label = styled.label`
   position: relative;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${p => p.theme.palette.text.secondaryLightText};
-
-  padding-left: 10px;
 `;
 
 export const Input = styled(Field)`
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 
   padding: 5px 20px;
-  border: ${p => p.theme.borders.none};
+  border: ${(p) => p.theme.borders.none};
   outline: none;
   background-color: inherit;
-  color: ${p => p.theme.colors.white};
+  color: ${(p) => p.theme.colors.white};
+  border-bottom: 1px solid ${(p) => p.theme.palette.text.secondaryLightText};
 
-  ::placeholder {
-    color: ${p => p.theme.colors.secondaryText};
+  &::placeholder {
+    color: ${(p) => p.theme.colors.secondaryText};
+  }
+
+  @media ${(p) => p.theme.media.medium} {
+    width: 100%;
   }
 `;
 
