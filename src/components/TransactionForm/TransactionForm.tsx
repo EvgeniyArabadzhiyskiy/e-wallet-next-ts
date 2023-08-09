@@ -5,7 +5,6 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 import { transactionShema } from "@/src/helpers/formValidation";
 import { getTypeOperation } from "@/src/helpers/getTypeOperation";
-import { setTitleTransaction } from "@/src/helpers/setTitleTransaction";
 import { useCreateTransaction, useEditTransaction } from "@/src/apiWallet";
 import { ITransactionData, ITransactionValue } from "@/src/types/transactionValue";
 
@@ -13,6 +12,7 @@ import { Title } from "./TransactionForm.styled";
 import FormContainer from "../FormContainer/FormContainer";
 import CancelButton from "../Buttons/CancelButton/CancelButton";
 import TransactionFormFields from "../TransactionFormFields/TransactionFormFields";
+import { setTitleTransaction } from "@/src/helpers/setTitleTransaction";
 
 interface IProps {
   isIncome: boolean;
