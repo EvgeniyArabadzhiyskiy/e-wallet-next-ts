@@ -18,6 +18,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
+//====================== НЕ ИСПОЛЬЗУЮ ================================
 const AuthProvider = ({ children }: IProps) => {
 
   const cookies = parseCookies().user
