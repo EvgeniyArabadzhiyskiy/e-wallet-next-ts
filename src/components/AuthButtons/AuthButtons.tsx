@@ -3,6 +3,7 @@
 import { signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
+//====================== НЕ ИСПОЛЬЗУЮ ================================
 export const LoginButton = () => {
   return (
     <button style={{ marginRight: 10, padding: 20 }} onClick={() => signIn()}>
