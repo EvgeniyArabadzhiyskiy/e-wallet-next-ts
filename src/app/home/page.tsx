@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import EWalletBgTab from '@/public/images/tablet.webp';
 import styled from "styled-components";
+import AboutComp from "@/src/components/AboutComp";
 
 const Baner = styled.div`
   position: relative;
@@ -30,7 +31,7 @@ export default function HomePage() {
       }}
     >
 
-    
+    <AboutComp />
     <Baner
     
     >
