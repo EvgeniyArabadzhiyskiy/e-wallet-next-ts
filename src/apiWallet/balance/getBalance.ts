@@ -11,7 +11,17 @@ export const getBalance = async (authToken: string | undefined) => {
     cache: "no-store",
   };
 
-  const data = await fetcher<IBalance>(`${BALANCE}`, options);
+  try {
+    const data = await fetcher<IBalance>(`${BALANCE}`, options);
 
-  return data;
+    if (typeof data !== "object" || typeof data.userBalance !== "number") {
+      throw new Error("Invalid data format");
+    }
+
+    return data;
+    
+  } catch (error) {
+    console.log("Error:", (error as Error).message);
+    throw error;
+  }
 };
