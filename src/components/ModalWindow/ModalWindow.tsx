@@ -6,21 +6,12 @@ import { Modal, Overlay } from "./ModalWindow.styled";
 
 interface IProps {
   modalName: string;
-  setModalToggle: any;
+  setModalToggle: (key: string) => void;
   children: React.ReactNode;
 }
 
-export default function ModalWindow({ children, modalName, setModalToggle }: IProps) {
+ function ModalWindow ({ children, modalName, setModalToggle }: IProps) {
   const modalRoot = document.querySelector("#modal-root");
-
-  // const onToggleModal = () => {
-  //   // setIsModalOpen((prev: ModalState) => {
-  //   //   return {
-  //   //     ...prev,
-  //   //     [modalName]: !prev[modalName],
-  //   //   };
-  //   // });
-  // };
 
   const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -51,3 +42,5 @@ export default function ModalWindow({ children, modalName, setModalToggle }: IPr
     modalRoot as HTMLElement
   );
 }
+
+export default ModalWindow
