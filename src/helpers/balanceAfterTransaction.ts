@@ -1,10 +1,8 @@
 import { ITransaction } from "../types/transactions";
 
-export const balanceAfterTransaction = (data: ITransaction[], totalBalance: number) => {
+export const balanceAfterTransaction = (transactions: ITransaction[], totalBalance: number) => {
   
-  // нужно сделать проверку тиров data: ITransaction[], totalBalance: number
-  
-  const balances = data.reduce(
+  const balances = transactions.reduce(
     (acc, { amount, typeOperation }, idx) => {
       return [
         ...acc,
