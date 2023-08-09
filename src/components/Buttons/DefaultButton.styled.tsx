@@ -5,7 +5,8 @@ import styled, { css, keyframes } from "styled-components";
 export const baseBtnStyle = css`
   display: block;
   height: 50px;
-  min-width: 280px;
+  /* min-width: 280px; */
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
 
