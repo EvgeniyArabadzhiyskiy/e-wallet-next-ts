@@ -24,4 +24,8 @@ export const Modal = styled.div<{ $maxHeight?: string; $overflow?: string }>`
 export const ModalContent = styled.div`
   max-height: 100vh;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 `;
