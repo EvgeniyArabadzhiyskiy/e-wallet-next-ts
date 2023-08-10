@@ -19,12 +19,13 @@ function TransactionTable() {
   const [editId, setEditId] = useState<string>("");
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD")
 
-  useEffect (() => {
-    () => window.scrollTo(0, 0)
-  },[])
+  // useEffect (() => {
+  //   () => window.scrollTo(0, 0)
+  // },[])
 
   return (
     <>
+    <div>Hello</div>
     {/* <button style={{ position: "fixed", top: "80px", right: "30px", background: 'red'}} type="button" onClick={() => window.scrollTo(0, 0)} >TO TOP</button> */}
       <Table>
         <TableHeader>
