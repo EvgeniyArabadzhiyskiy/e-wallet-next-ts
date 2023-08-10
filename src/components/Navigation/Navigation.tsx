@@ -5,7 +5,6 @@ import StatisticSvg from "../SvgComponent/StatisticSvg";
 import TransactionSvg from "../SvgComponent/TransactionSvg";
 import HomeSvg from "../SvgComponent/HomeSvg";
 import { List, ItemLink, NavLink, LinkText } from "./Navigation.styled";
-import Link from "next/link";
 
 export default function Navigation() {
   const path = usePathname();
@@ -14,16 +13,16 @@ export default function Navigation() {
     <>
       <List>
         <ItemLink>
-          <NavLink scroll={false} href="/home" $isActive={path === "/home"}>
+          <NavLink href="/home" $isActive={path === "/home"}>
             <HomeSvg width={18} height={18} />
             <LinkText>Home</LinkText>
           </NavLink>
         </ItemLink>
         <ItemLink>
-          <Link scroll={false} href="/home/transactions" >
+          <NavLink href="/home/transactions" $isActive={path === "/home/transactions"}>
             <TransactionSvg width={18} height={18} />
             <LinkText>Transactions</LinkText>
-          </Link>
+          </NavLink>
         </ItemLink>
         <ItemLink>
           <NavLink href="/home/statistic" $isActive={path === "/home/statistic"}>
