@@ -9,7 +9,7 @@ export const selectStyles: StylesConfig<OptionType> = {
     borderRadius: 0,
     borderBottom: "1px solid #bdbdbd",
     cursor: "pointer",
-    width: "80%",
+    // width: "90%",
     marginRight: "auto",
     marginLeft: "auto",
 
