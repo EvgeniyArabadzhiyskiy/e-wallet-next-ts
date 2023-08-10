@@ -20,7 +20,7 @@ function TransactionTable() {
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD")
 
   useEffect (() => {
-    () => window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
   },[])
 
   return (
