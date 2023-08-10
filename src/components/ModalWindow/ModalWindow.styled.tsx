@@ -15,8 +15,13 @@ export const Overlay = styled.div`
   z-index: 10;
 `;
 
-export const Modal = styled.div`
+export const Modal = styled.div<{ $maxHeight?: string; $overflow?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const ModalContent = styled.div`
+  max-height: 100vh;
+  overflow-y: scroll;
 `;
