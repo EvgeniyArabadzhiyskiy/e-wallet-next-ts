@@ -47,7 +47,7 @@ export default async function DashBoardLayout({
               </div>
               <Currency />
             </div>
-            <div style={{width: 100, height: 800, background: "tomato"}} ></div>
+
             {children}
           </div>
         </Container>
