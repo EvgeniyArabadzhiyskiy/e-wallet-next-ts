@@ -10,7 +10,13 @@ import { Category, Table, TableBody, TableHeader } from "./TransactionTable.styl
 import ModalBox from "../ModalWindow/ModalBox";
 import FlipCard from "../FlipCard/FlipCard";
 import SettingsSvg from "../SvgComponent/SettingsSvg";
-import { background } from "styled-system";
+
+ function ScrollToTop() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return null;
+}
 
 function TransactionTable() {
   const { data: allTransactions = [], listElem, observerElem  } = useLazyTransactions();
@@ -19,15 +25,27 @@ function TransactionTable() {
   const [editId, setEditId] = useState<string>("");
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD")
 
-  // useEffect (() => {
-  //   () => window.scrollTo(0, 0)
-  // },[])
+  useEffect (() => {
+    // window.scrollTo({behavior: "smooth", top: 0, left: 0 });
+  },[])
+
+  // useEffect(() => {
+  //   const targetElement = document.getElementById('target-element');
+  //   console.log("useEffect  targetElement:", targetElement);
+    
+  //   if (targetElement) {
+  //     targetElement.scrollIntoView();
+  //   }
+  // }, []);
+
+  
 
   return (
     <>
-    <div></div>
+    {/* <ScrollToTop /> */}
+    {/* <div></div> */}
     {/* <button style={{ position: "fixed", top: "80px", right: "30px", background: 'red'}} type="button" onClick={() => window.scrollTo(0, 0)} >TO TOP</button> */}
-      <Table>
+      <Table >
         <TableHeader>
           <Category>
             <SettingsSvg width={14} height={14} />
