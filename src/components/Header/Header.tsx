@@ -35,10 +35,10 @@ export default function Header({ currentUser }: { currentUser?: any }) {
   // }, []);
 
   const onBtnClick = () => {
-    const targetElement = document.getElementById('target-element');
-    if (targetElement) {
-      // targetElement.scrollIntoView();
-    }
+    // const targetElement = document.getElementById('target-element');
+    // if (targetElement) {
+    //   targetElement.scrollIntoView();
+    // }
   }
 
   return (
