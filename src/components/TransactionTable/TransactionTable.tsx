@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useBalanceList } from "@/src/hooks/useBalanceList";
 import { useLazyTransactions } from "@/src/apiWallet";
 
@@ -17,6 +17,10 @@ function TransactionTable() {
 
   const [editId, setEditId] = useState<string>("");
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD")
+
+  useEffect (() => {
+    window.scrollBy(0, 0)
+  },[])
 
   return (
     <>
