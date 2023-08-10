@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Modal, Overlay } from "./ModalWindow.styled";
+import { Modal, ModalContent, Overlay } from "./ModalWindow.styled";
 
 interface IProps {
   modalName: string;
@@ -37,7 +37,11 @@ interface IProps {
 
   return createPortal(
     <Overlay onClick={onBackdropClick}>
-      <Modal>{children}</Modal>
+      <Modal>
+        <ModalContent>
+          {children}
+        </ModalContent>
+      </Modal>
     </Overlay>,
     modalRoot as HTMLElement
   );
