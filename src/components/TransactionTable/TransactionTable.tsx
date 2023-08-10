@@ -10,6 +10,7 @@ import { Category, Table, TableBody, TableHeader } from "./TransactionTable.styl
 import ModalBox from "../ModalWindow/ModalBox";
 import FlipCard from "../FlipCard/FlipCard";
 import SettingsSvg from "../SvgComponent/SettingsSvg";
+import { background } from "styled-system";
 
 function TransactionTable() {
   const { data: allTransactions = [], listElem, observerElem  } = useLazyTransactions();
@@ -19,12 +20,12 @@ function TransactionTable() {
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD")
 
   useEffect (() => {
-    window.scrollTo(0, 0)
+    () => window.scrollTo(0, 0)
   },[])
 
   return (
     <>
-    {/* <button style={{ position: "fixed", top: "80px", right: "30px", background: 'red'}} type="button" onClick={() => window.scrollTo(0, 0)} >TO TOP</button> */}
+    <button style={{ position: "fixed", top: "80px", right: "30px", background: 'red'}} type="button" onClick={() => window.scrollTo(0, 0)} >TO TOP</button>
       <Table>
         <TableHeader>
           <Category>
