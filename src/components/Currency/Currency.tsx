@@ -10,7 +10,7 @@ import {
 // import grafSvg from "../../images/currencyVektor.svg";
 import axios from "axios";
 // import { toast } from "react-toastify";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CurrencyListItem from "./CurrencyListItem";
 
 //   import CurrencyListItem from './CurrencyListItem';
@@ -61,7 +61,7 @@ const Currency = () => {
     (async () => {
       if (savedApiMono && savedApiDate) {
         const parsedApiMono = JSON.parse(savedApiMono);
-        const parsedApiDate = JSON.parse(savedApiDate) as number;
+        const parsedApiDate: number = JSON.parse(savedApiDate) ;
 
         const currentDate = Date.now();
 
