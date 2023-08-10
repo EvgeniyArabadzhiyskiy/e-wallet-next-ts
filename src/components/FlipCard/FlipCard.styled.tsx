@@ -4,12 +4,14 @@ import styled from "styled-components";
 
 export const Card = styled.div`
   /* width: 340px; */
-  width: 90vw;
+  width: 95vw;
+  max-width: 500px;
   height: 600px;
   perspective: 700px;
 
   @media ${(p) => p.theme.media.medium} {
     width: 540px;
+    max-width: inherit;
   }
 `;
 
