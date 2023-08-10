@@ -21,6 +21,10 @@
 @import "modern-normalize";
 @import "./variables.css";
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: var(--font-family);
   background-color: rgb(93, 94, 148);
