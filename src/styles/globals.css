@@ -24,6 +24,8 @@
 body {
   font-family: var(--font-family);
   background-color: rgb(93, 94, 148);
+
+  scroll-behavior: smooth;
 }
 
 h1,
