@@ -25,7 +25,7 @@ function TransactionTable() {
 
   return (
     <>
-    <button style={{ position: "fixed", top: "80px", right: "30px", background: 'red'}} type="button" onClick={() => window.scrollTo(0, 0)} >TO TOP</button>
+    {/* <button style={{ position: "fixed", top: "80px", right: "30px", background: 'red'}} type="button" onClick={() => window.scrollTo(0, 0)} >TO TOP</button> */}
       <Table>
         <TableHeader>
           <Category>
