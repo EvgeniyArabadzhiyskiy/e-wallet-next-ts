@@ -15,7 +15,6 @@ import ModalBox from "../ModalWindow/ModalBox";
 import ModalLogOut from "../ModalLogOut/ModalLogOut";
 import AuthButton from "../Buttons/AuthButton/AuthButton";
 import { useUser } from "@/src/hooks/useUser";
-import { useEffect } from "react";
 
 interface UserData {
   email: string;
@@ -26,30 +25,14 @@ interface UserData {
 export default function Header({ currentUser }: { currentUser?: any }) {
   const { user, isLoading } = useUser() 
 
-  // useEffect(() => {
-  //   const targetElement = document.getElementById('target-element');
-  //   console.log("useEffect  targetElement:", targetElement);
-  //   if (targetElement) {
-  //     targetElement.scrollIntoView();
-  //   }
-  // }, []);
-
-  const onBtnClick = () => {
-    const targetElement = document.getElementById('target-element');
-    if (targetElement) {
-      targetElement.scrollIntoView();
-    }
-  }
-
   return (
     <>
-      <StyledHeader id="target-element">
+      <StyledHeader>
         <Container>
           <HeaderWrapper>
             <Logo />
             <UserBox>
-              {/* <ThemeToggle /> */}
-              <button style={{position: "fixed", top: 100, right: 30}} type="button" onClick={onBtnClick} >TO TOP</button>
+              <ThemeToggle />
               <TextName>
                 {isLoading ? <>Loa</> : user?.firstName}
               </TextName>
