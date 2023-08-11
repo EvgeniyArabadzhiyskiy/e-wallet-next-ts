@@ -22,7 +22,7 @@
     "formik": "^2.2.9",
     "modern-normalize": "^1.1.0",
     "moment": "^2.29.4",
-    "next": "13.4.2",
+    "next": "13.4.13",
     "next-auth": "^4.22.1",
     "next-images": "^1.8.5",
     "nookies": "^2.5.2",
