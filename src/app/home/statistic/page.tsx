@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useLazyTransactions } from "@/src/apiWallet";
 import { getAllTransactions } from "@/src/apiWallet/transaction";
@@ -10,26 +10,14 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import stl from "./page.module.scss";
+import StatTable from "@/src/components/StatTable";
+
 export default function PageStatistic() {
   // const [pageNum, setPageNum] = useState(1);
   // const { data: allTransactions = [], listElem, observerElem  } = useLazyTransactions();
 
-  // useEffect(() => {
-  // const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTM0ZGFhMTQyNGVhZDExNWVhNTJhNSIsImlhdCI6MTY5MDM1ODM2NiwiZXhwIjoxNjkxNTY3OTY2fQ.cedmiiWsmHW_6KwfwPPN8fpdoVTnGtEqC5Fq7SB_Cvo'
-  //   const options: RequestInit = {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Bearer ${authToken}`
-  //     },
-  //     // cache: "no-store",
-  //   };
-
-  //     fetch(`${BASE_URL}${TRANSACTIONS}?page=1&limit=10`, options).then(data => data.json()).then(data => {
-
-  //     // console.log("fetch  data:", data);
-  //     // setTransactions(data.transactions)
-  //   })
-  // },[])
+  
 
   // const { token } = useUser();
 
@@ -43,17 +31,15 @@ export default function PageStatistic() {
   // });
   //   console.log("PageStatistic  data:", data);
 
-  // useEffect(() => {
-  //   console.log("useEffect");
-
-  //   return () => {
-  //     console.log("Unmount");
-  //   };
-  // },);
-
-  console.log("Rerender");
+  
   return (
     <>
+      <h2 className={stl.stat__title}>Statistics</h2>
+      <div className={stl.table__wrapper}>
+        <div className={stl.chart__wrapper}>{/* <Chart /> */}</div>
+        <StatTable />
+      </div>
+
       {/* <TransactionTable /> */}
       {/* <Link href="/">HOME</Link>
       <h1>Page Statistic </h1>
