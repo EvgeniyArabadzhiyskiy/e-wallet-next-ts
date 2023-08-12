@@ -5,8 +5,10 @@
 }
 
 .table__wrapper {
-  display: flex;
-  justify-content: space-between;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .stat__title {
