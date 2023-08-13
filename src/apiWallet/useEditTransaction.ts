@@ -48,6 +48,7 @@ export const useEditTransaction = (editId: string) => {
       );
 
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
+      queryClient.invalidateQueries({ queryKey: ["Statistics"] });
 
       setModalToggle("transaction");
     },
