@@ -9,6 +9,7 @@ import { authOptions } from "@/src/lib/auth";
 import { Hydrate, dehydrate } from "@tanstack/react-query";
 import Currency from "../Currency/Currency";
 import { getAllTransactions } from "@/src/apiWallet/transaction";
+import { getStatistics } from "@/src/apiWallet/statistic";
 
 export default async function DashBoardLayout({
   children,
@@ -21,13 +22,20 @@ export default async function DashBoardLayout({
   const queryClient = getQueryClient();
 
   if (authToken) {
-    await queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
+    const balanceQuery = queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
 
-    await queryClient.prefetchInfiniteQuery({
+    const transactionsQuery = queryClient.prefetchInfiniteQuery({
       queryKey: ["TransactionsList"],
       queryFn: ({ pageParam = 1 }) =>
         getAllTransactions(authToken, pageParam),
     });
+
+    const statisticsQuery = queryClient.prefetchQuery({
+      queryKey: ["Statistics", { month: "", year: "" }],
+      queryFn: () => getStatistics(authToken, { month: "", year: "" }),
+    });
+
+    await Promise.allSettled([balanceQuery, transactionsQuery, statisticsQuery])
   }
 
   const dehydratedState = dehydrate(queryClient);
