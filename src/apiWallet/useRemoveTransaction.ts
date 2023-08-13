@@ -90,6 +90,7 @@ export const useRemoveTransaction = () => {
       );
 
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
+      queryClient.invalidateQueries({ queryKey: ["Statistics"] });
     },
   });
 
