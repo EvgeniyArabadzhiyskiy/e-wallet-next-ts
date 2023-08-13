@@ -1,21 +1,15 @@
-"use client";
+// "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-import stl from "./page.module.scss";
-import StatTable from "@/src/components/StatTable";
+import Statistics from "@/src/components/Statistics";
 
 export default function PageStatistic() {
   // const [pageNum, setPageNum] = useState(1);
 
   return (
     <>
-      <h2 className={stl.stat__title}>Statistics</h2>
-      <div className={stl.table__wrapper}>
-        <div className={stl.chart__wrapper}>{/* <Chart /> */}</div>
-        <StatTable />
-      </div>
+      <Statistics />
 
       {/* <Link href="/">HOME</Link>
       <h1>Page Statistic </h1>
