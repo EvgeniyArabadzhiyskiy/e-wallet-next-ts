@@ -64,6 +64,7 @@ export const useCreateTransaction = (setError: Dispatch<SetStateAction<Error | n
       );
 
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
+      queryClient.invalidateQueries({ queryKey: ["Statistics"] });
       setModalToggle("transaction");
     },
 
