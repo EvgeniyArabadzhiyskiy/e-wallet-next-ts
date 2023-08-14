@@ -4,6 +4,7 @@ import { useRemoveTransaction } from "./useRemoveTransaction";
 import { useEditTransaction } from "./useEditTransaction";
 import { useUserBalance } from "./useUserBalance";
 import { useRegisterUser } from "./useRegisterUser";
+import { useStatistic } from "./useStatistic";
 
 export {
   useLazyTransactions,
@@ -12,4 +13,5 @@ export {
   useEditTransaction,
   useUserBalance,
   useRegisterUser,
+  useStatistic,
 };
