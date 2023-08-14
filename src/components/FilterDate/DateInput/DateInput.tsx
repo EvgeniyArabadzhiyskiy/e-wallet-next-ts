@@ -34,8 +34,8 @@ function DateInput ({ setMonth, setYear, value = "Month" }: IProps) {
     const clear = () => {
       props.onChange({ target: { value: '' } });
 
-      setMonth && setMonth(null);
-      setYear && setYear(null);
+      setMonth && setMonth("");
+      setYear && setYear("");
     };
 
     return (
