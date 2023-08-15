@@ -1,6 +1,7 @@
 import moment from "moment";
 import Datetime from 'react-datetime';
 import { ClearButton, Filter, InputWrapper } from "./DateInput.styled";
+import CrossSvg from "../../SvgComponent/CrossSvg";
 
 interface IProps {
   setMonth?: any;
@@ -42,7 +43,8 @@ function DateInput ({ setMonth, setYear, value = "Month" }: IProps) {
       <InputWrapper>
         <Filter {...props} />
         <ClearButton type='button' onClick={clear}>
-          X
+          
+          <CrossSvg width={18} height={18} color="#a1a1aa"/>
         </ClearButton>
       </InputWrapper>
     );
