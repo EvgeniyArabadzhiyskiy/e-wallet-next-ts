@@ -3,8 +3,9 @@
 import styled from "styled-components";
 
 export const PageTitle = styled.h2`
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 400;
+  color: white;
   margin: 20px 0;
 
   @media ${(p) => p.theme.media.large} {
