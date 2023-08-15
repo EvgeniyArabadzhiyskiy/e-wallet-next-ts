@@ -16,22 +16,29 @@ export const InputWrapper = styled.div`
 
 export const Filter = styled.input`
   padding-left: 20px;
-  font-size: 16px;
+  font-size: 18px;
   height: 50px;
   width: 100%;
-  border-radius: 30px;
+  /* border-radius: 30px; */
+  border-radius: 10px;
+  color: #a1a1aa;
+  background-color: #111827;
+ 
+
+
   outline: none;
   border: none;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  border: 2px solid #10b981;
   transition: border 250ms linear;
 
   &:hover {
-    border: 1px solid #24cca7;
+    border: 2px solid #24cca7;
   }
 
   &:focus {
     border: none;
-    outline: 1px solid #24cca7;
+    outline: 2px solid #24cca7;
   }
 `;
 
