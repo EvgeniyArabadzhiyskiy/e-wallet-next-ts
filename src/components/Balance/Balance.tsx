@@ -14,8 +14,8 @@ export default function Balance() {
   return (
     <Wrapper>
       <Title>Your balance</Title>
-      <CurrencySign>₴ </CurrencySign>
-      <Text>{data}</Text>
+      {/* <CurrencySign>₴ </CurrencySign> */}
+      <Text>{data.toFixed(2)}</Text>
     </Wrapper>
   );
 }
