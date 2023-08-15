@@ -2,6 +2,16 @@
 
 import styled from "styled-components";
 
+export const DoughnutWrapper = styled.div`
+  width: 440px;
+  height: 440px;
+
+  @media screen and (min-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
+`;
+
 export const TitleBalance = styled.span`
   position: absolute;
   top: 50%;
