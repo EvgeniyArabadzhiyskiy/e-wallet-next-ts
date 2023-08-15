@@ -20,8 +20,10 @@ export const NavLink = styled(Link)<{ $isActive: boolean }>`
   display: flex;
   gap: 23px;
 
-  color: ${(p) =>
-    p.$isActive ? p.theme.colors.navIconBgActive : p.theme.colors.navIconBg};
+  /* color: ${(p) =>
+    p.$isActive ? p.theme.colors.navIconBgActive : p.theme.colors.navIconBg}; */
+
+  color: #10b981;
 
   font-weight: ${(p) =>
     p.$isActive ? p.theme.fontWeights.bold : p.theme.fontWeights.normal};
@@ -29,7 +31,8 @@ export const NavLink = styled(Link)<{ $isActive: boolean }>`
   transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    color: ${(p) => p.theme.colors.navIconBgActive};
+    /* color: ${(p) => p.theme.colors.navIconBgActive}; */
+    color: #34d399;
   }
 `;
 
