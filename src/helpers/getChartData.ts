@@ -1,7 +1,7 @@
+import { ChartData } from "chart.js";
 import { IChartData } from "../types/statistics";
 
-
-export const getChartData = (data: IChartData) => {
+export const getChartData = (data: IChartData): ChartData<"doughnut", string[], string> => {
     const { sum, colors, chartCategories } = data;
     
     return {
