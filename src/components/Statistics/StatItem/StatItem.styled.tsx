@@ -14,5 +14,5 @@ export const TableItem = styled.li`
   justify-content: space-between;
   align-items: center;
   height: 52px;
-  border-bottom: 1px solid #2b2b92;
+  border-bottom: 1px solid #10b981;
 `;
