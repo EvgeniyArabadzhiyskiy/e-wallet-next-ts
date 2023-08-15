@@ -9,6 +9,7 @@ export const Table = styled.div`
 
   @media ${(p) => p.theme.media.large} {
     width: 395px;
+    margin-left: 32px;
   }
 `;
 
@@ -20,27 +21,33 @@ export const TableHeader = styled.div`
   height: 58px;
   padding: 15px 20px;
   margin-bottom: 20px;
-  border-radius: 30px;
+  /* border-radius: 30px; */
+  border-radius: 10px;
+  border: 2px solid #10b981;
+  
 
   font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
 
-  color: ${(p) => p.theme.colors.primaryText};
-  background-color: ${(p) => p.theme.colors.primaryBg};
+  /* color: ${(p) => p.theme.colors.primaryText}; */
+  /* background-color: ${(p) => p.theme.colors.primaryBg}; */
+  color: #a1a1aa;
+  background-color: #111827;
 `;
 
 export const TableBody = styled.ul`
   padding: 0 20px;
+  color: #a1a1aa;
   line-height: 1.5;
 `;
 
 export const TableFooter = styled.ul`
   margin: 0;
-  border-radius: 10px;
 
   font-size: 16px;
   font-weight: 700;
+  color: #a1a1aa;
   line-height: 1.5;
 `;
 
