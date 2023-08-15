@@ -6,9 +6,13 @@ export const Wrapper = styled.div`
   height: 80px;
   margin-bottom: 32px;
   padding: 8px 40px;
-  border-radius: 30px;
+  /* border-radius: 30px; */
+  border-radius: 10px;
+  border: 2px solid #10b981;
 
-  background-color: ${p => p.theme.palette.background.primaryBg};
+  /* background-color: ${p => p.theme.palette.background.primaryBg}; */
+  color: #a1a1aa;
+  background-color: #111827;
 
   @media ${p => p.theme.media.mediumToLarge} {
     width: 336px;
@@ -40,9 +44,10 @@ export const CurrencySign = styled.span`
 
 export const Text = styled.span`
   font-family: ${p => p.theme.fonts.poppins};
-  font-size: ${p => p.theme.fontSizes.l};
+  font-size: ${p => p.theme.fontSizes.ml};
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.5;
 
-  color: ${p => p.theme.colors.primaryText};
+  /* color: ${p => p.theme.colors.primaryText}; */
+  color: white;
 `;
