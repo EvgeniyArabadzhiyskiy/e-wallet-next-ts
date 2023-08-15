@@ -9,18 +9,18 @@ import Chart from "../Chart/Chart";
 import { useQueryClient } from "@tanstack/react-query";
 
 function Statistics() {
-  const { setMonth, setYear, expensesData, expensesTotal, incomeTotal } =
+  const { data = [], setMonth, setYear, expensesData, expensesTotal, incomeTotal } =
     useStatistic();
 
-    const client = useQueryClient()
-    const stat = client.getQueriesData(['Statistics'])
-    console.log("Statistics  stat:", stat);
+    // const client = useQueryClient()
+    // const stat = client.getQueriesData(['Statistics'])
+    // console.log("Statistics  stat:", stat); 
 
   return (
     <div>
       <PageTitle>Statistics</PageTitle>
       <TableWrapper>
-        <ChartWrapper>{<Chart /> }</ChartWrapper>
+        <ChartWrapper>{<Chart statistic={data} /> }</ChartWrapper>
         <StatTable
           setMonth={setMonth}
           setYear={setYear}
