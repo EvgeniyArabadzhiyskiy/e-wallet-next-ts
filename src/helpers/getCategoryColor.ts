@@ -1,19 +1,13 @@
 import { IColor } from "../types/statistics";
 
-// type KeyOfString<T> = Extract<keyof T, string>;
-
-// interface IColor {
-//     [key: string]: string
-// }
-
 const categoryList: IColor = {
   Food: "#f6a626",
-  Main: "#f4ee2b",
-  House: "#652ed3",
+  Main: "#fde047",
+  House: "#a855f7",
   Auto: "#4bc0c0",
-  Children: "#36a3eb",
+  Children: "#4ade80",
   Development: "#ff6385",
-  Education: "#342ee9",
+  Education: "#3b82f6",
   "Other expenses": "#00ad31",
 };
 
