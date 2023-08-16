@@ -128,8 +128,12 @@ export default function TransactionFormFields({
         />
       </Box>
 
-      <EnterButton type="submit" enterText="Add" disabled={isDisabled} />
-      <CancelButton cancelText="cancel" onClick={onCancelClick} />            
+      <Box mt={5}>
+        <EnterButton height={50} width={[80, 300]} type="submit" enterText="Add" disabled={isDisabled} />
+      </Box>
+      <Box mt={4}>
+        <CancelButton cancelText="cancel" onClick={onCancelClick} /> 
+      </Box>           
     </>
   );
 }
