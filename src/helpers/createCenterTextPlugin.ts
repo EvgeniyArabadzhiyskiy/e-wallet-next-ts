@@ -1,15 +1,9 @@
-import { Chart, BubbleDataPoint, ChartTypeRegistry, Point } from "chart.js";
+import { Plugin } from "chart.js";
 
 export const createCenterTextPlugin = (totalBalance: number) => {
-  return {
+  const plugin: Plugin<"doughnut"> = {
     id: "center- text",
-    beforeDraw: (
-      chart: Chart<
-        keyof ChartTypeRegistry,
-        (number | Point | [number, number] | BubbleDataPoint | null)[],
-        unknown
-      >
-    ) => {
+    beforeDraw: (chart) => {
       const { ctx, width, height } = chart;
       ctx.restore();
 
@@ -26,4 +20,6 @@ export const createCenterTextPlugin = (totalBalance: number) => {
       ctx.save();
     },
   };
+
+  return plugin
 };
