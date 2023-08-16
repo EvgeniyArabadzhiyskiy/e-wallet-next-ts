@@ -9,6 +9,7 @@ import { Border, Modal, Title } from "./ModalLogout.styled";
 import EnterButton from "../Buttons/EnterButton/EnterButton";
 import CancelButton from "../Buttons/CancelButton/CancelButton";
 import { destroyCookie } from "nookies";
+import { Box } from "../Box/Box";
 
 const ModalLogout = () => {
   const { setModalToggle } = useGlobalState();
@@ -28,8 +29,12 @@ const ModalLogout = () => {
       <Modal>
         <Title>Are you sure you want to sign out?</Title>
         <div>
-          <EnterButton enterText="exit" onClick={logOut} />
+        <Box mt={5}>
+          <EnterButton width={[80, 300]} height={50} enterText="exit" onClick={logOut} />
+        </Box>
+        <Box mt={4}>
           <CancelButton cancelText="cancel" onClick={onCancelClick} />
+        </Box>
         </div>
       </Modal>
     </Border>
