@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { CloseBtn, DeleteBtn, Menu } from "./TransactionMenu.styled";
 import CrossSvg from "../SvgComponent/CrossSvg";
+import EnterButton from "../Buttons/EnterButton/EnterButton";
 
 interface IProps {
   isDelete: boolean;
@@ -17,8 +18,12 @@ const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete
       <CloseBtn onClick={() => setIsOpenMenu(p => !p)} aria-label="close">
         <CrossSvg width={14} height={14} />
       </CloseBtn>
-      <DeleteBtn onClick={onEdit}>EDIT</DeleteBtn>
-      {isDelete && <DeleteBtn onClick={onDelete}>DELETE</DeleteBtn>}
+      
+      <EnterButton width={[45, 120]} height={40} enterText="EDIT" onClick={onEdit} />
+      {isDelete && <EnterButton width={[45, 120]} height={40} enterText="DELETE" onClick={onDelete} />}
+
+      {/* <DeleteBtn onClick={onEdit}>EDIT</DeleteBtn> */}
+      {/* {isDelete && <DeleteBtn onClick={onDelete}>DELETE</DeleteBtn>} */}
       {!isDelete && <DeleteBtn onClick={onClearId}>CANCEL</DeleteBtn>}
     </Menu>
   );
