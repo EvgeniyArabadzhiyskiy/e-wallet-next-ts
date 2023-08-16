@@ -44,9 +44,12 @@ export const TableHeader = styled.div`
     ${CommonStyle}
 
     font-weight: ${(p) => p.theme.fontWeights.bold};
-    background-color: ${(p) => p.theme.colors.primaryBg};
     padding: 15px 20px;
-    border-radius: 30px;
+
+    /* background-color: ${(p) => p.theme.colors.primaryBg}; */
+    /* border-radius: 30px; */
+    border-radius: 10px;
+    border: 2px solid #10b981;
   }
 `;
 
@@ -71,7 +74,8 @@ export const ItemTextPosition = css`
 `;
 
 export const Category = styled.p`
-  color: ${(p) => p.theme.colors.primaryText};
+  /* color: ${(p) => p.theme.colors.primaryText}; */
+  color: #a1a1aa;
 
   display: flex;
   justify-content: space-between;
