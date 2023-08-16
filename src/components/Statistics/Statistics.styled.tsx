@@ -24,6 +24,10 @@ export const ChartWrapper = styled.div`
   position: relative;
   align-self: flex-start;
   margin-bottom: 32px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
 `;
 
 // export const Table = styled.div`
