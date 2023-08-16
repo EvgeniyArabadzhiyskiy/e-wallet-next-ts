@@ -33,7 +33,7 @@ export const TableHeader = styled.div`
   /* color: ${(p) => p.theme.colors.primaryText}; */
   /* background-color: ${(p) => p.theme.colors.primaryBg}; */
   color: #a1a1aa;
-  background-color: #111827;
+  /* background-color: #111827; */
 `;
 
 export const TableBody = styled.ul`
