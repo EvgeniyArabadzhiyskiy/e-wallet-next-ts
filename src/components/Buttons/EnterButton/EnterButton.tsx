@@ -6,11 +6,14 @@ interface IProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   enterText: string;
   disabled?: boolean | undefined;
+
+  height: number;
+  width: number[];
 }
 
-function EnterButton ({ type = "submit", onClick, enterText, disabled, ...allProps}: IProps)  {
+function EnterButton ({ width, height, type = "submit", onClick, enterText, disabled, ...allProps}: IProps)  {
   return (
-    <StyledEnterBtn type={type} onClick={onClick} disabled={disabled} {...allProps}>
+    <StyledEnterBtn width={width} height={height} type={type} onClick={onClick} disabled={disabled} {...allProps}>
       {enterText}
     </StyledEnterBtn>
   );
