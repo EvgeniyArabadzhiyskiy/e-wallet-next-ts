@@ -4,9 +4,9 @@ import styled, { css, keyframes } from "styled-components";
 
 export const baseBtnStyle = css`
   display: block;
-  height: 50px;
+  /* height: 50px;
+  width: 80%; */
   /* min-width: 280px; */
-  width: 80%;
   margin-left: auto;
   margin-right: auto;
 
@@ -19,7 +19,7 @@ export const baseBtnStyle = css`
   cursor: pointer;
   text-transform: uppercase;
 
-  @media ${(p) => p.theme.media.medium} {
+  /* @media ${(p) => p.theme.media.medium} {
     width: 300px;
-  }
+  } */
 `;
