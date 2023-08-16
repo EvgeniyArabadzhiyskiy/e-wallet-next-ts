@@ -49,7 +49,7 @@ export default function LoginFormFields  ({ formik }: IProps) {
         />
       </Box>
 
-      <EnterButton type="submit" enterText="Log in" disabled={isDisabled} />
+      <EnterButton width={[80, 300]} height={50} type="submit" enterText="Log in" disabled={isDisabled} />
       <LinkButton href='/register' text='Register' />
       {/* <GoogleAuthLink />   */}
     </>
