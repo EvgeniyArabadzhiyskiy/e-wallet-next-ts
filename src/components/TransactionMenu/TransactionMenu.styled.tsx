@@ -1,8 +1,9 @@
 "use client";
 
 import styled from "styled-components";
+import { baseBtnStyle } from "../Buttons/DefaultButton.styled";
 
-export const Menu = styled.div<{$isDelete: boolean, isOpenMenu: boolean}>`
+export const Menu = styled.div<{ $isDelete: boolean; isOpenMenu: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -16,7 +17,7 @@ export const Menu = styled.div<{$isDelete: boolean, isOpenMenu: boolean}>`
 
   transform: translateX(100%);
   transition: transform 300ms linear;
-  transform: ${(p) => p.$isOpenMenu ? "translateX(0%)" : ""};
+  transform: ${(p) => (p.$isOpenMenu ? "translateX(0%)" : "")};
 
   &::before {
     content: "";
@@ -31,20 +32,41 @@ export const Menu = styled.div<{$isDelete: boolean, isOpenMenu: boolean}>`
 
     transition: ${(p) => (!p.$isDelete ? "transform 3000ms linear" : "")};
 
-    transform: ${(p) => p.$isDelete ? "translateX(100%)" : ""};
+    transform: ${(p) => (p.$isDelete ? "translateX(100%)" : "")};
   }
 `;
 
-export const DeleteBtn = styled.button`
-  width: 100px;
-  height: 40px;
-  font-size: 16px;
-  border: 7px solid rgba(55, 53, 53, 0.4);
-  color: ${(p) => p.theme.colors.primaryBg};
-  background-color: ${(p) => p.theme.colors.primaryBgBtn};
+// export const DeleteBtn = styled.button`
+//   width: 100px;
+//   height: 40px;
+//   font-size: 16px;
+//   border: 7px solid rgba(55, 53, 53, 0.4);
+//   color: ${(p) => p.theme.colors.primaryBg};
+//   background-color: ${(p) => p.theme.colors.primaryBgBtn};
 
-  cursor: pointer;
-  text-transform: uppercase;
+//   cursor: pointer;
+//   text-transform: uppercase;
+// `;
+
+export const DeleteBtn = styled.button`
+  ${baseBtnStyle}
+  width: 120px;
+  height: 40px;
+
+  color: #a1a1aa;
+  background-color: #022c22;
+  border-radius: 10px;
+  border: 2px solid #10b981;
+  transition: background-color 300ms linear;
+
+  &:hover,
+  &:focus {
+    background-color: #064e3b;
+  }
+
+  /* @media ${(p) => p.theme.media.medium} {
+    width: 120px;
+  } */
 `;
 
 export const SettingBtn = styled.button`
