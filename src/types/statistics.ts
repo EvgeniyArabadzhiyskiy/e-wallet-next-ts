@@ -14,7 +14,7 @@ export interface IStatPeriod {
 }
 
 export interface IChartData {
-  sum: string[];
+  sum: number[];
   colors: string[];
   chartCategories: string[];
 }
