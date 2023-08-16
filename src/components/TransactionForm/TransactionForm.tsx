@@ -13,6 +13,7 @@ import FormContainer from "../FormContainer/FormContainer";
 import CancelButton from "../Buttons/CancelButton/CancelButton";
 import TransactionFormFields from "../TransactionFormFields/TransactionFormFields";
 import { setTitleTransaction } from "@/src/helpers/setTitleTransaction";
+import { Box } from "../Box/Box";
 
 interface IProps {
   isIncome: boolean;
@@ -62,10 +63,12 @@ function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
       <>
         <h1 style={{ color: "white" }}>Произошла ошибка:</h1>
         <h2 style={{ color: "white" }}>{error.message}</h2>
-        <CancelButton
-          cancelText="cancel"
-          onClick={() => setModalToggle("transaction")}
-        />
+        <Box mt={4}>
+          <CancelButton
+            cancelText="cancel"
+            onClick={() => setModalToggle("transaction")}
+          />
+        </Box>
       </>
     );
   }
