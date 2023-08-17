@@ -1,12 +1,11 @@
 "use client";
 
 import styled from "styled-components";
-import { Box } from "../Box/Box";
 
 export const FormWrap = styled.div<{ $isScale: boolean }>`
-  width: 340px;
+  /* width: 340px; */
   padding: 30px 20px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   border: 10px solid rgba(255, 255, 255, 0.2);
   background-clip: padding-box;
 
