@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { CloseBtn, DeleteBtn, Menu } from "./TransactionMenu.styled";
+import { CloseBtn, Menu } from "./TransactionMenu.styled";
 import CrossSvg from "../SvgComponent/CrossSvg";
 import EnterButton from "../Buttons/EnterButton/EnterButton";
 
