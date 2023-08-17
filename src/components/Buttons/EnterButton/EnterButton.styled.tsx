@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import styled, { keyframes } from 'styled-components';
-import { baseBtnStyle } from '../DefaultButton.styled';
+import styled, { keyframes } from "styled-components";
+import { baseBtnStyle } from "../DefaultButton.styled";
 
 export const scale = keyframes`
     0% {
@@ -18,19 +18,27 @@ export const scale = keyframes`
     }
 `;
 
-export const StyledEnterBtn = styled.button<{width: number[]; height: number}>`
+interface IBtnProps {
+  width: {
+    mobile: string;
+    desctop: string;
+  };
+  height: number;
+}
+
+export const StyledEnterBtn = styled.button<IBtnProps>`
   ${baseBtnStyle}
-  width: ${p => p.width[0]}%;
+  width: ${(p) => p.width.mobile};
   /* height: 50px; */
 
-  /* width: ${p => p.width}; */
-  height: ${p => p.height}px;
+  /* width: ${(p) => p.width}; */
+  height: ${(p) => p.height}px;
 
   /* position: relative; */
-  /* margin-top: ${p => p.theme.space[5]}px; */
-  /* color: ${p => p.theme.palette.background.primaryBg}; */
+  /* margin-top: ${(p) => p.theme.space[5]}px; */
+  /* color: ${(p) => p.theme.palette.background.primaryBg}; */
   /* border: 7px solid rgba(55, 53, 53, 0.4); */
-  /* background-color: ${p => p.theme.colors.primaryBgBtn}; */
+  /* background-color: ${(p) => p.theme.colors.primaryBgBtn}; */
 
   color: #a1a1aa;
   background-color: #022c22;
@@ -59,8 +67,6 @@ export const StyledEnterBtn = styled.button<{width: number[]; height: number}>`
 
   @media ${(p) => p.theme.media.medium} {
     /* width: 300px; */
-    width: ${p => p.width[1]}px;
+    width: ${(p) => p.width.desctop};
   }
-
-  
 `;
