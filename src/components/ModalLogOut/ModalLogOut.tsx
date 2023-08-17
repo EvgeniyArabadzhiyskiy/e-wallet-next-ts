@@ -2,8 +2,6 @@
 
 import { signOut } from "next-auth/react";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
-import { LogoutButton } from "../AuthButtons/AuthButtons";
-import LogoutBtn from "../Buttons/LogoutBtn/LogoutBtn";
 
 import { Border, Modal, Title } from "./ModalLogout.styled";
 import EnterButton from "../Buttons/EnterButton/EnterButton";
@@ -15,10 +13,10 @@ const ModalLogout = () => {
   const { setModalToggle } = useGlobalState();
 
   const onCancelClick = () => {
-    setModalToggle("logout")
+    setModalToggle("logout");
   };
 
-  const logOut =  () => {
+  const logOut = () => {
     signOut();
     // destroyCookie(null, "authToken", { path: "/" });
   };
@@ -29,12 +27,17 @@ const ModalLogout = () => {
       <Modal>
         <Title>Are you sure you want to sign out?</Title>
         <div>
-        <Box mt={5}>
-          <EnterButton width={[80, 300]} height={50} enterText="exit" onClick={logOut} />
-        </Box>
-        <Box mt={4}>
-          <CancelButton cancelText="cancel" onClick={onCancelClick} />
-        </Box>
+          <Box mt={5}>
+            <EnterButton
+              width={{ mobile: "80%", desctop: "300px" }}
+              height={50}
+              enterText="exit"
+              onClick={logOut}
+            />
+          </Box>
+          <Box mt={4}>
+            <CancelButton cancelText="cancel" onClick={onCancelClick} />
+          </Box>
         </div>
       </Modal>
     </Border>
