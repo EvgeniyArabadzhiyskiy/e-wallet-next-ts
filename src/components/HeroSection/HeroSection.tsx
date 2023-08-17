@@ -1,12 +1,14 @@
 import stl from "./HeroSection.module.scss";
 import Container from "../Container/Container";
 import LinkButton from "../Buttons/LinkButton/LinkButton";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/src/lib/auth";
 
-function HeroSection() {
+async function HeroSection() {
+  const session = await getServerSession(authOptions);
+
   return (
-    <div
-    //  style={{ backgroundColor: "#131a26" }}
-    >
+    <div>
       <Container>
         <div className={stl.hero__flex__wrapper}>
           <div>
@@ -21,7 +23,10 @@ function HeroSection() {
               <span className={stl.hero__title__accent}> totally FREE</span>
             </p>
 
-            <LinkButton href="/login" text="Start in 30 seconds" />
+            {session 
+             ? <LinkButton href="/home/transactions" text="Wallet" />
+             : <LinkButton href="/login" text="Start in 30 seconds" />
+            }
           </div>
           <div style={{ minHeight: "100vh" }}>
             <div className={stl.banner}></div>
