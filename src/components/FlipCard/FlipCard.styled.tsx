@@ -26,14 +26,14 @@ export const InnerCard = styled.div<{$isFlipped: boolean}>`
 `;
 
 const CardFace = styled.div`
-  padding: 36px 20px;
+  padding: 20px 20px;
   position: absolute;
   height: 100%;
   width: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.7);
+  background: #020617;
   transform-style: preserve-3d;
 
   @media ${(p) => p.theme.media.medium} {
