@@ -8,7 +8,10 @@ interface IProps {
   disabled?: boolean | undefined;
 
   height: number;
-  width: number[];
+  width: {
+    mobile: string;
+    desctop: string;
+  }
 }
 
 function EnterButton ({ width, height, type = "submit", onClick, enterText, disabled, ...allProps}: IProps)  {
