@@ -74,8 +74,15 @@ export default function RegisterFormFields  ({ formik }: IProps) {
             />
         </Box>
 
-      <EnterButton width={[80, 300]} height={50} type="submit" enterText="Register" disabled={isDisabled} />
-      <LinkButton href='/login' text='Login' />
+      <EnterButton 
+        width={{mobile: "80%", desctop: "300px"}} 
+        height={50} type="submit" 
+        enterText="Register" 
+        disabled={isDisabled} 
+      />
+      <Box mt={4}>
+        <LinkButton href='/login' text='Login' />
+      </Box>
       {/* <GoogleAuthLink />   */}
     </>
   );
