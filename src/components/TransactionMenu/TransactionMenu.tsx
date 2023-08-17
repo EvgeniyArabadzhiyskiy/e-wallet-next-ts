@@ -19,12 +19,31 @@ const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete
         <CrossSvg width={14} height={14} />
       </CloseBtn>
       
-      <EnterButton width={[45, 120]} height={40} enterText="EDIT" onClick={onEdit} />
-      {isDelete && <EnterButton width={[45, 120]} height={40} enterText="DELETE" onClick={onDelete} />}
+      <EnterButton 
+        width={{mobile: "45%", desctop: "120px"}} 
+        height={40} 
+        enterText="EDIT" 
+        onClick={onEdit} 
+      />
+
+      {isDelete 
+      ? <EnterButton 
+          width={{mobile: "45%", desctop: "120px"}} 
+          height={40} 
+          enterText="DELETE" 
+          onClick={onDelete} 
+        />
+      : <EnterButton 
+          width={{mobile: "45%", desctop: "120px"}} 
+          height={40} 
+          enterText="CANCEL" 
+          onClick={onClearId} 
+        />
+      }
 
       {/* <DeleteBtn onClick={onEdit}>EDIT</DeleteBtn> */}
       {/* {isDelete && <DeleteBtn onClick={onDelete}>DELETE</DeleteBtn>} */}
-      {!isDelete && <DeleteBtn onClick={onClearId}>CANCEL</DeleteBtn>}
+      {/* {!isDelete && <DeleteBtn onClick={onClearId}>CANCEL</DeleteBtn>} */}
     </Menu>
   );
 };
