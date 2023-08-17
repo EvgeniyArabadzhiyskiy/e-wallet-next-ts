@@ -9,7 +9,7 @@ import Chart from "../Chart/Chart";
 import { useQueryClient } from "@tanstack/react-query";
 
 function Statistics() {
-  const { data = [], setMonth, setYear, expensesData, expensesTotal, incomeTotal } =
+  const { data, setMonth, setYear, expensesData, expensesTotal, incomeTotal } =
     useStatistic();
 
     // const client = useQueryClient()
