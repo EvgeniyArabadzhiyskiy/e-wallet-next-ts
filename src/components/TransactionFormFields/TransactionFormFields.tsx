@@ -66,19 +66,6 @@ export default function TransactionFormFields({
       <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
 
       <Box mb={5} position="relative">
-        {/* <ReactSelect<OptionType>
-          ref={selectInputRef}
-          name="category"
-          options={isIncome ? optionsIncome : optionsExpense}
-          placeholder="Select a category"
-          styles={selectStyles}
-          onChange={(data) => {
-            console.log("data:", data?.value);
-            
-            setFieldValue("category", data?.label);
-          }}
-        /> */}
-
         <CustomSelect
           value={value}
           setValue={setValue}
@@ -129,10 +116,16 @@ export default function TransactionFormFields({
       </Box>
 
       <Box mt={5}>
-        <EnterButton height={50} width={[80, 300]} type="submit" enterText="Add" disabled={isDisabled} />
+        <EnterButton 
+          width={{mobile: "80%", desctop: "300px"}} 
+          height={50} 
+          type="submit" 
+          enterText="Add" 
+          disabled={isDisabled} 
+        />
       </Box>
       <Box mt={4}>
-        <CancelButton cancelText="cancel" onClick={onCancelClick} /> 
+        <CancelButton cancelText="Cancel" onClick={onCancelClick} /> 
       </Box>           
     </>
   );
