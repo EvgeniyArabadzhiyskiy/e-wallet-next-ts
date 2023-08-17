@@ -49,6 +49,7 @@
 
 "use client";
 
+import axios, { spread } from "axios";
 import { useEffect, useRef } from "react";
 import { background } from "styled-system";
 
@@ -69,22 +70,22 @@ export default function HomePage() {
 
     const height = ctx.canvas.clientHeight;
     const width = ctx.canvas.clientWidth;
-    ctx.restore()
+    ctx.restore();
 
     var fontSize = (height / 100).toFixed(2);
     // console.log("useEffect  fontSize:",  fontSize + "em Arial");
     // console.log("useEffect  ctx.font:", ctx.font);
     // ctx.font = fontSize + "em Arial";
-    ctx.font = '700 30px sans-serif'
-    console.log("useEffect  ctx.font:", ctx.font);
+    ctx.font = "700 30px sans-serif";
+    // console.log("useEffect  ctx.font:", ctx.font);
     ctx.textBaseline = "middle";
 
     var text = "Balance", // ваш баланс
-        textX = Math.round((width - ctx.measureText(text).width) / 2),
-        textY = height / 2;
+      textX = Math.round((width - ctx.measureText(text).width) / 2),
+      textY = height / 2;
 
-      ctx.fillText(text, textX, textY);
-      ctx.save();
+    ctx.fillText(text, textX, textY);
+    ctx.save();
 
     // ctx.fillStyle = "rgba(200, 0, 0, 0.523)";
     // ctx.fillRect(75, 50, 50, 50);
@@ -99,18 +100,18 @@ export default function HomePage() {
 
     // ctx.closePath()
     // ctx.fill();
-
-  
   });
 
   return (
     <div
-      style={{
-        // width: 400,
-        // height: 200,
-        // background: "#9d5345",
-        // position: "relative",
-      }}
+      style={
+        {
+          // width: 400,
+          // height: 200,
+          // background: "#9d5345",
+          // position: "relative",
+        }
+      }
     >
       <canvas
         className="canvas"
@@ -126,3 +127,93 @@ export default function HomePage() {
     </div>
   );
 }
+
+const getPokemon1 = async () => {
+  const { data } = await axios(
+    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`
+  );
+  return data.results[0].name;
+};
+
+const getPokemon2 = async () => {
+  const { data } = await axios(
+    `https://pokeapi.co/api/v2/pokemon?offset=10&limit=20`
+  );
+  return data.results[0].name;
+};
+
+const getPokemon3 = async () => {
+  const { data } = await axios(
+    `https://pokeapi.co/api/v2/pokemon?offset=20&limit=30`
+  );
+  return data.results[0].name;
+};
+
+(async () => {
+  // try {
+  //   const bulbasaur = await getPokemon1();
+  //   const metapod = await getPokemon2();
+  //   const spearow = await getPokemon3();
+
+  //   console.log("bulbasaur:", bulbasaur);
+  //   console.log("metapod:", metapod);
+  //   console.log("spearow:", spearow);
+  // } catch (error) {
+  //   console.log(error);
+    
+  // }
+
+  try {
+    const bulbasaur =  getPokemon1();
+    const metapod =  getPokemon2();
+    const spearow =  getPokemon3();
+
+    const results = await Promise.all([bulbasaur, metapod, spearow])
+
+    let pokemons: any[] = []
+    
+    results.forEach((result, index) => {
+      // console.log("results.forEach  result:", result);
+      
+      if (result.status === 'fulfilled') {
+        // console.log(`Запрос ${index + 1} успешен:`, result.value);
+        pokemons.push(result.value)
+      } 
+      else {
+        console.error(`Запрос ${index + 1} завершился с ошибкой:`, result.reason);
+      }
+    });
+    console.log("pokemons:", pokemons);
+
+    // console.log("bulbasaur:", aa);
+    // console.log("metapod:", bb);
+    // console.log("spearow:", cc);
+  } catch (error) {
+    // console.log(error);
+    
+  }
+})();
+
+// getPokemon1()
+// .then(data => {
+//   console.log(data);
+// })
+// .catch(err => {
+//   console.log(err);
+// })
+
+// getPokemon2()
+// .then(data => {
+//   console.log(data);
+// })
+// .catch(err => {
+//   console.log(err);
+// })
+
+// getPokemon3()
+// .then(data => {
+//   console.log(data);
+// })
+// .catch(err => {
+//   console.log(err);
+// })
