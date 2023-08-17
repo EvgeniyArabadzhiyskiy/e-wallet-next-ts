@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -14,12 +14,11 @@ import EnterButton from "../Buttons/EnterButton/EnterButton";
 import LinkButton from "../Buttons/LinkButton/LinkButton";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
 
-
 interface IProps {
   formik: FormikProps<ILoginValues>;
 }
 
-export default function LoginFormFields  ({ formik }: IProps) {
+export default function LoginFormFields({ formik }: IProps) {
   const { isValid, dirty, isSubmitting } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
@@ -45,13 +44,26 @@ export default function LoginFormFields  ({ formik }: IProps) {
           name="password"
           placeholder="Password"
           autoComplete="off"
-          inputBtn={ <PasswordToggleBtn isHidePassword={isHidePassword} setIsHidePassword={setIsHidePassword} />}
+          inputBtn={
+            <PasswordToggleBtn
+              isHidePassword={isHidePassword}
+              setIsHidePassword={setIsHidePassword}
+            />
+          }
         />
       </Box>
 
-      <EnterButton width={[80, 300]} height={50} type="submit" enterText="Log in" disabled={isDisabled} />
-      <LinkButton href='/register' text='Register' />
+      <EnterButton
+        width={{ mobile: "80%", desctop: "300px" }}
+        height={50}
+        type="submit"
+        enterText="Log in"
+        disabled={isDisabled}
+      />
+      <Box mt={4}>
+        <LinkButton href="/register" text="Register" />
+      </Box>  
       {/* <GoogleAuthLink />   */}
     </>
   );
-};
+}
