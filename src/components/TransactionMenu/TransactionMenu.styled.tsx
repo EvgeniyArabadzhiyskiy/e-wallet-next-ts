@@ -48,26 +48,7 @@ export const Menu = styled.div<{ $isDelete: boolean; isOpenMenu: boolean }>`
 //   text-transform: uppercase;
 // `;
 
-export const DeleteBtn = styled.button`
-  ${baseBtnStyle}
-  width: 120px;
-  height: 40px;
 
-  color: #a1a1aa;
-  background-color: #022c22;
-  border-radius: 10px;
-  border: 2px solid #10b981;
-  transition: background-color 300ms linear;
-
-  &:hover,
-  &:focus {
-    background-color: #064e3b;
-  }
-
-  /* @media ${(p) => p.theme.media.medium} {
-    width: 120px;
-  } */
-`;
 
 export const SettingBtn = styled.button`
   background: transparent;
