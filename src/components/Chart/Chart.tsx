@@ -16,17 +16,22 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 // console.log("ChartJS:", ChartJS.defaults.plugins.title);
 
 interface IProps {
-  statistic: IStatistic[];
+  statistic: IStatistic[] | undefined;
 }
 
 function Chart({ statistic }: IProps) {
-  const result = getStatsResult(statistic);
-  const data = getChartData(result);
 
   const { data: totalBalance = 0 } = useUserBalance();
   const centerTextPlugin = useMemo(() => {
     return createCenterTextPlugin(totalBalance);
   }, [totalBalance]);
+
+  if (!statistic) {
+    return null
+  }
+
+  const result = getStatsResult(statistic);
+  const data = getChartData(result);
 
   return (
     <DoughnutWrapper>
