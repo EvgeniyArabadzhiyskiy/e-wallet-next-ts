@@ -23,7 +23,7 @@ export default withAuth(
     }
 
     if (isLoggedIn && isAuthPage) {
-      return NextResponse.redirect(new URL("/home", req.url));
+      return NextResponse.redirect(new URL("/", req.url));
     }
   },
 
