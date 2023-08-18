@@ -83,7 +83,7 @@ export default function LoginFormFields({ formik }: IProps) {
       <Box mt={4}>
         <LinkButton href="/register" text="Register" />
       </Box> 
-      <button type="button" onClick={onGoogle}>Sign In with Google</button> 
+      {/* <button type="button" onClick={onGoogle}>Sign In with Google</button>  */}
       
       <GoogleAuthLink />  
     </>
