@@ -11,7 +11,6 @@ import ModalBox from "../ModalWindow/ModalBox";
 import FlipCard from "../FlipCard/FlipCard";
 import SettingsSvg from "../SvgComponent/SettingsSvg";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
-import { signOut, useSession } from "next-auth/react";
 
 
 
@@ -21,13 +20,6 @@ function TransactionTable() {
 
   const [editId, setEditId] = useState<string>("");
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD")
-
-  const { data: session } = useSession()
-  console.log("LoginFormFields  data:", session);
-
-  const onSignOut = async () => {
-    signOut()
-  }
 
   return (
     <>
@@ -65,7 +57,6 @@ function TransactionTable() {
           </TableBody>
         )}
       </Table>
-      <button type="button" onClick={onSignOut}>Sign In with Google</button> 
 
       <ButtonAddTransactions setModalKey={setModalKey} />
 
