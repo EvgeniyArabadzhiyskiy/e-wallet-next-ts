@@ -1,11 +1,20 @@
+"use client"
+
 import stl from "./HeroSection.module.scss";
 import Container from "../Container/Container";
 import LinkButton from "../Buttons/LinkButton/LinkButton";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
+import { useGoogleAuth } from "@/src/hooks/useGoogleAuth";
+import { useUser } from "@/src/hooks/useUser";
 
-async function HeroSection() {
-  const session = await getServerSession(authOptions);
+ function HeroSection() {
+  // const session = await getServerSession(authOptions);
+
+  const session = useUser()
+  console.log("HeroSection  session:", session);
+
+  useGoogleAuth()
 
   return (
     <div>
@@ -23,7 +32,7 @@ async function HeroSection() {
               <span className={stl.hero__title__accent}> totally FREE</span>
             </p>
 
-            {session 
+            {session.user 
              ? <LinkButton href="/home/transactions" text="Wallet" />
              : <LinkButton href="/login" text="Start in 30 seconds" />
             }
