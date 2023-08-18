@@ -14,10 +14,10 @@ declare module "next-auth" {
   interface User {
     token: string;
 
-    user: {
-      email: string;
-      firstName: string;
-      balance: number;
-    };
+    // user: {
+    email: string;
+    firstName: string;
+    balance: number;
+    // };
   }
 }
