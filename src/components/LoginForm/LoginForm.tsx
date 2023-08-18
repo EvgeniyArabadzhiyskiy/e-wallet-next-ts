@@ -14,12 +14,15 @@ import LoginFormFields from "../LoginFormFields/LoginFormFields";
 import { FormWrap } from "./LoginForm.styled";
 import { ILoginValues } from "@/src/types/loginValues";
 import { loginSchema } from "@/src/helpers/formValidation";
+import { useGoogleAuth } from "@/src/hooks/useGoogleAuth";
 
 
 export default function LoginForm () {
   const searchParams = useSearchParams()
   const error = searchParams.get('error')
   // console.log("LoginPage  error:", error);
+
+  useGoogleAuth()
   
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
