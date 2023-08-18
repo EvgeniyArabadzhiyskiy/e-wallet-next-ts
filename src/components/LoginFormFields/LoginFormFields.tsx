@@ -13,6 +13,8 @@ import FormInput from "../FormInput/FormInput";
 import EnterButton from "../Buttons/EnterButton/EnterButton";
 import LinkButton from "../Buttons/LinkButton/LinkButton";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
+import { signIn, signOut, useSession } from "next-auth/react";
+import GoogleAuthLink from "../Buttons/GoogleAuthLink/GoogleAuthLink";
 
 interface IProps {
   formik: FormikProps<ILoginValues>;
@@ -22,8 +24,26 @@ export default function LoginFormFields({ formik }: IProps) {
   const { isValid, dirty, isSubmitting } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
+  const { data: session } = useSession()
+  console.log("LoginFormFields  data:", session);
+
   const [isHidePassword, setIsHidePassword] = useState(true);
   // console.log("isHidePassword:", isHidePassword);
+
+  const onGoogle = async () => {
+    const user = await signIn(
+      'google', {
+      // redirect: true,
+      callbackUrl: 'http://localhost:3000/home/transactions',
+      // callbackUrl: "https://wallet-backend-xmk0.onrender.com/api/auth-google/google-redirect"
+    }
+    ) 
+    console.log("onGoogle  user:", user);
+  }
+
+  const onSignOut = async () => {
+    signOut()
+  }
 
   return (
     <>
@@ -62,8 +82,10 @@ export default function LoginFormFields({ formik }: IProps) {
       />
       <Box mt={4}>
         <LinkButton href="/register" text="Register" />
-      </Box>  
-      {/* <GoogleAuthLink />   */}
+      </Box> 
+      <button type="button" onClick={onGoogle}>Sign In with Google</button> 
+      
+      <GoogleAuthLink />  
     </>
   );
 }
