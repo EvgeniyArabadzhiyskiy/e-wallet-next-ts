@@ -41,7 +41,7 @@ export const GoogleLink = styled(StyledLink)`
 
 const GoogleAuthLink = () => {
     return (
-      <GoogleLink as="a" href={`http://localhost:4001/api/auth-google/google`} rel="noreferrer">
+      <GoogleLink as="a" href={`${BASE_URL}${AUTH_GOOGLE}`} rel="noreferrer">
         <GoogleSvg /> <span>GOOGLE</span>
       </GoogleLink>
     );
