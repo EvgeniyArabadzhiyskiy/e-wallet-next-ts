@@ -14,7 +14,3 @@ export const AUTH_GOOGLE = '/auth-google/google';
 
 // https://wallet-backend-xmk0.onrender.com/api/auth-google/google-redirect
 // http://localhost:4001/api/auth-google/google-redirect
-
-
-// CLIENT_ID=259286260568-kl6201hqpnakfuu3e8uk4riuojbodkkb.apps.googleusercontent.com
-// CLIENT_SECRET=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
