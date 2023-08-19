@@ -19,16 +19,12 @@ export const Filter = styled.input`
   font-size: 18px;
   height: 50px;
   width: 100%;
-  /* border-radius: 30px; */
   border-radius: 10px;
   color: #a1a1aa;
   background-color: #111827;
- 
-
 
   outline: none;
   border: none;
-  /* border: 1px solid black; */
   border: 2px solid #10b981;
   transition: border 250ms linear;
 
@@ -42,10 +38,8 @@ export const Filter = styled.input`
   }
 `;
 
-export const ClearButton = styled.button`
+export const WrapperBtn = styled.div`
   position: absolute;
-  top: 16px;
-  right: 25px;
-  background-color: transparent;
-  cursor: pointer;
+  top: 15px;
+  right: 18px;
 `;
