@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 
-import { DoughnutWrapper } from "./Chart.styled";
 import { IStatistic } from "@/src/types/statistics";
 import { useUserBalance } from "@/src/apiWallet";
 import { getChartData } from "@/src/helpers/getChartData";
@@ -20,27 +19,24 @@ interface IProps {
 }
 
 function Chart({ statistic }: IProps) {
-
   const { data: totalBalance = 0 } = useUserBalance();
   const centerTextPlugin = useMemo(() => {
     return createCenterTextPlugin(totalBalance);
   }, [totalBalance]);
 
   if (!statistic) {
-    return null
+    return null;
   }
 
   const result = getStatsResult(statistic);
   const data = getChartData(result);
 
   return (
-    <DoughnutWrapper>
-      <Doughnut
-        data={data}
-        options={doughnutOptions}
-        plugins={[centerTextPlugin]}
-      />
-    </DoughnutWrapper>
+    <Doughnut
+      data={data}
+      options={doughnutOptions}
+      plugins={[centerTextPlugin]}
+    />
   );
 }
 
