@@ -1,4 +1,7 @@
 import moment from "moment";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { useRemoveTransaction } from "@/src/apiWallet";
+import { useGlobalState } from "../../GlobalProvider/GlobalProvider";
 import { Category } from "../TransactionTable.styled";
 import {
   CategoryName,
@@ -6,20 +9,10 @@ import {
   StyledItem,
   SumColorText,
 } from "./TransactionItem.styled";
-import { getSymbolType } from "@/src/helpers/getSymbolType";
-import { Dispatch, SetStateAction, useRef, useState } from "react";
-import {
-  useQueryClient,
-} from "@tanstack/react-query";
 import { ITransaction } from "@/src/types/transactions";
-import { useUser } from "@/src/hooks/useUser";
-import TransactionMenu from "../../TransactionMenu/TransactionMenu";
-import { useGlobalState } from "../../GlobalProvider/GlobalProvider";
-import { useRemoveTransaction } from "@/src/apiWallet";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSliders } from "@fortawesome/free-solid-svg-icons";
+import { getSymbolType } from "@/src/helpers/getSymbolType";
 import SettingsSvg from "../../SvgComponent/SettingsSvg";
-// import { faGearComplexCode } from "@fortawesome/free-solid-svg-icons";
+import TransactionMenu from "../../TransactionMenu/TransactionMenu";
 
 interface IProps {
   balance: number;
