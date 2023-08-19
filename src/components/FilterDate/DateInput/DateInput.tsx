@@ -1,66 +1,75 @@
 import moment from "moment";
-import Datetime from 'react-datetime';
-import { ClearButton, Filter, InputWrapper } from "./DateInput.styled";
+import Datetime from "react-datetime";
+import { Filter, InputWrapper, WrapperBtn } from "./DateInput.styled";
 import CrossSvg from "../../SvgComponent/CrossSvg";
+import { Dispatch, SetStateAction } from "react";
+import CrossBtn from "../../Buttons/CrossBtn";
 
 interface IProps {
-  setMonth?: any;
-  setYear?: any;
-  value?: string;
+  value: string;
+  setDate: Dispatch<SetStateAction<string>>;
 }
 
-function DateInput ({ setMonth, setYear, value = "Month" }: IProps) {
-  const changeDate = (e: any) => {
-    const currentYear: any = moment(e).format("YYYY");
-    const currentMonth = new Date(e).getMonth();
+function DateInput({ value, setDate }: IProps) {
+  const changeDate = (dateEvent: string | moment.Moment) => {
+    if (!dateEvent) return;
 
-    if (!isNaN(currentYear) && currentYear) {
-      setYear && setYear(currentYear);
-    }
+    switch (value) {
+      case "Month":
+        const currentMonth = Number(moment(dateEvent).format("M")) - 1;
+        setDate(currentMonth.toString());
+        return;
 
-    if (!isNaN(currentMonth) ?? currentMonth) {
-      setMonth && setMonth(String(currentMonth));
+      case "Year":
+        const currentYear = moment(dateEvent).format("YYYY");
+        setDate(currentYear);
+        return;
+
+      default:
+        console.log("Invalid value");
+        return;
     }
   };
 
-  const renderView = (mode: any, renderDefault: any) => {
+  const renderView = (
+    mode: string,
+    renderDefaultCalendar: Function
+  ): JSX.Element => {
     if (mode === "months") {
-      return <div className="style-month">{renderDefault()}</div>;
+      return <div className="style-month">{renderDefaultCalendar()}</div>;
     }
 
-    return renderDefault();
+    return <>{renderDefaultCalendar()}</>;
   };
 
-  const renderFilterInput = (props: any) => {
+  const renderFilterInput = (props: any): JSX.Element => {
     const clear = () => {
-      props.onChange({ target: { value: '' } });
+      props.onChange({ target: { value: "" } });
 
-      setMonth && setMonth("");
-      setYear && setYear("");
+      setDate("");
     };
 
     return (
       <InputWrapper>
         <Filter {...props} />
-        <ClearButton type='button' onClick={clear}>
-          
-          <CrossSvg width={18} height={18} color="#a1a1aa"/>
-        </ClearButton>
+        <WrapperBtn>
+          <CrossBtn onClick={clear} color="#a1a1aa" aria-label="clear" />
+        </WrapperBtn>
       </InputWrapper>
     );
   };
 
   return (
     <Datetime
-    //   name="date"
       closeOnSelect
       timeFormat={false}
-      dateFormat={value === 'Month' ? 'MMMM' : 'YYYY'}
-      
+      dateFormat={value === "Month" ? "MMMM" : "YYYY"}
       onChange={changeDate}
       renderInput={renderFilterInput}
-      renderView={(mode, renderDefault) => renderView(mode, renderDefault)}
-      inputProps={{ placeholder: value, onKeyDown: e => e.preventDefault() }}
+      renderView={(mode, renderDefaultCalendar) =>
+        renderView(mode, renderDefaultCalendar)
+      }
+      inputProps={{ placeholder: value, onKeyDown: (e) => e.preventDefault() }}
     />
   );
 }
