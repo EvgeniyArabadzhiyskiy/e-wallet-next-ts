@@ -2,8 +2,6 @@
 
 import { Section, Wrapper } from "@/src/app/_components/LoginLayout.styled";
 import Link from "next/link";
-import { Text } from "./Statistic/Statistic.styled";
-import Statistic from "./Statistic/Statistic";
 import LoginForm from "./LoginForm/LoginForm";
 import Container from "./Container/Container";
 
