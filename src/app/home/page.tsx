@@ -164,26 +164,26 @@ const getPokemon3 = async () => {
   // }
 
   
-    const bulbasaur =  getPokemon1();
-    const metapod =  getPokemon2();
-    const spearow =  getPokemon3();
+    // const bulbasaur =  getPokemon1();
+    // const metapod =  getPokemon2();
+    // const spearow =  getPokemon3();
 
-    const results = await Promise.allSettled([bulbasaur, metapod, spearow])
-    console.log("results:", results);
+    // const results = await Promise.allSettled([bulbasaur, metapod, spearow])
+    // console.log("results:", results);
 
     let pokemons: any[] = []
     
-    results.forEach((result, index) => {
-      // console.log("results.forEach  result:", result);
+    // results.forEach((result, index) => {
+    //   // console.log("results.forEach  result:", result);
       
-      if (result.status === 'fulfilled') {
-        // console.log(`Запрос ${index + 1} успешен:`, result.value);
-        pokemons.push(result.value)
-      } 
-      else {
-        // console.error(`Запрос ${index + 1} завершился с ошибкой:`, result.reason);
-      }
-    });
+    //   if (result.status === 'fulfilled') {
+    //     // console.log(`Запрос ${index + 1} успешен:`, result.value);
+    //     pokemons.push(result.value)
+    //   } 
+    //   else {
+    //     // console.error(`Запрос ${index + 1} завершился с ошибкой:`, result.reason);
+    //   }
+    // });
     // console.log("pokemons:", pokemons);
 
     // console.log("bulbasaur:", aa);
