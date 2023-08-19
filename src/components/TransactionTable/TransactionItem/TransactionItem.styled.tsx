@@ -42,7 +42,7 @@ export const SumColorText = styled.p<{ $typeColor: string }>`
 
   display: flex;
   justify-content: space-between;
-  padding: 12px 20px;
+  padding: 10px 20px;
 
   @media (min-width: 768px) {
     ${ItemTextPosition};
@@ -54,17 +54,22 @@ export const SumColorText = styled.p<{ $typeColor: string }>`
 export const CategoryName = styled.span`
   font-weight: 700;
 
-  @media (min-width: 768px) {
+  @media ${(p) => p.theme.media.medium} {
     display: none;
   }
 `;
 
 export const SettingsBtn = styled.button`
   display: flex;
+  padding: 5px;
   background-color: transparent;
   transition: color 300ms linear;
-  
+
   &:hover {
-    color: ${p => p.theme.colors.primaryBgBtn}
+    color: ${(p) => p.theme.colors.primaryBgBtn};
+  }
+
+  @media ${(p) => p.theme.media.medium} {
+    padding: 10px;
   }
 `;
