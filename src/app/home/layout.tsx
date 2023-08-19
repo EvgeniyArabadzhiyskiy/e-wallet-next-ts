@@ -1,11 +1,6 @@
 import { Metadata } from "next";
-import DashBoardLayout from "@/src/components/DashBoardLayout/DashBoardLayout";
 import Header from "@/src/components/Header";
-import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
-import ModalBox from "@/src/components/ModalWindow/ModalBox";
-import SideBar from "@/src/components/SideBar/SideBar";
-import Navigation from "@/src/components/Navigation/Navigation";
-import FlipCard from "@/src/components/FlipCard/FlipCard";
+import DashBoardLayout from "@/src/components/DashBoardLayout/DashBoardLayout";
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -16,17 +11,7 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
   return (
     <>
       <Header />
-      <DashBoardLayout>
-      {/* <SideBar>
-        <Navigation />
-      </SideBar> */}
-        {children}
-      </DashBoardLayout>
-
-     {/* <ModalBox modalName="transaction">
-      <FlipCard modalKey="ADD" editId={''} />
-      </ModalBox> */}
+      <DashBoardLayout>{children}</DashBoardLayout>
     </>
   );
-  // return <DashBoardLayout>{children}</DashBoardLayout>;
 }
