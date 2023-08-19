@@ -3,15 +3,14 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { login } from "../apiWallet/user";
-import { CurrentUser, IAuthCredentials } from "../types/user";
+import { IAuthCredentials } from "../types/user";
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      // redirect console developer http://localhost:3000/api/auth/callback/google
-    }),
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_CLIENT_ID ?? "",
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+    // }),
     CredentialsProvider({
       name: "Sign in",
       credentials: {
@@ -31,9 +30,8 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // return { ...user, id: user.token };
         return {
-          id: "Test-ID",
+          id: user.token,
           token: user.token,
           email: user.user.email,
           firstName: user.user.firstName,
@@ -57,16 +55,6 @@ export const authOptions: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      // const currentUser = {
-      //   token: token.token,
-      //   user: {
-      //     email: token.email,
-      //     firstName: token.firstName,
-      //     balance: token.balance,
-      //   },
-      // } as CurrentUser;
-
-      // return { ...session, ...currentUser };
 
       return {
         ...session,
