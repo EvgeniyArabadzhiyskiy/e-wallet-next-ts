@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
-import { CloseBtn, Menu } from "./TransactionMenu.styled";
-import CrossSvg from "../SvgComponent/CrossSvg";
+
+import CrossBtn from "../Buttons/CrossBtn";
 import EnterButton from "../Buttons/EnterButton/EnterButton";
+import { Menu, WrapperBtn } from "./TransactionMenu.styled";
 
 interface IProps {
   isDelete: boolean;
@@ -15,9 +16,9 @@ interface IProps {
 const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete, onClearId }: IProps) => {
   return (
     <Menu $isOpenMenu={isOpenMenu} $isDelete={isDelete}>
-      <CloseBtn onClick={() => setIsOpenMenu(p => !p)} aria-label="close">
-        <CrossSvg width={14} height={14} />
-      </CloseBtn>
+     <WrapperBtn>
+      <CrossBtn onClick={() => setIsOpenMenu(p => !p)} aria-label="close" />
+     </WrapperBtn>
       
       <EnterButton 
         width={{mobile: "45%", desctop: "120px"}} 
@@ -40,10 +41,6 @@ const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete
           onClick={onClearId} 
         />
       }
-
-      {/* <DeleteBtn onClick={onEdit}>EDIT</DeleteBtn> */}
-      {/* {isDelete && <DeleteBtn onClick={onDelete}>DELETE</DeleteBtn>} */}
-      {/* {!isDelete && <DeleteBtn onClick={onClearId}>CANCEL</DeleteBtn>} */}
     </Menu>
   );
 };
