@@ -32,8 +32,8 @@ export default function RegistrationForm() {
   ) => {
     const userCredentials: ICredentials = { email, password, firstName };
 
-    const resulrRegistration = await register(userCredentials)
-    console.log("RegistrationForm  resulrRegistration:", resulrRegistration.user.email);
+    const resultRegistration = await register(userCredentials)
+    console.log("RegistrationForm  resulrRegistration:", resultRegistration.user.email);
 
     setIsLoading(true);
 
