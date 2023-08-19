@@ -8,26 +8,16 @@ import TransactionItem from "./TransactionItem/TransactionItem";
 import ButtonAddTransactions from "../Buttons/ButtonAddTransactions/ButtonAddTransactions";
 import { Category, Table, TableBody, TableHeader } from "./TransactionTable.styled";
 import ModalBox from "../ModalWindow/ModalBox";
-import FlipCard from "../FlipCard/FlipCard";
+import FlipCard from "../FlipCard";
 import SettingsSvg from "../SvgComponent/SettingsSvg";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
-import { signOut, useSession } from "next-auth/react";
-
-
 
 function TransactionTable() {
   const { data: allTransactions = [], listElem, observerElem  } = useLazyTransactions();
   const balanceList = useBalanceList(allTransactions);
 
   const [editId, setEditId] = useState<string>("");
-  const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD")
-
-  // const { data: session } = useSession()
-  // console.log("LoginFormFields  data:", session);
-
-  const onSignOut = async () => {
-    signOut()
-  }
+  const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD");
 
   return (
     <>
@@ -65,7 +55,6 @@ function TransactionTable() {
           </TableBody>
         )}
       </Table>
-      <button type="button" onClick={onSignOut}>Sign In with Google</button> 
 
       <ButtonAddTransactions setModalKey={setModalKey} />
 
