@@ -1,7 +1,6 @@
 "use client";
 
 import styled from "styled-components";
-import { baseBtnStyle } from "../Buttons/DefaultButton.styled";
 
 export const Menu = styled.div<{ $isDelete: boolean; isOpenMenu: boolean }>`
   position: absolute;
@@ -36,43 +35,23 @@ export const Menu = styled.div<{ $isDelete: boolean; isOpenMenu: boolean }>`
   }
 `;
 
-// export const DeleteBtn = styled.button`
-//   width: 100px;
-//   height: 40px;
-//   font-size: 16px;
-//   border: 7px solid rgba(55, 53, 53, 0.4);
-//   color: ${(p) => p.theme.colors.primaryBg};
-//   background-color: ${(p) => p.theme.colors.primaryBgBtn};
-
-//   cursor: pointer;
-//   text-transform: uppercase;
-// `;
-
-
-
-export const SettingBtn = styled.button`
-  background: transparent;
-
-  svg {
-    display: block;
-    transition: fill 250ms linear;
-  }
-
-  svg:hover {
-    fill: ${(p) => p.theme.colors.primaryBgBtn};
-  }
-`;
-
-export const CloseBtn = styled(SettingBtn)`
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  border-radius: 50%;
-  background-color: white;
+export const WrapperBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  width: 20px;
-  height: 20px;
+
+  position: absolute;
+  top: 6px;
+  left: 6px;
+
+  width: 26px;
+  height: 26px;
+  padding: 18px;
+  border-radius: 50%;
+
+  background-color: white;
+
+  @media ${(p) => p.theme.media.medium} {
+    padding: 0;
+  }
 `;
