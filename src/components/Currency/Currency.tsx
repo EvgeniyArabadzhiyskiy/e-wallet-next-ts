@@ -7,13 +7,11 @@ import {
   CurrencyVektor,
   CurrencyList,
 } from "./Currency.styled";
-// import grafSvg from "../../images/currencyVektor.svg";
 import axios from "axios";
 // import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import CurrencyListItem from "./CurrencyListItem";
 
-//   import CurrencyListItem from './CurrencyListItem';
 
 const getApiMono = async () => {
   const res = await axios.get("https://api.monobank.ua/bank/currency");
@@ -36,19 +34,6 @@ const getApiMono = async () => {
   return currency;
 
 };
-
-// const getApiMono = async () => {
-//   const res = await axios
-//     .get('https://api.monobank.ua/bank/currency')
-//     .then(res => {
-//       const date = new Date();
-//       localStorage.setItem('getMono', JSON.stringify(res.data));
-//       localStorage.setItem('date', JSON.stringify(+date));
-//       return res;
-//     })
-//     .catch(error => error);
-//   return res.data;
-// };
 
 const Currency = () => {
   const [arrow, setArrow] = useState(null);
