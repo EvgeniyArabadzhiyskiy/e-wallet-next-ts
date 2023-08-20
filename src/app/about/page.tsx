@@ -1,61 +1,52 @@
 // "use client";
 
-import AboutComp from "@/src/components/AboutComp/AboutComp";
-import { LogoutButton } from "@/src/components/AuthButtons/AuthButtons";
-import AuthCookie from "@/src/components/AuthCookie";
-import LogoutBtn from "@/src/components/Buttons/LogoutBtn/LogoutBtn";
-import { GlobalContext } from "@/src/components/GlobalProvider/GlobalProvider";
-import Header from "@/src/components/Header";
-import ModalBox from "@/src/components/ModalWindow/ModalBox";
-import ModalLogOut from "@/src/components/ModalLogOut/ModalLogOut";
-import ModalSignUp from "@/src/components/ModalSignUp";
-import ModalWindow from "@/src/components/ModalWindow/ModalWindow";
-import TestCookies from "@/src/components/TestCookies";
-import { authOptions } from "@/src/lib/auth";
-import { getServerSession } from "next-auth";
-import { cookies } from "next/headers";
-import Link from "next/link";
-import { Suspense, useContext } from "react";
-import { Inter, Fira_Code } from "next/font/google";
-import Navigation from "@/src/components/Navigation/Navigation";
-import Currency from "@/src/components/Currency/Currency";
+// import { Inter, Fira_Code } from "next/font/google";
+// import Navigation from "@/src/components/Navigation/Navigation";
+import PokemonList from "@/src/components/PokemonList";
+import PokemonListClient from "@/src/components/PokemonListClient";
+import axios from "axios";
+import { Suspense } from "react";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: "400",
-  preload: true,
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   weight: "400",
+//   preload: true,
+// });
 
-export default function AboutPage() {
-  // const session = await getServerSession(authOptions);
-  // console.log("AboutPage  session:", session);
+const getPokemon = async () => {
+  const { data } = await axios(
+    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`
+  );
+  return data.results;
+};
 
-  // const cookieStore = cookies();
-  // const authToken = cookieStore.get("authToken")?.value;
-  // console.log("AboutPage  authToken:", authToken);
+export default async function AboutPage() {
+  // const pokemons = await getPokemon();
+  //   console.log("PokemonList  pokemons:", pokemons);
 
   return (
-    <>
-      <main>
-        <Header />
-        <h1>Next Font</h1>
-        <Navigation />
+    <div>
+      {/* <Header /> */}
+      <h1 style={{ color: "white", fontSize: 30, marginBottom: 30 }}>
+        About Page
+      </h1>
+      {/* <ul>
+        {pokemons.map((item: any) => {
+          return (
+            <li style={{ color: "white" }} key={item.name}>
+              {item.name}
+            </li>
+          );
+        })}
+      </ul> */}
+      {/* <Navigation /> */}
 
-        <AuthCookie />
-        <Currency />
+      {/* <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}>
+        <PokemonList />
+      </Suspense> */}
 
-        {/* </TestCookies> */}
-        {/* <AboutComp session={session} /> */}
-      </main>
+      {/* <PokemonListClient /> */}
 
-      {/* <ModalBox modalName="logout">
-        <ModalLogOut />
-      </ModalBox> */}
-
-      {/* <ModalBox modalName="signup">
-          <ModalSignUp />
-        </ModalBox>
-        <LogoutBtn modalName="signup" type="exit" /> */}
-    </>
+    </div>
   );
 }
