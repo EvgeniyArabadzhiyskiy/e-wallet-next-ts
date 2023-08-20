@@ -10,6 +10,7 @@ import { Hydrate, dehydrate } from "@tanstack/react-query";
 import Currency from "../Currency/Currency";
 import { getAllTransactions } from "@/src/apiWallet/transaction";
 import { getStatistics } from "@/src/apiWallet/statistic";
+import { Suspense } from "react";
 
 export default async function DashBoardLayout({
   children,
@@ -24,18 +25,18 @@ export default async function DashBoardLayout({
   if (authToken) {
     const balanceQuery = queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
 
-    const transactionsQuery = queryClient.prefetchInfiniteQuery({
-      queryKey: ["TransactionsList"],
-      queryFn: ({ pageParam = 1 }) =>
-        getAllTransactions(authToken, pageParam),
-    });
+    // const transactionsQuery = queryClient.prefetchInfiniteQuery({
+    //   queryKey: ["TransactionsList"],
+    //   queryFn: ({ pageParam = 1 }) =>
+    //     getAllTransactions(authToken, pageParam),
+    // });
 
-    const statisticsQuery = queryClient.prefetchQuery({
-      queryKey: ["Statistics", { month: "", year: "" }],
-      queryFn: () => getStatistics(authToken, { month: "", year: "" }),
-    });
+    // const statisticsQuery = queryClient.prefetchQuery({
+    //   queryKey: ["Statistics", { month: "", year: "" }],
+    //   queryFn: () => getStatistics(authToken, { month: "", year: "" }),
+    // });
 
-    await Promise.allSettled([balanceQuery, transactionsQuery, statisticsQuery])
+    await Promise.allSettled([balanceQuery, ])
   }
 
   const dehydratedState = dehydrate(queryClient);
@@ -56,7 +57,9 @@ export default async function DashBoardLayout({
               <Currency />
             </div>
 
-            {children}
+            <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}>
+              {children}
+            </Suspense>
           </div>
         </Container>
       </div>
