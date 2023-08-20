@@ -11,9 +11,11 @@ function Statistics() {
   const { data, setMonth, setYear, expensesData, expensesTotal, incomeTotal } =
     useStatistic();
 
-    // const client = useQueryClient()
-    // const stat = client.getQueriesData(['Statistics'])
-    // console.log("Statistics  stat:", stat); 
+    const client = useQueryClient()
+    const stat = client.getQueriesData(['Statistics'])
+    const tran = client.getQueriesData(['TransactionsList'])
+    console.log("TransactionsList", tran);
+    console.log("Statistics:", stat); 
 
   return (
     <div>
