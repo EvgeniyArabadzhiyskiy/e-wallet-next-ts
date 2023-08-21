@@ -89,23 +89,23 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
     //     pages: transactions
     //   }
     // }
-    onSuccess: () => {
-      queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
-        if (!prev) {
-          return undefined;
-        }
-        // console.log("TransactionList  prev:", prev.pageParams.slice(1));
-        return {
-          ...prev,
-          pageParams: [1, ...prev.pageParams.slice(1)]
-        };
-      });
-    }
+    // onSuccess: () => {
+    //   queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
+    //     if (!prev) {
+    //       return undefined;
+    //     }
+    //     // console.log("TransactionList  prev:", prev.pageParams.slice(1));
+    //     return {
+    //       ...prev,
+    //       pageParams: [1, ...prev.pageParams.slice(1)]
+    //     };
+    //   });
+    // }
   });
 
   const transactionsList = queryClient.getQueriesData(['TransactionsList'])
   console.log("TransactionList:", transactionsList);
-  
+
 
   const queryData = useQuery({
     queryKey: ["Statistics", { month: "7", year: '2023' }],
