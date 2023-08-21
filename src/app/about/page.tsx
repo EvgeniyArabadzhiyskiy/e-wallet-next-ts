@@ -4,6 +4,7 @@
 // import Navigation from "@/src/components/Navigation/Navigation";
 import PokemonList from "@/src/components/PokemonList";
 import PokemonListClient from "@/src/components/PokemonListClient";
+import TransactionList from "@/src/components/TransactionList/TransactionList";
 import axios from "axios";
 import { Suspense } from "react";
 
@@ -20,7 +21,7 @@ const getPokemon = async () => {
   return data.results;
 };
 
-export default async function AboutPage() {
+export default  function AboutPage() {
   // const pokemons = await getPokemon();
   //   console.log("PokemonList  pokemons:", pokemons);
 
@@ -46,6 +47,8 @@ export default async function AboutPage() {
       </Suspense> */}
 
       {/* <PokemonListClient /> */}
+
+      <TransactionList />
 
     </div>
   );
