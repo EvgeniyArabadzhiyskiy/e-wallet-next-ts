@@ -3,7 +3,8 @@ import { getAllTransactions } from "@/src/apiWallet/transaction";
 import TransactionTable from "@/src/components/TransactionTable/TransactionTable";
 import { authOptions } from "@/src/lib/auth";
 import getQueryClient from "@/src/lib/getQueryClient";
-import { Hydrate, dehydrate } from "@tanstack/react-query";
+import { ITransactions } from "@/src/types/transactions";
+import { Hydrate, InfiniteData, dehydrate } from "@tanstack/react-query";
 import { getServerSession } from "next-auth";
 import { Suspense } from "react";
 
@@ -35,23 +36,37 @@ export default async function PageTransactions() {
     //   getBalance(authToken)
     // );
 
-    // const transactionsQuery = await queryClient.prefetchInfiniteQuery( ["TransactionsList"],
-    //   ({pageParam = 1}) => {
-    //     // console.log("PageTransactions  p:", pageParam);
-    //     return getAllTransactions(authToken, pageParam)
-    //   },
-    // );
+    const transactionsQuery = queryClient.prefetchInfiniteQuery({
+      queryKey: ["TransactionsList"],
+      queryFn: ({ pageParam = 1 }) =>
+        getAllTransactions(authToken, pageParam),
+        
+    });
     
-    // await Promise.allSettled([ transactionsQuery]);
+    await Promise.allSettled([ transactionsQuery]);
+
+     queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
+      if (!prev) {
+        return undefined;
+      }
+      // console.log("PageTransactions  prev:", prev.pageParams);
+      return {
+        ...prev,
+        pageParams: [1]
+      };
+    });
+
+    // const transactionsList = queryClient.getQueriesData(['TransactionsList'])
+    // console.log("TransactionList:===================", transactionsList[0]);
   }
 
-  // const dehydratedState = dehydrate(queryClient);
+  const dehydratedState = dehydrate(queryClient);
 
   return (
     <>
-      {/* <Hydrate state={dehydratedState}> */}
+      <Hydrate state={dehydratedState}>
         <TransactionTable />
-      {/* </Hydrate> */}
+      </Hydrate>
 
       {/* <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}>
       </Suspense> */}
