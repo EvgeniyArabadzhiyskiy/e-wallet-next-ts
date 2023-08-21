@@ -36,25 +36,24 @@ export default async function PageTransactions() {
     //   getBalance(authToken)
     // );
 
-    const transactionsQuery = queryClient.prefetchInfiniteQuery({
+    const transactionsQuery = await queryClient.prefetchInfiniteQuery({
       queryKey: ["TransactionsList"],
       queryFn: ({ pageParam = 1 }) =>
         getAllTransactions(authToken, pageParam),
         
     });
     
-    await Promise.allSettled([ transactionsQuery]);
+    // await Promise.allSettled([ transactionsQuery]);
 
-     queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
-      if (!prev) {
-        return undefined;
-      }
-      // console.log("PageTransactions  prev:", prev.pageParams);
-      return {
-        ...prev,
-        pageParams: [1]
-      };
-    });
+    //  queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
+    //   if (!prev) {
+    //     return undefined;
+    //   }
+    //   return {
+    //     ...prev,
+    //     pageParams: [1]
+    //   };
+    // });
 
     // const transactionsList = queryClient.getQueriesData(['TransactionsList'])
     // console.log("TransactionList:===================", transactionsList[0]);
