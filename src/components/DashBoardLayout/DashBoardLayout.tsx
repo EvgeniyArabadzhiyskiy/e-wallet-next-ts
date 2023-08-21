@@ -69,9 +69,9 @@ export default async function DashBoardLayout({
               <Currency />
             </div>
 
-            {/* <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}> */}
+            <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}>
               {children}
-            {/* </Suspense> */}
+            </Suspense>
           </div>
         </Container>
       </div>
