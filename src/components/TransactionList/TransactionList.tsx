@@ -6,13 +6,15 @@ import { useLazyTransactions } from "@/src/apiWallet";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 import { useBalanceList } from "@/src/hooks/useBalanceList";
 import HomeTableDesctop from "../HomeTab/HomeTableDesctop/HomeTableDesctop";
-import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
+import { InfiniteData, useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Media } from "@/src/lib/media";
 import HomeTableMobile from "../HomeTab/HomeTableMobile/HomeTableMobile";
 import TransactionTable from "../TransactionTable/TransactionTable";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { getAllTransactions } from "@/src/apiWallet/transaction";
+import { ITransactions } from "@/src/types/transactions";
+import { getStatistics } from "@/src/apiWallet/statistic";
 
 // const TransactionList = () => {
 //   const queryClient = useQueryClient();
@@ -55,7 +57,7 @@ import { getAllTransactions } from "@/src/apiWallet/transaction";
 //=================================================================================
 const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
   // const { authToken } = parseCookies();
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const listElem = useRef<HTMLUListElement>(null);
   const observerElem = useRef<HTMLDivElement>(null);
@@ -88,6 +90,31 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
     //   }
     // }
   });
+
+  const transactionsList = queryClient.getQueriesData(['TransactionsList'])
+  console.log("TransactionList:", transactionsList);
+
+  const queryData = useQuery({
+    queryKey: ["Statistics", { month: "7", year: '2023' }],
+    queryFn: () => getStatistics(userToken, { month: "7", year: '2023' }),
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    retry: 0,
+    enabled: !!userToken,
+  });
+
+  const stat = queryClient.getQueriesData(['Statistics'])
+  // console.log("TransactionList  stat:", stat);
+
+  // queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
+  //   if (!prev) {
+  //     return undefined;
+  //   }
+  //   return {
+  //     ...prev,
+  //     pageParams: [undefined]
+  //   };
+  // });
 
   const allTransactions = useMemo(() => {
     return data?.pages.map(({ transactions }) => transactions).flat();
