@@ -6,6 +6,7 @@ import StatTable from "./StatTable";
 import { ChartWrapper, PageTitle, TableWrapper } from "./Statistics.styled";
 import Chart from "../Chart/Chart";
 import { useQueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 
 function Statistics() {
   const { data, setMonth, setYear, expensesData, expensesTotal, incomeTotal } =
@@ -13,12 +14,17 @@ function Statistics() {
 
     const client = useQueryClient()
     const stat = client.getQueriesData(['Statistics'])
-    const tran = client.getQueriesData(['TransactionsList'])
-    console.log("TransactionsList", tran);
-    console.log("Statistics:", stat); 
+    const tranList = client.getQueriesData(['TransactionsList'])
+    const tran = client.getQueriesData(['Transactions'])
+    // console.log("Transactions", tran);
+    console.log("TransactionsList", tranList && tranList[0]);
+    // console.log("Statistics:", stat); 
 
   return (
     <div>
+      <br/>
+      <Link href="/about">Statistic</Link>
+      <br/>
       <PageTitle>Statistics</PageTitle>
       <TableWrapper>
         <ChartWrapper>{<Chart statistic={data} /> }</ChartWrapper>
