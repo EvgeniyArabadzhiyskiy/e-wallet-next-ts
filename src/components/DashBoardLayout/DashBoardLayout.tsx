@@ -55,6 +55,8 @@ export default async function DashBoardLayout({
 
   // const balance = queryClient.getQueriesData<any>(["Balance"]);
   // console.log("TransactionList  Balance:+++++++++++++++++++++++++++++++++++", balance);
+  // console.log('++++++++++++++++++++++++++++++++++++++')
+  
 
   return (
     <Hydrate state={dehydratedState}>
@@ -69,9 +71,9 @@ export default async function DashBoardLayout({
               <Currency />
             </div>
 
-            <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}>
+            {/* <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}> */}
               {children}
-            </Suspense>
+            {/* </Suspense> */}
           </div>
         </Container>
       </div>
