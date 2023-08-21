@@ -6,11 +6,12 @@ import stl from "./DashBoardLayout.module.scss";
 import { getBalance } from "@/src/apiWallet/balance/getBalance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
-import { Hydrate, dehydrate } from "@tanstack/react-query";
+import { Hydrate, InfiniteData, dehydrate } from "@tanstack/react-query";
 import Currency from "../Currency/Currency";
 import { getAllTransactions } from "@/src/apiWallet/transaction";
 import { getStatistics } from "@/src/apiWallet/statistic";
 import { Suspense } from "react";
+import { ITransactions } from "@/src/types/transactions";
 
 export default async function DashBoardLayout({
   children,
@@ -35,8 +36,18 @@ export default async function DashBoardLayout({
       queryKey: ["Statistics", { month: "", year: "" }],
       queryFn: () => getStatistics(authToken, { month: "", year: "" }),
     });
-
+    
     await Promise.allSettled([balanceQuery,transactionsQuery ])
+    queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
+      if (!prev) {
+        return undefined;
+      }
+      return {
+        ...prev,
+        pageParams: [1]
+      };
+    });
+
   }
 
   const dehydratedState = dehydrate(queryClient);
