@@ -6,7 +6,7 @@ import { ITransactions } from "../../types/transactions";
 export const getAllTransactions = 
 async (authToken: string | undefined, pageNum: number) => {
   await new Promise((res) =>
-    setTimeout(() => res(console.log("Promise resolve")), 4000)
+    setTimeout(() => res(console.log("Promise resolve")), 10000)
   );
 
   const options: RequestInit = {
