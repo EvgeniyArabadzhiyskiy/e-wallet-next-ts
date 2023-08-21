@@ -3,23 +3,9 @@ import { getAllTransactions } from "@/src/apiWallet/transaction";
 import TransactionTable from "@/src/components/TransactionTable/TransactionTable";
 import { authOptions } from "@/src/lib/auth";
 import getQueryClient from "@/src/lib/getQueryClient";
-import { ITransactions } from "@/src/types/transactions";
-import { Hydrate, InfiniteData, dehydrate } from "@tanstack/react-query";
+import { Hydrate,  dehydrate } from "@tanstack/react-query";
 import { getServerSession } from "next-auth";
-import { Suspense } from "react";
 
-// import { QueryClient } from '@tanstack/react-query'
-// import { cache } from 'react'
-
-// const getQueryClientTransaction = cache(() => new QueryClient({
-//   defaultOptions: {
-//     queries: {
-//       queryKey: ['TransactionsList'],
-//       staleTime: Infinity,
-//       refetchOnWindowFocus: false,
-//     }
-//   }
-// }))
 
 export default async function PageTransactions() {
   //   await new Promise((res) =>
@@ -29,7 +15,6 @@ export default async function PageTransactions() {
   const authToken = session?.token;
 
   const queryClient = getQueryClient();
-  // const queryClient = getQueryClientTransaction();
 
   if (authToken) {
     // const balanceQuery = queryClient.prefetchQuery(["Balance"], () =>
@@ -43,20 +28,6 @@ export default async function PageTransactions() {
         
     });
     
-    // await Promise.allSettled([ transactionsQuery]);
-
-    //  queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
-    //   if (!prev) {
-    //     return undefined;
-    //   }
-    //   return {
-    //     ...prev,
-    //     pageParams: [1]
-    //   };
-    // });
-
-    // const transactionsList = queryClient.getQueriesData(['TransactionsList'])
-    // console.log("TransactionList:===================", transactionsList[0]);
   }
 
   const dehydratedState = dehydrate(queryClient);
