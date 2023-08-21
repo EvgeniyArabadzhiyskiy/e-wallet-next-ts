@@ -5,9 +5,9 @@ import { ITransactions } from "../../types/transactions";
 
 export const getAllTransactions = 
 async (authToken: string | undefined, pageNum: number) => {
-  await new Promise((res) =>
-    setTimeout(() => res(console.log("Promise resolve")), 8000)
-  );
+  // await new Promise((res) =>
+  //   setTimeout(() => res(console.log("Promise resolve")), 5000)
+  // );
 
   const options: RequestInit = {
     method: "GET",
