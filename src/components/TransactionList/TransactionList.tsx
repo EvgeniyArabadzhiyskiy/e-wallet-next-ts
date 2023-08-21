@@ -68,13 +68,9 @@ const TransactionList = ({ authToken }: { authToken?: string | undefined }) => {
 
   const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ["TransactionsList"],
-    queryFn: ({pageParam = 1}) => {
-      // console.log("TransactionList  p:", p);
-      
-      return getAllTransactions(userToken, pageParam)
-    },
+    queryFn: ({pageParam = 1}) => getAllTransactions(userToken, pageParam)
+    ,
     getNextPageParam: (lastPage, allPages) => {
-      // console.log("TransactionList  lastPage:", lastPage);
       const nextPage = allPages.length + 1;
 
       return lastPage.transactions.length !== 0 ? nextPage : undefined;
