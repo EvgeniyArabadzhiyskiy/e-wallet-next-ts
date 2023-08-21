@@ -26,27 +26,28 @@ export default async function DashBoardLayout({
   if (authToken) {
     const balanceQuery = queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
 
-    const transactionsQuery = queryClient.prefetchInfiniteQuery({
-      queryKey: ["TransactionsList"],
-      queryFn: ({ pageParam = 1 }) =>
-        getAllTransactions(authToken, pageParam),
-    });
+    // const transactionsQuery = queryClient.prefetchInfiniteQuery({
+    //   queryKey: ["TransactionsList"],
+    //   queryFn: ({ pageParam = 1 }) =>
+    //     getAllTransactions(authToken, pageParam),
+    // });
 
-    const statisticsQuery = queryClient.prefetchQuery({
-      queryKey: ["Statistics", { month: "", year: "" }],
-      queryFn: () => getStatistics(authToken, { month: "", year: "" }),
-    });
+    // const statisticsQuery = queryClient.prefetchQuery({
+    //   queryKey: ["Statistics", { month: "", year: "" }],
+    //   queryFn: () => getStatistics(authToken, { month: "", year: "" }),
+    // });
     
-    await Promise.allSettled([balanceQuery,transactionsQuery ])
-    queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
-      if (!prev) {
-        return undefined;
-      }
-      return {
-        ...prev,
-        pageParams: [1]
-      };
-    });
+    await Promise.allSettled([balanceQuery ])
+
+    // queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
+    //   if (!prev) {
+    //     return undefined;
+    //   }
+    //   return {
+    //     ...prev,
+    //     pageParams: [1]
+    //   };
+    // });
 
   }
 
