@@ -5,9 +5,9 @@ import { ITransactions } from "../../types/transactions";
 
 export const getAllTransactions = 
 async (authToken: string | undefined, pageNum: number) => {
-  // await new Promise((res) =>
-  //   setTimeout(() => res(console.log("Promise resolve")), 4000)
-  // );
+  await new Promise((res) =>
+    setTimeout(() => res(console.log("Promise resolve")), 4000)
+  );
 
   const options: RequestInit = {
     method: "GET",
@@ -17,18 +17,18 @@ async (authToken: string | undefined, pageNum: number) => {
     // cache: "no-store",
   };
   
-  // try {
+  try {
     const data = await fetcher<ITransactions>
     (`${TRANSACTIONS}?page=${pageNum}&limit=10`, options);
     
-    // if (!isITransactions(data)) {
-    //   throw new Error("Invalid data format");
-    // }
+    if (!isITransactions(data)) {
+      throw new Error("Invalid data format");
+    }
 
     return data;
 
-  // } catch (error) {
-  //   console.log("Error:", (error as Error).message);
-  //   throw error
-  // }
+  } catch (error) {
+    console.log("Error:", (error as Error).message);
+    throw error
+  }
 }
