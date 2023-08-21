@@ -29,8 +29,7 @@ export default async function PageStatistic() {
     await Promise.allSettled([ statisticsQuery])
   }
 
-  // const stat = queryClient.getQueriesData(['Statistics'])
-  // console.log("TransactionList  stat:", stat);
+  
 
   const dehydratedState = dehydrate(queryClient);
 
