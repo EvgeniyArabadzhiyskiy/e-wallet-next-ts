@@ -17,7 +17,7 @@ function Statistics() {
     const tranList = client.getQueriesData(['TransactionsList'])
     const tran = client.getQueriesData(['Transactions'])
     // console.log("Transactions", tran);
-    console.log("TransactionsList", tranList && tranList[0]);
+    // console.log("TransactionsList", tranList[0]);
     // console.log("Statistics:", stat); 
 
   return (
