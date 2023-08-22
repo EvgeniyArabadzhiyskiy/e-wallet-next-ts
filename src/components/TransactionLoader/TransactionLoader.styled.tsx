@@ -29,3 +29,22 @@ export const Loader = styled.div`
     border-bottom: 1px solid #dcdcdf;
   }
 `;
+
+
+const animationTest = keyframes`
+   0% {
+    background-color: #a64646;
+  }
+  100% {
+    background-color: #555194;
+  }
+`;
+
+export const Test = styled.div`
+  width: 400px;
+  height: 50px;
+
+  background-color: #a06d6d;
+
+  animation: ${animationTest} 1.5s infinite linear alternate;
+`;
