@@ -1,5 +1,4 @@
-// "use client"
-
+import stl from "./TransactionLoader.module.scss";
 import SettingsSvg from "../SvgComponent/SettingsSvg";
 import { StyledItem } from "../TransactionTable/TransactionItem/TransactionItem.styled";
 import {
@@ -8,8 +7,6 @@ import {
   TableBody,
   TableHeader,
 } from "../TransactionTable/TransactionTable.styled";
-// import { Loader, Test } from "./TransactionLoader.styled";
-import stl from "./TransactionLoader.module.scss"
 
 function TransactionLoader() {
   return (
@@ -31,18 +28,17 @@ function TransactionLoader() {
           {[...Array(5)].map((_, i) => {
             return (
               <StyledItem style={{ borderLeft: "none" }} key={i}>
-                <div style={{ animationDelay: `${i * 0.05}s` }}  className={stl.loading}></div>
+                <div
+                  style={{ animationDelay: `${i * 0.05}s` }}
+                  className={stl.loading}
+                ></div>
               </StyledItem>
             );
           })}
         </TableBody>
       </Table>
-
-      {/* <Test /> */}
-      {/* <div className={stl.loading}></div> */}
     </>
   );
 }
 
 export default TransactionLoader;
-  {/* <Loader style={{ animationDelay: `${i * 0.05}s` }} /> */}
