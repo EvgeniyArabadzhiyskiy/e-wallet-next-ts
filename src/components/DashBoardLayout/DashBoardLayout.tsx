@@ -12,19 +12,21 @@ import { getAllTransactions } from "@/src/apiWallet/transaction";
 import { getStatistics } from "@/src/apiWallet/statistic";
 import { Suspense } from "react";
 import { ITransactions } from "@/src/types/transactions";
+import WrapperBalance from "../WrapperBalance/WrapperBalance";
+import BalanceLoader from "../BalanceLoader/BalanceLoader";
 
 export default async function DashBoardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
-  const authToken = session?.token;
+  // const session = await getServerSession(authOptions);
+  // const authToken = session?.token;
 
-  const queryClient = getQueryClient();
+  // const queryClient = getQueryClient();
 
-  if (authToken) {
-    const balanceQuery = queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
+  // if (authToken) {
+    // const balanceQuery = queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
 
     // const transactionsQuery = queryClient.prefetchInfiniteQuery({
     //   queryKey: ["TransactionsList"],
@@ -37,7 +39,7 @@ export default async function DashBoardLayout({
     //   queryFn: () => getStatistics(authToken, { month: "", year: "" }),
     // });
     
-    await Promise.allSettled([balanceQuery ])
+    // await Promise.allSettled([balanceQuery ])
 
     // queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
     //   if (!prev) {
@@ -49,9 +51,9 @@ export default async function DashBoardLayout({
     //   };
     // });
 
-  }
+  // }
 
-  const dehydratedState = dehydrate(queryClient);
+  // const dehydratedState = dehydrate(queryClient);
 
   // const balance = queryClient.getQueriesData<any>(["Balance"]);
   // console.log("TransactionList  Balance:+++++++++++++++++++++++++++++++++++", balance);
@@ -59,24 +61,24 @@ export default async function DashBoardLayout({
   
 
   return (
-    <Hydrate state={dehydratedState}>
+    // <Hydrate state={dehydratedState}>
       <div className={stl.section}>
         <Container>
           <div className={stl.wrapper}>
             <div className={stl.sidebar}>
               <div>
                 <Navigation />
-                {session && <Balance />}
+                <Suspense fallback={<BalanceLoader />}>
+                  <WrapperBalance />
+                </Suspense>
               </div>
               <Currency />
             </div>
 
-            {/* <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}> */}
               {children}
-            {/* </Suspense> */}
           </div>
         </Container>
       </div>
-    </Hydrate>
+    // </Hydrate>
   );
 }
