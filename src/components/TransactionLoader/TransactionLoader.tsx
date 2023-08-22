@@ -14,7 +14,7 @@ import stl from "./TransactionLoader.module.scss"
 function TransactionLoader() {
   return (
     <>
-      {/* <Table>
+      <Table>
         <TableHeader>
           <Category>
             <SettingsSvg width={14} height={14} />
@@ -31,14 +31,15 @@ function TransactionLoader() {
           {[...Array(5)].map((_, i) => {
             return (
               <StyledItem style={{ borderLeft: "none" }} key={i}>
-                <Loader style={{ animationDelay: `${i * 0.05}s` }} />
+                {/* <Loader style={{ animationDelay: `${i * 0.05}s` }} /> */}
+                 <div style={{ animationDelay: `${i * 0.05}s` }}  className={stl.loading}></div>
               </StyledItem>
             );
           })}
         </TableBody>
-      </Table> */}
+      </Table>
 
-      <Test />
+      {/* <Test /> */}
       {/* <div className={stl.loading}></div> */}
     </>
   );
