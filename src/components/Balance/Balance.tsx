@@ -7,9 +7,9 @@ import { useUserBalance } from "@/src/apiWallet";
 export default function Balance() {
   const { data = 0 } = useUserBalance();
 
-  // const queryClient = useQueryClient();
-  // const Balance = queryClient.getQueriesData<any>(["Balance"]);
-  // console.log(" Balance:", Balance[0][1]);
+  const queryClient = useQueryClient();
+  const Balance = queryClient.getQueriesData<any>(["Balance"]);
+  console.log(" Balance:", Balance[0]);
 
   return (
     <Wrapper>
