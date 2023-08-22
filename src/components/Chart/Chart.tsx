@@ -20,9 +20,18 @@ interface IProps {
 
 function Chart({ statistic }: IProps) {
   const { data: totalBalance = 0 } = useUserBalance();
-  const centerTextPlugin = useMemo(() => {
-    return createCenterTextPlugin(totalBalance);
-  }, [totalBalance]);
+  // console.log("Chart  totalBalance:", totalBalance);
+
+  if (!totalBalance) {
+    return null
+  }
+
+
+  // const centerTextPlugin = useMemo(() => {
+  //   return createCenterTextPlugin(totalBalance);
+  // }, [totalBalance]);
+
+  const centerTextPlugin = createCenterTextPlugin(totalBalance);
 
   if (!statistic) {
     return null;
