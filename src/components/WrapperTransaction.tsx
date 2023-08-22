@@ -4,6 +4,7 @@ import getQueryClient from "../lib/getQueryClient";
 import { getAllTransactions } from "../apiWallet/transaction";
 import { Hydrate, dehydrate } from "@tanstack/react-query";
 import TransactionTable from "./TransactionTable/TransactionTable";
+import { getBalance } from "../apiWallet/balance";
 
 async function WrapperTransaction() {
   const session = await getServerSession(authOptions);
@@ -12,14 +13,16 @@ async function WrapperTransaction() {
   const queryClient = getQueryClient();
 
   if (authToken) {
-    // const balanceQuery = queryClient.prefetchQuery(["Balance"], () =>
-    //   getBalance(authToken)
-    // );
+    const balanceQuery = queryClient.prefetchQuery(["Balance"], () =>
+      getBalance(authToken)
+    );
 
-    const transactionsQuery = await queryClient.prefetchInfiniteQuery({
+    const transactionsQuery = queryClient.prefetchInfiniteQuery({
       queryKey: ["TransactionsList"],
       queryFn: ({ pageParam = 1 }) => getAllTransactions(authToken, pageParam),
     });
+
+    await Promise.allSettled([balanceQuery, transactionsQuery])
   }
 
   const dehydratedState = dehydrate(queryClient);
