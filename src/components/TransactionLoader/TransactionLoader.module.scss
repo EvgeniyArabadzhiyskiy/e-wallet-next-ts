@@ -1,17 +1,27 @@
-@keyframes animationTest {
+@keyframes loadingAnimation {
   0% {
-    background-color: #a64646;
+    background-position: 0% 0;
+  }
+  50% {
+    background-position: 100% 0;
   }
   100% {
-    background-color: #13dd56;
+    background-position: 0 0;
   }
 }
 
 .loading {
-  width: 400px;
-  height: 50px;
+  height: 308px;
 
-  background-color: #a06d6d;
+  background: linear-gradient(to left, #111827, #a7acb1);
+  background-size: 200% 100%;
 
-  animation: animationTest 1.5s infinite linear alternate;
+  filter: blur(10px);
+  animation: loadingAnimation 1s ease infinite;
+
+  @media (min-width: 768px) {
+    width: 672px;
+
+    border-bottom: 1px solid #dcdcdf;
+  }
 }
