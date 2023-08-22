@@ -1,7 +1,6 @@
 // "use client";
 
-import { StyledLink } from "../Buttons/LinkButton/LinkButton.styled";
-import { Wrapper, Title, Text, Loader } from "./BalanceLoader.styled";
+// import { Wrapper, Title, Text, Loader } from "./BalanceLoader.styled";
 import stl from "./BalanceLoader.module.scss";
 
 function BalanceLoader() {
