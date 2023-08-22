@@ -33,10 +33,10 @@ export const Loader = styled.div`
 
 const animationTest = keyframes`
    0% {
-    background-color: #a64646;
+    background-color: #f96b12;
   }
   100% {
-    background-color: #555194;
+    background-color: #12f443;
   }
 `;
 
