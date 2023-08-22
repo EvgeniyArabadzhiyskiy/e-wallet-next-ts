@@ -2,7 +2,7 @@
 
 // import { Inter, Fira_Code } from "next/font/google";
 // import Navigation from "@/src/components/Navigation/Navigation";
-import LoaderTransaction from "@/src/components/LoaderTransaction/LoaderTransaction";
+import LoaderTransaction from "@/src/components/TransactionLoader/TransactionLoader";
 import PokemonList from "@/src/components/PokemonList";
 import PokemonListClient from "@/src/components/PokemonListClient";
 import TransactionList from "@/src/components/TransactionList/TransactionList";
