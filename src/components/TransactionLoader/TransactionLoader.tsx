@@ -6,12 +6,12 @@ import {
   TableBody,
   TableHeader,
 } from "../TransactionTable/TransactionTable.styled";
-import { Loader } from "./TransactionLoader.styled";
+import { Loader, Test } from "./TransactionLoader.styled";
 
 function TransactionLoader() {
   return (
     <>
-      <Table>
+      {/* <Table>
         <TableHeader>
           <Category>
             <SettingsSvg width={14} height={14} />
@@ -33,7 +33,9 @@ function TransactionLoader() {
             );
           })}
         </TableBody>
-      </Table>
+      </Table> */}
+
+      <Test />
     </>
   );
 }
