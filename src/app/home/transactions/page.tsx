@@ -42,7 +42,7 @@ export default  function PageTransactions() {
       </Hydrate> */}
 
       <Suspense fallback={<LoaderTransaction />}>
-        <WrapperTransaction />
+        <LoaderTransaction />
       </Suspense>
     </>
   );
