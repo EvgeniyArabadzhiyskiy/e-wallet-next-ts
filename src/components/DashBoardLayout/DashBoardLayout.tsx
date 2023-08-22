@@ -68,9 +68,9 @@ export default async function DashBoardLayout({
             <div className={stl.sidebar}>
               <div>
                 <Navigation />
-                <Suspense fallback={<BalanceLoader />}>
+                {/* <Suspense fallback={<BalanceLoader />}> */}
                   <WrapperBalance />
-                </Suspense>
+                {/* </Suspense> */}
               </div>
               <Currency />
             </div>
