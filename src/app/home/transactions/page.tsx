@@ -1,6 +1,6 @@
 import { getBalance } from "@/src/apiWallet/balance";
 import { getAllTransactions } from "@/src/apiWallet/transaction";
-import LoaderTransaction from "@/src/components/LoaderTransaction/LoaderTransaction";
+import LoaderTransaction from "@/src/components/TransactionLoader";
 import TransactionTable from "@/src/components/TransactionTable/TransactionTable";
 import WrapperTransaction from "@/src/components/WrapperTransaction";
 import { authOptions } from "@/src/lib/auth";
