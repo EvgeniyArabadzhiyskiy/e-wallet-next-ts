@@ -1,0 +1,17 @@
+@keyframes animationTest {
+  0% {
+    background-color: #a64646;
+  }
+  100% {
+    background-color: #13dd56;
+  }
+}
+
+.loading {
+  width: 400px;
+  height: 50px;
+
+  background-color: #a06d6d;
+
+  animation: animationTest 1.5s infinite linear alternate;
+}
