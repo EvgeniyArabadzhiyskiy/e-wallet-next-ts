@@ -1,3 +1,5 @@
+"use client"
+
 import SettingsSvg from "../SvgComponent/SettingsSvg";
 import { StyledItem } from "../TransactionTable/TransactionItem/TransactionItem.styled";
 import {
@@ -36,8 +38,8 @@ function TransactionLoader() {
         </TableBody>
       </Table> */}
 
-      {/* <Test /> */}
-      <div className={stl.loading}></div>
+      <Test />
+      {/* <div className={stl.loading}></div> */}
     </>
   );
 }
