@@ -8,7 +8,7 @@ import {
   TableBody,
   TableHeader,
 } from "../TransactionTable/TransactionTable.styled";
-import { Loader, Test } from "./TransactionLoader.styled";
+// import { Loader, Test } from "./TransactionLoader.styled";
 import stl from "./TransactionLoader.module.scss"
 
 function TransactionLoader() {
