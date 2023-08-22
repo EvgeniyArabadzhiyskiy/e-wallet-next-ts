@@ -16,7 +16,6 @@ export const useUserBalance = () => {
     retry: 0,
     enabled: !!token,
   });
-  console.log("useUserBalance  data:", data.data);
 
   return data;
 };
