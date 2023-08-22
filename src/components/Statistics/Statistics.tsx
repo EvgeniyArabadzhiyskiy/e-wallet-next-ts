@@ -10,7 +10,8 @@ import Link from "next/link";
 
 function Statistics() {
   const { data, setMonth, setYear, expensesData, expensesTotal, incomeTotal } =
-    useStatistic();
+  useStatistic();
+  // console.log("Statistics  data:", data);
 
     const client = useQueryClient()
     const stat = client.getQueriesData(['Statistics'])
