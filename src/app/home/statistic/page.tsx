@@ -19,17 +19,15 @@ export default async function PageStatistic() {
   const queryClient = getQueryClient();
 
   if (authToken) {
-    // const balanceQuery = queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
+    const balanceQuery = await queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
     
-    const statisticsQuery =  queryClient.prefetchQuery({
+    const statisticsQuery = await queryClient.prefetchQuery({
       queryKey: ["Statistics", { month: "", year: "" }],
       queryFn: () => getStatistics(authToken, { month: "", year: "" }),
     });
 
-    await Promise.allSettled([ statisticsQuery])
+    await Promise.allSettled([balanceQuery, statisticsQuery])
   }
-
-  
 
   const dehydratedState = dehydrate(queryClient);
 
