@@ -45,7 +45,6 @@ export const Title = styled.p`
 `;
 
 export const Text = styled.span`
-  font-family: ${p => p.theme.fonts.poppins};
   font-size: ${p => p.theme.fontSizes.ml};
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.5;
@@ -56,6 +55,10 @@ export const Text = styled.span`
 export const Loader = styled.div`
   width: 140px;
   height: 39px;
+
+  font-size: ${p => p.theme.fontSizes.ml};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  line-height: 1.5;
 
   background: linear-gradient(to left, #6e6f71, #fafafa);
   background-size: 200% 100%;
