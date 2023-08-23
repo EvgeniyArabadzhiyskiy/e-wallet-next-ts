@@ -23,7 +23,7 @@ function Statistics() {
   return (
     <div>
       <br/>
-      <Link style={{color: "white"}} href="/about">Statistic</Link>
+      <Link style={{color: "white"}} href="/about">About</Link>
       <br/>
       <PageTitle>Statistics</PageTitle>
       <TableWrapper>
