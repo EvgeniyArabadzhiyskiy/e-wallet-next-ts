@@ -19,15 +19,20 @@ export default async function PageStatistic() {
   const queryClient = getQueryClient();
 
   if (authToken) {
-    const balanceQuery = await queryClient.prefetchQuery(["Balance"], () => getBalance(authToken));
-    
-    const statisticsQuery = await queryClient.prefetchQuery({
+    const balanceQuery = queryClient.prefetchQuery(["Balance"], () =>
+      getBalance(authToken)
+    );
+
+    const statisticsQuery = queryClient.prefetchQuery({
       queryKey: ["Statistics", { month: "", year: "" }],
       queryFn: () => getStatistics(authToken, { month: "", year: "" }),
     });
 
-    await Promise.allSettled([balanceQuery, statisticsQuery])
+    await Promise.allSettled([balanceQuery, statisticsQuery]);
   }
+
+  // const balance = queryClient.getQueriesData<any>(["Balance"]);
+  // console.log("TransactionList  Balance:+++++++++++++++++++++++++++++++++++", balance);
 
   const dehydratedState = dehydrate(queryClient);
 
