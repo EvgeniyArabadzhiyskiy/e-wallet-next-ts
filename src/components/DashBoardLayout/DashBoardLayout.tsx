@@ -12,7 +12,7 @@ import { getAllTransactions } from "@/src/apiWallet/transaction";
 import { getStatistics } from "@/src/apiWallet/statistic";
 import { Suspense } from "react";
 import { ITransactions } from "@/src/types/transactions";
-import WrapperBalance from "../WrapperBalance/WrapperBalance";
+import BalanceWrapper from "../BalanceWrapper";
 import BalanceLoader from "../BalanceLoader/BalanceLoader";
 
 export default async function DashBoardLayout({
@@ -69,7 +69,7 @@ export default async function DashBoardLayout({
               <div>
                 <Navigation />
                 <Suspense fallback={<BalanceLoader />}>
-                  <WrapperBalance />
+                  <BalanceWrapper />
                 </Suspense>
               </div>
               <Currency />
