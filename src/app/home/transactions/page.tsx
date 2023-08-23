@@ -2,7 +2,7 @@ import { getBalance } from "@/src/apiWallet/balance";
 import { getAllTransactions } from "@/src/apiWallet/transaction";
 import LoaderTransaction from "@/src/components/TransactionLoader";
 import TransactionTable from "@/src/components/TransactionTable/TransactionTable";
-import WrapperTransaction from "@/src/components/WrapperTransaction";
+import TransactionWrapper from "@/src/components/TransactionWrapper";
 import { authOptions } from "@/src/lib/auth";
 import getQueryClient from "@/src/lib/getQueryClient";
 import { Hydrate,  dehydrate } from "@tanstack/react-query";
@@ -42,7 +42,7 @@ export default  function PageTransactions() {
       </Hydrate> */}
 
       <Suspense fallback={<LoaderTransaction />}>
-        <WrapperTransaction />
+        <TransactionWrapper />
       </Suspense>
     </>
   );
