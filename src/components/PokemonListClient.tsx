@@ -1,8 +1,10 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useUserBalance } from "../apiWallet";
+import Link from "next/link";
 
 const getPokemon = async () => {
   await new Promise((res) =>
@@ -15,33 +17,41 @@ const getPokemon = async () => {
   return data.results;
 };
 
-export default  function PokemonListClient() {
-//   const [pokemons, setPokemons] = useState([]);
-//   console.log("PokemonList  pokemons:", pokemons);
-  
-//   useEffect(() => {
-//     (async () => {
-//       const pokemons = await getPokemon();
-//       //   console.log("PokemonList  pokemons:", pokemons);
+export default function PokemonListClient() {
+  // const queryClient = useQueryClient();
+  // const Balance = queryClient.getQueriesData<any>(["Balance"]);
+  // console.log(" Balance:", Balance[0]);
 
-//       setPokemons(pokemons)
-//     })();
-//   },[]);
+  const { data: totalBalance = 0 } = useUserBalance();
+  // console.log("PokemonListClient  totalBalance:", totalBalance);
 
-const { data: pokemons = [], isLoading} = useQuery({
-    queryKey: ["Pokemons"],
-    queryFn: getPokemon,
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-})
-console.log("isLoading====================", isLoading);
+  //   const [pokemons, setPokemons] = useState([]);
+  //   console.log("PokemonList  pokemons:", pokemons);
+
+  //   useEffect(() => {
+  //     (async () => {
+  //       const pokemons = await getPokemon();
+  //       //   console.log("PokemonList  pokemons:", pokemons);
+
+  //       setPokemons(pokemons)
+  //     })();
+  //   },[]);
+
+  // const { data: pokemons = [], isLoading} = useQuery({
+  //     queryKey: ["Pokemons"],
+  //     queryFn: getPokemon,
+  //     staleTime: Infinity,
+  //     refetchOnWindowFocus: false,
+  // })
+  // console.log("isLoading====================", isLoading);
 
   return (
     <>
       <h1 style={{ color: "white", fontSize: 30, marginBottom: 30 }}>
-        Pokemon List Client
+        Pokemon List Client Balance: {totalBalance}
       </h1>
-      {isLoading 
+      <Link style={{color: "white"}} href="/home/statistic">Statistic</Link>
+      {/* {isLoading 
       ? <h1 style={{ color: "white" }}>QUERY LOADING...</h1>
       : <ul>
         {pokemons.map((item: any) => {
@@ -51,7 +61,7 @@ console.log("isLoading====================", isLoading);
             </li>
           );
         })}
-      </ul>}
+      </ul>} */}
     </>
   );
 }
