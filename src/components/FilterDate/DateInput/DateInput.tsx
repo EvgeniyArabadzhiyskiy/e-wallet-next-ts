@@ -4,13 +4,17 @@ import { Filter, InputWrapper, WrapperBtn } from "./DateInput.styled";
 import CrossSvg from "../../SvgComponent/CrossSvg";
 import { Dispatch, SetStateAction } from "react";
 import CrossBtn from "../../Buttons/CrossBtn";
+import { getFormattedMonth } from "@/src/helpers/getFormattedMonth";
 
 interface IProps {
   value: string;
+  date: string;
   setDate: Dispatch<SetStateAction<string>>;
 }
 
-function DateInput({ value, setDate }: IProps) {
+function DateInput({ value, date, setDate }: IProps) {
+  const monthName = getFormattedMonth(date, value);
+
   const changeDate = (dateEvent: string | moment.Moment) => {
     if (!dateEvent) return;
 
@@ -61,6 +65,7 @@ function DateInput({ value, setDate }: IProps) {
 
   return (
     <Datetime
+      value={value === "Month" ? monthName : date}
       closeOnSelect
       timeFormat={false}
       dateFormat={value === "Month" ? "MMMM" : "YYYY"}
@@ -69,7 +74,11 @@ function DateInput({ value, setDate }: IProps) {
       renderView={(mode, renderDefaultCalendar) =>
         renderView(mode, renderDefaultCalendar)
       }
-      inputProps={{ placeholder: value, onKeyDown: (e) => e.preventDefault() }}
+      inputProps={{ 
+        
+        placeholder: value, onKeyDown: (e) => e.preventDefault() 
+      }}
+      
     />
   );
 }
