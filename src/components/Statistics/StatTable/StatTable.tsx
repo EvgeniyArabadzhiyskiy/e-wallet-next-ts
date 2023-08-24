@@ -7,6 +7,8 @@ import { getCategoryColor } from "@/src/helpers/getCategoryColor";
 import { FooterText, Table, TableBody, TableFooter, TableFooterItem, TableHeader } from "./StatTable.styled";
 
 interface IProps {
+  year: string;
+  month: string;
   setMonth: Dispatch<SetStateAction<string>>;
   setYear: Dispatch<SetStateAction<string>>;
   expensesData: IStatistic[];
@@ -14,12 +16,12 @@ interface IProps {
   incomeTotal: number;
 }
 
-function StatTable ({ setMonth, setYear, expensesData, expensesTotal, incomeTotal }: IProps) {
+function StatTable ({ month, year, setMonth, setYear, expensesData, expensesTotal, incomeTotal }: IProps) {
     
   return (
     <Table>
 
-      <FilterDate setMonth={setMonth} setYear={setYear} />
+      <FilterDate month={month} year={year} setMonth={setMonth} setYear={setYear} />
 
       <TableHeader>
         <p>Category</p>
