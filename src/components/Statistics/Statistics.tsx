@@ -9,9 +9,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 
 function Statistics() {
-  const { data, setMonth, setYear, expensesData, expensesTotal, incomeTotal } =
-    useStatistic();
-
+  const { data, year, month, setMonth, setYear, expensesData, expensesTotal, incomeTotal, isFetching } =
+  useStatistic();
+  // console.log("Statistics  year:", year);
+  
     const client = useQueryClient()
     const stat = client.getQueriesData(['Statistics'])
     const tranList = client.getQueriesData(['TransactionsList'])
@@ -19,6 +20,10 @@ function Statistics() {
     // console.log("Transactions", tran);
     // console.log("TransactionsList", tranList[0]);
     // console.log("Statistics:", stat); 
+
+    if (isFetching) {
+      return <h1 style={{color: "white"}}>Loading</h1>
+    }
 
   return (
     <div>
@@ -29,6 +34,8 @@ function Statistics() {
       <TableWrapper>
         <ChartWrapper>{<Chart statistic={data} /> }</ChartWrapper>
         <StatTable
+          month={month}
+          year={year}
           setMonth={setMonth}
           setYear={setYear}
           expensesData={expensesData}
