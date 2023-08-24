@@ -3,15 +3,17 @@ import DateInput from "./DateInput/DateInput";
 import { StyledFilters } from "./FilterDate.styled";
 
 interface IProps {
+  month: string;
+  year: string;
   setMonth: Dispatch<SetStateAction<string>>;
   setYear: Dispatch<SetStateAction<string>>;
 }
 
-function FilterDate({ setMonth, setYear }: IProps) {
+function FilterDate({ month, year, setMonth, setYear }: IProps) {
   return (
     <StyledFilters>
-      <DateInput setDate={setMonth} value={"Month"} />
-      <DateInput setDate={setYear} value={"Year"} />
+      <DateInput date={month} setDate={setMonth} value={"Month"} />
+      <DateInput date={year} setDate={setYear} value={"Year"} />
     </StyledFilters>
   );
 }
