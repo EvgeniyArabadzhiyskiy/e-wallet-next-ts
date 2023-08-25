@@ -25,16 +25,17 @@ export const Filter = styled.input`
 
   outline: none;
   border: none;
+  cursor: pointer;
   border: 2px solid #10b981;
   transition: border 250ms linear;
 
   &:hover {
-    border: 2px solid #24cca7;
+    border: 2px solid #a1a1aa;
   }
 
   &:focus {
     border: none;
-    outline: 2px solid #24cca7;
+    outline: 2px solid #a1a1aa;
   }
 `;
 
