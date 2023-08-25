@@ -7,10 +7,12 @@ import { ChartWrapper, PageTitle, TableWrapper } from "./Statistics.styled";
 import Chart from "../Chart/Chart";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import StatisticLoader from "../StatisticLoader";
 
 function Statistics() {
   const { data, year, month, setMonth, setYear, expensesData, expensesTotal, incomeTotal, isFetching } =
   useStatistic();
+  // console.log("Statistics  data:", data);
   // console.log("Statistics  year:", year);
   
     const client = useQueryClient()
@@ -22,17 +24,21 @@ function Statistics() {
     // console.log("Statistics:", stat); 
 
     if (isFetching) {
-      return <h1 style={{color: "white"}}>Loading</h1>
+      return <StatisticLoader />
     }
 
   return (
     <div>
-      <br/>
+      {/* <br/>
       <Link style={{color: "white"}} href="/about">About</Link>
-      <br/>
+      <br/> */}
       <PageTitle>Statistics</PageTitle>
       <TableWrapper>
-        <ChartWrapper>{<Chart statistic={data} /> }</ChartWrapper>
+        <ChartWrapper>
+          {/* safgsd */}
+          {/* <Circle /> */}
+          {<Chart statistic={data} /> }
+          </ChartWrapper>
         <StatTable
           month={month}
           year={year}
