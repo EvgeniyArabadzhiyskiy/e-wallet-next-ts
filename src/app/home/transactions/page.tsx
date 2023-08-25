@@ -1,6 +1,6 @@
 import { getBalance } from "@/src/apiWallet/balance";
 import { getAllTransactions } from "@/src/apiWallet/transaction";
-import LoaderTransaction from "@/src/components/TransactionLoader";
+import TransactionLoader from "@/src/components/TransactionLoader";
 import TransactionTable from "@/src/components/TransactionTable/TransactionTable";
 import TransactionWrapper from "@/src/components/TransactionWrapper";
 import { authOptions } from "@/src/lib/auth";
@@ -41,7 +41,7 @@ export default  function PageTransactions() {
         <TransactionTable />
       </Hydrate> */}
 
-      <Suspense fallback={<LoaderTransaction />}>
+      <Suspense fallback={<TransactionLoader />}>
         <TransactionWrapper />
       </Suspense>
     </>
