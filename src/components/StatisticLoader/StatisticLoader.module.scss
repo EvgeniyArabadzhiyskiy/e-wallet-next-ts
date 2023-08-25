@@ -1,0 +1,34 @@
+@keyframes loadingAnimation {
+  0% {
+    background-position: 0% 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.loading {
+  height: 100%;
+
+  background: linear-gradient(to left, #111827, #a7acb1);
+  background-size: 200% 100%;
+
+  filter: blur(10px);
+  animation: loadingAnimation 1s ease infinite;
+}
+
+@keyframes rotationAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotarion {
+  animation: rotationAnimation 1s ease infinite;
+}
