@@ -13,6 +13,8 @@ import { Hydrate, dehydrate } from "@tanstack/react-query";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import { getBalance } from "@/src/apiWallet/balance";
+import StatisticLoader from "@/src/components/StatisticLoader/StatisticLoader";
+import TransactionLoader from "@/src/components/TransactionLoader/TransactionLoader";
 
 // const inter = Inter({
 //   subsets: ["latin"],
@@ -44,11 +46,11 @@ export default async function AboutPage() {
   
   // }
 
-  const balance = queryClient.getQueriesData<any>(["Balance"]);
-  console.log("About  Balance:+++++++++++++++++++++++++++++++++++", balance);
+  // const balance = queryClient.getQueriesData<any>(["Balance"]);
+  // console.log("About  Balance:+++++++++++++++++++++++++++++++++++", balance);
 
 
-  const dehydratedState = dehydrate(queryClient);
+  // const dehydratedState = dehydrate(queryClient);
 
   return (
     <div>
@@ -70,11 +72,12 @@ export default async function AboutPage() {
       {/* <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}>
         <PokemonList />
       </Suspense> */}
-      <Hydrate state={dehydratedState}>
+      {/* <Hydrate state={dehydratedState}> */}
         <PokemonListClient />
-      </Hydrate>
+      {/* </Hydrate> */}
       {/* <LoaderTransaction /> */}
-      {/* <TransactionList /> */}
+      {/* <TransactionLoader /> */}
+      <StatisticLoader />
     </div>
   );
 }
