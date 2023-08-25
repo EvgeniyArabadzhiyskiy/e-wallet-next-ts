@@ -4,7 +4,7 @@
 
 import { getBalance } from "@/src/apiWallet/balance";
 import { getStatistics } from "@/src/apiWallet/statistic";
-import StatisticLoader from "@/src/components/StatisticLoader/StatisticLoader";
+import StatisticLoader from "@/src/components/StatisticLoader";
 import StatisticWrapper from "@/src/components/StatisticWrapper";
 import Statistics from "@/src/components/Statistics";
 import TransactionWrapper from "@/src/components/TransactionWrapper";
