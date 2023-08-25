@@ -13,7 +13,7 @@ import { Hydrate, dehydrate } from "@tanstack/react-query";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import { getBalance } from "@/src/apiWallet/balance";
-import StatisticLoader from "@/src/components/StatisticLoader/StatisticLoader";
+import StatisticLoader from "@/src/components/StatisticLoader";
 import TransactionLoader from "@/src/components/TransactionLoader/TransactionLoader";
 
 // const inter = Inter({
@@ -77,7 +77,7 @@ export default async function AboutPage() {
       {/* </Hydrate> */}
       {/* <LoaderTransaction /> */}
       {/* <TransactionLoader /> */}
-      <StatisticLoader />
+      {/* <StatisticLoader /> */}
     </div>
   );
 }
