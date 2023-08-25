@@ -10,22 +10,29 @@ import Link from "next/link";
 import StatisticLoader from "../StatisticLoader";
 
 function Statistics() {
-  const { data, year, month, setMonth, setYear, expensesData, expensesTotal, incomeTotal, isFetching } =
-  useStatistic();
-  // console.log("Statistics  data:", data);
-  // console.log("Statistics  year:", year);
-  
-    const client = useQueryClient()
-    const stat = client.getQueriesData(['Statistics'])
-    const tranList = client.getQueriesData(['TransactionsList'])
-    const tran = client.getQueriesData(['Transactions'])
-    // console.log("Transactions", tran);
-    // console.log("TransactionsList", tranList[0]);
-    // console.log("Statistics:", stat); 
+  const {
+    data,
+    year,
+    month,
+    setMonth,
+    setYear,
+    expensesData,
+    expensesTotal,
+    incomeTotal,
+    isFetching,
+  } = useStatistic();
 
-    if (isFetching) {
-      return <StatisticLoader />
-    }
+  const client = useQueryClient();
+  const stat = client.getQueriesData(["Statistics"]);
+  const tranList = client.getQueriesData(["TransactionsList"]);
+  const tran = client.getQueriesData(["Transactions"]);
+  // console.log("Transactions", tran);
+  // console.log("TransactionsList", tranList[0]);
+  // console.log("Statistics:", stat);
+
+  if (isFetching) {
+    return <StatisticLoader />;
+  }
 
   return (
     <div>
@@ -34,11 +41,7 @@ function Statistics() {
       <br/> */}
       <PageTitle>Statistics</PageTitle>
       <TableWrapper>
-        <ChartWrapper>
-          {/* safgsd */}
-          {/* <Circle /> */}
-          {<Chart statistic={data} /> }
-          </ChartWrapper>
+        <ChartWrapper>{<Chart statistic={data} />}</ChartWrapper>
         <StatTable
           month={month}
           year={year}
