@@ -16,13 +16,11 @@ import CrossSvg from "../SvgComponent/CrossSvg";
 
 function StatisticLoader() {
   return (
-    <div style={{ width: 727 }}>
+    <div>
       <PageTitle>Statistics</PageTitle>
       <TableWrapper>
         <ChartWrapper>
-          <div className={stl.circle}>
-            <div className={stl.inner__circle}></div>
-          </div>
+          <div className={stl.circle}></div>
         </ChartWrapper>
 
         <Table>
