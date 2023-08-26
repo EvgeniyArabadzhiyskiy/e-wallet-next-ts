@@ -8,7 +8,6 @@ import { authOptions } from "@/src/lib/auth";
 import Image from "next/image";
 
 import Finance from "../../../public/images/ffaa.jpg";
-import BussinesSvg from "../SvgComponent/BussinesSvg";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -179,7 +178,6 @@ async function HeroSection() {
               <Wrapper>
                 {/* <InnerWrapper> */}
                 {/* <Image src={Finance} alt="img" fill style={{objectFit: 'cover'}} /> */}
-                {/* <BussinesSvg width={400} height={250} /> */}
                 {/* </InnerWrapper> */}
               </Wrapper>
               <div style={{ padding: "10px 20px 20px 20px" }}>
