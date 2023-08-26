@@ -50,26 +50,27 @@
 
   animation: rotationAnimation 1s ease infinite;
 
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 425px;
+    height: 425px;
+    border: 35px dashed #022c22;
+    border-radius: 50%;
+  }
+
   @media screen and (min-width: 768px) {
     width: 300px;
     height: 300px;
     margin-bottom: 0;
-  }
-}
 
-.inner__circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 425px;
-  height: 425px;
-  border: 35px dashed #022c22;
-  border-radius: 50%;
-
-  @media screen and (min-width: 768px) {
-    width: 285px;
-    height: 285px;
+    &::before {
+      width: 285px;
+      height: 285px;
+    }
   }
 }
 
