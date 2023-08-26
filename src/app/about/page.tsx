@@ -77,7 +77,7 @@ export default async function AboutPage() {
       {/* </Hydrate> */}
       {/* <LoaderTransaction /> */}
       {/* <TransactionLoader /> */}
-      {/* <StatisticLoader /> */}
+      <StatisticLoader />
     </div>
   );
 }
