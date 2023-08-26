@@ -1,0 +1,59 @@
+.doughnut {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  border-radius: 50%;
+  background-color: rgb(91, 160, 64);
+  /* background-color: transparent; */
+  /* animation: spin 6s linear infinite; */
+}
+
+.segment {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip: rect(0px, 50px, 100px, 0px);
+  /* transform: rotate(0deg); */
+  border-radius: 50%;
+  background-color: #f06d06;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg); /* Добавляем анимацию вращения */
+  }
+}
+
+/* .segment:nth-child(1) {
+  transform: rotate(30deg);
+}
+.segment:nth-child(2) {
+  transform: rotate(60deg);
+}
+.segment:nth-child(3) {
+  transform: rotate(90deg);
+}
+.segment:nth-child(4) {
+  transform: rotate(120deg);
+}
+.segment:nth-child(5) {
+  transform: rotate(150deg);
+}
+.segment:nth-child(6) {
+  transform: rotate(180deg);
+}
+.segment:nth-child(7) {
+  transform: rotate(210deg);
+}
+.segment:nth-child(8) {
+  transform: rotate(240deg);
+}
+.segment:nth-child(9) {
+  transform: rotate(270deg);
+}
+.segment:nth-child(10) {
+  transform: rotate(300deg);
+}
+.segment:nth-child(11) {
+  transform: rotate(330deg);
+} */
