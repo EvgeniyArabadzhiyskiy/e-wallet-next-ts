@@ -13,8 +13,7 @@ interface IProps {
 }
 
 export const Providers = ({ children }: IProps) => {
-  const [queryClient] = useState(() => new QueryClient(
-    {
+  const [queryClient] = useState(() => new QueryClient({
         defaultOptions: {
           queries: {
             staleTime: Infinity,
@@ -26,8 +25,8 @@ export const Providers = ({ children }: IProps) => {
             retry: 0,
           },
         },
-      }
-  ));
+      })
+  );
   const { theme } = useGlobalState();
 
   // if (isLoading) {
