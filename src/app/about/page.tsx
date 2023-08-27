@@ -24,14 +24,14 @@ import TransactionLoader from "@/src/components/TransactionLoader/TransactionLoa
 
 const getPokemon = async () => {
   const { data } = await axios(
-    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=10`
+    `https://pokeapi.co/api/v2/pokemo?offset=0&limit=10`
   );
   return data.results;
 };
 
 export default async function AboutPage() {
-  // const pokemons = await getPokemon();
-  //   console.log("PokemonList  pokemons:", pokemons);
+  const pokemons = await getPokemon();
+    console.log("PokemonList  pokemons:", pokemons);
 
   const session = await getServerSession(authOptions);
   const authToken = session?.token;
@@ -58,7 +58,7 @@ export default async function AboutPage() {
       <h1 style={{ color: "white", fontSize: 30, marginBottom: 30 }}>
         About Page
       </h1>
-      {/* <ul>
+      <ul>
         {pokemons.map((item: any) => {
           return (
             <li style={{ color: "white" }} key={item.name}>
@@ -66,18 +66,18 @@ export default async function AboutPage() {
             </li>
           );
         })}
-      </ul> */}
+      </ul>
       {/* <Navigation /> */}
 
       {/* <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}>
         <PokemonList />
       </Suspense> */}
       {/* <Hydrate state={dehydratedState}> */}
-        <PokemonListClient />
+        {/* <PokemonListClient /> */}
       {/* </Hydrate> */}
       {/* <LoaderTransaction /> */}
       {/* <TransactionLoader /> */}
-      <StatisticLoader />
+      {/* <StatisticLoader /> */}
     </div>
   );
 }
