@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import stl from "./HeroSection.module.scss";
 import Container from "../Container/Container";
@@ -7,137 +7,85 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import Image from "next/image";
 
-import Finance from "../../../public/images/ffaa.jpg";
-import styled from "styled-components";
+// import Finance1 from "@/public/images/finance-6.webp";
+// import Finance2 from "@/public/images/finance-9.webp";
+// import Finance3 from "@/public/images/finance-17.webp";
+// import Finance4 from "@/public/images/finance-18.webp";
 
-const Wrapper = styled.div`
-  position: relative;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  width: 100%;
-  height: 300px;
 
-  background-image: linear-gradient(
-      to right,
-      rgba(47, 48, 58, 0.4),
-      rgba(47, 48, 58, 0.4)
-    ),
-    url("/images/finance-13.webp");
+// import styled from "styled-components";
 
-    /* url("/images/finance-13.webp"); */
-    /* url("/images/finance-6.webp"); */
-    /* url("/images/finance-9.webp"); */
-    /* url("/images/finance-3.webp"); */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-`;
+const heroCardList = [
+  {
+    id: "1",
+    image: {
+      src: "/images/finance-17.webp",
+      alt: "image",
+    },
+    title: "Control Your Finances with Ease",
+    description:
+      "Review your transaction history, whether it is payments, transfers, or deposits, all in one place.",
+  },
+  {
+    id: "2",
+    image: {
+      src: "/images/finance-6.webp",
+      alt: "image",
+    },
+    title: "Your Financial Picture in One Place",
+    description:
+      "Track your balance, payments, and transfers with the convenience of our app.",
+  },
 
-const Wrapper2 = styled.div`
-  position: relative;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  width: 100%;
-  height: 300px;
+  {
+    id: "3",
+    image: {
+      src: "/images/finance-9.webp",
+      alt: "image",
+    },
+    title: "Manage Your Money Hassle-Free",
+    description:
+      "Transaction reports and balance always at your fingertips, so you can focus on what truly matters.",
+  },
+  {
+    id: "4",
+    image: {
+      src: "/images/finance-18.webp",
+      alt: "image",
+    },
+    title: "Real-Time Balance and Funds Movement",
+    description:
+      "Do not miss a beat – our E-Wallet will help you stay on top of every transaction.",
+  },
+];
 
-  background-image: linear-gradient(
-      to right,
-      rgba(47, 48, 58, 0.4),
-      rgba(47, 48, 58, 0.4)
-    ),
-    url("/images/finance-6.webp");
 
-    /* url("/images/finance-13.webp"); */
-    /* url("/images/finance-9.webp"); */
-    /* url("/images/finance-3.webp"); */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-`;
 
-const Wrapper3 = styled.div`
-  position: relative;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  width: 100%;
-  height: 300px;
+// const Wrapper = styled.div`
+//   position: relative;
+//   width: 100%;
+//   padding: 30%;
 
-  background-image: linear-gradient(
-      to right,
-      rgba(47, 48, 58, 0.4),
-      rgba(47, 48, 58, 0.4)
-    ),
-    url("/images/finance-9.webp");
+//   background-image: url("/images/finance-9.webp");
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: cover;
+// `;
 
-    /* url("/images/finance-13.webp"); */
-    /* url("/images/finance-6.webp"); */
-    /* url("/images/finance-3.webp"); */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-`;
+// const Item = styled.li`
+//   width: 100%;
+//   border: 3px solid #064e3b;
+//   border-radius: 10px;
+//   color: #a1a1aa;
+//   overflow: hidden;
 
-const Wrapper4 = styled.div`
-  position: relative;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  width: 100%;
-  height: 300px;
-
-  background-image: linear-gradient(
-      to right,
-      rgba(47, 48, 58, 0.4),
-      rgba(47, 48, 58, 0.4)
-    ),
-    url("/images/finance-3.webp");
-
-    /* url("/images/finance-13.webp"); */
-    /* url("/images/finance-6.webp"); */
-    /* url("/images/finance-9.webp"); */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-`;
-
-const InnerWrapper = styled.div`
-  width: 200px;
-  height: 120px;
-
-  background: url("/images/ffaa.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-`;
-
-const Item = styled.li`
-  width: 100%;
-  /* display: flex; */
-  /* height: 400px; */
-  /* padding: 20px; */
-
-  color: #a1a1aa;
-
-  border: 3px solid #064e3b;
-  border-radius: 10px;
-
-  overflow: hidden;
-
-  @media (min-width: 1280px) {
-    width: calc(100% / 2 - 50px);
-  }
-
-  /* background: url("/images/ffaa.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; */
-`;
+//   @media (min-width: 1280px) {
+//     width: calc(100% / 2 - 50px);
+//   }
+// `;
 
 async function HeroSection() {
-  // const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
   return (
     <div>
@@ -156,9 +104,9 @@ async function HeroSection() {
             </p>
 
             {
-              // session
-              //  ? <LinkButton href="/home/transactions" text="Wallet" />
-              //  :
+              session
+               ? <LinkButton href="/home/transactions" text="Wallet" />
+               :
               <LinkButton href="/login" text="Start in 30 seconds" />
             }
           </div>
@@ -166,22 +114,31 @@ async function HeroSection() {
             <div className={stl.banner}></div>
           </div>
 
-          <ul
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              rowGap: 50,
-              justifyContent: "space-around",
-            }}
-          >
-            <Item>
-              <Wrapper>
-                {/* <InnerWrapper> */}
-                {/* <Image src={Finance} alt="img" fill style={{objectFit: 'cover'}} /> */}
-                {/* </InnerWrapper> */}
-              </Wrapper>
-              <div style={{ padding: "10px 20px 20px 20px" }}>
-                <h1 style={{ fontSize: 20, marginBottom: 10 }}>
+          <ul className={stl.card__list}>
+            {heroCardList.map((item) => {
+              return (
+                <li className={stl.card} key={item.id}>
+                  <Image
+                    src={item.image.src}
+                    alt={item.image.alt}
+                    width={600}
+                    height={375}
+                  />
+
+                  <div className={stl.card__title__wrapper}>
+                    <h1 className={stl.card__title}>{item.title}</h1>
+                    <p>{item.description}</p>
+                  </div>
+                </li>
+              );
+            })}
+
+            {/* <li className={stl.card}>
+              <Image src={Finance4} alt="img" />
+              <Wrapper></Wrapper>
+
+              <div className={stl.card__title__wrapper}>
+                <h1 className={stl.card__title}>
                   Your Financial Picture in One Place
                 </h1>
                 <p>
@@ -189,12 +146,14 @@ async function HeroSection() {
                   convenience of our app.
                 </p>
               </div>
-            </Item>
+            </li>
 
-            <Item>
-              <Wrapper2></Wrapper2>
-              <div style={{ padding: "10px 20px 20px 20px" }}>
-                <h1 style={{ fontSize: 20, marginBottom: 10 }}>
+            <li className={stl.card}>
+              <Image src={Finance2} alt="img" />
+              <Wrapper></Wrapper>
+
+              <div className={stl.card__title__wrapper}>
+                <h1 className={stl.card__title}>
                   Manage Your Money Hassle-Free
                 </h1>
                 <p>
@@ -202,12 +161,13 @@ async function HeroSection() {
                   you can focus on what truly matters.
                 </p>
               </div>
-            </Item>
+            </li>
 
-            <Item>
-              <Wrapper3></Wrapper3>
-              <div style={{ padding: "10px 20px 20px 20px" }}>
-                <h1 style={{ fontSize: 20, marginBottom: 10 }}>
+            <li className={stl.card}>
+              <Image src={Finance1} alt="img" />
+              <Wrapper></Wrapper>
+              <div className={stl.card__title__wrapper}>
+                <h1 className={stl.card__title}>
                   Control Your Finances with Ease
                 </h1>
                 <p>
@@ -215,12 +175,13 @@ async function HeroSection() {
                   transfers, or deposits, all in one place.
                 </p>
               </div>
-            </Item>
+            </li>
 
-            <Item>
-              <Wrapper4></Wrapper4>
-              <div style={{ padding: "10px 20px 20px 20px" }}>
-                <h1 style={{ fontSize: 20, marginBottom: 10 }}>
+            <li className={stl.card}>
+              <Image src={Finance3} alt="img" />
+              <Wrapper></Wrapper>
+              <div className={stl.card__title__wrapper}>
+                <h1 className={stl.card__title}>
                   Real-Time Balance and Funds Movement
                 </h1>
                 <p>
@@ -228,7 +189,7 @@ async function HeroSection() {
                   every transaction.
                 </p>
               </div>
-            </Item>
+            </li> */}
           </ul>
         </div>
       </Container>
