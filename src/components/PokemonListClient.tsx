@@ -59,7 +59,7 @@ export default function PokemonListClient() {
     //     </button>
     //   </>
     // );
-    router.push("/home")
+    // router.push("/home")
   }
 
   return (
