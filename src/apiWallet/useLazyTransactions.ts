@@ -32,6 +32,7 @@ export const useLazyTransactions = () => {
 
 
     // staleTime: Infinity,
+    // refetchOnWindowFocus: false, retry: 0,
     enabled: !!token,
   });
 
