@@ -31,7 +31,7 @@ export const useLazyTransactions = () => {
     // },
 
 
-    staleTime: Infinity,
+    // staleTime: Infinity,
     enabled: !!token,
   });
 
