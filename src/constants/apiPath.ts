@@ -7,7 +7,7 @@ export const USER_REGISTER = '/users/register';
 export const USER_LOGIN = '/users/login';
 export const USER_LOGOUT = '/users/logout';
 
-export const TRANSACTIONS = '/transaction';
+export const TRANSACTIONS = '/transactions';
 export const BALANCE = '/transactions/balance';
 
 export const AUTH_GOOGLE = '/auth-google/google';
