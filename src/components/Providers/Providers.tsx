@@ -18,6 +18,7 @@ export const Providers = ({ children }: IProps) => {
         defaultOptions: {
           queries: {
             staleTime: Infinity,
+            cacheTime: Infinity,
 
             refetchOnMount: false,
             refetchOnReconnect: false,
