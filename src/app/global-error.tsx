@@ -10,8 +10,8 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <h1>Global Error</h1>
-        <h2>{error.message}</h2>
+        <h1 style={{ color: "white" }}>Global Error</h1>
+        <h2 style={{ color: "white" }}>{error.message}</h2>
         <button onClick={() => reset()}>Try again</button>
       </body>
     </html>
