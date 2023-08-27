@@ -55,40 +55,40 @@
   color: var(--primary-bg-btn);
 }
 
-.card__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  row-gap: 50px;
-}
+// .card__list {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-around;
+//   row-gap: 50px;
+// }
 
-.card {
-  width: 100%;
-  border: 3px solid #064e3b;
-  border-radius: 10px;
+// .card {
+//   width: 100%;
+//   border: 3px solid #064e3b;
+//   border-radius: 10px;
 
-  color: #a1a1aa;
-  overflow: hidden;
+//   color: #a1a1aa;
+//   overflow: hidden;
 
-  & img {
-    transform: scale(1);
-    transition: transform linear 300ms;
-  }
+//   & img {
+//     transform: scale(1);
+//     transition: transform linear 300ms;
+//   }
 
-  & img:hover {
-    transform: scale(1.03);
-  }
+//   & img:hover {
+//     transform: scale(1.03);
+//   }
 
-  @media screen and (min-width: 1280px) {
-    width: calc(100% / 2 - 50px);
-  }
-}
+//   @media screen and (min-width: 1280px) {
+//     width: calc(100% / 2 - 50px);
+//   }
+// }
 
-.card__title__wrapper {
-  padding: 10px 20px 20px 20px;
-}
+// .card__title__wrapper {
+//   padding: 10px 20px 20px 20px;
+// }
 
-.card__title {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
+// .card__title {
+//   font-size: 20px;
+//   margin-bottom: 10px;
+// }
