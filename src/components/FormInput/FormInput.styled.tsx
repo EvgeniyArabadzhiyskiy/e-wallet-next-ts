@@ -5,6 +5,9 @@ export const Label = styled.label`
   position: relative;
   display: flex;
   align-items: center;
+  padding-left: 10px;
+
+  border-bottom: 1px solid ${(p) => p.theme.palette.text.secondaryLightText};
 `;
 
 export const Input = styled(Field)`
@@ -16,7 +19,6 @@ export const Input = styled(Field)`
   outline: none;
   background-color: inherit;
   color: ${(p) => p.theme.colors.white};
-  border-bottom: 1px solid ${(p) => p.theme.palette.text.secondaryLightText};
 
   &::placeholder {
     color: ${(p) => p.theme.colors.secondaryText};
