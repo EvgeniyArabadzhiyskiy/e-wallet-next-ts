@@ -24,19 +24,36 @@ export const authOptions: NextAuthOptions = {
           password: credentials?.password,
         };
 
-        const user = await login(userData);
+        try {
+          const user = await login(userData);
 
-        if (!user.user.email) {
-          return null;
+          if (!user.user.email) {
+            return null;
+          }
+
+          return {
+            id: user.token,
+            token: user.token,
+            email: user.user.email,
+            firstName: user.user.firstName,
+            balance: user.user.balance,
+          };
+        } catch (error) {
+          const message = (error as Error).message
+
+          if(message === "404") {
+            throw new Error("Route is Not Found");
+          }
+
+          if(message === "401") {
+            throw new Error(`Invalid password or email`);
+          }
+          else {
+            throw new Error("Server Error");
+          }
         }
 
-        return {
-          id: user.token,
-          token: user.token,
-          email: user.user.email,
-          firstName: user.user.firstName,
-          balance: user.user.balance,
-        };
+        
       },
     }),
   ],
