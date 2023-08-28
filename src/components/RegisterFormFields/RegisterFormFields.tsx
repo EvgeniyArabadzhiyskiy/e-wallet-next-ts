@@ -15,6 +15,9 @@ import EnterButton from "../Buttons/EnterButton/EnterButton";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
 import { IRegisterValues } from "@/src/types/registerValues";
 import { PasswordIndicator } from "./RegisterFormFields.styled";
+import PasswordSvg from "../SvgComponent/PasswordSvg";
+import EmailSvg from "../SvgComponent/EmailSvg";
+import UserSvg from "../SvgComponent/UserSvg";
 
 
 interface IProps {
@@ -32,7 +35,8 @@ export default function RegisterFormFields  ({ formik }: IProps) {
     <>
       <Box mb={5}>
         <FormInput
-          icon={<Image src={EmailIcon} alt="icon" />}
+          // icon={<Image src={EmailIcon} alt="icon" />}
+          icon={<EmailSvg width={25} height={24} />}
           type="email"
           name="email"
           placeholder="E-mail"
@@ -42,7 +46,8 @@ export default function RegisterFormFields  ({ formik }: IProps) {
 
       <Box mb={5} position='relative' >
         <FormInput
-          icon={<Image src={PasswordIcon} alt="icon" />}
+          // icon={<Image src={PasswordIcon} alt="icon" />}
+          icon={<PasswordSvg width={25} height={24} />}
           type={isHideFirstPass ? "password" : "text"}
           name="password"
           placeholder="Password"
@@ -54,7 +59,8 @@ export default function RegisterFormFields  ({ formik }: IProps) {
 
       <Box mb={5} position='relative'>
         <FormInput
-          icon={<Image src={PasswordIcon} alt="icon" />}
+          // icon={<Image src={PasswordIcon} alt="icon" />}
+          icon={<PasswordSvg width={25} height={24} />}
           type={isHideSecondPass ? "password" : "text"}
           name="confirmPassword"
           placeholder="Confirm Password"
@@ -66,7 +72,8 @@ export default function RegisterFormFields  ({ formik }: IProps) {
 
       <Box mb={5} >
             <FormInput
-                icon={ <Image src={UserIcon} alt="icon" />} 
+                // icon={ <Image src={UserIcon} alt="icon" />} 
+                icon={ <UserSvg width={25} height={24} />}
                 type="text"
                 name="name" 
                 placeholder="First name"
