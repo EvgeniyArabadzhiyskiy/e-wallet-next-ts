@@ -15,6 +15,8 @@ import LinkButton from "../Buttons/LinkButton/LinkButton";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
 import { signIn, signOut, useSession } from "next-auth/react";
 import GoogleAuthLink from "../Buttons/GoogleAuthLink/GoogleAuthLink";
+import EmailSvg from "../SvgComponent/EmailSvg";
+import PasswordSvg from "../SvgComponent/PasswordSvg";
 
 interface IProps {
   formik: FormikProps<ILoginValues>;
@@ -45,7 +47,7 @@ export default function LoginFormFields({ formik }: IProps) {
     <>
       <Box mb={5}>
         <FormInput
-          icon={<Image src={EmailIcon} alt="icon" />}
+          icon={<EmailSvg width={25} height={24} />}
           type="email"
           name="email"
           placeholder="E-mail"
@@ -55,7 +57,7 @@ export default function LoginFormFields({ formik }: IProps) {
 
       <Box mb={5}>
         <FormInput
-          icon={<Image src={PasswordIcon} alt="icon" />}
+          icon={<PasswordSvg width={25} height={24} />}
           type={isHidePassword ? "password" : "text"}
           name="password"
           placeholder="Password"
