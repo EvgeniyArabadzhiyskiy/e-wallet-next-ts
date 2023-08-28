@@ -4,7 +4,8 @@ export async function fetcher<T>(url: RequestInfo, options?: RequestInit): Promi
   const response = await fetch(`${BASE_URL}${url}`, options);
 
   if (!response.ok) {
-    throw new Error(`Request failed with status ${response.status}`);
+    // throw new Error(`Request failed with status ${response.status}`);
+    throw new Error(`${response.status}`);
   }
 
   return await response.json();
