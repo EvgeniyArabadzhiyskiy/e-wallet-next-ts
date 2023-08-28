@@ -15,6 +15,7 @@ import { FormWrap } from "./LoginForm.styled";
 import { ILoginValues } from "@/src/types/loginValues";
 import { loginSchema } from "@/src/helpers/formValidation";
 import { useGoogleAuth } from "@/src/hooks/useGoogleAuth";
+import { Box } from "../Box/Box";
 
 
 export default function LoginForm () {
@@ -57,7 +58,9 @@ export default function LoginForm () {
   return (
     <FormWrap $isScale={isScale}>
       {isLoading && <h1>Loading...</h1>}
-      <Logo />
+      <Box mb={60}>
+        <Logo />
+      </Box>
 
       {error 
         ? <>
