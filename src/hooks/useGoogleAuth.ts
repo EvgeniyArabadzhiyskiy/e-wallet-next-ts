@@ -7,7 +7,6 @@ export const useGoogleAuth = () => {
   
     useEffect(() => {
       const accessToken = searchParams.get('accessToken');
-      console.log("useEffect  accessToken:", accessToken);
       if (!accessToken) return;
   
     }, [ searchParams]);
