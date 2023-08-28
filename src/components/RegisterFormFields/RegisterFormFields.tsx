@@ -35,7 +35,6 @@ export default function RegisterFormFields  ({ formik }: IProps) {
     <>
       <Box mb={5}>
         <FormInput
-          // icon={<Image src={EmailIcon} alt="icon" />}
           icon={<EmailSvg width={25} height={24} />}
           type="email"
           name="email"
@@ -46,7 +45,6 @@ export default function RegisterFormFields  ({ formik }: IProps) {
 
       <Box mb={5} position='relative' >
         <FormInput
-          // icon={<Image src={PasswordIcon} alt="icon" />}
           icon={<PasswordSvg width={25} height={24} />}
           type={isHideFirstPass ? "password" : "text"}
           name="password"
@@ -59,7 +57,6 @@ export default function RegisterFormFields  ({ formik }: IProps) {
 
       <Box mb={5} position='relative'>
         <FormInput
-          // icon={<Image src={PasswordIcon} alt="icon" />}
           icon={<PasswordSvg width={25} height={24} />}
           type={isHideSecondPass ? "password" : "text"}
           name="confirmPassword"
@@ -71,8 +68,7 @@ export default function RegisterFormFields  ({ formik }: IProps) {
       </Box>
 
       <Box mb={5} >
-            <FormInput
-                // icon={ <Image src={UserIcon} alt="icon" />} 
+            <FormInput 
                 icon={ <UserSvg width={25} height={24} />}
                 type="text"
                 name="name" 
