@@ -13,6 +13,7 @@ import FormContainer from "../FormContainer/FormContainer";
 import RegisterFormFields from "../RegisterFormFields/RegisterFormFields";
 import { registerSchema } from "@/src/helpers/formValidation";
 import { register } from "@/src/apiWallet/user";
+import { Box } from "../Box/Box";
 
 
 export default function RegistrationForm() {
@@ -63,7 +64,9 @@ export default function RegistrationForm() {
       >
         Register Page
       </Title> */}
-      <Logo />
+      <Box mb={60}>
+        <Logo />
+      </Box>
 
       <FormContainer<IRegisterValues>
         onSubmit={handleSubmit}
