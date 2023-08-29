@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Error({
@@ -23,6 +24,7 @@ export default function Error({
       <button type="button" onClick={reset}>
         Try Again
       </button>
+      <Link style={{color: "green", fontSize: '24px'}} href="/">Back</Link>
     </>
   );
 }
