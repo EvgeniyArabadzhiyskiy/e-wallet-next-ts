@@ -11,9 +11,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled(Field)`
-  width: 80%;
-  margin: 0 auto;
-
+  flex: 1;
   padding: 5px 20px;
   border: ${(p) => p.theme.borders.none};
   outline: none;
@@ -22,10 +20,6 @@ export const Input = styled(Field)`
 
   &::placeholder {
     color: ${(p) => p.theme.colors.secondaryText};
-  }
-
-  @media ${(p) => p.theme.media.medium} {
-    width: 100%;
   }
 `;
 
