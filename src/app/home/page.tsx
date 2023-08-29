@@ -143,17 +143,53 @@ const getPokemon2 = async () => {
 };
 
 const getPokemon3 = async () => {
-  const { data } = await axios(
-    `https://pokeapi.co/api/v2/pokemon?offset=20&limit=30`
-  );
-  return data.results[0].name;
+  // try {
+  //   const { data } = await axios(
+  //     `https://pokeapi.co/api/v2/pokemo?offset=20&limit=30`
+  //   );
+  //   const sss = data.results[0].name;
+  //   console.log("getPokemon3  sss:", sss);
+
+  //   return sss
+  // } catch (error) {
+  //   console.log("getPokemon3  error:", error.response.data);
+    
+  // }
+
+  try {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemo?offset=20&limit=30`
+    );
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      const errorMessage = errorData || `Request failed with status ${response.status}.`;
+      throw new Error(errorMessage);
+    }
+
+    const data = await response.json()
+    console.log("getPokemon3  data:", data);
+
+
+   
+
+    // const sss = data.results[0].name;
+    // console.log("getPokemon3  sss:", sss);
+
+    return data
+  } catch (error) {
+    console.log("getPokemon3  error:", error);
+    
+  }
 };
+
+
 
 (async () => {
   // try {
   //   const bulbasaur = await getPokemon1();
   //   const metapod = await getPokemon2();
-  //   const spearow = await getPokemon3();
+    const spearow = await getPokemon3();
 
   //   console.log("bulbasaur:", bulbasaur);
   //   console.log("metapod:", metapod);
