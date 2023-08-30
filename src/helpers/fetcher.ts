@@ -4,17 +4,19 @@ export async function fetcher<T>(url: RequestInfo, options?: RequestInit): Promi
   const response = await fetch(`${BASE_URL}${url}`, options);
 
   if (!response.ok) {
-    const errorText = await response.text();
-    const errorData = JSON.parse(errorText);
-    console.log("rrr:", errorData);
+    // const errorText = await response.text();
+    // const errorData = JSON.parse(errorText);
+    // console.log("rrr:", errorData);
 
-    // const errorData = await response.json();
-    const errorMessage = errorData.message || `Request failed with status ${response.status}.`;
-    throw new Error(errorMessage);
+    // // const errorData = await response.json();
+    // const errorMessage = errorData.message || `Request failed with status ${response.status}.`;
+    // throw new Error(errorMessage);
+
+    throw new Error(`${response.status}`);
   }
 
   const data = await response.json();
-  console.log("data:", data);
+  // console.log("data:", data);
   
   return data;
 
