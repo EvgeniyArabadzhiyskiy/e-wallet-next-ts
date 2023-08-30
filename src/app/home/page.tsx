@@ -158,7 +158,8 @@ const getPokemon3 = async () => {
 
   try {
     const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemo?offset=20&limit=30`
+      `https://pokeapi.co/api/v2/pokemon?offset=20&limit=30`
+      // 'https://jsonplaceholder.typicode.com/posts'
     );
 
     if (!response.ok) {
