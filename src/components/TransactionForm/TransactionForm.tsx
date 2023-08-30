@@ -14,6 +14,7 @@ import CancelButton from "../Buttons/CancelButton/CancelButton";
 import TransactionFormFields from "../TransactionFormFields/TransactionFormFields";
 import { setTitleTransaction } from "@/src/helpers/setTitleTransaction";
 import { Box } from "../Box/Box";
+import CreateTransactionError from "../Errors/CreateTransactionError/CreateTransactionError";
 
 interface IProps {
   isIncome: boolean;
@@ -30,7 +31,7 @@ function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
   const { mutate: editTransaction } = useEditTransaction(editId)
   const { mutate: createTransaction, error: myError, isError } = useCreateTransaction(setError)
   // console.log("isError:", isError);
-  // console.log("My Error:", myError);
+  // console.log("My Error:", myError.response?.status);
 
   const initialValues: ITransactionValue = {
     comment: "",
@@ -62,20 +63,10 @@ function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
   };
 
   if (isError) {
-    // return (
-    //   <>
-    //     <h1 style={{ color: "white" }}>Произошла ошибка:</h1>
-    //     <h2 style={{ color: "white" }}>{myError.message}</h2>
-    //     <Box mt={4}>
-    //       <CancelButton
-    //         cancelText="cancel"
-    //         onClick={() => setModalToggle("transaction")}
-    //       />
-    //     </Box>
-    //   </>
-    // );
+    return (
+      <CreateTransactionError error={myError} />
+    );
 
-    throw myError
   }
 
   return (
