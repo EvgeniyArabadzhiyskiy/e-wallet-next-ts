@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 import CrossBtn from "../Buttons/CrossBtn";
-import EnterButton from "../Buttons/EnterButton/EnterButton";
+import EnterButton from "../Buttons/EnterButton";
 import { Menu, WrapperBtn } from "./TransactionMenu.styled";
 
 interface IProps {
@@ -21,7 +21,7 @@ const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete
      </WrapperBtn>
       
       <EnterButton 
-        width={{mobile: "45%", desctop: "120px"}} 
+        maxWidth="120px"
         height={40} 
         enterText="EDIT" 
         onClick={onEdit} 
@@ -29,13 +29,13 @@ const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete
 
       {isDelete 
       ? <EnterButton 
-          width={{mobile: "45%", desctop: "120px"}} 
+          maxWidth="120px"
           height={40} 
           enterText="DELETE" 
           onClick={onDelete} 
         />
       : <EnterButton 
-          width={{mobile: "45%", desctop: "120px"}} 
+          maxWidth="120px"
           height={40} 
           enterText="CANCEL" 
           onClick={onClearId} 
