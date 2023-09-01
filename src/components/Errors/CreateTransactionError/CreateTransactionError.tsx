@@ -1,37 +1,45 @@
-import { Box } from "../../Box/Box";
-import CancelButton from "../../Buttons/CancelButton/CancelButton";
 import { useGlobalState } from "../../GlobalProvider/GlobalProvider";
-import { ErrorText, ErrorTitle } from "./CreateTransactionError.styled";
+
+import { Box } from "../../Box/Box";
+import { ErrorText } from "../ErrorText.styled";
+import CancelButton from "../../Buttons/CancelButton";
+import { getMessageForError } from "@/src/helpers/getMessageForError";
+import { ButtonWrapper } from "./CreateTransactionError.styled";
 
 interface IProps {
-  error: any;
+  error: Error;
+  resetError: () => void
 }
 
-function CreateTransactionError({ error }: IProps) {
+function CreateTransactionError({ error, resetError }: IProps) {
   const { setModalToggle } = useGlobalState();
 
-  const getMessageForError = (errorCode: string) => {
-    switch (errorCode) {
-      case '401':
-        return "You are not authorized to access this resource. Please log in or authenticate to proceed.";
-      case '404':
-        return "Oops, the page you're looking for doesn't exist. Please check the URL and try again.";
-      default:
-        return `An error occurred ${errorCode}. Please try again later.`;
-    }
-  };
-
   const errorMessage = getMessageForError(error.message);
+
+  const onCancelError = () => {
+    resetError();
+    setModalToggle("transaction");
+  }
   return (
     <>
-      <ErrorTitle>There was a problem</ErrorTitle>
-      <ErrorText>{errorMessage}</ErrorText>
-      <Box mt={120} >
+      <ErrorText as="p" mb={30} color="#10b981" fontSize="20px">
+        There was a problem
+      </ErrorText>
+
+      <ErrorText as="p" mb={30} color="primaryBtn" fontSize="ml" fontWeight="bold">
+        {errorMessage.reason}
+      </ErrorText>
+
+      <ErrorText as="p" color="#a1a1aa" fontSize={["m"]}>
+        {errorMessage.text}
+      </ErrorText>
+
+      <ButtonWrapper>
         <CancelButton
-          cancelText="cancel"
-          onClick={() => setModalToggle("transaction")}
+          cancelText="CANCEL"
+          onClick={onCancelError}
         />
-      </Box>
+      </ButtonWrapper>
     </>
   );
 }
