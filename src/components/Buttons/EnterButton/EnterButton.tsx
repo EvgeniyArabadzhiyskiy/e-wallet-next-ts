@@ -8,15 +8,12 @@ interface IProps {
   disabled?: boolean | undefined;
 
   height: number;
-  width: {
-    mobile: string;
-    desctop: string;
-  }
+  maxWidth: string;
 }
 
-function EnterButton ({ width, height, type = "submit", onClick, enterText, disabled, ...allProps}: IProps)  {
+function EnterButton ({ height, maxWidth, type = "submit", onClick, enterText, disabled, ...allProps}: IProps)  {
   return (
-    <StyledEnterBtn width={width} height={height} type={type} onClick={onClick} disabled={disabled} {...allProps}>
+    <StyledEnterBtn  height={height} $maxWidth={maxWidth} type={type} onClick={onClick} disabled={disabled} {...allProps}>
       {enterText}
     </StyledEnterBtn>
   );
