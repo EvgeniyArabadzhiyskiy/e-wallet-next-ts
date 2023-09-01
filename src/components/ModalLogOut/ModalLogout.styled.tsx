@@ -9,7 +9,7 @@ export const Border = styled.div`
 export const Modal = styled.div`
   min-width: 300px;
   background: rgba(0, 0, 0, 0.7);
-  padding: 30px 10px;
+  padding: 30px;
 `;
 
 export const Title = styled.h2`
@@ -18,7 +18,4 @@ export const Title = styled.h2`
   color: ${(p) => p.theme.colors.white};
   line-height: 1.2;
   text-align: center;
-
-  margin-bottom: 50px;
-  padding: 0 20px;
 `;
