@@ -1,23 +1,19 @@
 'use client'
 
-import Image from "next/image";
 import { useState } from "react";
 import { FormikProps } from "formik";
-
-import EmailIcon from "../../../public/images/email.svg";
-import PasswordIcon from "../../../public/images/password.svg";
-import UserIcon from "../../../public/images/user.svg";
 
 import { Box } from "../Box/Box";
 import FormInput from "../FormInput/FormInput";
 import LinkButton from "../Buttons/LinkButton/LinkButton";
-import EnterButton from "../Buttons/EnterButton/EnterButton";
+import EnterButton from "../Buttons/EnterButton";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
 import { IRegisterValues } from "@/src/types/registerValues";
 import { PasswordIndicator } from "./RegisterFormFields.styled";
 import PasswordSvg from "../SvgComponent/PasswordSvg";
 import EmailSvg from "../SvgComponent/EmailSvg";
 import UserSvg from "../SvgComponent/UserSvg";
+import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 
 
 interface IProps {
@@ -68,25 +64,25 @@ export default function RegisterFormFields  ({ formik }: IProps) {
       </Box>
 
       <Box mb={5} >
-            <FormInput 
-                icon={ <UserSvg width={25} height={24} />}
-                type="text"
-                name="name" 
-                placeholder="First name"
-                autoComplete="off"
-            />
+        <FormInput 
+            icon={ <UserSvg width={25} height={24} />}
+            type="text"
+            name="name" 
+            placeholder="First name"
+            autoComplete="off"
+        />
         </Box>
-
-      <EnterButton 
-        width={{mobile: "80%", desctop: "300px"}} 
-        height={50} type="submit" 
-        enterText="Register" 
-        disabled={isDisabled} 
-      />
-      <Box mt={4}>
-        <LinkButton href='/login' text='Login' />
-      </Box>
-      {/* <GoogleAuthLink />   */}
+      <ButtonWrapper>
+        <EnterButton 
+          type="submit" 
+          height={50} 
+          maxWidth="300px" 
+          enterText="REGISTER" 
+          disabled={isDisabled} 
+        />
+     
+        <LinkButton href='/login' text='LOGIN' maxWidth="300px" />
+      </ButtonWrapper>
     </>
   );
 };
