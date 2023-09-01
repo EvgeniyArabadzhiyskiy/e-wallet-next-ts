@@ -4,11 +4,6 @@ import styled, { css, keyframes } from "styled-components";
 
 export const baseBtnStyle = css`
   display: block;
-  /* height: 50px;
-  width: 80%; */
-  /* min-width: 280px; */
-  margin-left: auto;
-  margin-right: auto;
 
   font-size: ${(p) => p.theme.fontSizes.m};
   font-family: ${(p) => p.theme.fonts.body};
@@ -17,9 +12,13 @@ export const baseBtnStyle = css`
   line-height: 1.5;
   letter-spacing: ${(p) => p.theme.letterSpacings.body};
   cursor: pointer;
-  text-transform: uppercase;
+`;
 
-  /* @media ${(p) => p.theme.media.medium} {
-    width: 300px;
-  } */
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  width: 80%;
+  margin: 0 auto;
 `;
