@@ -13,11 +13,15 @@ import SettingsSvg from "../SvgComponent/SettingsSvg";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 
 function TransactionTable() {
-  const { data: allTransactions = [], listElem, observerElem  } = useLazyTransactions();
+  const { data: allTransactions = [], listElem, observerElem, isError, error } = useLazyTransactions();
   const balanceList = useBalanceList(allTransactions);
 
   const [editId, setEditId] = useState<string>("");
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD");
+
+  if (isError) {
+    throw new Error(error.message)
+  }
 
   return (
     <>
