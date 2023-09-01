@@ -10,11 +10,11 @@ import { ITransactionData, ITransactionValue } from "@/src/types/transactionValu
 
 import { Title } from "./TransactionForm.styled";
 import FormContainer from "../FormContainer/FormContainer";
-import CancelButton from "../Buttons/CancelButton/CancelButton";
+import CancelButton from "../Buttons/CancelButton";
 import TransactionFormFields from "../TransactionFormFields/TransactionFormFields";
 import { setTitleTransaction } from "@/src/helpers/setTitleTransaction";
 import { Box } from "../Box/Box";
-import CreateTransactionError from "../Errors/CreateTransactionError/CreateTransactionError";
+import CreateTransactionError from "../Errors/CreateTransactionError";
 
 interface IProps {
   isIncome: boolean;
@@ -25,13 +25,10 @@ interface IProps {
 
 function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
   const { setModalToggle } = useGlobalState();
-  const [error, setError] = useState<Error | null>(null);  // Возможно нужно убрать в useCreateTransaction
-  // console.log("Error:", error);
+  const [myError, setError] = useState<Error | null>(null);  // Возможно нужно убрать в useCreateTransaction
 
-  const { mutate: editTransaction } = useEditTransaction(editId)
-  const { mutate: createTransaction, error: myError, isError } = useCreateTransaction(setError)
-  // console.log("isError:", isError);
-  // console.log("My Error:", myError.response?.status);
+  const { mutate: editTransaction } = useEditTransaction(editId);
+  const { mutate: createTransaction, error, isError, reset  } = useCreateTransaction(setError);
 
   const initialValues: ITransactionValue = {
     comment: "",
@@ -64,9 +61,8 @@ function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
 
   if (isError) {
     return (
-      <CreateTransactionError error={myError} />
+      <CreateTransactionError error={error} resetError={reset} />
     );
-
   }
 
   return (
