@@ -19,16 +19,15 @@ export const scale = keyframes`
 `;
 
 interface IBtnProps {
-  width: {
-    mobile: string;
-    desctop: string;
-  };
   height: number;
+  $maxWidth: string;
 }
 
 export const StyledEnterBtn = styled.button<IBtnProps>`
   ${baseBtnStyle}
-  width: ${(p) => p.width.mobile};
+
+  width: 100%;
+  max-width: ${(p) => p.$maxWidth};
   height: ${(p) => p.height}px;
 
   color: #a1a1aa;
@@ -44,9 +43,5 @@ export const StyledEnterBtn = styled.button<IBtnProps>`
   &:hover,
   &:focus {
     background-color: #064e3b;
-  }
-
-  @media ${(p) => p.theme.media.medium} {
-    width: ${(p) => p.width.desctop};
   }
 `;
