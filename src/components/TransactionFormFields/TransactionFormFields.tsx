@@ -1,31 +1,27 @@
 // import "../../styles/rdt-styles.css";  // обязательно в RootLayout иначе проблема при навигации страница не сразу грузится
 import moment from "moment";
 import Datetime from "react-datetime";
-// import ReactSelect, { GroupBase, OptionProps } from "react-select";
-// import Select from "react-select/dist/declarations/src/Select";
-
-import { Box } from "../Box/Box";
+import { FormikProps } from "formik";
 import React, { Dispatch, SetStateAction,  useState } from "react";
+import { useGlobalState } from "../GlobalProvider/GlobalProvider";
+
 import {
   DateWrapper,
   ErrorText,
   SumWrapper,
 } from "./TransactionFormFields.styled";
-import FormInput from "../FormInput/FormInput";
-import EnterButton from "../Buttons/EnterButton/EnterButton";
-import { FormikProps } from "formik";
-import SwithChecbox from "../SwithChecbox/SwithChecbox";
-import { selectStyles } from "@/src/styles/selectStyles";
-import DateInput from "./DateInput";
-import { verifyFutureDate } from "@/src/helpers/verifyFutureDate";
-import { optionsExpense, optionsIncome } from "@/src/constants/selectOptions";
-import { ITransactionValue } from "@/src/types/transactionValue";
-import { useGlobalState } from "../GlobalProvider/GlobalProvider";
-import CustomSelect from "../CustomSelect/CustomSelect";
 import { OptionType } from "@/src/types/optionType";
-import CancelButton from "../Buttons/CancelButton/CancelButton";
+import { verifyFutureDate } from "@/src/helpers/verifyFutureDate";
+import { ITransactionValue } from "@/src/types/transactionValue";
 
-
+import { Box } from "../Box/Box";
+import DateInput from "./DateInput";
+import FormInput from "../FormInput/FormInput";
+import EnterButton from "../Buttons/EnterButton";
+import CancelButton from "../Buttons/CancelButton";
+import SwithChecbox from "../SwithChecbox/SwithChecbox";
+import CustomSelect from "../CustomSelect/CustomSelect";
+import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 
 interface IProps {
   isIncome: boolean;
@@ -33,34 +29,23 @@ interface IProps {
   formik: FormikProps<ITransactionValue>;
 }
 
-export default function TransactionFormFields({
-  formik,
-  setIsIncome,
-  isIncome,
-}: IProps) {
-  const { setModalToggle } = useGlobalState();
-
+export default function TransactionFormFields({ formik, isIncome, setIsIncome }: IProps) {
+  
   const { setFieldValue, isValid, dirty, isSubmitting } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
-  // const selectInputRef =
-  //   useRef<Select<OptionType, false, GroupBase<OptionType>>>(null);
-
-  const currentDate = moment().format("DD.MM.YYYY");
   const [value, setValue] = useState<OptionType | null>(null);
-
-
   const onChangeSwitch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsIncome(e.target.checked);
-    setValue(null)
-    // selectInputRef.current?.clearValue();
+    setValue(null);
   };
 
+  const { setModalToggle } = useGlobalState();
   const onCancelClick = () => {
     setModalToggle("transaction")
   }
 
-  
+  const currentDate = moment().format("DD.MM.YYYY");
   return (
     <>
       <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
@@ -71,7 +56,6 @@ export default function TransactionFormFields({
           setValue={setValue}
           isIncome={isIncome}
           setCategory={setFieldValue}
-          // selectRef={selectInputRef}
         />
         <ErrorText component="div" name="category" />
       </Box>
@@ -87,13 +71,11 @@ export default function TransactionFormFields({
         </SumWrapper>
 
         <Datetime
-          // name="date"
           closeOnSelect
           initialValue={currentDate}
           dateFormat="DD.MM.YYYY"
           timeFormat={false}
           isValidDate={verifyFutureDate}
-          //   onChange={(e) => setFieldValue("date", new Date(e).toString())}
           onChange={(evt) => {
             const selectedDate =
               typeof evt === "string" ? new Date(evt) : evt.toDate();
@@ -106,7 +88,7 @@ export default function TransactionFormFields({
         />
       </DateWrapper>
 
-      <Box mt={5}>
+      <Box mt={5} mb={5}>
         <FormInput
           type="text"
           name="comment"
@@ -115,18 +97,17 @@ export default function TransactionFormFields({
         />
       </Box>
 
-      <Box mt={5}>
+      <ButtonWrapper>
         <EnterButton 
-          width={{mobile: "80%", desctop: "300px"}} 
-          height={50} 
           type="submit" 
-          enterText="Add" 
+          height={50} 
+          maxWidth="300px" 
+          enterText="ADD" 
           disabled={isDisabled} 
         />
-      </Box>
-      <Box mt={4}>
-        <CancelButton cancelText="Cancel" onClick={onCancelClick} /> 
-      </Box>           
+       
+        <CancelButton cancelText="CANCEL" onClick={onCancelClick} /> 
+      </ButtonWrapper>           
     </>
   );
 }
