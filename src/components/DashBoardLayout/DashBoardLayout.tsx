@@ -75,7 +75,7 @@ export default async function DashBoardLayout({
               <Currency />
             </div>
 
-              {children}
+            {children}
           </div>
         </Container>
       </div>
