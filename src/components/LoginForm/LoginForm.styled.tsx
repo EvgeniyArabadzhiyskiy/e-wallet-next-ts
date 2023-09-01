@@ -3,7 +3,6 @@
 import styled from "styled-components";
 
 export const FormWrap = styled.div<{ $isScale: boolean }>`
-  /* width: 340px; */
   padding: 30px 20px;
   background-color: rgba(0, 0, 0, 0.8);
   border: 10px solid rgba(255, 255, 255, 0.2);
@@ -16,8 +15,6 @@ export const FormWrap = styled.div<{ $isScale: boolean }>`
   @media ${(p) => p.theme.media.medium} {
     width: 500px;
     margin-right: 50px;
-    padding: 36px 60px;
+    padding: 36px 50px;
   }
 `;
-
-
