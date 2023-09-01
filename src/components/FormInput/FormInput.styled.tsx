@@ -11,6 +11,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled(Field)`
+  width: 100%;
   flex: 1;
   padding: 5px 20px;
   border: ${(p) => p.theme.borders.none};
