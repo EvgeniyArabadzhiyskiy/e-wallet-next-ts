@@ -1,22 +1,17 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { FormikProps } from "formik";
 import { ILoginValues } from "@/src/types/loginValues";
 
-import EmailIcon from "../../../public/images/email.svg";
-import PasswordIcon from "../../../public/images/password.svg";
-
 import { Box } from "../Box/Box";
 import FormInput from "../FormInput/FormInput";
-import EnterButton from "../Buttons/EnterButton/EnterButton";
+import EnterButton from "../Buttons/EnterButton";
 import LinkButton from "../Buttons/LinkButton/LinkButton";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
-import { signIn, signOut, useSession } from "next-auth/react";
-import GoogleAuthLink from "../Buttons/GoogleAuthLink/GoogleAuthLink";
 import EmailSvg from "../SvgComponent/EmailSvg";
 import PasswordSvg from "../SvgComponent/PasswordSvg";
+import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 
 interface IProps {
   formik: FormikProps<ILoginValues>;
@@ -27,21 +22,6 @@ export default function LoginFormFields({ formik }: IProps) {
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
   const [isHidePassword, setIsHidePassword] = useState(true);
-
-  // const onGoogle = async () => {
-  //   const user = await signIn(
-  //     'google', {
-  //     // redirect: true,
-  //     callbackUrl: 'http://localhost:3000/home/transactions',
-  //     // callbackUrl: "https://wallet-backend-xmk0.onrender.com/api/auth-google/google-redirect"
-  //   }
-  //   ) 
-  //   console.log("onGoogle  user:", user);
-  // }
-
-  // const onSignOut = async () => {
-  //   signOut()
-  // }
 
   return (
     <>
@@ -70,20 +50,16 @@ export default function LoginFormFields({ formik }: IProps) {
           }
         />
       </Box>
-
-      <EnterButton
-        width={{ mobile: "80%", desctop: "300px" }}
-        height={50}
-        type="submit"
-        enterText="Log in"
-        disabled={isDisabled}
-      />
-      <Box mt={4}>
-        <LinkButton href="/register" text="Register" />
-      </Box> 
-      {/* <button type="button" onClick={onGoogle}>Sign In with Google</button>  */}
-      
-      {/* <GoogleAuthLink />   */}
+      <ButtonWrapper>
+        <EnterButton
+          type="submit"
+          height={50}
+          maxWidth="300px"
+          enterText="LOG IN"
+          disabled={isDisabled}
+        />
+        <LinkButton href="/register" text="REGISTER" maxWidth="300px" />
+      </ButtonWrapper>
     </>
   );
 }
