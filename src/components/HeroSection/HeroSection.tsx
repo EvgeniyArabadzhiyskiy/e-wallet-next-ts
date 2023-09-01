@@ -105,9 +105,9 @@ async function HeroSection() {
 
             {
               session
-               ? <LinkButton href="/home/transactions" text="Wallet" />
+               ? <LinkButton href="/home/transactions" text="WALLET" maxWidth="300px" />
                :
-              <LinkButton href="/login" text="Start in 30 seconds" />
+              <LinkButton href="/login" text="Start in 30 seconds" maxWidth="300px" />
             }
           </div>
           <div>
