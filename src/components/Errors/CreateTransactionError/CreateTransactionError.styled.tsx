@@ -2,14 +2,11 @@
 
 import styled from "styled-components";
 
-export const ErrorTitle = styled.p`
-  margin-bottom: 30px;
-  color: #10b981;
-  font-size: 24px;
-  text-align: center;
-`;
-
-export const ErrorText = styled.p`
-  color: #a1a1aa;
-  font-size: 28px;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
 `;
