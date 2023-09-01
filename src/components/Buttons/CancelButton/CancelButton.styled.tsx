@@ -6,7 +6,8 @@ import { baseBtnStyle } from "../DefaultButton.styled";
 export const StyledCancelBtn = styled.button`
   ${baseBtnStyle}
   height: 50px;
-  width: 80%;
+  width: 100%;
+  max-width: 300px;
 
   color: #a1a1aa;
   background-color: #111827;
@@ -17,9 +18,5 @@ export const StyledCancelBtn = styled.button`
   &:hover,
   &:focus {
     background-color: #1f2937;
-  }
-
-  @media ${(p) => p.theme.media.medium} {
-    width: 300px;
   }
 `;
