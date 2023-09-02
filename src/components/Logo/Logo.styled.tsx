@@ -6,8 +6,6 @@ export const LogoWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  /* margin-bottom: 60px; */
 `;
 
 export const ImgWrapper = styled.div`
@@ -23,7 +21,6 @@ export const ImgWrapper = styled.div`
   }
 `;
 
-/* font-family: ${(p) => p.theme.fonts.inter}; */
 export const LogoText = styled.span<{ $isLoginPage: boolean }>`
   font-size: 23px;
   font-weight: 700;
@@ -35,7 +32,3 @@ export const LogoText = styled.span<{ $isLoginPage: boolean }>`
   color: ${(p) =>
     p.$isLoginPage ? p.theme.colors.white : p.theme.colors.primaryText};
 `;
-
-// export const LogoText = styled(({ isLoginPage, ...props }: {isLoginPage: boolean}) => <span {...props} />)`
-//   color: ${(p) => p.isLoginPage ? p.theme.colors.white : p.theme.colors.primaryText};
-// `;
