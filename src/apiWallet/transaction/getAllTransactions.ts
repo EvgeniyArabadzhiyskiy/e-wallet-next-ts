@@ -1,16 +1,16 @@
-import { TRANSACTIONS } from "../../constants/apiPath";
 import { fetcher } from "../../helpers/fetcher";
-import { isITransactions } from "../../helpers/isITransactions";
+import { TRANSACTIONS } from "../../constants/apiPath";
 import { ITransactions } from "../../types/transactions";
+import { isITransactions } from "../../helpers/isITransactions";
 
 export const getAllTransactions = 
-async (authToken: string | undefined, pageNum: number) => {
+async (token: string | undefined, pageNum: number) => {
   // await new Promise((res) => setTimeout(() => res(console.log("Promise resolve")), 5000));
 
   const options: RequestInit = {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${authToken}`
+      Authorization: `Bearer ${token}`
     },
     // cache: "no-store",
   };
