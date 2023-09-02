@@ -36,14 +36,14 @@ function TransactionItem({
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isDelete, setIsDelete] = useState(true);
 
-  const { mutate: removeTransaction } = useRemoveTransaction()
+  const { mutate: removeTransaction, error, isError } = useRemoveTransaction()
 
   const onDelete = (id: string) => {
     setIsDelete(false);
 
     timeoutId.current = setTimeout(() => {
       removeTransaction(id);
-    }, 100);
+    }, 2500);
   };
 
   const onClearId = () => {
@@ -56,6 +56,10 @@ function TransactionItem({
     setModalKey("EDIT")
     setEditId(id)
     setIsOpenMenu(false)
+  }
+
+  if (isError) {
+    throw new Error(error.message)
   }
 
   return (
