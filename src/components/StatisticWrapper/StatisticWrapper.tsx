@@ -1,10 +1,11 @@
-import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
-import getQueryClient from "../../lib/getQueryClient";
+import { getServerSession } from "next-auth";
 import { Hydrate, dehydrate } from "@tanstack/react-query";
-import { getBalance } from "../../apiWallet/balance";
-import { getStatistics } from "@/src/apiWallet/statistic";
+
 import Statistics from "../Statistics/Statistics";
+import { getBalance } from "../../apiWallet/balance";
+import getQueryClient from "../../lib/getQueryClient";
+import { getStatistics } from "@/src/apiWallet/statistic";
 
 async function StatisticWrapper() {
   const session = await getServerSession(authOptions);
