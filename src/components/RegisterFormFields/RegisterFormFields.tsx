@@ -4,17 +4,16 @@ import { useState } from "react";
 import { FormikProps } from "formik";
 
 import { Box } from "../Box/Box";
+import UserSvg from "../SvgComponent/UserSvg";
+import EmailSvg from "../SvgComponent/EmailSvg";
+import PasswordSvg from "../SvgComponent/PasswordSvg";
 import FormInput from "../FormInput/FormInput";
-import LinkButton from "../Buttons/LinkButton/LinkButton";
+import LinkButton from "../Buttons/LinkButton";
 import EnterButton from "../Buttons/EnterButton";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
 import { IRegisterValues } from "@/src/types/registerValues";
 import { PasswordIndicator } from "./RegisterFormFields.styled";
-import PasswordSvg from "../SvgComponent/PasswordSvg";
-import EmailSvg from "../SvgComponent/EmailSvg";
-import UserSvg from "../SvgComponent/UserSvg";
 import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
-
 
 interface IProps {
   formik: FormikProps<IRegisterValues>;
