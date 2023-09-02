@@ -16,12 +16,13 @@ import { ILoginValues } from "@/src/types/loginValues";
 import { loginSchema } from "@/src/helpers/formValidation";
 import { useGoogleAuth } from "@/src/hooks/useGoogleAuth";
 import { Box } from "../Box/Box";
+import LoginError from "../Errors/LoginError/LoginError";
 
 
 export default function LoginForm () {
   const searchParams = useSearchParams()
-  const error = searchParams.get('error')
-  // console.log("LoginPage  error:", error);
+  const errorMessage = searchParams.get('error')
+  console.log("errorMessage", errorMessage);
 
   useGoogleAuth()
   
@@ -57,17 +58,13 @@ export default function LoginForm () {
 
   return (
     <FormWrap $isScale={isScale}>
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading && <h1 style={{color: "white"}}>Loading...</h1>}
       <Box mb={60}>
         <Logo />
       </Box>
 
-      {error 
-        ? <>
-            <h1 style={{color: "green", fontSize: '24px'}}>{error}</h1>
-            <Link style={{color: "green", fontSize: '24px'}} href="/login">Back</Link>
-          </> 
-
+      {errorMessage 
+        ? <LoginError errorMessage={errorMessage} />
         : <FormContainer<ILoginValues>
             onSubmit={handleSubmit}
             initialValues={initialValues}
