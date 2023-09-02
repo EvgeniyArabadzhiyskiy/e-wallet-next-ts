@@ -7,11 +7,11 @@ import { ILoginValues } from "@/src/types/loginValues";
 import { Box } from "../Box/Box";
 import FormInput from "../FormInput/FormInput";
 import EnterButton from "../Buttons/EnterButton";
-import LinkButton from "../Buttons/LinkButton/LinkButton";
-import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
+import LinkButton from "../Buttons/LinkButton";
+import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 import EmailSvg from "../SvgComponent/EmailSvg";
 import PasswordSvg from "../SvgComponent/PasswordSvg";
-import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
+import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
 
 interface IProps {
   formik: FormikProps<ILoginValues>;
