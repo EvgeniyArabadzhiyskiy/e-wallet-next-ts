@@ -1,13 +1,13 @@
 "use client";
 
-import { useStatistic } from "@/src/apiWallet/useStatistic";
-import StatTable from "./StatTable";
-
-import { ChartWrapper, PageTitle, TableWrapper } from "./Statistics.styled";
-import Chart from "../Chart/Chart";
 import { useQueryClient } from "@tanstack/react-query";
+import { useStatistic } from "@/src/apiWallet/useStatistic";
+
 import Link from "next/link";
+import Chart from "../Chart/Chart";
+import StatTable from "./StatTable";
 import StatisticLoader from "../StatisticLoader";
+import { ChartWrapper, PageTitle, TableWrapper } from "./Statistics.styled";
 
 function Statistics() {
   const {
@@ -20,6 +20,8 @@ function Statistics() {
     expensesTotal,
     incomeTotal,
     isFetching,
+    error,
+    isError
   } = useStatistic();
 
   const client = useQueryClient();
@@ -30,6 +32,9 @@ function Statistics() {
   // console.log("TransactionsList", tranList[0]);
   // console.log("Statistics:", stat);
 
+  if (isError) {
+    throw new Error(error.message)
+  }
   if (isFetching) {
     return <StatisticLoader />;
   }
