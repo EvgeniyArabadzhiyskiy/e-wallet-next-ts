@@ -1,6 +1,5 @@
 import { useGlobalState } from "../../GlobalProvider/GlobalProvider";
 
-import { Box } from "../../Box/Box";
 import { ErrorText } from "../ErrorText.styled";
 import CancelButton from "../../Buttons/CancelButton";
 import { getMessageForError } from "@/src/helpers/getMessageForError";
