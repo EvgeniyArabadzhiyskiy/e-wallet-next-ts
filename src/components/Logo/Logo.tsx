@@ -1,30 +1,24 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useMedia } from "react-use";
 
 import logo from "../../../public/images/logo.png";
-import logoBig from "../../../public/images/logoBig.png";
 import { LogoText, LogoWrap, ImgWrapper } from "./Logo.styled";
-import Image from "next/image";
 
 import { Media } from "@/src/lib/media";
-import Link from "next/link";
 
 function Logo() {
   const pathName = usePathname();
   const isLoginPage = pathName === "/login" || pathName === "/register";
 
-  // const isDesctop = useMedia("(min-width: 768px)", false);
-  // const isMobile = useMedia("(max-width: 767px)", false);
-
   return (
-    <Link href="/home">
+    <Link href="/">
 
         <LogoWrap>
           <ImgWrapper>
-            <Image  src={logo} alt="logo" fill sizes="(max-width: 1279px) 100vw" style={{objectFit: 'cover'}}   />
-            {/* <Image  src={logo} alt="logo" width={30} height={30}   /> */}
+            <Image  src="/images/logo.png" alt="logo" width={40} height={40}    />
           </ImgWrapper>
 
           <LogoText $isLoginPage={isLoginPage}>Wallet</LogoText>
