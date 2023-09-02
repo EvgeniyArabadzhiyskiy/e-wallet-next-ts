@@ -1,8 +1,7 @@
 "use client";
 
 import { FormikHelpers } from "formik";
-import { Dispatch, SetStateAction, useState } from "react";
-import { useGlobalState } from "../GlobalProvider/GlobalProvider";
+import { Dispatch, SetStateAction } from "react";
 import { transactionShema } from "@/src/helpers/formValidation";
 import { getTypeOperation } from "@/src/helpers/getTypeOperation";
 import { useCreateTransaction, useEditTransaction } from "@/src/apiWallet";
@@ -10,10 +9,8 @@ import { ITransactionData, ITransactionValue } from "@/src/types/transactionValu
 
 import { Title } from "./TransactionForm.styled";
 import FormContainer from "../FormContainer/FormContainer";
-import CancelButton from "../Buttons/CancelButton";
 import TransactionFormFields from "../TransactionFormFields/TransactionFormFields";
 import { setTitleTransaction } from "@/src/helpers/setTitleTransaction";
-import { Box } from "../Box/Box";
 import CreateTransactionError from "../Errors/CreateTransactionError";
 
 interface IProps {
@@ -24,12 +21,12 @@ interface IProps {
 }
 
 function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
-  const { setModalToggle } = useGlobalState();
-  const [myError, setError] = useState<Error | null>(null);  // Возможно нужно убрать в useCreateTransaction
-
-  const { mutate: editTransaction } = useEditTransaction(editId);
-  const { mutate: createTransaction, error, isError, reset  } = useCreateTransaction(setError);
-
+  const { mutate: editTransaction, error: editError, isError: isEditError, reset: editReset }
+   = useEditTransaction(editId);
+   
+  const { mutate: createTransaction, error: createError, isError: isCreateError, reset: createReset }
+   = useCreateTransaction();
+  
   const initialValues: ITransactionValue = {
     comment: "",
     amount: "",
@@ -59,9 +56,15 @@ function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
     }
   };
 
-  if (isError) {
+  if (isEditError) {
     return (
-      <CreateTransactionError error={error} resetError={reset} />
+      <CreateTransactionError error={editError} resetError={editReset} />
+    );
+  }
+
+  if (isCreateError) {
+    return (
+      <CreateTransactionError error={createError} resetError={createReset} />
     );
   }
 
