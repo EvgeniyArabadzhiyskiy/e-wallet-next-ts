@@ -2,13 +2,14 @@ import { useMemo, useState } from "react";
 import { useUser } from "../hooks/useUser";
 import { useQuery } from "@tanstack/react-query";
 import { getStatistics } from "./statistic";
+import { IStatistic } from "../types/statistics";
 
 export const useStatistic = () => {
   const { token } = useUser();
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
 
-  const queryData = useQuery({
+  const queryData = useQuery<IStatistic[], Error, IStatistic[]>({
     queryKey: ["Statistics", { month, year }],
     queryFn: () => getStatistics(token, { month, year }),
     staleTime: Infinity,
