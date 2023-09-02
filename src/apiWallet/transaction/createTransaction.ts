@@ -4,7 +4,6 @@ import { ITransactionData } from "../../types/transactionValue";
 import { TRANSACTIONS } from "../../constants/apiPath";
 
 export const createTransaction = async (transaction: ITransactionData, token: string | undefined) => {
-
   const options: RequestInit = {
     method: "POST",
     headers: {
@@ -14,28 +13,5 @@ export const createTransaction = async (transaction: ITransactionData, token: st
     body: JSON.stringify(transaction),
   };
   
-  const data = await fetcher<NewTransaction>(`${TRANSACTIONS}`, options);
-
-  return data;
+  return await fetcher<NewTransaction>(`${TRANSACTIONS}`, options);
 };
-
-
-// export const createTransaction = async (
-//   transaction: ITransactionData,
-//   token: string | undefined
-// ) => {
-//   try {
-//     const {data} = await axios.post(`https://wallet-backend-xmk0.onrender.com/api/transactions`, transaction, {
-//       headers: {
-//         "Content-Type": "application/json;charset=utf-8",
-//         Authorization: `Bearer ${"Wrong token"}`,
-//       },
-//     });
-//     console.log("data:", data);
-
-//     return data;
-//   } catch (error) {
-//     console.log("createTransaction  error:", (error as any).response.data.message);
-//     throw error;
-//   }
-// };
