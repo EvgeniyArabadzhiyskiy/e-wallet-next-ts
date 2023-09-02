@@ -1,20 +1,19 @@
+import { useUser } from "../hooks/useUser";
 import {
   InfiniteData,
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import { useUser } from "../hooks/useUser";
 import {
   ITransaction,
   ITransactions,
   NewTransaction,
 } from "../types/transactions";
-import { ITransactionData } from "../types/transactionValue";
 import { createTransaction } from "./transaction";
+import { ITransactionData } from "../types/transactionValue";
 import { useGlobalState } from "../components/GlobalProvider/GlobalProvider";
-import { Dispatch, SetStateAction } from "react";
 
-export const useCreateTransaction = (setError: Dispatch<SetStateAction<Error | null>>) => {
+export const useCreateTransaction = () => {
   const { token } = useUser();
   const queryClient = useQueryClient();
   const { setModalToggle } = useGlobalState();
@@ -25,16 +24,15 @@ export const useCreateTransaction = (setError: Dispatch<SetStateAction<Error | n
 
     onSuccess: (data) => {
       
-      const createdDate = {
-        month: new Date(data.date).getMonth().toString(),
-        year: new Date(data.date).getFullYear().toString(),
-      }
+      // const createdDate = {
+      //   month: new Date(data.date).getMonth().toString(),
+      //   year: new Date(data.date).getFullYear().toString(),
+      // }
 
       const { position, updatedAt, ...props } = data;
       const createTransaction: ITransaction = props;
 
       let newData = createTransaction;
-      // console.log("useCreateTransaction  newData:", newData);
 
       queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
           if (!prev) {
@@ -45,11 +43,8 @@ export const useCreateTransaction = (setError: Dispatch<SetStateAction<Error | n
             const newCache = [newData, ...page.transactions].sort(
               (a, b) => Date.parse(b.date) - Date.parse(a.date));
               
-              // console.log("updatedPages  newCache:", newCache);
-
             if (newCache.length > 10) {
               const lastTransaction = newCache.pop();
-              // console.log("POP Last Index");
               
               if (lastTransaction) {
                 newData = lastTransaction;
@@ -74,11 +69,6 @@ export const useCreateTransaction = (setError: Dispatch<SetStateAction<Error | n
       // queryClient.invalidateQueries({ queryKey: ["Statistics", { month: "", year: "" }] });
       // queryClient.invalidateQueries({ queryKey: ["Statistics", createdDate] });
       setModalToggle("transaction");
-    },
-
-    onError: (error) => {
-      console.log("TransactionForm  error:", error.message);
-      setError(error);
     },
   });
 
