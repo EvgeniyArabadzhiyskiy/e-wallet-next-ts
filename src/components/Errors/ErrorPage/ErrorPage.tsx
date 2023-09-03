@@ -1,7 +1,7 @@
 import LinkButton from "../../Buttons/LinkButton";
 import EnterButton from "../../Buttons/EnterButton";
 import { ErrorText } from "../ErrorText.styled";
-import { ButtonWrapper } from "./ErrorPage.styled";
+import { ButtonWrapper, ErrorContainer } from "./ErrorPage.styled";
 import { getMessageForError } from "@/src/helpers/getMessageForError";
 
 interface IProps {
@@ -13,12 +13,12 @@ function ErrorPage({ error, resetError }: IProps) {
   const errorMessage = getMessageForError(error.message);
 
   return (
-    <div style={{ padding: "30px" }}>
+    <ErrorContainer>
       <ErrorText as="p" mb={30} color="#10b981" fontSize="20px">
         There was a problem
       </ErrorText>
 
-      <ErrorText as="p" mb={30} color="primaryBtn" fontSize="xl" fontWeight="bold">
+      <ErrorText as="p" mb={30} color="primaryBtn" fontSize="34px" fontWeight="bold">
         {errorMessage.reason}
       </ErrorText>
 
@@ -29,14 +29,14 @@ function ErrorPage({ error, resetError }: IProps) {
       <ButtonWrapper>
         <EnterButton
           height={50}
-          maxWidth="150px"
+          maxWidth="180px"
           enterText="Try again"
           onClick={resetError}
         />
 
         <LinkButton href="/" text="Go back home" maxWidth="180px" />
       </ButtonWrapper>
-    </div>
+    </ErrorContainer>
   );
 }
 
