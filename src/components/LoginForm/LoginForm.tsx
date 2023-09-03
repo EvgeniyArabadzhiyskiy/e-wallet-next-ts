@@ -17,15 +17,17 @@ import { loginSchema } from "@/src/helpers/formValidation";
 import { useGoogleAuth } from "@/src/hooks/useGoogleAuth";
 import { Box } from "../Box/Box";
 import LoginError from "../Errors/LoginError/LoginError";
+import { useUser } from "@/src/hooks/useUser";
 
 
 export default function LoginForm () {
+  const userData = useUser()
+  console.log("LoginForm  userData:", userData);
+  
   const searchParams = useSearchParams()
   const errorMessage = searchParams.get('error')
-  console.log("errorMessage", errorMessage);
+  // console.log("errorMessage", errorMessage);
 
-  useGoogleAuth()
-  
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,9 +58,13 @@ export default function LoginForm () {
     }
   };
 
+  if (isLoading) {
+    return  <h1 style={{color: "tomato", fontSize: 56}}>Loading...</h1>
+  }
+  
   return (
     <FormWrap $isScale={isScale}>
-      {isLoading && <h1 style={{color: "white"}}>Loading...</h1>}
+      {/* {isLoading && <h1 style={{color: "white"}}>Loading...</h1>} */}
       <Box mb={60}>
         <Logo />
       </Box>
