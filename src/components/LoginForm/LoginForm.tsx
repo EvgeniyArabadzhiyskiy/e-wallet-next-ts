@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FormikHelpers } from "formik";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useScaleForm } from "@/src/hooks/useScaleForm";
 
 import Logo from "../Logo/Logo";
@@ -22,8 +22,10 @@ import { useUser } from "@/src/hooks/useUser";
 
 export default function LoginForm () {
   const userData = useUser()
-  console.log("LoginForm  userData:", userData);
-  
+  // console.log("LoginForm  userData:", userData.status === 'loading');
+
+  const router = useRouter()
+
   const searchParams = useSearchParams()
   const errorMessage = searchParams.get('error')
   // console.log("errorMessage", errorMessage);
@@ -43,12 +45,16 @@ export default function LoginForm () {
     setIsLoading(true);
 
     try {
-      const user = await signIn('credentials', {
+      const user =  signIn('credentials', {
         email: values.email,
         password: values.password,
-        redirect: true,
-        callbackUrl: '/home/transactions'
+        // redirect: false,
+        // redirect: true,
+        // callbackUrl: '/home/transactions'
       });
+
+      console.log("FINAL");
+      // router.push('/home')
     
       resetForm({ values: { email: '', password: '' } });
     } catch (error) {
