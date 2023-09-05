@@ -1,6 +1,7 @@
 import { Box } from "../../Box/Box";
 import { ErrorText } from "../ErrorText.styled";
 import LinkButton from "../../Buttons/LinkButton";
+import { ButtonWrapper } from "./LoginError.styled";
 
 interface IProps {
   errorMessage: string;
@@ -17,13 +18,17 @@ function LoginError({ errorMessage }: IProps) {
           {errorMessage}
         </ErrorText>
 
-        <Box display="flex" justifyContent="center" >
-          <LinkButton href="/login" text="Go back" maxWidth="180px" />
-        </Box>
+        {/* <Box display="flex" justifyContent="center" > */}
+        {/* </Box> */}
 
-        <Box display="flex" justifyContent="center" mt={4} >
+        <ButtonWrapper>
+          <LinkButton href="/login" text="Go back" maxWidth="180px" />
+
           <LinkButton href="/register" text="Registration" maxWidth="180px" />
-        </Box>
+
+        </ButtonWrapper>
+        {/* <Box display="flex" justifyContent="center" mt={4} > */}
+        {/* </Box> */}
     </>
   );
 }
