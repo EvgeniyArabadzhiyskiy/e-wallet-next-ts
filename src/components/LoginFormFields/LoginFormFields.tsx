@@ -15,9 +15,10 @@ import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
 
 interface IProps {
   formik: FormikProps<ILoginValues>;
+  loading: boolean;
 }
 
-export default function LoginFormFields({ formik }: IProps) {
+export default function LoginFormFields({ formik, loading }: IProps) {
   const { isValid, dirty, isSubmitting } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
@@ -55,7 +56,7 @@ export default function LoginFormFields({ formik }: IProps) {
           type="submit"
           height={50}
           maxWidth="300px"
-          enterText="LOG IN"
+          enterText={loading ? "LOADING..." : "LOG IN"}   
           disabled={isDisabled}
         />
         <LinkButton href="/register" text="REGISTER" maxWidth="300px" />
