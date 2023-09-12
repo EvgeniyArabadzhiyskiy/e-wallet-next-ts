@@ -14,24 +14,19 @@ import LoginFormFields from "../LoginFormFields/LoginFormFields";
 import { FormWrap } from "./LoginForm.styled";
 import { ILoginValues } from "@/src/types/loginValues";
 import { loginSchema } from "@/src/helpers/formValidation";
-import { useGoogleAuth } from "@/src/hooks/useGoogleAuth";
 import { Box } from "../Box/Box";
 import LoginError from "../Errors/LoginError/LoginError";
-import { useUser } from "@/src/hooks/useUser";
 
 
 export default function LoginForm () {
-  const userData = useUser()
-  // console.log("LoginForm  userData:", userData.status === 'loading');
-
   const router = useRouter()
 
-  const searchParams = useSearchParams()
-  const errorMessage = searchParams.get('error')
-  // console.log("errorMessage", errorMessage);
+  // const searchParams = useSearchParams()
+  // const errorMessage = searchParams.get('error')
 
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const initialValues: ILoginValues = {
     email: "",
@@ -43,30 +38,40 @@ export default function LoginForm () {
     ) => {
 
     setIsLoading(true);
+    setErrorMessage("");
 
-    try {
-      const user =  signIn('credentials', {
+    // try {
+      const response = await signIn('credentials', {
         email: values.email,
         password: values.password,
-        // redirect: false,
+        redirect: false,
         // redirect: true,
         // callbackUrl: '/home/transactions'
       });
+      console.log("LoginForm  user:", response);
 
-      console.log("FINAL");
-      // router.push('/home')
-    
       resetForm({ values: { email: '', password: '' } });
-    } catch (error) {
       
-    } finally {
-      setIsLoading(false);
-    }
+      if (response?.error) {
+        setIsLoading(false);
+        setErrorMessage(response.error)
+        return
+      }
+      
+      console.log("FINAL");
+      router.push('/home/transactions')
+    
+    // } catch (error) {
+    //   console.log("LoginForm  error:", error);
+      
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
-  if (isLoading) {
-    return  <h1 style={{color: "tomato", fontSize: 56}}>Loading...</h1>
-  }
+  // if (isLoading) {
+  //   return  <h1 style={{color: "green", fontSize: 56}}>Loading...</h1>
+  // }
   
   return (
     <FormWrap $isScale={isScale}>
@@ -76,12 +81,12 @@ export default function LoginForm () {
       </Box>
 
       {errorMessage 
-        ? <LoginError errorMessage={errorMessage} />
+        ? <LoginError errorMessage={errorMessage} resetError={setErrorMessage} />
         : <FormContainer<ILoginValues>
             onSubmit={handleSubmit}
             initialValues={initialValues}
             validationSchema={loginSchema}
-            render={(formik) => <LoginFormFields formik={formik} />}
+            render={(formik) => <LoginFormFields formik={formik} loading={isLoading} />}
           />
       }
 
