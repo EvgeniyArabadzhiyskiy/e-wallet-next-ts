@@ -1,4 +1,3 @@
-import { MouseEventHandler } from "react";
 import { StyledEnterBtn } from "./EnterButton.styled";
 
 interface IProps {
