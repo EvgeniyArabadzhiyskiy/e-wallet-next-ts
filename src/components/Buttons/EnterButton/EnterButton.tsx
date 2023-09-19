@@ -12,7 +12,14 @@ interface IProps {
 
 function EnterButton ({ height, maxWidth, type = "submit", onClick, enterText, disabled, ...allProps}: IProps)  {
   return (
-    <StyledEnterBtn  height={height} $maxWidth={maxWidth} type={type} onClick={onClick} disabled={disabled} {...allProps}>
+    <StyledEnterBtn  
+      type={type} 
+      height={height} 
+      $maxWidth={maxWidth} 
+      onClick={onClick} 
+      disabled={disabled} 
+      {...allProps}
+    >
       {enterText}
     </StyledEnterBtn>
   );
