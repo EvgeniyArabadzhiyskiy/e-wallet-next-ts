@@ -1,6 +1,6 @@
 "use client";
 
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 
 export const baseBtnStyle = css`
   display: block;
