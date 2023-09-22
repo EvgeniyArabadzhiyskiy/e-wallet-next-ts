@@ -171,9 +171,6 @@ const getPokemon3 = async () => {
     const data = await response.json()
     console.log("getPokemon3  data:", data);
 
-
-   
-
     // const sss = data.results[0].name;
     // console.log("getPokemon3  sss:", sss);
 
@@ -196,8 +193,6 @@ const getPokemon3 = async () => {
   //   console.log("metapod:", metapod);
   //   console.log("spearow:", spearow);
   // } catch (error) {
-  //   console.log(error);
-    
   // }
 
   
@@ -207,26 +202,6 @@ const getPokemon3 = async () => {
 
     // const results = await Promise.allSettled([bulbasaur, metapod, spearow])
     // console.log("results:", results);
-
-    let pokemons: any[] = []
-    
-    // results.forEach((result, index) => {
-    //   // console.log("results.forEach  result:", result);
-      
-    //   if (result.status === 'fulfilled') {
-    //     // console.log(`Запрос ${index + 1} успешен:`, result.value);
-    //     pokemons.push(result.value)
-    //   } 
-    //   else {
-    //     // console.error(`Запрос ${index + 1} завершился с ошибкой:`, result.reason);
-    //   }
-    // });
-    // console.log("pokemons:", pokemons);
-
-    // console.log("bulbasaur:", aa);
-    // console.log("metapod:", bb);
-    // console.log("spearow:", cc);
-  
 })();
 
 // getPokemon1()
