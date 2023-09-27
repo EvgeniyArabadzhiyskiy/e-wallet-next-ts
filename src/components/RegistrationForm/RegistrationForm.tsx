@@ -14,11 +14,14 @@ import RegisterFormFields from "../RegisterFormFields/RegisterFormFields";
 import { registerSchema } from "@/src/helpers/formValidation";
 import { register } from "@/src/apiWallet/user";
 import { Box } from "../Box/Box";
+import AuthError from "../Errors/AuthError";
 
 
 export default function RegistrationForm() {
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<any>('')
+  // console.log("RegistrationForm  error:", errorMessage);
 
   const initialValues: IRegisterValues = {
     email: "",
@@ -33,21 +36,38 @@ export default function RegistrationForm() {
   ) => {
     const userCredentials: ICredentials = { email, password, firstName };
 
-    const resultRegistration = await register(userCredentials)
-    console.log("RegistrationForm  resulrRegistration:", resultRegistration.user.email);
+    try {
+      const newUser = await register(userCredentials)
+      console.log("RegistrationForm  resulrRegistration:", newUser.user.email);
 
-    setIsLoading(true);
+      const response = await signIn('credentials', {
+        email: email,
+        password: password,
+        redirect: true,
+        callbackUrl: '/home/transactions'
+      });
+    } catch (error) {
+      const message = (error as Error).message
 
-    const user = await signIn('credentials', {
-      email: email,
-      password: password,
-      redirect: true,
-      callbackUrl: '/home/transactions'
-    });
+      switch (message) {
+        case "409":
+          setErrorMessage("Email in use");
+          break;
+        case "404":
+          setErrorMessage("Route is Not Found");
+          break;
+        default:
+          setErrorMessage("Server Error");
+      }
+      
+    }
+    
 
-    setIsLoading(false);
+    // setIsLoading(true);
 
-    // registerUser(userCredentials);
+   
+
+    // setIsLoading(false);
 
     resetForm();
   };
@@ -68,15 +88,38 @@ export default function RegistrationForm() {
         <Logo />
       </Box>
 
-      <FormContainer<IRegisterValues>
+      {errorMessage 
+        ? <AuthError
+            href="/login" 
+            text="Login" 
+            errorMessage={errorMessage} 
+            resetError={setErrorMessage} 
+          />
+        : <FormContainer<IRegisterValues>
         onSubmit={handleSubmit}
         initialValues={initialValues}
         validationSchema={registerSchema}
         render={(formik) => <RegisterFormFields formik={formik} />}
       />
+      }  
+
+      
     </FormWrap>
   );
 }
+
+
+
+
+// function ddd(x: any) {
+//   if (x === 20) {
+//     console.log('Hello');
+//   }
+//   else {
+//     console.log("Djon");
+//   }
+// }
+// ddd(230)
 
 // export default function RegistrationForm() {
 //   const isScale = useScaleForm();
