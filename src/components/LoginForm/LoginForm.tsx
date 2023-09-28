@@ -15,7 +15,7 @@ import { FormWrap } from "./LoginForm.styled";
 import { ILoginValues } from "@/src/types/loginValues";
 import { loginSchema } from "@/src/helpers/formValidation";
 import { Box } from "../Box/Box";
-import LoginError from "../Errors/LoginError/LoginError";
+import AuthError from "../Errors/AuthError";
 
 
 export default function LoginForm () {
@@ -81,7 +81,12 @@ export default function LoginForm () {
       </Box>
 
       {errorMessage 
-        ? <LoginError errorMessage={errorMessage} resetError={setErrorMessage} />
+        ? <AuthError 
+            href="/register" 
+            text="Registration" 
+            errorMessage={errorMessage} 
+            resetError={setErrorMessage} 
+          />
         : <FormContainer<ILoginValues>
             onSubmit={handleSubmit}
             initialValues={initialValues}
