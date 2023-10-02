@@ -17,9 +17,10 @@ import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 
 interface IProps {
   formik: FormikProps<IRegisterValues>;
+  loading: boolean;
 }
 
-export default function RegisterFormFields  ({ formik }: IProps) {
+export default function RegisterFormFields  ({ formik, loading }: IProps) {
     const { isValid, dirty, values, isSubmitting } = formik
     const isDisabled = !(isValid && dirty) || isSubmitting
 
@@ -76,7 +77,8 @@ export default function RegisterFormFields  ({ formik }: IProps) {
           type="submit" 
           height={50} 
           maxWidth="300px" 
-          enterText="REGISTER" 
+          // enterText="REGISTER" 
+          enterText={loading ? "LOADING..." : "REGISTER"}
           disabled={isDisabled} 
         />
      
