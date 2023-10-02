@@ -20,7 +20,7 @@ import AuthError from "../Errors/AuthError";
 export default function RegistrationForm() {
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<any>('')
+  const [errorMessage, setErrorMessage] = useState('')
   // console.log("RegistrationForm  error:", errorMessage);
 
   const initialValues: IRegisterValues = {
@@ -35,6 +35,8 @@ export default function RegistrationForm() {
     { resetForm }: FormikHelpers<IRegisterValues>
   ) => {
     const userCredentials: ICredentials = { email, password, firstName };
+
+    setIsLoading(true);
 
     try {
       const newUser = await register(userCredentials)
@@ -52,14 +54,15 @@ export default function RegistrationForm() {
       switch (message) {
         case "409":
           setErrorMessage("Email in use");
-          break;
+          return;
         case "404":
           setErrorMessage("Route is Not Found");
-          break;
+          return;
         default:
           setErrorMessage("Server Error");
-      }
-      
+      } 
+    } finally {
+      setIsLoading(false);
     }
     
 
@@ -99,7 +102,7 @@ export default function RegistrationForm() {
         onSubmit={handleSubmit}
         initialValues={initialValues}
         validationSchema={registerSchema}
-        render={(formik) => <RegisterFormFields formik={formik} />}
+        render={(formik) => <RegisterFormFields formik={formik} loading={isLoading} />}
       />
       }  
 
