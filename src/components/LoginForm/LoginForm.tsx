@@ -40,33 +40,27 @@ export default function LoginForm () {
     setIsLoading(true);
     setErrorMessage("");
 
-    // try {
-      const response = await signIn('credentials', {
-        email: values.email,
-        password: values.password,
-        redirect: false,
-        // redirect: true,
-        // callbackUrl: '/home/transactions'
-      });
-      console.log("LoginForm  user:", response);
+    const response = await signIn('credentials', {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+      // redirect: true,
+      // callbackUrl: '/home/transactions'
+    });
+    console.log("LoginForm  user:", response);
 
-      resetForm({ values: { email: '', password: '' } });
-      
-      if (response?.error) {
-        setIsLoading(false);
-        setErrorMessage(response.error)
-        return
-      }
-      
-      console.log("FINAL");
-      router.push('/home/transactions')
+    resetForm({ values: { email: '', password: '' } });
     
-    // } catch (error) {
-    //   console.log("LoginForm  error:", error);
-      
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    if (response?.error) {
+      // setIsLoading(false);
+      setErrorMessage(response.error)
+      return
+    }
+    
+    console.log("FINAL");
+
+    setIsLoading(false);
+    router.push('/home/transactions');
   };
 
   // if (isLoading) {
