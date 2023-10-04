@@ -7,13 +7,11 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 import { Providers } from "../components/Providers/Providers";
-import AuthMenu from "../components/AuthMenu/AuthMenu";
 import { mediaStyles } from "../lib/media";
-import AuthProvider from "../components/AuthProvider/AuthProvider";
-import GlobalProvider from "../components/GlobalProvider/GlobalProvider";
+import GlobalProvider from "../components/GlobalProvider";
 import { poppins } from "../lib/fonts";
 import Fonts from "../lib/FontsFamily";
-import Navigation from "../components/Navigation/Navigation";
+import Navigation from "../components/Navigation";
 
 export const metadata: Metadata = {
   title: "Next.js",
@@ -37,10 +35,7 @@ async function RootLayout({ children }: IProps) {
         <GlobalProvider>
           <Providers>
           {/* <Navigation /> */}
-            {/* <AuthMenu /> */}
-            {/* <AuthProvider> */}
             <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-            {/* </AuthProvider> */}
           </Providers>
         </GlobalProvider>
       </body>
