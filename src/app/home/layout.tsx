@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Header from "@/src/components/Header";
-import DashBoardLayout from "@/src/components/DashBoardLayout/DashBoardLayout";
+import DashBoardLayout from "@/src/components/DashBoardLayout";
 
 export const metadata: Metadata = {
   title: "Home Page",
