@@ -1,7 +1,7 @@
 // "use client";
 
 // import { Inter, Fira_Code } from "next/font/google";
-// import Navigation from "@/src/components/Navigation/Navigation";
+// import Navigation from "@/src/components/Navigation";
 import LoaderTransaction from "@/src/components/TransactionLoader/TransactionLoader";
 import PokemonList from "@/src/components/PokemonList";
 import PokemonListClient from "@/src/components/PokemonListClient";
