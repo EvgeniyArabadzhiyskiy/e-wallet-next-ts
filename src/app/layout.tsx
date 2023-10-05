@@ -6,7 +6,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
-import { Providers } from "../components/Providers/Providers";
+import Providers from "../components/Providers";
 import { mediaStyles } from "../lib/media";
 import GlobalProvider from "../components/GlobalProvider";
 import { poppins } from "../lib/fonts";
