@@ -3,9 +3,7 @@
 // import { Inter, Fira_Code } from "next/font/google";
 // import Navigation from "@/src/components/Navigation";
 import LoaderTransaction from "@/src/components/TransactionLoader/TransactionLoader";
-import PokemonList from "@/src/components/PokemonList";
 import PokemonListClient from "@/src/components/PokemonListClient";
-import TransactionList from "@/src/components/TransactionList/TransactionList";
 import axios from "axios";
 import { Suspense } from "react";
 import getQueryClient from "@/src/lib/getQueryClient";
@@ -31,7 +29,6 @@ const getPokemon = async () => {
 
 export default async function AboutPage() {
   const pokemons = await getPokemon();
-  // console.log("PokemonList  pokemons:", pokemons);
 
   const queryClient = getQueryClient();
 
@@ -65,7 +62,7 @@ export default async function AboutPage() {
         {/* <Navigation /> */}
 
         {/* <Suspense fallback={<h1 style={{ color: "white" }}>SUSPENSE...</h1>}>
-        <PokemonList />
+       
       </Suspense> */}
 
         <PokemonListClient />
