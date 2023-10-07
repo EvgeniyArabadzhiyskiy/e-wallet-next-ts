@@ -8,7 +8,6 @@ export const getStatistics = async (token: string | undefined, { month, year }: 
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    // cache: "no-store",
   };
 
   return await fetcher<IStatistic[]>(`${getQueryString({ month, year })}`, options);
