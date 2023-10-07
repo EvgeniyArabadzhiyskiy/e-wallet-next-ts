@@ -3,7 +3,6 @@ import { IBalance } from "../../types/transactions";
 import { BALANCE } from "../../constants/apiPath";
 
 export const getBalance = async (authToken: string | undefined) => {
-  // await new Promise((res) => setTimeout(() => res(console.log("Promise resolve")), 5000));
 
   const options: RequestInit = {
     method: "GET",
