@@ -23,12 +23,6 @@ export const useCreateTransaction = () => {
     mutationFn: (transaction) => createTransaction(transaction, token),
 
     onSuccess: (data) => {
-      
-      // const createdDate = {
-      //   month: new Date(data.date).getMonth().toString(),
-      //   year: new Date(data.date).getFullYear().toString(),
-      // }
-
       const { position, updatedAt, ...props } = data;
       const createTransaction: ITransaction = props;
 
@@ -66,8 +60,6 @@ export const useCreateTransaction = () => {
 
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
       queryClient.invalidateQueries({ queryKey: ["Statistics"] });
-      // queryClient.invalidateQueries({ queryKey: ["Statistics", { month: "", year: "" }] });
-      // queryClient.invalidateQueries({ queryKey: ["Statistics", createdDate] });
       setModalToggle("transaction");
     },
   });
