@@ -17,22 +17,9 @@ export const useLazyTransactions = () => {
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length + 1;
 
-      // console.log("length !== 0:", lastPage.transactions.length !== 0);
       return lastPage.transactions.length === 10 ? nextPage : undefined;
     },
 
-    // select: (data) => {
-    //   const transactions =  data.pages.map(el => el.transactions).flat();
-
-    //   return {
-    //     pageParams: data.pageParams,
-    //     pages: transactions,
-    //   }
-    // },
-
-
-    // staleTime: Infinity,
-    // refetchOnWindowFocus: false, retry: 0,
     enabled: !!token,
   });
 
@@ -49,7 +36,6 @@ export const useLazyTransactions = () => {
           fetchNextPage();
         }
       },
-      // { root: listElem.current, rootMargin: "10px" }
     );
 
     if (target) {
