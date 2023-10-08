@@ -1,5 +1,4 @@
-
-import { ITransaction, ITransactions, RemoveTransaction } from "@/src/types/transactions";
+import {  ITransactions, RemoveTransaction } from "@/src/types/transactions";
 import {
   InfiniteData,
   useMutation,
@@ -34,7 +33,6 @@ export const useRemoveTransaction = () => {
       },{ transactions: [], userBalance: 0 });
 
 
-
       const filtredTransaction = allTransaction.filter((item) => item._id !== data._id)
 
       const isLastPage = (allTransaction.length / lastPageNumber) !== 10
@@ -53,37 +51,12 @@ export const useRemoveTransaction = () => {
         transactions,
         userBalance,
       }));
-       
       
-
-      // const lastPagesIdx = infiniteData.pages.length - 1;
-      // lastTransaction &&
-      //  allTransactions.push(lastTransaction)
-
-      // const updatedPages = infiniteData.pages.map((page) => {
-      //   const newCache = page.transactions.filter(
-      //     (item) => item._id !== data._id
-      //   );
-
-      //   return {
-      //     ...page,
-      //     transactions: newCache,
-      //   };
-      // });
-
-      // const lastPagesIdx = updatedPages.length - 1;
-      // lastTransaction &&
-      //   updatedPages[lastPagesIdx].transactions.push(lastTransaction);
-
-
-
-
       queryClient.setQueryData<InfiniteData<ITransactions>>( ["TransactionsList"], (prev) => {
           if (prev) {
             return {
               ...prev,
               pages: newPages,
-              // pages: updatedPages,
             };
           }
         }
