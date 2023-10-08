@@ -5,7 +5,7 @@ import { isITransactions } from "../../helpers/isITransactions";
 
 export const getAllTransactions = 
 async (token: string | undefined, pageNum: number) => {
-  // await new Promise((res) => setTimeout(() => res(console.log("Promise resolve")), 5000));
+  // await new Promise((res) => setTimeout(() => res(console.log("Promise resolve")), 1000));
 
   const options: RequestInit = {
     method: "GET",
