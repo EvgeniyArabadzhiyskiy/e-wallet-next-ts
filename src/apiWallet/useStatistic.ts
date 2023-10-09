@@ -19,7 +19,6 @@ export const useStatistic = () => {
   });
 
   const { data = [] } = queryData;
-  // console.log("useStatistic  data:", data);
 
   const expensesData = useMemo(
     () => data.filter(({ type }) => type === "expense"),
