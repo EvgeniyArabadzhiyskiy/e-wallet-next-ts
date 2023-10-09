@@ -8,7 +8,7 @@ export const useUserBalance = () => {
 
   const data = useQuery<IBalance, Error, number, string[]>({
     queryKey: ["Balance"],
-    queryFn: () => getBalance(token), // ИЛИ authToken
+    queryFn: () => getBalance(token),
     select: (data) => data.userBalance,
 
     staleTime: Infinity,
