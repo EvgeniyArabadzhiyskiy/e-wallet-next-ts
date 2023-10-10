@@ -49,9 +49,8 @@
 
 "use client";
 
-import axios, { spread } from "axios";
+import axios from "axios";
 import { useEffect, useRef } from "react";
-import { background } from "styled-system";
 
 export default function HomePage() {
   const canvasElement = useRef<HTMLCanvasElement>(null);
@@ -143,65 +142,75 @@ const getPokemon2 = async () => {
 };
 
 const getPokemon3 = async () => {
-  // try {
-  //   const { data } = await axios(
-  //     `https://pokeapi.co/api/v2/pokemo?offset=20&limit=30`
-  //   );
-  //   const sss = data.results[0].name;
-  //   console.log("getPokemon3  sss:", sss);
-
-  //   return sss
-  // } catch (error) {
-  //   console.log("getPokemon3  error:", error.response.data);
-    
-  // }
-
   try {
-    const response = await fetch(
+    const { data } = await axios(
       `https://pokeapi.co/api/v2/pokemon?offset=20&limit=30`
-      // 'https://jsonplaceholder.typicode.com/posts'
     );
-
-    if (!response.ok) {
-      const errorData = await response.text();
-      const errorMessage = errorData || `Request failed with status ${response.status}.`;
-      throw new Error(errorMessage);
-    }
-
-    const data = await response.json()
-    console.log("getPokemon3  data:", data);
-
-    // const sss = data.results[0].name;
+    const sss = data.results[0].name;
     // console.log("getPokemon3  sss:", sss);
 
-    return data
+    return sss;
   } catch (error) {
-    console.log("getPokemon3  error:", error);
-    
+    // console.log("getPokemon3  error:", error);
   }
+
+  // try {
+  //   const response = await fetch(
+  //     `https://pokeapi.co/api/v2/pokemon?offset=20&limit=30`
+  //     // 'https://jsonplaceholder.typicode.com/posts'
+  //   );
+
+  //   if (!response.ok) {
+  //     const errorData = await response.text();
+  //     const errorMessage = errorData || `Request failed with status ${response.status}.`;
+  //     throw new Error(errorMessage);
+  //   }
+
+  //   const data = await response.json()
+  //   // console.log("getPokemon3  data:", data);
+
+  //   // const sss = data.results[0].name;
+  //   // console.log("getPokemon3  sss:", sss);
+
+  //   return data
+  // } catch (error) {
+  //   console.log("getPokemon3  error:", error);
+
+  // }
 };
-
-
 
 (async () => {
   // try {
-  //   const bulbasaur = await getPokemon1();
-  //   const metapod = await getPokemon2();
-    const spearow = await getPokemon3();
+  // const bulbasaur = await getPokemon1();
+  // const metapod = await getPokemon2();
+  // const spearow = await getPokemon3();
 
-  //   console.log("bulbasaur:", bulbasaur);
-  //   console.log("metapod:", metapod);
-  //   console.log("spearow:", spearow);
+  // console.log("bulbasaur:", bulbasaur);
+  // console.log("metapod:", metapod);
+  // console.log("spearow:", spearow);
   // } catch (error) {
   // }
 
-  
-    // const bulbasaur =  getPokemon1();
-    // const metapod =  getPokemon2();
-    // const spearow =  getPokemon3();
+  const bulbasaurPromise = getPokemon1();
+  const metapodPromise = getPokemon2();
+  const spearowPromise = getPokemon3();
 
-    // const results = await Promise.allSettled([bulbasaur, metapod, spearow])
-    // console.log("results:", results);
+  const results = await Promise.allSettled([
+    bulbasaurPromise,
+    metapodPromise,
+    spearowPromise,
+  ]);
+  const bulbasaur = results[0];
+
+  if (bulbasaur.status === "rejected") {
+    const bulbasaurReason = bulbasaur.reason.message;
+    // console.log("bulbasaurReason:", bulbasaurReason);
+  }
+
+  if (bulbasaur.status === "fulfilled") {
+    const bulbasaurValue = bulbasaur.value;
+    // console.log("bulbasaurValue:", bulbasaurValue);
+  }
 })();
 
 // getPokemon1()
@@ -227,3 +236,17 @@ const getPokemon3 = async () => {
 // .catch(err => {
 //   console.log(err);
 // })
+
+
+
+// let n = 0;
+// if (typeof window !== "undefined") {
+//   do {
+//     n = Number(prompt("Введите положительное число"));
+//     if (n < 0) {
+//       alert(
+//         "Вы ввели отрицательное число. Пожалуйста, введите положительное число."
+//       );
+//     }
+//   } while (n < 0);
+// }
