@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import StyledComponentsRegistry from "../lib/registry";
 import "../styles/globals.css";
-import "../styles/rdt-styles.css" // Styles React Date Time  
+import "../styles/rdt-styles.css"; // Styles React Date Time
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
@@ -9,9 +9,7 @@ config.autoAddCss = false;
 import Providers from "../components/Providers";
 import { mediaStyles } from "../lib/media";
 import GlobalProvider from "../components/GlobalProvider";
-import { poppins } from "../lib/fonts";
 import Fonts from "../lib/FontsFamily";
-import Navigation from "../components/Navigation";
 
 export const metadata: Metadata = {
   title: "Next.js",
@@ -27,14 +25,16 @@ async function RootLayout({ children }: IProps) {
     <html lang="en">
       <head>
         <link rel="icon" href="/vercel.svg" />
-        <style type="text/css" dangerouslySetInnerHTML={{ __html: mediaStyles }}/>
+        <style
+          type="text/css"
+          dangerouslySetInnerHTML={{ __html: mediaStyles }}
+        />
         <Fonts />
       </head>
       <body>
         <div id="modal-root"></div>
         <GlobalProvider>
           <Providers>
-          {/* <Navigation /> */}
             <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
           </Providers>
         </GlobalProvider>
