@@ -1,7 +1,3 @@
-// "use client";
-
-// import { useEffect, useState } from "react";
-
 import { Suspense } from "react";
 import StatisticLoader from "@/src/components/StatisticLoader";
 import StatisticWrapper from "@/src/components/StatisticWrapper";
