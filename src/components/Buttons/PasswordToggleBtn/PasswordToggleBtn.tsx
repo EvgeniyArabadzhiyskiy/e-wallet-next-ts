@@ -4,8 +4,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 interface IProps {
   isHidePassword: boolean;
-  setIsHidePassword: (value: boolean) => void
-  // setIsHidePassword: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsHidePassword: (value: boolean) => void;
 
 }
 
