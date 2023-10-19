@@ -3,9 +3,8 @@
 import styled from "styled-components";
 import CurrencySvg from "../SvgComponent/CurencySvg";
 
-export const CurrencyBox = styled.div`
+export const CurrencyBox = styled.section`
   position: relative;
-  /* width: 280px; */
   max-width: 280px;
   height: 174px;
   background: ${(p) => p.theme.colors.houseStat};
