@@ -23,7 +23,6 @@ function AuthError({ href, text, errorMessage, resetError }: IProps) {
       </ErrorText>
 
       <ButtonWrapper>
-        {/* <LinkButton href="/login" text="Go back" maxWidth="180px" /> */}
         <EnterButton
           height={50}
           maxWidth="180px"
