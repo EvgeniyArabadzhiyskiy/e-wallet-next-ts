@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import DateInput from "./DateInput/DateInput";
+import DateInput from "./DateInput";
 import { StyledFilters } from "./FilterDate.styled";
 
 interface IProps {
