@@ -7,7 +7,6 @@ export const StyledFilters = styled.div`
   font-size: 18px;
   line-height: 1.5;
   padding: 0;
-  /* border-radius: 30px; */
 
   @media ${(p) => p.theme.media.medium} {
     padding: 0 0 15px 0;
