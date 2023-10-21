@@ -1,9 +1,9 @@
 import moment from "moment";
 import Datetime from "react-datetime";
-import { Filter, InputWrapper, WrapperBtn } from "./DateInput.styled";
-import CrossSvg from "../../SvgComponent/CrossSvg";
 import { Dispatch, SetStateAction } from "react";
+
 import CrossBtn from "../../Buttons/CrossBtn";
+import { Filter, InputWrapper, WrapperBtn } from "./DateInput.styled";
 import { getFormattedMonth } from "@/src/helpers/getFormattedMonth";
 
 interface IProps {
