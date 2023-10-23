@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Card, CardBack, CardFront, InnerCard } from "./FlipCard.styled";
-import TransactionForm from "../TransactionForm/TransactionForm";
+import TransactionForm from "../TransactionForm";
 
 interface IProps {
   modalKey: string;
