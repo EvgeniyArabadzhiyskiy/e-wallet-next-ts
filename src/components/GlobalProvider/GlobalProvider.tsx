@@ -1,6 +1,5 @@
 "use client";
 
-import { useThemeCookies } from "@/src/hooks/useThemeCookies";
 import React, { useContext, useState } from "react";
 import { createContext } from "react";
 
@@ -11,7 +10,6 @@ export interface ModalState  {
 interface GlobalContextType {
   isModalOpen: ModalState;
   setModalToggle: (key: string) => void;
-  // setIsModalOpen: React.Dispatch<React.SetStateAction<ModalState>>;
   
   theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
