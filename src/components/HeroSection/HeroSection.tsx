@@ -1,5 +1,5 @@
 import stl from "./HeroSection.module.scss";
-import Container from "../Container/Container";
+import Container from "../Container";
 import LinkButton from "../Buttons/LinkButton";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
