@@ -3,8 +3,7 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  background-color: ${p => p.theme.palette.background.primaryBg};
-  /* height: 100px; */
+  background-color: #e2e6eb;
 `;
 
 export const HeaderWrapper = styled.div`
@@ -22,7 +21,6 @@ export const UserBox = styled.div`
 
 
 export const TextName = styled.div`
-  width: 50px;
   font-size: 24px;
   margin-left: 8px;
 `;
