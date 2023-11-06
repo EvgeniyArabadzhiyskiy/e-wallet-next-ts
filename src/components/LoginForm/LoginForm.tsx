@@ -1,28 +1,24 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import { FormikHelpers } from "formik";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useScaleForm } from "@/src/hooks/useScaleForm";
 
-import Logo from "../Logo/Logo";
-import FormContainer from "../FormContainer/FormContainer";
-import LoginFormFields from "../LoginFormFields/LoginFormFields";
-
+import { Box } from "../Box/Box";
 import { FormWrap } from "./LoginForm.styled";
 import { ILoginValues } from "@/src/types/loginValues";
 import { loginSchema } from "@/src/helpers/formValidation";
-import { Box } from "../Box/Box";
+
+import Logo from "../Logo";
 import AuthError from "../Errors/AuthError";
+import FormContainer from "../FormContainer";
+import LoginFormFields from "../LoginFormFields";
 
 
 export default function LoginForm () {
-  const router = useRouter()
-
-  // const searchParams = useSearchParams()
-  // const errorMessage = searchParams.get('error')
+  const router = useRouter();
 
   const isScale = useScaleForm();
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +43,6 @@ export default function LoginForm () {
       // redirect: true,
       // callbackUrl: '/home/transactions'
     });
-    console.log("LoginForm  user:", response);
 
     resetForm({ values: { email: '', password: '' } });
     
@@ -57,19 +52,12 @@ export default function LoginForm () {
       return
     }
     
-    console.log("FINAL");
-
     setIsLoading(false);
     router.push('/home/transactions');
   };
 
-  // if (isLoading) {
-  //   return  <h1 style={{color: "green", fontSize: 56}}>Loading...</h1>
-  // }
-  
   return (
     <FormWrap $isScale={isScale}>
-      {/* {isLoading && <h1 style={{color: "white"}}>Loading...</h1>} */}
       <Box mb={60}>
         <Logo />
       </Box>
