@@ -5,19 +5,15 @@ import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 
 import { Box } from "../Box/Box";
 import { Border, Modal, Title } from "./ModalLogout.styled";
+import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 import EnterButton from "../Buttons/EnterButton";
 import CancelButton from "../Buttons/CancelButton";
-import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 
 const ModalLogout = () => {
   const { setModalToggle } = useGlobalState();
 
   const onCancelClick = () => {
     setModalToggle("logout");
-  };
-
-  const logOut = () => {
-    signOut();
   };
 
   return (
@@ -31,7 +27,7 @@ const ModalLogout = () => {
             height={50}
             maxWidth="300px"
             enterText="EXIT"
-            onClick={logOut}
+            onClick={() => signOut()}
           />
           <CancelButton cancelText="CANCEL" onClick={onCancelClick} />
         </ButtonWrapper>
