@@ -3,7 +3,12 @@
 import ModalWindow from "./ModalWindow";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 
-const ModalBox = ({ children, modalName }: { children: React.ReactNode; modalName: string }) => {
+interface IProps {
+  children: React.ReactNode;
+  modalName: string;
+}
+
+function ModalBox({ children, modalName }: IProps) {
   const { isModalOpen, setModalToggle } = useGlobalState();
 
   const isOpen = !!isModalOpen[modalName];
@@ -17,6 +22,6 @@ const ModalBox = ({ children, modalName }: { children: React.ReactNode; modalNam
       )}
     </>
   );
-};
+}
 
 export default ModalBox;
