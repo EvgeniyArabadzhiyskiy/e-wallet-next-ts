@@ -10,7 +10,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
- function ModalWindow ({ children, modalName, setModalToggle }: IProps) {
+function ModalWindow ({ children, modalName, setModalToggle }: IProps) {
   const modalRoot = document.querySelector("#modal-root");
 
   const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
