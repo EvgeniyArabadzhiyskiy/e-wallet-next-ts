@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MediaContextProvider } from "@/src/lib/media";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "styled-components";
@@ -12,7 +12,7 @@ interface IProps {
   children?: React.ReactNode;
 }
 
-export const Providers = ({ children }: IProps) => {
+function Providers  ({ children }: IProps)  {
   const [queryClient] = useState(() => new QueryClient({
         defaultOptions: {
           queries: {
@@ -45,3 +45,5 @@ export const Providers = ({ children }: IProps) => {
     </>
   );
 };
+
+export default Providers
