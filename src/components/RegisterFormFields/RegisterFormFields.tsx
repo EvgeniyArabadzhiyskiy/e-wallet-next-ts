@@ -4,13 +4,13 @@ import { useState } from "react";
 import { FormikProps } from "formik";
 
 import { Box } from "../Box/Box";
+import FormInput from "../FormInput";
 import UserSvg from "../SvgComponent/UserSvg";
 import EmailSvg from "../SvgComponent/EmailSvg";
 import PasswordSvg from "../SvgComponent/PasswordSvg";
-import FormInput from "../FormInput/FormInput";
 import LinkButton from "../Buttons/LinkButton";
 import EnterButton from "../Buttons/EnterButton";
-import PasswordToggleBtn from "../Buttons/PasswordToggleBtn/PasswordToggleBtn";
+import PasswordToggleBtn from "../Buttons/PasswordToggleBtn";
 import { IRegisterValues } from "@/src/types/registerValues";
 import { PasswordIndicator } from "./RegisterFormFields.styled";
 import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
@@ -77,7 +77,6 @@ export default function RegisterFormFields  ({ formik, loading }: IProps) {
           type="submit" 
           height={50} 
           maxWidth="300px" 
-          // enterText="REGISTER" 
           enterText={loading ? "LOADING..." : "REGISTER"}
           disabled={isDisabled} 
         />
