@@ -3,7 +3,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useStatistic } from "@/src/apiWallet/useStatistic";
 
-import Link from "next/link";
 import Chart from "../Chart/Chart";
 import StatTable from "./StatTable";
 import StatisticLoader from "../StatisticLoader";
@@ -24,10 +23,11 @@ function Statistics() {
     isError
   } = useStatistic();
 
-  const client = useQueryClient();
-  const stat = client.getQueriesData(["Statistics"]);
-  const tranList = client.getQueriesData(["TransactionsList"]);
-  const tran = client.getQueriesData(["Transactions"]);
+  // ========= потом удалю
+  // const client = useQueryClient();
+  // const stat = client.getQueriesData(["Statistics"]);
+  // const tranList = client.getQueriesData(["TransactionsList"]);
+  // const tran = client.getQueriesData(["Transactions"]);
   // console.log("Transactions", tran);
   // console.log("TransactionsList", tranList[0]);
   // console.log("Statistics:", stat);
@@ -41,9 +41,6 @@ function Statistics() {
 
   return (
     <div>
-      {/* <br/>
-      <Link style={{color: "white"}} href="/about">About</Link>
-      <br/> */}
       <PageTitle>Statistics</PageTitle>
       <TableWrapper>
         <ChartWrapper>{<Chart statistic={data} />}</ChartWrapper>
