@@ -1,7 +1,15 @@
 "use client";
 import styled from "styled-components";
 
-export const ColorSpan = styled.span<{ category: string }>`
+interface IColorSpanProps {
+  category: string;
+}
+
+export const ColorSpan = styled.span.withConfig({
+  shouldForwardProp: (prop) => {
+    return !["category"].includes(prop);
+  },
+})<IColorSpanProps>`
   display: block;
   width: 24px;
   height: 24px;
