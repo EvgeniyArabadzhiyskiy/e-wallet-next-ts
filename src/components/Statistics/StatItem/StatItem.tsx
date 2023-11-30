@@ -9,13 +9,15 @@ interface IProps {
 
 function StatItem({ categoryColor, totalSum, id }: IProps) {
   return (
-    <TableItem>
-      <Box display="flex">
-        <ColorSpan category={categoryColor} />
-        <span>{id}</span>
-      </Box>
-      <p>{totalSum}</p>
-    </TableItem>
+    <>
+      <TableItem>
+        <Box display="flex">
+          <ColorSpan category={categoryColor} />
+          <span>{id}</span>
+        </Box>
+        <p>{totalSum}</p>
+      </TableItem>
+    </>
   );
 }
 
