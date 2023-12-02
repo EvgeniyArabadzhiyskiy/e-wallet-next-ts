@@ -51,6 +51,6 @@ export const TableFooterItem = styled.li`
   padding: 12px 20px;
 `;
 
-export const FooterText = styled.p`
-  color: ${(p) => (p.type === "expense" ? "#FF6596" : "#24CCA7")};
+export const FooterText = styled.p<{$type: string}>`
+  color: ${(p) => (p.$type === "expense" ? "#FF6596" : "#24CCA7")};
 `;
