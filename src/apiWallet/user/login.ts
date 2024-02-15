@@ -9,6 +9,7 @@ export const login = async (credentials: IAuthCredentials) => {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify(credentials),
+    credentials: "include",
   };
 
   const data = await fetcher<CurrentUser>(`${USER_LOGIN}`, options);
