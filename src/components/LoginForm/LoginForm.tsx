@@ -44,10 +44,10 @@ export default function LoginForm () {
       // callbackUrl: '/home/transactions'
     });
 
-    resetForm({ values: { email: '', password: '' } });
+    // resetForm({ values: { email: '', password: '' } });
     
     if (response?.error) {
-      // setIsLoading(false);
+      setIsLoading(false);
       setErrorMessage(response.error)
       return
     }
