@@ -46,11 +46,11 @@ function StatTable ({ month, year, setMonth, setYear, expensesData, expensesTota
       <TableFooter>
         <TableFooterItem>
           <p>Expenses:</p>
-          <FooterText type="expense">{expensesTotal}</FooterText>
+          <FooterText $type="expense">{expensesTotal}</FooterText>
         </TableFooterItem>
         <TableFooterItem>
           <p>Income:</p>
-          <FooterText type="income">{incomeTotal}</FooterText>
+          <FooterText $type="income">{incomeTotal}</FooterText>
         </TableFooterItem>
       </TableFooter>
     </Table>
