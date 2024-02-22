@@ -22,6 +22,7 @@ async (token: string | undefined, pageNum: number) => {
     if (!isITransactions(data)) {
       throw new Error("Invalid data format");
     }
+    // console.log("data:", data);
 
     return data;
 
