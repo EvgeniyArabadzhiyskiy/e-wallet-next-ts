@@ -30,7 +30,7 @@ model Transaction {
   typeOperation           String
   category                String
   comment                 String   @default("")
-  amount                  Int
+  amount                  Int      @default(0)
   date                    String   @default("")
   balanceAfterTransaction String   @default("") // Наверное это не нужно
   timestamps              Int      @default(0)
