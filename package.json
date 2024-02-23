@@ -14,7 +14,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@prisma/client": "^5.10.1",
+    "@prisma/client": "^5.10.2",
     "@tanstack/react-query": "^4.29.7",
     "@trpc/client": "^10.45.1",
     "@trpc/react-query": "^10.45.1",
@@ -61,7 +61,7 @@
     "@types/react-dom": "18.2.4",
     "@types/styled-components": "^5.1.26",
     "@types/styled-system": "^5.1.16",
-    "prisma": "^5.10.1",
+    "prisma": "^5.10.2",
     "sass": "^1.62.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.1.3"
