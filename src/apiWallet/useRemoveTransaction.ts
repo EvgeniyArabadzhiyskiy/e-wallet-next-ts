@@ -1,4 +1,4 @@
-import { ITransactions, RemoveTransaction } from "@/src/types/transactions";
+import { ITransaction, ITransactions, RemoveTransaction } from "@/src/types/transactions";
 import { InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useUser } from "../hooks/useUser";
 import { deleteTransaction, getAllTransactions } from "./transaction";
@@ -18,7 +18,7 @@ export const useRemoveTransaction = () => {
 
       const lastPageNumber = infiniteData.pages.length;
 
-      const res = await fetch("/api/deleteTransaction", {
+      const res = await fetch("/api/getTransactions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -26,23 +26,27 @@ export const useRemoveTransaction = () => {
         body: JSON.stringify({page: lastPageNumber})
       });
 
-      const { transactions } = await res.json();
+      const { transactions } = await res.json() as ITransactions;
 
       const lastTransaction = transactions?.pop();
 
-      const { transactions: allTransaction, userBalance } =
+      const { transactions: allTransaction, 
+        // userBalance 
+      } =
         infiniteData.pages.reduce(
           (acc, page) => {
             return {
               transactions: [...acc.transactions, ...page.transactions],
-              userBalance: page.userBalance,
+              // userBalance: page.userBalance,
             };
           },
-          { transactions: [], userBalance: 0 }
+          { transactions: [],
+            //  userBalance: 0 
+            }
         );
 
       const filtredTransaction = allTransaction.filter(
-        (item) => item.id !== data.id
+        (item) => item?.id !== data.id
       );
 
       const isLastPage = allTransaction.length / lastPageNumber !== 10;
@@ -57,10 +61,12 @@ export const useRemoveTransaction = () => {
         transactionArrays.push(filtredTransaction.slice(i, i + 10));
       }
 
-      const newPages = transactionArrays.map((transactions) => ({
-        transactions,
-        userBalance,
-      }));
+      const newPages = transactionArrays.map((transactions) => {
+        return {
+          transactions,
+          // userBalance,
+        }
+      });
 
       queryClient.setQueryData<InfiniteData<ITransactions>>(
         [["transactionRouter", "getAllTransactions"],{ input: { limit: 10 }, type: "infinite" }],
@@ -74,7 +80,7 @@ export const useRemoveTransaction = () => {
         }
       );
 
-      queryClient.invalidateQueries({ queryKey: ["Balance"] });
+      queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance'], { type: "query" }] });
       // queryClient.invalidateQueries({ queryKey: ["Statistics"] });
     },
   });
