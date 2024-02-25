@@ -22,6 +22,7 @@ export const useCreateTransaction = () => {
 
   const mutation = trpc.transactionRouter.createTransaction.useMutation({
     onSuccess: (data) => {
+      // console.log("useCreateTransaction  data:",typeof data.timestamps);
       // const { updatedAt, id, ...props } = data;
       
       // const createTransaction: ITransaction = {
@@ -64,7 +65,7 @@ export const useCreateTransaction = () => {
         }
       );
 
-      queryClient.invalidateQueries({ queryKey: ["Balance"] });
+      queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance'], { type: "query" }] });
       queryClient.invalidateQueries({ queryKey: ["Statistics"] });
       setModalToggle("transaction");
     },
