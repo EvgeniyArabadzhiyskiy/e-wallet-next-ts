@@ -23,26 +23,20 @@ export const useRemoveTransaction = () => {
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },
-        body: JSON.stringify({page: lastPageNumber})
+        body: JSON.stringify({ page: lastPageNumber })
       });
 
       const { transactions } = await res.json() as ITransactions;
 
       const lastTransaction = transactions?.pop();
 
-      const { transactions: allTransaction, 
-        // userBalance 
-      } =
-        infiniteData.pages.reduce(
-          (acc, page) => {
+      const { transactions: allTransaction } = infiniteData.pages
+      .reduce((acc, page) => {
             return {
               transactions: [...acc.transactions, ...page.transactions],
-              // userBalance: page.userBalance,
             };
           },
-          { transactions: [],
-            //  userBalance: 0 
-            }
+          { transactions: []}
         );
 
       const filtredTransaction = allTransaction.filter(
@@ -61,12 +55,7 @@ export const useRemoveTransaction = () => {
         transactionArrays.push(filtredTransaction.slice(i, i + 10));
       }
 
-      const newPages = transactionArrays.map((transactions) => {
-        return {
-          transactions,
-          // userBalance,
-        }
-      });
+      const newPages = transactionArrays.flat();
 
       queryClient.setQueryData<InfiniteData<ITransactions>>(
         [["transactionRouter", "getAllTransactions"],{ input: { limit: 10 }, type: "infinite" }],
@@ -74,7 +63,7 @@ export const useRemoveTransaction = () => {
           if (prev) {
             return {
               ...prev,
-              pages: newPages,
+              pages: [{ transactions: newPages }],
             };
           }
         }
@@ -98,23 +87,8 @@ export const useRemoveTransaction = () => {
   //     }
 
   //     const lastPageNumber = infiniteData.pages.length;
-  //     // const { transactions } = await getAllTransactions(token, lastPageNumber);
+  //     const { transactions } = await getAllTransactions(token, lastPageNumber);
 
-  //     // const {data: result} = await trpc.transactionRouter.getAllTransactions.useQuery({limit: 10, cursor: lastPageNumber})
-  //     // const transactions = result?.transactions
-
-  //     const {data: result} = await trpc.transactionRouter.getAllTransactions.useInfiniteQuery({limit: 10, },{
-  //       getNextPageParam: (lastPage, allPages) => {
-  //         const nextPage = allPages.length + 1;
-  //         // console.log("NextPage:", nextPage);
-
-  //         return lastPageNumber
-  //       }
-  //     })
-
-  //     const transactions = useMemo(() => {
-  //       return result?.pages.map(({ transactions }) => transactions).flat();
-  //     }, [result?.pages]);
   //     const lastTransaction = transactions?.pop();
 
   //     const { transactions: allTransaction, userBalance } = infiniteData.pages.reduce((acc, page) => {
