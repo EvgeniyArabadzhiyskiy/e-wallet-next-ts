@@ -16,26 +16,17 @@ import { trpc } from "../trpc/client";
 
 
 export const useCreateTransaction = () => {
-  const { token } = useUser();
   const queryClient = useQueryClient();
   const { setModalToggle } = useGlobalState();
 
   const mutation = trpc.transactionRouter.createTransaction.useMutation({
     onSuccess: (data) => {
-      // console.log("useCreateTransaction  data:",typeof data.timestamps);
-      // const { updatedAt, id, ...props } = data;
-      
-      // const createTransaction: ITransaction = {
-      //   _id: id,
-      //   ...props
-      // };
-
+     
       let newData = data;
 
       queryClient.setQueryData<InfiniteData<ITransactions>>(
         [["transactionRouter", "getAllTransactions"],{ input: { limit: 10 }, type: "infinite" }],
          (prev) => {
-          console.log("useCreateTransaction  prev:", prev);
           if (!prev) {
             return undefined;
           }
@@ -70,52 +61,6 @@ export const useCreateTransaction = () => {
       setModalToggle("transaction");
     },
   })
-
-  // const mutation = useMutation<NewTransaction, Error, ITransactionData>({
-  //   // createTransaction должна возвращать тип Promise<NewTransaction>
-  //   mutationFn: (transaction) => createTransaction(transaction, token),
-
-  //   onSuccess: (data) => {
-  //     const { position, updatedAt, ...props } = data;
-  //     const createTransaction: ITransaction = props;
-
-  //     let newData = createTransaction;
-
-  //     queryClient.setQueryData<InfiniteData<ITransactions>>(["TransactionsList"], (prev) => {
-  //         if (!prev) {
-  //           return undefined;
-  //         }
-
-  //         const updatedPages = prev.pages.map((page) => {
-  //           const newCache = [newData, ...page.transactions].sort(
-  //             (a, b) => Date.parse(b.date) - Date.parse(a.date));
-              
-  //           if (newCache.length > 10) {
-  //             const lastTransaction = newCache.pop();
-              
-  //             if (lastTransaction) {
-  //               newData = lastTransaction;
-  //             }
-  //           }
-
-  //           return {
-  //             ...page,
-  //             transactions: newCache,
-  //           };
-  //         });
-
-  //         return {
-  //           ...prev,
-  //           pages: updatedPages,
-  //         };
-  //       }
-  //     );
-
-  //     queryClient.invalidateQueries({ queryKey: ["Balance"] });
-  //     queryClient.invalidateQueries({ queryKey: ["Statistics"] });
-  //     setModalToggle("transaction");
-  //   },
-  // });
 
   return mutation;
 };
