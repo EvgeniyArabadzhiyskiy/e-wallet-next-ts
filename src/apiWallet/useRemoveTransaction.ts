@@ -4,7 +4,7 @@ import { useUser } from "../hooks/useUser";
 import { deleteTransaction, getAllTransactions } from "./transaction";
 import { trpc } from "../trpc/client";
 
-export const useRemoveTransaction = () => {
+export const useRemoveTransaction = (lastPageNumber: number) => {
   const queryClient = useQueryClient();
 
   const mutation = trpc.transactionRouter.daleteTransaction.useMutation({
@@ -14,23 +14,24 @@ export const useRemoveTransaction = () => {
         [["transactionRouter", "getAllTransactions"],{ input: { limit: 10 }, type: "infinite" }]
       );
       
+     
       if (!infiniteData) return;
 
-      const lastPageNumber = infiniteData.pages.length;
+      // const lastPageNumber = infiniteData.pages.length;
 
-      const res = await fetch("/api/getTransactions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify({ page: lastPageNumber })
-      });
+      // const res = await fetch("/api/getTransactions", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json;charset=utf-8",
+      //   },
+      //   body: JSON.stringify({ page: lastPageNumber })
+      // });
 
-      const { transactions } = await res.json() as ITransactions;
+      // const { transactions } = await res.json() as ITransactions;
 
-      const lastTransaction = transactions?.pop();
+      // const lastTransaction = transactions?.pop();
 
-      const { transactions: allTransaction } = infiniteData.pages
+      const { transactions: allTransactions } = infiniteData.pages
       .reduce((acc, page) => {
             return {
               transactions: [...acc.transactions, ...page.transactions],
@@ -39,14 +40,14 @@ export const useRemoveTransaction = () => {
           { transactions: []}
         );
 
-      const filtredTransaction = allTransaction.filter(
-        (item) => item?.id !== data.id
+      const filtredTransaction = allTransactions.filter(
+        (item) => item?.id !== data.remoteTransaction.id
       );
 
-      const isLastPage = allTransaction.length / lastPageNumber !== 10;
+      const isLastPage = allTransactions.length / lastPageNumber !== 10;
 
-      if (!isLastPage) {
-        lastTransaction && filtredTransaction.push(lastTransaction);
+      if (!isLastPage && data.latestTransaction) {
+        data.latestTransaction && filtredTransaction.push(data.latestTransaction);
       }
 
       const transactionArrays = [];
@@ -55,7 +56,15 @@ export const useRemoveTransaction = () => {
         transactionArrays.push(filtredTransaction.slice(i, i + 10));
       }
 
-      const newPages = transactionArrays.flat();
+      if (filtredTransaction.length === 0) {
+        transactionArrays.push([]);
+      }
+
+      const newPages = transactionArrays.map((pageTransactions) => {
+        return {
+          transactions: pageTransactions,
+        }
+      });
 
       queryClient.setQueryData<InfiniteData<ITransactions>>(
         [["transactionRouter", "getAllTransactions"],{ input: { limit: 10 }, type: "infinite" }],
@@ -63,7 +72,7 @@ export const useRemoveTransaction = () => {
           if (prev) {
             return {
               ...prev,
-              pages: [{ transactions: newPages }],
+              pages: newPages,
             };
           }
         }
