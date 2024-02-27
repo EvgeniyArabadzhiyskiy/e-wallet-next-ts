@@ -4,16 +4,18 @@ import { ErrorText } from "../ErrorText.styled";
 import CancelButton from "../../Buttons/CancelButton";
 import { getMessageForError } from "@/src/helpers/getMessageForError";
 import { ButtonWrapper } from "./CreateTransactionError.styled";
+import { TRPCClientErrorBase } from "@trpc/client";
+import { DefaultErrorShape } from "@trpc/server";
 
 interface IProps {
-  error: Error;
+  error: string;
   resetError: () => void
 }
 
 function CreateTransactionError({ error, resetError }: IProps) {
   const { setModalToggle } = useGlobalState();
 
-  const errorMessage = getMessageForError(error.message);
+  const errorMessage = getMessageForError(error);
 
   const onCancelError = () => {
     resetError();
