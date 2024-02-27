@@ -68,13 +68,16 @@ export const useLazyTransactions = () => {
 
   const queryData = trpc.transactionRouter.getAllTransactions.useInfiniteQuery({ limit: 10 }, {
     getNextPageParam: (lastPage, allPages) => {
+      // console.log("useLazyTransactions  allPages:", allPages);
+      // console.log("useLazyTransactions  lastPage:", lastPage);
       const nextPage = allPages.length + 1;
 
-      return lastPage.transactions.length === 10 ? nextPage  : undefined;
+      return lastPage?.transactions.length === 10 ? nextPage  : undefined;
     }
   })
 
   const { data, fetchNextPage, hasNextPage } = queryData;
+  // console.log("useLazyTransactions  hasNextPage:", hasNextPage);
 
   useEffect(() => {
     const target = observerElem.current;
