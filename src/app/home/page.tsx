@@ -49,6 +49,7 @@
 
 "use client";
 
+import { trpc } from "@/src/trpc/client";
 import axios from "axios";
 import { useEffect, useRef } from "react";
 
