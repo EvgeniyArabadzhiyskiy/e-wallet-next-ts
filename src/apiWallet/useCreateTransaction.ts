@@ -13,9 +13,11 @@ import { createTransaction } from "./transaction";
 import { ITransactionData } from "../types/transactionValue";
 import { useGlobalState } from "../components/GlobalProvider/GlobalProvider";
 import { trpc } from "../trpc/client";
+import { useQueryCustomClient } from "./useQueryCustomClient";
 
 
 export const useCreateTransaction = () => {
+  // const queryClient = useQueryCustomClient();
   const queryClient = useQueryClient();
   const { setModalToggle } = useGlobalState();
 
@@ -56,8 +58,10 @@ export const useCreateTransaction = () => {
         }
       );
 
-      queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance'], { type: "query" }] });
-      queryClient.invalidateQueries({ queryKey: ["Statistics"] });
+      queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance']] });
+      queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic']] });
+      // queryClient.invalidateQueries({ queryKey: ["Statistics"]})
+      // queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic'], { input: {month: '', year: ''}, type: "query" }] });
       setModalToggle("transaction");
     },
   })
