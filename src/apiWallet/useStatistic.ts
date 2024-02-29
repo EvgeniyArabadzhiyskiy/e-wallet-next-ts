@@ -10,8 +10,8 @@ export const useStatistic = () => {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
 
-  const queryData = trpc.statisticRouter.getStatistic.useQuery(undefined, {
-    queryKey: ["statisticRouter.getStatistic", undefined],
+  const queryData = trpc.statisticRouter.getStatistic.useQuery({month, year}, {
+    // queryKey: ["statisticRouter.getStatistic", undefined],
     // cacheTime: 0,
   
   })
