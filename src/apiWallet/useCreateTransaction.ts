@@ -56,12 +56,9 @@ export const useCreateTransaction = () => {
         }
       );
 
-      // queryClient.removeQueries({ queryKey: [['statisticRouter', 'getStatistic']] })
-
       queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance']] });
       queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic']] });
-
-      // queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic'], { input: {month: '', year: ''}, type: "query" }] });
+      // queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic'], { input: {month: '2', year: '2024'}, type: "query" }] });
       setModalToggle("transaction");
     },
   })
