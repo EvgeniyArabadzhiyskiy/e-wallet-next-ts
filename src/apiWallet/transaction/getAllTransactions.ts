@@ -8,16 +8,10 @@ import { TRPCError } from "@trpc/server";
 import prisma from "../../lib/prismaClient";
 
 export const getAllTransactions = async (
+  userID: string,
   limit: number = 10,
   skip: number = 0
 ) => {
-  const nextCookies = cookies();
-  const userID = await verifyToken(nextCookies);
-
-  if (!userID) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
-  }
-
   const user = await prisma.user.findFirst({
     where: {
       id: userID,
