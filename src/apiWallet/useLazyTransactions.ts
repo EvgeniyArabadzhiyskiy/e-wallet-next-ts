@@ -73,7 +73,7 @@ export const useLazyTransactions = () => {
       const nextPage = allPages.length + 1;
 
       return lastPage?.transactions.length === 10 ? nextPage  : undefined;
-    }
+    },
   })
 
   const { data, fetchNextPage, hasNextPage } = queryData;
