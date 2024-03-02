@@ -7,14 +7,14 @@ import { getAllTransactions } from "@/src/apiWallet/transaction";
 
 export async function POST(req: NextRequest) {
   const nextCookies = cookies();
-  const userID = await verifyToken(nextCookies);
+  const userID = await verifyToken(nextCookies) || "";
 
   const { page } = await req.json();
 
   const limit = 10;
   const skip = (page - 1) * limit;
 
-  const result = await getAllTransactions(limit, skip)
+  const result = await getAllTransactions(userID, limit, skip)
 
   return NextResponse.json(result);
 
