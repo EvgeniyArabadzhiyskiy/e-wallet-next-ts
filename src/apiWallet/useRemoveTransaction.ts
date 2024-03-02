@@ -78,7 +78,8 @@ export const useRemoveTransaction = (lastPageNumber: number) => {
         }
       );
 
-      queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance'], { type: "query" }] });
+      queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance']] });
+      queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic']] });
       // queryClient.invalidateQueries({ queryKey: ["Statistics"] });
     },
   });
