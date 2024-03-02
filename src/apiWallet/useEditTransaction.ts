@@ -48,8 +48,8 @@ export const useEditTransaction = () => {
         }
       );
 
-      queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance'], { type: "query" }] });
-      queryClient.invalidateQueries({ queryKey: ["Statistics"] });
+      queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance']] });
+      queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic']] });
 
       setModalToggle("transaction");
     },
