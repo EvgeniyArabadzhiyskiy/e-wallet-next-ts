@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { useRemoveTransaction } from "@/src/apiWallet";
 import { useGlobalState } from "../../GlobalProvider/GlobalProvider";
 import { Category } from "../TransactionTable.styled";
@@ -9,16 +9,20 @@ import {
   StyledItem,
   SumColorText,
 } from "./TransactionItem.styled";
-import { ITransaction } from "@/src/types/transactions";
+import { ITransaction, ITransactions } from "@/src/types/transactions";
 import { getSymbolType } from "@/src/helpers/getSymbolType";
+import TransactionMenu from "../../TransactionMenu";
 import SettingsSvg from "../../SvgComponent/SettingsSvg";
-import TransactionMenu from "../../TransactionMenu/TransactionMenu";
+import { InfiniteData, useQueryClient } from "@tanstack/react-query";
 
 interface IProps {
   balance: number;
   transaction: ITransaction;
   setModalKey: Dispatch<SetStateAction<"ADD" | "EDIT">>;
   setEditId: Dispatch<SetStateAction<string>>;
+  setIsDisabled: Dispatch<SetStateAction<boolean>>;
+  isDisabled: boolean;
+  // lastPageNumber: number;
 }
 
 function TransactionItem({
@@ -26,8 +30,11 @@ function TransactionItem({
   balance,
   setModalKey,
   setEditId,
+  setIsDisabled,
+  isDisabled,
+  // lastPageNumber,
 }: IProps) {
-  const { _id, date, typeOperation, category, comment, amount } = transaction;
+  const { id, date, typeOperation, category, comment, amount } = transaction;
   const operationDate = moment(new Date(date)).format("DD.MM.YYYY");
 
   const timeoutId = useRef<NodeJS.Timeout>();
@@ -36,17 +43,28 @@ function TransactionItem({
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isDelete, setIsDelete] = useState(true);
 
-  const { mutate: removeTransaction, error, isError } = useRemoveTransaction()
+  const queryClient = useQueryClient();
+  const infiniteData = queryClient
+  .getQueryData<InfiniteData<ITransactions>>(
+    [["transactionRouter", "getAllTransactions"],{ input: { limit: 10 }, type: "infinite" }]
+  );
+
+  const lastPageNumber = infiniteData?.pages.length || 1;
+
+  const { mutate: removeTransaction, error, isError } = useRemoveTransaction(lastPageNumber);
 
   const onDelete = (id: string) => {
+    setIsDisabled(true);
     setIsDelete(false);
 
     timeoutId.current = setTimeout(() => {
-      removeTransaction(id);
+      removeTransaction({ id, lastPageNumber });
+      setIsDisabled(false);
     }, 2500);
   };
 
   const onClearId = () => {
+    setIsDisabled(false);
     setIsDelete(true);
     clearTimeout(timeoutId.current);
   };
@@ -64,7 +82,7 @@ function TransactionItem({
 
   return (
     <>
-      <StyledItem $borders={typeOperation} key={transaction._id}>
+      <StyledItem $borders={typeOperation} key={transaction.id}>
         <Category>
           <SettingsBtn type="button" onClick={() => setIsOpenMenu((prev) => !prev)}>
             <SettingsSvg width={14} height={14} />
@@ -102,12 +120,13 @@ function TransactionItem({
         </Category>
 
         <TransactionMenu
+          isDisabled={isDisabled}
           isDelete={isDelete}
           isOpenMenu={isOpenMenu}
           setIsOpenMenu={setIsOpenMenu}
 
-          onEdit={() => onEdit(_id)}
-          onDelete={() => onDelete(_id)}
+          onEdit={() => onEdit(id)}
+          onDelete={() => onDelete(id)}
           onClearId={onClearId}
         />
       </StyledItem>
