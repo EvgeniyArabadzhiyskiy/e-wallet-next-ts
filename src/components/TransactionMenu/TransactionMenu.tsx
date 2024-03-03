@@ -5,6 +5,7 @@ import EnterButton from "../Buttons/EnterButton";
 import { Menu, WrapperBtn } from "./TransactionMenu.styled";
 
 interface IProps {
+  isDisabled: boolean;
   isDelete: boolean;
   isOpenMenu: boolean;
   setIsOpenMenu: Dispatch<SetStateAction<boolean>>;
@@ -13,7 +14,7 @@ interface IProps {
   onClearId: () => void;
 }
 
-const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete, onClearId }: IProps) => {
+function TransactionMenu ({ isDisabled, isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete, onClearId }: IProps)  {
   return (
     <Menu $isOpenMenu={isOpenMenu} $isDelete={isDelete}>
      <WrapperBtn>
@@ -33,6 +34,7 @@ const TransactionMenu = ({ isOpenMenu, isDelete, setIsOpenMenu, onEdit, onDelete
           height={40} 
           enterText="DELETE" 
           onClick={onDelete} 
+          disabled={isDisabled}
         />
       : <EnterButton 
           maxWidth="120px"
