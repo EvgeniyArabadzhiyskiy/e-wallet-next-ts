@@ -6,5 +6,5 @@ export interface ITransactionValue<TAmount = string> {
 }
 
 export interface ITransactionData extends ITransactionValue {
-  typeOperation: string | undefined;
+  typeOperation: string;
 }
