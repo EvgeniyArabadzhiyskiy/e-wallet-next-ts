@@ -3,7 +3,6 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import { useUser } from "../hooks/useUser";
 import { ChangedTransaction, ITransactions } from "../types/transactions";
 import { ITransactionData } from "../types/transactionValue";
 import { editTransaction } from "./transaction";
