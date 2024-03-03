@@ -1,6 +1,6 @@
 "use client";
 
-import { signOut } from "next-auth/react";
+// import { signOut } from "next-auth/react";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 
 import { Box } from "../Box/Box";
@@ -8,13 +8,26 @@ import { Border, Modal, Title } from "./ModalLogout.styled";
 import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 import EnterButton from "../Buttons/EnterButton";
 import CancelButton from "../Buttons/CancelButton";
+import { trpc } from "@/src/trpc/client";
+import { useRouter } from "next/navigation";
 
 const ModalLogout = () => {
+  const router = useRouter();
   const { setModalToggle } = useGlobalState();
 
   const onCancelClick = () => {
     setModalToggle("logout");
   };
+
+  const { mutate: signOut } = trpc.authRouter.signOut.useMutation({
+    onSuccess: (data) => {
+      // console.log("ModalLogout  data:", data);
+
+      router.push('/login')
+      router.refresh();
+      setModalToggle("logout");
+    },
+  });
 
   return (
     <Border>
