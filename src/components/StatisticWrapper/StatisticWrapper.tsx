@@ -1,32 +1,29 @@
-import { authOptions } from "../../lib/auth";
-import { getServerSession } from "next-auth";
+import Statistics from "../Statistics/Statistics";
+import getQueryClient from "../../lib/getQueryClient";
+import { getUserID } from "@/src/helpers/getUserID";
+import { getBalance } from "@/src/apiWallet/balance";
+import { getStatistics } from "@/src/apiWallet/statistic";
 import { Hydrate, dehydrate } from "@tanstack/react-query";
 
-import Statistics from "../Statistics/Statistics";
-import { getBalance } from "../../apiWallet/balance";
-import getQueryClient from "../../lib/getQueryClient";
-import { getStatistics } from "@/src/apiWallet/statistic";
-
 async function StatisticWrapper() {
-  const session = await getServerSession(authOptions);
-  const authToken = session?.token;
+  const userID = await getUserID();
 
   const queryClient = getQueryClient();
 
-  if (authToken) {
-    const balanceQuery = queryClient.prefetchQuery(["Balance"], () =>
-      getBalance(authToken)
-    );
+  const balanceQuery = queryClient.prefetchQuery({
+    queryKey: [['transactionRouter', 'getBalance'], { type: "query" }],
+    queryFn: () => getBalance(userID),
+  });
 
-    const statisticsQuery = queryClient.prefetchQuery({
-      queryKey: ["Statistics", { month: "", year: "" }],
-      queryFn: () => getStatistics(authToken, { month: "", year: "" }),
-    });
+  const statisticsQuery = queryClient.prefetchQuery({
+    queryKey: [['statisticRouter', 'getStatistic'], { input: {month: '', year: ''}, type: "query" }],
+    queryFn: () => getStatistics(userID),
+  });
 
-    await Promise.allSettled([balanceQuery, statisticsQuery]);
-  }
-
+  await Promise.allSettled([balanceQuery, statisticsQuery]);
+  
   const dehydratedState = dehydrate(queryClient);
+
   return (
     <Hydrate state={dehydratedState}>
       <Statistics />
