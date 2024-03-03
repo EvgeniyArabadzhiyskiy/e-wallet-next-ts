@@ -1,4 +1,4 @@
-import { useUser } from "../hooks/useUser";
+
 import { useQuery } from "@tanstack/react-query";
 import { IBalance } from "../types/transactions";
 import { getBalance } from "./balance";
