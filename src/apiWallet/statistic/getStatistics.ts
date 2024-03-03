@@ -3,12 +3,17 @@ import { getMinAndMaxTimestamps } from "@/src/helpers/getMinAndMaxTimestamps";
 import { getQueryString } from "@/src/helpers/getQueryString";
 import { IStatPeriod, IStatistic } from "@/src/types/statistics";
 import prisma from "../../lib/prismaClient";
+import { TRPCError } from "@trpc/server";
 
 export const getStatistics = async (
-  userID: string,
+  userID: string | null,
   month: string = "",
   year: string = ""
 ) => {
+  if (!userID) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  
   if (month && !year) {
     year = "2020";
   }
