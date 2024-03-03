@@ -16,13 +16,14 @@ import Logo from "../Logo";
 import AuthError from "../Errors/AuthError";
 import FormContainer from "../FormContainer";
 import RegisterFormFields from "../RegisterFormFields";
+import { trpc } from "@/src/trpc/client";
 
 
 export default function RegistrationForm() {
   const router = useRouter();
 
   const isScale = useScaleForm();
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const initialValues: IRegisterValues = {
@@ -32,26 +33,33 @@ export default function RegistrationForm() {
     name: "",
   };
 
+  const { mutate: signUp, isLoading } = trpc.authRouter.signUp.useMutation({
+    onSuccess: () => {
+      router.push('/login');
+    }
+  });
+
   const handleSubmit = async (
     { email, password, name: firstName }: IRegisterValues,
     { resetForm }: FormikHelpers<IRegisterValues>
   ) => {
     const userCredentials: ICredentials = { email, password, firstName };
 
-    setIsLoading(true);
+    // setIsLoading(true);
 
     try {
-      const newUser = await register(userCredentials);
+      // const newUser = await register(userCredentials);
+      signUp(userCredentials)
 
-      const response = await signIn('credentials', {
-        email: email,
-        password: password,
-        redirect: false,
-        // redirect: true,
-        // callbackUrl: '/home/transactions'
-      });
+      // const response = await signIn('credentials', {
+      //   email: email,
+      //   password: password,
+      //   redirect: false,
+      //   // redirect: true,
+      //   // callbackUrl: '/home/transactions'
+      // });
 
-      router.push('/home/transactions');
+      // router.push('/home/transactions');
     } catch (error) {
       const message = (error as Error).message
 
@@ -66,7 +74,7 @@ export default function RegistrationForm() {
           setErrorMessage("Server Error");
       } 
     } finally {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   
     resetForm();
