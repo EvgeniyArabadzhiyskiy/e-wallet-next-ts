@@ -4,16 +4,17 @@ export interface ITransaction {
   category: string;
   comment: string;
   createdAt: string;
+  updatedAt: string;
   date: string;
   owner: string;
-  timestamps: number;
+  timestamps: string;
   typeOperation: string;
-  _id: string;
+  id: string;
 }
 
 export interface ITransactions {
   transactions: ITransaction[];
-  userBalance: number;
+  // userBalance: number;
 }
 
 export interface NewTransaction extends ITransaction {
