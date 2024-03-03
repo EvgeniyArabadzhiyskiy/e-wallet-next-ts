@@ -4,7 +4,11 @@ import { BALANCE } from "../../constants/apiPath";
 import prisma from "../../lib/prismaClient";
 import { TRPCError } from "@trpc/server";
 
-export const getBalance = async (userID: string) => {
+export const getBalance = async (userID: string | null) => {
+  if (!userID) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+
   const user = await prisma.user.findFirst({
     where: {
       id: userID,
