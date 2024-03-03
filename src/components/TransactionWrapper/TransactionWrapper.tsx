@@ -1,31 +1,31 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../lib/auth";
+import TransactionTable from "../TransactionTable";
 import getQueryClient from "../../lib/getQueryClient";
-import { getAllTransactions } from "../../apiWallet/transaction";
-import { Hydrate, dehydrate } from "@tanstack/react-query";
-import TransactionTable from "../TransactionTable/TransactionTable";
 import { getBalance } from "../../apiWallet/balance";
+import { Hydrate, dehydrate } from "@tanstack/react-query";
+import { getAllTransactions } from "../../apiWallet/transaction";
+
+import { getUserID } from "@/src/helpers/getUserID";
 
 async function TransactionWrapper() {
-  const session = await getServerSession(authOptions);
-  const authToken = session?.token;
+ 
+  const userID = await getUserID();
 
   const queryClient = getQueryClient();
 
-  if (authToken) {
-    const balanceQuery = queryClient.prefetchQuery(["Balance"], () =>
-      getBalance(authToken)
-    );
+  const balanceQuery = queryClient.prefetchQuery({
+    queryKey: [['transactionRouter', 'getBalance'], { type: "query" }], 
+    queryFn: () =>  getBalance(userID),
+  });
 
-    const transactionsQuery = queryClient.prefetchInfiniteQuery({
-      queryKey: ["TransactionsList"],
-      queryFn: ({ pageParam = 1 }) => getAllTransactions(authToken, pageParam),
-    });
+  const transactionsQuery = queryClient.prefetchInfiniteQuery({
+    queryKey: [['transactionRouter', 'getAllTransactions'], { input: { limit: 10 }, type: "infinite" }],
+    queryFn: () => getAllTransactions(userID),
+  });
 
-    await Promise.allSettled([balanceQuery, transactionsQuery]);
-  }
-
+  await Promise.allSettled([balanceQuery, transactionsQuery]);
+  
   const dehydratedState = dehydrate(queryClient);
+
   return (
     <Hydrate state={dehydratedState}>
       <TransactionTable />
