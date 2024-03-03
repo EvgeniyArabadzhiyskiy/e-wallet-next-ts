@@ -16,20 +16,21 @@ import { ITransactionValue } from "@/src/types/transactionValue";
 
 import { Box } from "../Box/Box";
 import DateInput from "./DateInput";
-import FormInput from "../FormInput/FormInput";
+import FormInput from "../FormInput";
+import SwithChecbox from "../SwithChecbox";
+import CustomSelect from "../CustomSelect";
 import EnterButton from "../Buttons/EnterButton";
 import CancelButton from "../Buttons/CancelButton";
-import SwithChecbox from "../SwithChecbox/SwithChecbox";
-import CustomSelect from "../CustomSelect/CustomSelect";
 import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 
 interface IProps {
   isIncome: boolean;
   setIsIncome: Dispatch<SetStateAction<boolean>>;
   formik: FormikProps<ITransactionValue>;
+  modalKey: string;
 }
 
-export default function TransactionFormFields({ formik, isIncome, setIsIncome }: IProps) {
+export default function TransactionFormFields({ formik, isIncome, setIsIncome, modalKey }: IProps) {
   
   const { setFieldValue, isValid, dirty, isSubmitting } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
@@ -102,7 +103,7 @@ export default function TransactionFormFields({ formik, isIncome, setIsIncome }:
           type="submit" 
           height={50} 
           maxWidth="300px" 
-          enterText="ADD" 
+          enterText={ modalKey === "ADD" ? "ADD" : "EDIT"} 
           disabled={isDisabled} 
         />
        
