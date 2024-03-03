@@ -3,15 +3,18 @@ import { TRANSACTIONS } from "../../constants/apiPath";
 import { ITransactions } from "../../types/transactions";
 import { isITransactions } from "../../helpers/isITransactions";
 import { cookies } from "next/headers";
-import { verifyToken } from "@/src/helpers/verifyToken";
 import { TRPCError } from "@trpc/server";
 import prisma from "../../lib/prismaClient";
 
 export const getAllTransactions = async (
-  userID: string,
+  userID: string | null,
   limit: number = 10,
   skip: number = 0
 ) => {
+  if (!userID) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  
   const user = await prisma.user.findFirst({
     where: {
       id: userID,
