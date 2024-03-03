@@ -1,6 +1,5 @@
 import { ITransaction, ITransactions, RemoveTransaction } from "@/src/types/transactions";
 import { InfiniteData, useQueryClient } from "@tanstack/react-query";
-import { useUser } from "../hooks/useUser";
 import { deleteTransaction, getAllTransactions } from "./transaction";
 import { trpc } from "../trpc/client";
 
