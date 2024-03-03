@@ -1,4 +1,4 @@
-import { useUser } from "../hooks/useUser";
+
 import { useEffect, useMemo, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { ITransactions } from "../types/transactions";
