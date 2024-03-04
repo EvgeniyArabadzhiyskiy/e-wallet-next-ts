@@ -12,7 +12,6 @@ import {
 } from "./TransactionFormFields.styled";
 import { OptionType } from "@/src/types/optionType";
 import { verifyFutureDate } from "@/src/helpers/verifyFutureDate";
-import { ITransactionValue } from "@/src/types/transactionValue";
 
 import { Box } from "../Box/Box";
 import DateInput from "./DateInput";
@@ -22,17 +21,18 @@ import CustomSelect from "../CustomSelect";
 import EnterButton from "../Buttons/EnterButton";
 import CancelButton from "../Buttons/CancelButton";
 import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
+import { TTransactionValues } from "@/src/helpers/formValidation";
 
 interface IProps {
   isIncome: boolean;
   setIsIncome: Dispatch<SetStateAction<boolean>>;
-  formik: FormikProps<ITransactionValue>;
+  formik: FormikProps<TTransactionValues>;
   modalKey: string;
 }
 
 export default function TransactionFormFields({ formik, isIncome, setIsIncome, modalKey }: IProps) {
   
-  const { setFieldValue, isValid, dirty, isSubmitting } = formik;
+  const { setFieldValue, isValid, dirty, isSubmitting, values } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
   const [value, setValue] = useState<OptionType | null>(null);
@@ -68,6 +68,7 @@ export default function TransactionFormFields({ formik, isIncome, setIsIncome, m
             name="amount"
             placeholder="0.00"
             autoComplete="off"
+            value={values.amount === 0 ? "" : values.amount}
           />
         </SumWrapper>
 
