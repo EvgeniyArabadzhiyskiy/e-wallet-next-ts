@@ -1,83 +1,48 @@
 "use client";
 
 import { useState } from "react";
+import { trpc } from "@/src/trpc/client";
 import { FormikHelpers } from "formik";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useScaleForm } from "@/src/hooks/useScaleForm";
 
 import { Box } from "../Box/Box";
 import { FormWrap } from "./LoginForm.styled";
-import { ILoginValues } from "@/src/types/loginValues";
-import { loginSchema } from "@/src/helpers/formValidation";
+import { TLoginValues, loginValidator } from "@/src/helpers/formValidation";
 
 import Logo from "../Logo";
 import AuthError from "../Errors/AuthError";
 import FormContainer from "../FormContainer";
 import LoginFormFields from "../LoginFormFields";
-import { trpc } from "@/src/trpc/client";
 
 
 export default function LoginForm () {
   const router = useRouter();
 
   const isScale = useScaleForm();
-  // const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   
-  const initialValues: ILoginValues = {
+  const initialValues: TLoginValues = {
     email: "",
     password: "",
   };
   
-  const { mutate, isLoading } = trpc.authRouter.signIn.useMutation({
+  const { mutate: signIn, error, isError, isLoading, reset } = trpc.authRouter.signIn.useMutation({
     onSuccess: () => {
       router.push('/home/transactions');
     }
   });
 
-  const handleSubmit = async (values: ILoginValues,
-    { resetForm }: FormikHelpers<ILoginValues>
+  const handleSubmit = async (values: TLoginValues,
+    { resetForm }: FormikHelpers<TLoginValues>
     ) => {
     setErrorMessage("");
 
-    mutate({
+    signIn({
       email: values.email,
       password: values.password,
     })  
   };
-
-  // const handleSubmit = async (values: ILoginValues,
-  //   { resetForm }: FormikHelpers<ILoginValues>
-  //   ) => {
-
-  //   // setIsLoading(true);
-  //   setErrorMessage("");
-
-  //   // mutate({
-  //   //   email: values.email,
-  //   //   password: values.password,
-  //   // })
-
-  //   const response = await signIn('credentials', {
-  //     email: values.email,
-  //     password: values.password,
-  //     redirect: false,
-  //     // redirect: true,
-  //     // callbackUrl: '/home/transactions'
-  //   });
-
-  //   resetForm({ values: { email: '', password: '' } });
-    
-  //   if (response?.error) {
-  //     // setIsLoading(false);
-  //     setErrorMessage(response.error)
-  //     return
-  //   }
-    
-  //   // setIsLoading(false);
-  //   router.push('/home/transactions');
-  // };
 
   return (
     <FormWrap $isScale={isScale}>
@@ -85,17 +50,17 @@ export default function LoginForm () {
         <Logo />
       </Box>
 
-      {errorMessage 
+      {isError 
         ? <AuthError 
             href="/register" 
             text="Registration" 
-            errorMessage={errorMessage} 
-            resetError={setErrorMessage} 
+            errorMessage={error.message} 
+            resetError={reset} 
           />
-        : <FormContainer<ILoginValues>
+        : <FormContainer<TLoginValues>
             onSubmit={handleSubmit}
             initialValues={initialValues}
-            validationSchema={loginSchema}
+            validationSchema={loginValidator}
             render={(formik) => <LoginFormFields formik={formik} loading={isLoading} />}
           />
       }
