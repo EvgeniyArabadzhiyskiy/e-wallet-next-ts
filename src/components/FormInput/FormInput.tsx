@@ -4,12 +4,11 @@ import { ErrorText, Input, Label } from "./FormInput.styled";
 interface IProps {
   name: string;
   type: string;
-  inputBtn?: any;
-  icon?: any;
+  inputBtn?: React.ReactNode;
+  icon?: JSX.Element;
+  value?: number | string;
   placeholder?: string;
-  autoComplete?: string; 
-  // [key: string]: any;
-
+  autoComplete?: string;
 }
 
 const FormInput: React.FC<IProps> = ({
