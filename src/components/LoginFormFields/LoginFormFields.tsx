@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { FormikProps } from "formik";
-import { ILoginValues } from "@/src/types/loginValues";
 
 import { Box } from "../Box/Box";
 import FormInput from "../FormInput";
@@ -12,9 +11,10 @@ import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 import EmailSvg from "../SvgComponent/EmailSvg";
 import PasswordSvg from "../SvgComponent/PasswordSvg";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn";
+import { TLoginValues } from "@/src/helpers/formValidation";
 
 interface IProps {
-  formik: FormikProps<ILoginValues>;
+  formik: FormikProps<TLoginValues>;
   loading: boolean;
 }
 
