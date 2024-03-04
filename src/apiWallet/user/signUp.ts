@@ -1,15 +1,10 @@
-// import { USER_REGISTER } from "@/src/constants/apiPath";
-// import { fetcher } from "@/src/helpers/fetcher";
-// import { ICredentials } from "@/src/types/registerValues";
-// import { CurrentUser } from "@/src/types/user";
-
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import prisma from "../../lib/prismaClient";
 import { TRPCError } from "@trpc/server";
-import { TsignUpValidator } from "@/src/trpc/routers/auth-router";
+import { TRegistrationValues } from "@/src/helpers/formValidation";
 
-export const signUp = async (credentials: TsignUpValidator) => {
+export const signUp = async (credentials: TRegistrationValues) => {
   const { email, password, firstName } = credentials;
   const { JWT_SECRET_KEY = "" } = process.env;
 
@@ -52,25 +47,9 @@ export const signUp = async (credentials: TsignUpValidator) => {
   });
 
   return {
-    user: {
-      email: newUser.email,
-      firstName: newUser.firstName,
-      balance: newUser.balance,
-    },
+    email: newUser.email,
+    firstName: newUser.firstName,
+    balance: newUser.balance,
     token: newUser.token,
   };
 };
-
-// export const register = async (credentials: ICredentials) => {
-//   const options: RequestInit = {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json;charset=utf-8",
-//     },
-//     body: JSON.stringify(credentials),
-//   };
-
-//   const data = await fetcher<CurrentUser>(`${USER_REGISTER}`, options);
-
-//   return data;
-// };
