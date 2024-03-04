@@ -11,12 +11,12 @@ import PasswordSvg from "../SvgComponent/PasswordSvg";
 import LinkButton from "../Buttons/LinkButton";
 import EnterButton from "../Buttons/EnterButton";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn";
-import { IRegisterValues } from "@/src/types/registerValues";
+import { TRegistrationValues } from "@/src/helpers/formValidation";
 import { PasswordIndicator } from "./RegisterFormFields.styled";
 import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 
 interface IProps {
-  formik: FormikProps<IRegisterValues>;
+  formik: FormikProps<TRegistrationValues>;
   loading: boolean;
 }
 
@@ -48,7 +48,7 @@ export default function RegisterFormFields  ({ formik, loading }: IProps) {
           autoComplete="off"
           inputBtn={ <PasswordToggleBtn isHidePassword={isHideFirstPass} setIsHidePassword={setIsHideFirstPass} />}
         />
-        {values.password && <PasswordIndicator length={values.password} />}
+        {values.password && <PasswordIndicator $length={values.password} />}
       </Box>
 
       <Box mb={5} position='relative'>
@@ -60,14 +60,14 @@ export default function RegisterFormFields  ({ formik, loading }: IProps) {
           autoComplete="off"
           inputBtn={ <PasswordToggleBtn isHidePassword={isHideSecondPass} setIsHidePassword={setIsHideSecondPass} />}
         />
-        {values.password && <PasswordIndicator length={values.password} />}
+        {values.password && <PasswordIndicator $length={values.password} />}
       </Box>
 
       <Box mb={5} >
         <FormInput 
             icon={ <UserSvg width={25} height={24} />}
             type="text"
-            name="name" 
+            name="firstName" 
             placeholder="First name"
             autoComplete="off"
         />
