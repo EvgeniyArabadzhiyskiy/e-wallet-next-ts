@@ -12,15 +12,14 @@ export const verifyToken = async (
   if (!accessToken) return null;
 
   try {
-    const data = jwt.verify(accessToken, JWT_SECRET_KEY);
+    const jwtPayload = jwt.verify(accessToken, JWT_SECRET_KEY);
 
-    if (data && typeof data !== "string") {
-      return data.id as string;
+    if (jwtPayload && typeof jwtPayload !== "string") {
+      return jwtPayload.id as string;
     }
 
-    return data;
+    return jwtPayload;
   } catch (error) {
-    // throw error;
     throw new TRPCError({
       code: "UNAUTHORIZED",
       message: "You need to LOG IN",
