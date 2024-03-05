@@ -1,9 +1,6 @@
-import { fetcher } from "@/src/helpers/fetcher";
-import { getMinAndMaxTimestamps } from "@/src/helpers/getMinAndMaxTimestamps";
-import { getQueryString } from "@/src/helpers/getQueryString";
-import { IStatPeriod, IStatistic } from "@/src/types/statistics";
 import prisma from "../../lib/prismaClient";
 import { TRPCError } from "@trpc/server";
+import { getMinAndMaxTimestamps } from "@/src/helpers/getMinAndMaxTimestamps";
 
 export const getStatistics = async (
   userID: string | null,
@@ -13,7 +10,7 @@ export const getStatistics = async (
   if (!userID) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
-  
+
   if (month && !year) {
     year = "2020";
   }
@@ -78,17 +75,3 @@ export const getStatistics = async (
 
   // return statistics;
 };
-
-
-
-
-// export const getStatistics = async (token: string | undefined, { month, year }: IStatPeriod ) => {
-//   const options: RequestInit = {
-//     method: "GET",
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   };
-
-//   return await fetcher<IStatistic[]>(`${getQueryString({ month, year })}`, options);
-// };
