@@ -3,9 +3,9 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import { ChangedTransaction, ITransactions } from "../types/transactions";
-import { ITransactionData } from "../types/transactionValue";
-import { editTransaction } from "./transaction";
+import { ITransactions } from "../types/transactions";
+// import { ITransactionData } from "../types/transactionValue";
+// import { editTransaction } from "./transaction";
 import { useGlobalState } from "../components/GlobalProvider/GlobalProvider";
 import { trpc } from "../trpc/client";
 
@@ -20,7 +20,6 @@ export const useEditTransaction = () => {
       queryClient.setQueryData<InfiniteData<ITransactions>>(
         [["transactionRouter", "getAllTransactions"],{ input: { limit: 10 }, type: "infinite" }],
         (prev) => {
-          console.log("useEditTransaction  prev:", prev);
           if (!prev) {
             return undefined;
           }
