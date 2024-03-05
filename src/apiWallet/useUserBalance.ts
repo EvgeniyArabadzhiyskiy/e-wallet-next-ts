@@ -1,7 +1,7 @@
 
-import { useQuery } from "@tanstack/react-query";
-import { IBalance } from "../types/transactions";
-import { getBalance } from "./balance";
+// import { useQuery } from "@tanstack/react-query";
+// import { IBalance } from "../types/transactions";
+// import { getBalance } from "./balance";
 import { trpc } from "../trpc/client";
 
 export const useUserBalance = () => {
