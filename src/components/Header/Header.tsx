@@ -5,18 +5,17 @@ import {
   UserBox,
 } from "./Header.styled";
 
-import { authOptions } from "@/src/lib/auth";
-import { getServerSession } from "next-auth";
+
 import Logo from "../Logo";
 import Container from "../Container";
 import ModalBox from "../ModalWindow";
 import ModalLogOut from "../ModalLogOut";
 import SignOutButton from "../Buttons/SignOutButton";
 import ThemeToggle from "../ThemeToggle";
+import { currentUser } from "@/src/apiWallet/user";
 
 export default async function Header() {
-  const session = await getServerSession(authOptions);
-  const userName = session?.user?.firstName;
+  const user = await currentUser();
 
   return (
     <>
@@ -26,7 +25,7 @@ export default async function Header() {
             <Logo />
             <UserBox>
               {/* <ThemeToggle /> */}
-              <TextName>{userName}</TextName>
+              <TextName>{user?.firstName}</TextName>
               <SignOutButton />
             </UserBox>
           </HeaderWrapper>
