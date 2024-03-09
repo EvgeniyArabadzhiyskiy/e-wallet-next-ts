@@ -7,7 +7,7 @@ export const useStatistic = () => {
 
   const queryData = trpc.statisticRouter.getStatistic.useQuery(
     { month, year },
-    { queryKey: ["statisticRouter.getStatistic", { month, year }]},
+    { queryKey: ["statisticRouter.getStatistic", { month, year }] }
   );
 
   const { data = [] } = queryData;
@@ -29,18 +29,16 @@ export const useStatistic = () => {
     [data]
   );
 
-  const result = useMemo(() => {
-    return {
-      ...queryData,
-      year,
-      setYear,
-      month,
-      setMonth,
-      expensesData,
-      expensesTotal,
-      incomeTotal,
-    };
-  }, [year, month, expensesData, expensesTotal, incomeTotal]);
+  const result = {
+    ...queryData,
+    year,
+    setYear,
+    month,
+    setMonth,
+    expensesData,
+    expensesTotal,
+    incomeTotal,
+  };
 
   return result;
 };
