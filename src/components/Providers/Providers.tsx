@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { MediaContextProvider } from "@/src/lib/media";
-// import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "styled-components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useGlobalState } from "../GlobalProvider/GlobalProvider";
@@ -46,7 +44,7 @@ function Providers({ children }: IProps) {
     })
   );
 
-  const { theme } = useGlobalState();
+  // const { theme } = useGlobalState();
 
   // if (isLoading) {
   //   return <h1>Loading Theme..</h1>;
@@ -54,14 +52,13 @@ function Providers({ children }: IProps) {
 
   return (
     <>
-      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-        <MediaContextProvider disableDynamicMediaQueries>
-          <trpc.Provider client={trpcClient} queryClient={queryClient}>
-            <QueryClientProvider client={queryClient}>
-              {children}
-            </QueryClientProvider>
-          </trpc.Provider>
-        </MediaContextProvider>
+      {/* <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}> */}
+      <ThemeProvider theme={lightTheme}>
+        <trpc.Provider client={trpcClient} queryClient={queryClient}>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </trpc.Provider>
       </ThemeProvider>
     </>
   );
