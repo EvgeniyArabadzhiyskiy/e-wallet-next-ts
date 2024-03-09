@@ -1,13 +1,12 @@
 import stl from "./HeroSection.module.scss";
 import Container from "../Container";
 import LinkButton from "../Buttons/LinkButton";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/src/lib/auth";
 import Image from "next/image";
 import { heroCardList } from "@/src/helpers/heroCardList";
+import { currentUser } from "@/src/apiWallet/user";
 
 async function HeroSection() {
-  const session = await getServerSession(authOptions);
+  const user = await currentUser();
 
   return (
     <div>
@@ -26,7 +25,7 @@ async function HeroSection() {
             </p>
 
             <div className={stl.link__wrapper}>
-              {session
+              {user
                 ? <LinkButton href="/home/transactions" text="WALLET" maxWidth="300px" />
                 : <LinkButton href="/login" text="START IN 30 SECONDS" maxWidth="300px" />
               }
