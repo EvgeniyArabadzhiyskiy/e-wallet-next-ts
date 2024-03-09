@@ -6,10 +6,8 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
-import Providers from "../components/Providers";
-import { mediaStyles } from "../lib/media";
-import GlobalProvider from "../components/GlobalProvider";
 import Fonts from "../lib/FontsFamily";
+import Providers from "../components/Providers";
 
 export const metadata: Metadata = {
   title: "Next.js",
@@ -24,20 +22,14 @@ async function RootLayout({ children }: IProps) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/vercel.svg" />
-        <style
-          type="text/css"
-          dangerouslySetInnerHTML={{ __html: mediaStyles }}
-        />
+        <link rel="icon" href="/favicon.ico" />
         <Fonts />
       </head>
       <body>
         <div id="modal-root"></div>
-        <GlobalProvider>
-          <Providers>
-            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-          </Providers>
-        </GlobalProvider>
+        <Providers>
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </Providers>
       </body>
     </html>
   );
