@@ -1,7 +1,7 @@
 "use client";
 
 import ModalWindow from "./ModalWindow";
-import { useGlobalState } from "../GlobalProvider/GlobalProvider";
+import { useModalWindow } from "@/src/hooks/useModalWindow";
 
 interface IProps {
   children: React.ReactNode;
@@ -9,7 +9,8 @@ interface IProps {
 }
 
 function ModalBox({ children, modalName }: IProps) {
-  const { isModalOpen, setModalToggle } = useGlobalState();
+  const isModalOpen = useModalWindow((state) => state.isModalOpen);
+  const setModalToggle = useModalWindow((state) => state.setModalToggle);
 
   const isOpen = !!isModalOpen[modalName];
 
