@@ -1,11 +1,8 @@
-import { useGlobalState } from "../../GlobalProvider/GlobalProvider";
-
 import { ErrorText } from "../ErrorText.styled";
 import CancelButton from "../../Buttons/CancelButton";
 import { getMessageForError } from "@/src/helpers/getMessageForError";
 import { ButtonWrapper } from "./CreateTransactionError.styled";
-import { TRPCClientErrorBase } from "@trpc/client";
-import { DefaultErrorShape } from "@trpc/server";
+import { useModalWindow } from "@/src/hooks/useModalWindow";
 
 interface IProps {
   error: string;
@@ -13,7 +10,7 @@ interface IProps {
 }
 
 function CreateTransactionError({ error, resetError }: IProps) {
-  const { setModalToggle } = useGlobalState();
+  const setModalToggle = useModalWindow((state) => state.setModalToggle);
 
   const errorMessage = getMessageForError(error);
 
