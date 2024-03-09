@@ -1,18 +1,18 @@
-import z from "zod";
+import { statisticValidator } from "@/src/helpers/inputSchemas";
 import { privateProcedure, router } from "../trpc";
 import { getStatistics } from "@/src/apiWallet/statistic";
+import { prismaControllerWrapper } from "@/src/helpers/prismaControllerWrapper";
 
 export const statisticRouter = router({
   getStatistic: privateProcedure
-    .input(
-      z.object({
-        month: z.string(),
-        year: z.string(),
-      })
-    )
+    .input(statisticValidator)
     .query(async ({ ctx, input }) => {
+
       const { userID } = ctx;
       let { month, year } = input;
-      return await getStatistics(userID, month, year);
+
+      return await prismaControllerWrapper(
+        async () => await getStatistics(userID, month, year)
+      );
     }),
 });
