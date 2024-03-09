@@ -7,6 +7,7 @@ export interface ModalState  {
   [key: string]: boolean;
 };
 
+
 interface GlobalContextType {
   isModalOpen: ModalState;
   setModalToggle: (key: string) => void;
