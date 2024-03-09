@@ -18,15 +18,15 @@ interface IProps {
   statistic: IStatistic[] | undefined;
 }
 
-function Chart({ statistic }: IProps) {
+function Chart({ statistic = [] }: IProps) {
   const { data: totalBalance = 0 } = useUserBalance();
   const centerTextPlugin = useMemo(() => {
     return createCenterTextPlugin(totalBalance);
   }, [totalBalance]);
 
-  if (!statistic) {
-    return null;
-  }
+  // if (!statistic) {
+  //   return null;
+  // }
 
   const result = getStatsResult(statistic);
   const data = getChartData(result);
