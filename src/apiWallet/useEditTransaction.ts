@@ -1,18 +1,11 @@
-import {
-  InfiniteData,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { ITransactions } from "../types/transactions";
-// import { ITransactionData } from "../types/transactionValue";
-// import { editTransaction } from "./transaction";
-import { useGlobalState } from "../components/GlobalProvider/GlobalProvider";
 import { trpc } from "../trpc/client";
-
+import { useModalWindow } from "../hooks/useModalWindow";
 
 export const useEditTransaction = () => {
   const queryClient = useQueryClient();
-  const { setModalToggle } = useGlobalState();
+  const setModalToggle = useModalWindow((state) => state.setModalToggle);
 
   const mutation = trpc.transactionRouter.editTransaction.useMutation({
     onSuccess: (data) => {
@@ -55,52 +48,3 @@ export const useEditTransaction = () => {
 
   return mutation;
 };
-
-
-// export const useEditTransaction = (editId: string) => {
-//   const { token } = useUser();
-//   const queryClient = useQueryClient();
-//   const { setModalToggle } = useGlobalState();
-
-//   const mutation = useMutation<ChangedTransaction, Error, ITransactionData>({
-//     mutationFn: (transaction) => editTransaction(editId, transaction, token),
-
-//     onSuccess: (data) => {
-//       queryClient.setQueryData<InfiniteData<ITransactions>>(
-//         ["TransactionsList"],
-//         (prev) => {
-//           if (!prev) {
-//             return undefined;
-//           }
-
-//           const updatedPages = prev.pages.map((page) => {
-//             const newCache = page.transactions.map((transaction) => {
-//               if (transaction._id === data._id) {
-//                 return data;
-//               }
-
-//               return transaction;
-//             });
-
-//             return {
-//               ...page,
-//               transactions: newCache,
-//             };
-//           });
-
-//           return {
-//             ...prev,
-//             pages: updatedPages,
-//           };
-//         }
-//       );
-
-//       queryClient.invalidateQueries({ queryKey: ["Balance"] });
-//       queryClient.invalidateQueries({ queryKey: ["Statistics"] });
-
-//       setModalToggle("transaction");
-//     },
-//   });
-
-//   return mutation;
-// };
