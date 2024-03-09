@@ -4,8 +4,9 @@ import ReactSelect, { SingleValue } from "react-select";
 
 import { selectStyles } from "@/src/styles/selectStyles";
 import { OptionType } from "@/src/types/optionType";
-import { ITransactionValue } from "@/src/types/transactionValue";
+// import { ITransactionValue } from "@/src/types/transactionValue";
 import { optionsExpense, optionsIncome } from "@/src/constants/selectOptions";
+import { TTransactionValues } from "@/src/helpers/formValidation";
 
 interface IProps {
   isIncome: boolean;
@@ -16,7 +17,7 @@ interface IProps {
     field: string,
     value: any,
     shouldValidate?: boolean | undefined
-  ) => Promise<void | FormikErrors<ITransactionValue<string>>>;
+  ) => Promise<void | FormikErrors<TTransactionValues>>;
 }
 
 export default function CustomSelect({ value, setValue, isIncome, setCategory }: IProps) {
