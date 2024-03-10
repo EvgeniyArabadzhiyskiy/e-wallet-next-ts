@@ -9,7 +9,7 @@ interface IProps {
   setModalKey: Dispatch<SetStateAction<"ADD" | "EDIT">>;
 }
 
-function ButtonAddTransactions({setModalKey}: IProps) {
+function ButtonAddTransactions({ setModalKey }: IProps) {
   const setModalToggle = useModalWindow((state) => state.setModalToggle);
 
   const onAddTransactions = () => {
