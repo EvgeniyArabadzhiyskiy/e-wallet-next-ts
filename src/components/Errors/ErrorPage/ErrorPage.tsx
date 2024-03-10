@@ -2,7 +2,7 @@ import LinkButton from "../../Buttons/LinkButton";
 import EnterButton from "../../Buttons/EnterButton";
 import { ErrorText } from "../ErrorText.styled";
 import { ButtonWrapper, ErrorContainer } from "./ErrorPage.styled";
-import { getMessageForError } from "@/src/helpers/getMessageForError";
+import { getErrorMessage } from "@/src/helpers/getErrorMessage";
 
 interface IProps {
   error: Error;
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 function ErrorPage({ error, resetError }: IProps) {
-  const errorMessage = getMessageForError(error.message);
+  const errorMessage = getErrorMessage(error.message);
 
   return (
     <ErrorContainer>
