@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import { trpc } from "@/src/trpc/client";
-import { FormikHelpers } from "formik";
 import { useRouter } from "next/navigation";
 import { useScaleForm } from "@/src/hooks/useScaleForm";
 
@@ -18,9 +16,7 @@ import LoginFormFields from "../LoginFormFields";
 
 export default function LoginForm () {
   const router = useRouter();
-
   const isScale = useScaleForm();
-  const [errorMessage, setErrorMessage] = useState('');
   
   const initialValues: TLoginValues = {
     email: "",
@@ -33,11 +29,7 @@ export default function LoginForm () {
     }
   });
 
-  const handleSubmit = async (values: TLoginValues,
-    { resetForm }: FormikHelpers<TLoginValues>
-    ) => {
-    setErrorMessage("");
-
+  const handleSubmit = async (values: TLoginValues) => {
     signIn({
       email: values.email,
       password: values.password,
