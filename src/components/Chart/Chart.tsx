@@ -24,10 +24,6 @@ function Chart({ statistic = [] }: IProps) {
     return createCenterTextPlugin(totalBalance);
   }, [totalBalance]);
 
-  // if (!statistic) {
-  //   return null;
-  // }
-
   const result = getStatsResult(statistic);
   const data = getChartData(result);
 
