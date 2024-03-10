@@ -19,7 +19,7 @@ const ModalLogout = () => {
 
   const { mutate: signOut } = trpc.authRouter.signOut.useMutation({
     onSuccess: () => {
-      router.push('/login')
+      router.push('/')
       router.refresh();
       setModalToggle("logout");
     },
