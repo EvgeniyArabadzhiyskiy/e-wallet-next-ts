@@ -27,17 +27,6 @@ type BoxingProps = ColorProps &
   PositionProps &
   TypographyProps;
 
-// export const Box = styled.div<BoxingProps>(
-//   color,
-//   space,
-//   layout,
-//   border,
-//   flexbox,
-//   position,
-//   typography
-// );
-
-
 export const Box = styled.div.withConfig({
   shouldForwardProp: (prop) => {
     return !["mb", "mt", "position"].includes(prop);
