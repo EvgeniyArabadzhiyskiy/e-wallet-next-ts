@@ -8,9 +8,6 @@ export default function LoginPageLayout({
 }) {
   return (
     <>
-      {/* <div className={stl.background}>
-        <h1 className={stl.background__title}>Wallet App</h1>
-      </div> */}
       <div className={stl.section}>
         <Container>
           <div className={stl.wrapper}>{children}</div>
