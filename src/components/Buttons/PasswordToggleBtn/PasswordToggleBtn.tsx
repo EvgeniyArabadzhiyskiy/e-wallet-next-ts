@@ -8,7 +8,7 @@ interface IProps {
 
 }
 
-const PasswordToggleBtn: React.FC<IProps> = ({ isHidePassword, setIsHidePassword }) => {
+function PasswordToggleBtn({ isHidePassword, setIsHidePassword }: IProps) {
   
   return (
     <StyledButton type="button" onClick={() => setIsHidePassword(!isHidePassword)} aria-label="show-pass">
