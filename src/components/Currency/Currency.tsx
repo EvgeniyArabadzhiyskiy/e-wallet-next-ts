@@ -66,52 +66,6 @@ const Currency = () => {
     })();
   }, []);
 
-  // console.log("Rerender");
-  
-
-  // useEffect(() => {
-  //   const getCurrency = async () => {
-  //     setLoading(true);
-
-  //     const savedApiMono = localStorage.getItem('getMono');
-  //     const parsedApiMono = JSON.parse(savedApiMono);
-
-  //     const savedApiDate = localStorage.getItem('date');
-  //     const parsedApiDate = JSON.parse(savedApiDate);
-
-  //     const date = new Date();
-
-  //     const update = (+date - parsedApiDate) >= 3600000;
-
-  //     if (!parsedApiDate) {
-  //       localStorage.setItem('date', JSON.stringify(+date));
-  //     }
-
-  //     if (update) {
-  //       setLoading(true);
-  //       await getApiMono();
-  //     }
-
-  //     if (parsedApiMono) {
-  //       const arrow = parsedApiMono.slice(0, 2);
-  //       setArrow(arrow);
-  //       return;
-  //     }
-
-  //     try {
-  //       const data = await getApiMono();
-  //       const newArrow = data.slice(0, 2);
-  //       setArrow(newArrow);
-  //     } catch (error) {
-  //       console.log("getCurrency  error:", error);
-  //       // toast.error('Bank request error');
-  //     }
-  //   };
-
-  //   getCurrency();
-  //   setLoading(false);
-  // }, []);
-
   return (
     <CurrencyBox>
       <PrivatTableList>
