@@ -11,7 +11,6 @@ import Container from "../Container";
 import ModalBox from "../ModalWindow";
 import ModalLogOut from "../ModalLogOut";
 import SignOutButton from "../Buttons/SignOutButton";
-import ThemeToggle from "../ThemeToggle";
 import { currentUser } from "@/src/apiWallet/user";
 
 export default async function Header() {
@@ -24,7 +23,6 @@ export default async function Header() {
           <HeaderWrapper>
             <Logo />
             <UserBox>
-              {/* <ThemeToggle /> */}
               <TextName>{user?.firstName}</TextName>
               <SignOutButton />
             </UserBox>
