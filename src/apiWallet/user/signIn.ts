@@ -8,7 +8,7 @@ import { TLoginValues } from "@/src/helpers/formValidation";
 export const signIn = async (credentials: TLoginValues) => {
   const { email, password } = credentials;
 
-  const cookieStore = cookies();
+  const nextCookies = cookies();
   const { JWT_SECRET_KEY = "" } = process.env;
 
   const user = await prisma.user.findFirst({
@@ -51,7 +51,7 @@ export const signIn = async (credentials: TLoginValues) => {
     },
   });
 
-  cookieStore.set({
+  nextCookies.set({
     name: "accessToken",
     value: newUser.token,
     path: "/",
