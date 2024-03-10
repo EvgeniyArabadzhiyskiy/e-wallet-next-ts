@@ -5,19 +5,13 @@ interface IProps {
   name: string;
   type: string;
   inputBtn?: React.ReactNode;
-  icon?: JSX.Element;
+  icon?: JSX.Element | null;
   value?: number | string;
   placeholder?: string;
   autoComplete?: string;
 }
 
-const FormInput: React.FC<IProps> = ({
-  name,
-  type = "text",
-  inputBtn = null,
-  icon = null,
-  ...allProps
-}) => {
+function FormInput({ name, type = "text", inputBtn = null, icon = null, ...allProps }: IProps) {
   return (
     <Label>
       {icon}
@@ -26,6 +20,6 @@ const FormInput: React.FC<IProps> = ({
       <ErrorText component="div" name={name} />
     </Label>
   );
-};
+}
 
 export default FormInput;
