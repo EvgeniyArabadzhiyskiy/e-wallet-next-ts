@@ -44,7 +44,7 @@ export const getStatistics = async (
     const { _sum, category, typeOperation } = el;
 
     return {
-      _id: category,
+      id: category,
       totalSum: _sum.amount || 0,
       type: typeOperation,
     };
@@ -63,7 +63,7 @@ export const getStatistics = async (
 
   //     {
   //       $group: {
-  //         _id: "$category",
+  //         id: "$category",
   //         totalSum: { $sum: "$amount" },
   //         type: { $first: "$typeOperation" },
   //       },
