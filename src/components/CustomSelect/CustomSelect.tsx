@@ -4,7 +4,6 @@ import ReactSelect, { SingleValue } from "react-select";
 
 import { selectStyles } from "@/src/styles/selectStyles";
 import { OptionType } from "@/src/types/optionType";
-// import { ITransactionValue } from "@/src/types/transactionValue";
 import { optionsExpense, optionsIncome } from "@/src/constants/selectOptions";
 import { TTransactionValues } from "@/src/helpers/formValidation";
 
