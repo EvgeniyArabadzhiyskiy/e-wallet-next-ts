@@ -6,8 +6,12 @@ interface IProps {
   maxWidth: string;
 }
 
-const LinkButton: React.FC<IProps> = ({ text, href, maxWidth }) => {
-  return <StyledLink href={href} $maxWidth={maxWidth} >{text}</StyledLink>;
-};
+function LinkButton({ text, href, maxWidth }: IProps) {
+  return (
+    <StyledLink href={href} $maxWidth={maxWidth}>
+      {text}
+    </StyledLink>
+  );
+}
 
 export default LinkButton;
