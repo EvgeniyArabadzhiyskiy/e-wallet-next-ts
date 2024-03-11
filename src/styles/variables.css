@@ -1,4 +1,5 @@
 :root {
+  /* Colors */
   --white: #ffffff;
   --primary-text: #000000;
   --primary-btn: #ffffff;
@@ -20,22 +21,12 @@
   --education-stat: #81e1ff;
   --leisure-stat: #24cca7;
   --other-stat: #00ad84;
-
-  /* light theme */
   --primary-bg-lgt: #ffffff;
   --secondary-bg-lgt: rgba(255, 255, 255, 0.4);
   --loginPage-bg-lgt: #e7eaf2;
   --secondary-text-lgt: #787272;
   --secondary-dark-text-lgt: #a6a6a6;
   --secondary-light-text-lgt: #e0e0e0;
-
-  /* dark theme */
-  --primary-bg-drk: #38398f;
-  --secondary-bg-drk: #9b91c7;
-  --loginPage-bg-drk: #685aa2;
-  --secondary-text-drk: #ffffff;
-  --secondary-dark-text-drk: #dad8d8;
-  --secondary-light-text-drk: #eceaea;
 
   /* Fonts Sizes */
   --font-xs: 12px;
