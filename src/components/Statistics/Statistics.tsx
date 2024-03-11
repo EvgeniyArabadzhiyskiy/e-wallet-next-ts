@@ -1,6 +1,5 @@
 "use client";
 
-import { useQueryClient } from "@tanstack/react-query";
 import { useStatistic } from "@/src/apiWallet/useStatistic";
 
 import Chart from "../Chart/Chart";
@@ -20,20 +19,11 @@ function Statistics() {
     incomeTotal,
     isFetching,
     error,
-    isError
+    isError,
   } = useStatistic();
 
-  // ========= потом удалю
-  // const client = useQueryClient();
-  // const stat = client.getQueriesData(["Statistics"]);
-  // const tranList = client.getQueriesData(["TransactionsList"]);
-  // const tran = client.getQueriesData(["Transactions"]);
-  // console.log("Transactions", tran);
-  // console.log("TransactionsList", tranList[0]);
-  // console.log("Statistics:", stat);
-
   if (isError) {
-    throw new Error(error.message)
+    throw new Error(error.message);
   }
   if (isFetching) {
     return <StatisticLoader />;
