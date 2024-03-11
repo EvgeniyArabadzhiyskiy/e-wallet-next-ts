@@ -1,12 +1,7 @@
-import { getCurentLocaleDate } from "./getCurentLocaleDate";
+import { type TStatisticValues } from "./inputSchemas";
 
-export const getMinAndMaxTimestamps = ({
-  month,
-  year,
-}: {
-  month: string;
-  year: string;
-}) => {
+export const getMinAndMaxTimestamps = ({ month, year }: TStatisticValues) => {
+
   if (!month && year) {
     return {
       minTimestamps: new Date(Number(year), 0, 1, 2).getTime(),
@@ -18,7 +13,6 @@ export const getMinAndMaxTimestamps = ({
     return {
       minTimestamps: 0,
       maxTimestamps: new Date().getTime() + 2 * 60 * 60 * 1000,
-      //   maxTimestamps: getCurentLocaleDate(new Date()).getTime(),
     };
   }
 
