@@ -1,11 +1,14 @@
 export interface IStatistic {
-  _id: string;
+  id: string;
   totalSum: number;
   type: string;
 }
 
-export interface IColor {
-  [key: string]: string;
+export interface IColors {
+  [key: string]: {
+    label: string;
+    value: string;
+  };
 }
 
 export interface IStatPeriod {
