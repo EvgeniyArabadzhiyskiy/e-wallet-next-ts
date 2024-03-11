@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { FormikHelpers } from "formik";
 import { useRouter } from "next/navigation";
 import { useScaleForm } from "@/src/hooks/useScaleForm";
 
@@ -20,7 +18,6 @@ export default function RegistrationForm() {
   const router = useRouter();
 
   const isScale = useScaleForm();
-  const [errorMessage, setErrorMessage] = useState('');
 
   const initialValues: TRegistrationValues = {
     email: "",
@@ -36,28 +33,9 @@ export default function RegistrationForm() {
   });
 
   const handleSubmit = async (
-    { email, password, firstName, confirmPassword }: TRegistrationValues,
-    { resetForm }: FormikHelpers<TRegistrationValues>
-  ) => {
-    
-    try {
-      signUp({ email, password, firstName, confirmPassword })
+    { email, password, firstName, confirmPassword }: TRegistrationValues) => {
+    signUp({ email, password, firstName, confirmPassword })
 
-    } catch (error) {
-      const message = (error as Error).message
-
-      switch (message) {
-        case "409":
-          setErrorMessage("Email in use");
-          return;
-        case "404":
-          setErrorMessage("Route is Not Found");
-          return;
-        default:
-          setErrorMessage("Server Error");
-      } 
-    } 
-    // resetForm();
   };
 
   return (
@@ -66,7 +44,7 @@ export default function RegistrationForm() {
         <Logo />
       </Box>
 
-      {error
+      {isError
         ? <AuthError
             href="/login" 
             text="Login" 
