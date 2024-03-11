@@ -2,14 +2,13 @@
 
 import { FormikHelpers } from "formik";
 import { Dispatch, SetStateAction } from "react";
-import { transactionShema } from "@/src/helpers/formValidation";
+import { TTransactionValues, transactionValidator } from "@/src/helpers/formValidation";
 import { getTypeOperation } from "@/src/helpers/getTypeOperation";
 import { useCreateTransaction, useEditTransaction } from "@/src/apiWallet";
-import { ITransactionData, ITransactionValue } from "@/src/types/transactionValue";
 
 import { Title } from "./TransactionForm.styled";
-import FormContainer from "../FormContainer/FormContainer";
-import TransactionFormFields from "../TransactionFormFields/TransactionFormFields";
+import FormContainer from "../FormContainer";
+import TransactionFormFields from "../TransactionFormFields";
 import { setTitleTransaction } from "@/src/helpers/setTitleTransaction";
 import CreateTransactionError from "../Errors/CreateTransactionError";
 
@@ -22,26 +21,27 @@ interface IProps {
 
 function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
   const { mutate: editTransaction, error: editError, isError: isEditError, reset: editReset }
-   = useEditTransaction(editId);
+   = useEditTransaction();
    
   const { mutate: createTransaction, error: createError, isError: isCreateError, reset: createReset }
    = useCreateTransaction();
   
-  const initialValues: ITransactionValue = {
+  const initialValues: TTransactionValues  = {
     comment: "",
-    amount: "",
+    amount: 0,
     category: "",
     date: new Date().toString(),
   };
 
   const onFormSubmit = async (
-    values: ITransactionValue,
-    { resetForm }: FormikHelpers<ITransactionValue>
+    values: TTransactionValues,
+    { resetForm }: FormikHelpers<TTransactionValues>
   ) => {
     const typeOperation = getTypeOperation(isIncome);
 
-    const transaction: ITransactionData = {
+    const transaction = {
       ...values,
+      amount: Number(values.amount),
       typeOperation,
     };
 
@@ -51,20 +51,20 @@ function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
     }
 
     if (modalKey === "EDIT") {
-      editTransaction(transaction);
+      editTransaction({...transaction, transactionID: editId});
       resetForm();
     }
   };
 
   if (isEditError) {
     return (
-      <CreateTransactionError error={editError} resetError={editReset} />
+      <CreateTransactionError error={editError.message} resetError={editReset} />
     );
   }
 
   if (isCreateError) {
     return (
-      <CreateTransactionError error={createError} resetError={createReset} />
+      <CreateTransactionError error={createError.message} resetError={createReset} />
     );
   }
 
@@ -72,15 +72,16 @@ function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
     <>
       <Title>{setTitleTransaction(modalKey)}</Title>
 
-      <FormContainer<ITransactionValue>
+      <FormContainer<TTransactionValues>
         initialValues={initialValues}
-        validationSchema={transactionShema}
+        validationSchema={transactionValidator}
         onSubmit={onFormSubmit}
         render={(formik) => (
           <TransactionFormFields
             formik={formik}
             isIncome={isIncome}
             setIsIncome={setIsIncome}
+            modalKey={modalKey}
           />
         )}
       />
@@ -88,21 +89,4 @@ function TransactionForm({ isIncome, setIsIncome, modalKey, editId }: IProps) {
   );
 }
 
-export default TransactionForm
-
-
-{/* <Formik
-onSubmit={onFormSubmit}
-initialValues={initialValues}
-validationSchema={transactionShema}
->
-{(formik) => {
-  return (
-    <TransactionFormFields
-      formik={formik}
-      isIncome={isIncome}
-      setIsIncome={setIsIncome}
-    />
-  );
-}}
-</Formik> */}
+export default TransactionForm;
