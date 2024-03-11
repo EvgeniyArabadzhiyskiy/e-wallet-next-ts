@@ -8,6 +8,6 @@ export const getSymbolType = (type: string) => {
 
     default:
       console.log("Invalid type:", type);
-      return "?";
+      throw new Error("Invalid value for getTypeOperation");
   }
 };
