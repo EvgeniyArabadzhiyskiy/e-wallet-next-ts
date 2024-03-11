@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import StatItem from "../StatItem";
 import FilterDate from "../../FilterDate";
-import { IColor, IStatistic } from "@/src/types/statistics";
+import { IStatistic } from "@/src/types/statistics";
 import { getCategoryColor } from "@/src/helpers/getCategoryColor";
 import { FooterText, Table, TableBody, TableFooter, TableFooterItem, TableHeader } from "./StatTable.styled";
 
@@ -30,13 +30,13 @@ function StatTable ({ month, year, setMonth, setYear, expensesData, expensesTota
 
       <TableBody>
         {expensesData.map(
-          ({ _id, totalSum }: { _id: keyof IColor; totalSum: number }) => {
+          ({ id, totalSum }) => {
             return (
               <StatItem
-                key={_id}
-                id={_id}
+                key={id}
+                id={id}
                 totalSum={totalSum}
-                categoryColor={getCategoryColor(_id)}
+                categoryColor={getCategoryColor(id)}
               />
             );
           }
