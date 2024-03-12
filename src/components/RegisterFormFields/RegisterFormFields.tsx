@@ -14,6 +14,8 @@ import PasswordToggleBtn from "../Buttons/PasswordToggleBtn";
 import { TRegistrationValues } from "@/src/helpers/formValidation";
 import { PasswordIndicator } from "./RegisterFormFields.styled";
 import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
+import GoogleIconSvg from "../SvgComponent/GoogleIconSvg";
+import { useGoogleLogin } from "@react-oauth/google";
 
 interface IProps {
   formik: FormikProps<TRegistrationValues>;
@@ -26,6 +28,13 @@ export default function RegisterFormFields  ({ formik, loading }: IProps) {
 
   const [isHideFirstPass, setIsHideFirstPass] = useState(true);
   const [isHideSecondPass, setIsHideSecondPass] = useState(true);
+
+  const googleLogin = useGoogleLogin({
+    flow: "auth-code",
+    ux_mode: "redirect",
+    redirect_uri: "http://localhost:3000/api/google-redirect",
+    
+  });
 
   return (
     <>
@@ -82,6 +91,17 @@ export default function RegisterFormFields  ({ formik, loading }: IProps) {
         />
      
         <LinkButton href='/login' text='LOGIN' maxWidth="300px" />
+
+        <EnterButton
+          type="button"
+          height={50}
+          maxWidth="300px"
+          enterText="Sign in with Google"
+          onClick={() => googleLogin()}
+        >
+          <GoogleIconSvg width={25} height={25}  />
+        </EnterButton>
+        
       </ButtonWrapper>
     </>
   );
