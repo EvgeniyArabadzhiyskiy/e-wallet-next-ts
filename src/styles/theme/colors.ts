@@ -1,4 +1,4 @@
-export const defaultColors = {
+export const colors = {
   white: "var(--white)",
   primaryText: "var(--primary-text)",
   primaryBtn: "var(--primary-btn)",
@@ -20,31 +20,38 @@ export const defaultColors = {
   educationStat: "var(--education-stat)",
   leisureStat: "var(--leisure-stat)",
   otherStat: "var(--other-stat)",
+  primaryBg: "var(--primary-bg-lgt)",
+  secondaryBg: "var(--secondary-bg-lgt)",
+  loginPageBg: "var(--loginPage-bg-lgt)",
+  secondaryText: "var(--secondary-text-lgt)",
+  secondaryDarkText: "var(--secondary-dark-text-lgt)",
+  secondaryLightText: "var(--secondary-light-text-lgt)",
+  gradient: "linear-gradient(rgba(47, 48, 58, 0),rgba(47, 48, 58, 0))",
 };
 
-export const colors = {
-  LIGHT: {
-    // ...defaultColors,
-    primaryBg: "var(--primary-bg-lgt)",
-    secondaryBg: "var(--secondary-bg-lgt)",
-    loginPageBg: "var(--loginPage-bg-lgt)",
-    secondaryText: "var(--secondary-text-lgt)",
-    secondaryDarkText: "var(--secondary-dark-text-lgt)",
-    secondaryLightText: "var(--secondary-light-text-lgt)",
-    gradient: "linear-gradient(rgba(47, 48, 58, 0),rgba(47, 48, 58, 0))",
-  },
+// export const colors = {
+//   LIGHT: {
+//     // ...defaultColors,
+//     primaryBg: "var(--primary-bg-lgt)",
+//     secondaryBg: "var(--secondary-bg-lgt)",
+//     loginPageBg: "var(--loginPage-bg-lgt)",
+//     secondaryText: "var(--secondary-text-lgt)",
+//     secondaryDarkText: "var(--secondary-dark-text-lgt)",
+//     secondaryLightText: "var(--secondary-light-text-lgt)",
+//     gradient: "linear-gradient(rgba(47, 48, 58, 0),rgba(47, 48, 58, 0))",
+//   },
 
-  DARK: {
-    // ...defaultColors,
-    primaryBg: "var(--primary-bg-drk)",
-    secondaryBg: "var(--secondary-bg-drk)",
-    loginPageBg: "var(--loginPage-bg-drk)",
-    secondaryText: "var(--secondary-text-drk)",
-    secondaryDarkText: "var(--secondary-dark-text-drk)",
-    secondaryLightText: "var(--secondary-light-text-drk)",
-    gradient: "linear-gradient(rgba(47, 48, 58, 0.35),rgba(47, 48, 58, 0.35))",
-  },
-};
+//   DARK: {
+//     // ...defaultColors,
+//     primaryBg: "var(--primary-bg-drk)",
+//     secondaryBg: "var(--secondary-bg-drk)",
+//     loginPageBg: "var(--loginPage-bg-drk)",
+//     secondaryText: "var(--secondary-text-drk)",
+//     secondaryDarkText: "var(--secondary-dark-text-drk)",
+//     secondaryLightText: "var(--secondary-light-text-drk)",
+//     gradient: "linear-gradient(rgba(47, 48, 58, 0.35),rgba(47, 48, 58, 0.35))",
+//   },
+// };
 
 // const defaultColors = {
 //   white: "#FFFFFF",
