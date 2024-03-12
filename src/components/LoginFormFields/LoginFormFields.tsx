@@ -12,6 +12,8 @@ import EmailSvg from "../SvgComponent/EmailSvg";
 import PasswordSvg from "../SvgComponent/PasswordSvg";
 import PasswordToggleBtn from "../Buttons/PasswordToggleBtn";
 import { TLoginValues } from "@/src/helpers/formValidation";
+import { useGoogleLogin } from "@react-oauth/google";
+import GoogleIconSvg from "../SvgComponent/GoogleIconSvg";
 
 interface IProps {
   formik: FormikProps<TLoginValues>;
@@ -23,6 +25,13 @@ export default function LoginFormFields({ formik, loading }: IProps) {
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
   const [isHidePassword, setIsHidePassword] = useState(true);
+
+  const googleLogin = useGoogleLogin({
+    flow: "auth-code",
+    ux_mode: "redirect",
+    redirect_uri: "http://localhost:3000/api/google-redirect",
+    
+  });
 
   return (
     <>
@@ -56,10 +65,20 @@ export default function LoginFormFields({ formik, loading }: IProps) {
           type="submit"
           height={50}
           maxWidth="300px"
-          enterText={loading ? "LOADING..." : "LOG IN"}   
+          enterText={loading ? "LOADING..." : "LOG IN"}
           disabled={isDisabled}
         />
         <LinkButton href="/register" text="REGISTER" maxWidth="300px" />
+
+        <EnterButton
+          type="button"
+          height={50}
+          maxWidth="300px"
+          enterText="Sign in with Google"
+          onClick={() => googleLogin()}
+        >
+          <GoogleIconSvg width={25} height={25}  />
+        </EnterButton>
       </ButtonWrapper>
     </>
   );
