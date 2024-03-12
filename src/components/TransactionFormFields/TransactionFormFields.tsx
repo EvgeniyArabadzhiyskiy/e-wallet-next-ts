@@ -3,7 +3,6 @@ import moment from "moment";
 import Datetime from "react-datetime";
 import { FormikProps } from "formik";
 import React, { Dispatch, SetStateAction,  useState } from "react";
-import { useGlobalState } from "../GlobalProvider/GlobalProvider";
 
 import {
   DateWrapper,
@@ -22,6 +21,7 @@ import EnterButton from "../Buttons/EnterButton";
 import CancelButton from "../Buttons/CancelButton";
 import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 import { TTransactionValues } from "@/src/helpers/formValidation";
+import { useModalWindow } from "@/src/hooks/useModalWindow";
 
 interface IProps {
   isIncome: boolean;
@@ -41,7 +41,8 @@ export default function TransactionFormFields({ formik, isIncome, setIsIncome, m
     setValue(null);
   };
 
-  const { setModalToggle } = useGlobalState();
+  const setModalToggle = useModalWindow((state) => state.setModalToggle);
+  
   const onCancelClick = () => {
     setModalToggle("transaction")
   }
