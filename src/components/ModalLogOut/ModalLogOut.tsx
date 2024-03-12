@@ -8,6 +8,7 @@ import CancelButton from "../Buttons/CancelButton";
 import { trpc } from "@/src/trpc/client";
 import { useRouter } from "next/navigation";
 import { useModalWindow } from "@/src/hooks/useModalWindow";
+import { googleLogout } from '@react-oauth/google';
 
 const ModalLogout = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const ModalLogout = () => {
 
   const { mutate: signOut } = trpc.authRouter.signOut.useMutation({
     onSuccess: () => {
+      googleLogout();
       router.push('/')
       router.refresh();
       setModalToggle("logout");
