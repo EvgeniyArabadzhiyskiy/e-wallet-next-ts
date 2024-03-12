@@ -32,16 +32,6 @@ body {
   scroll-behavior: smooth;
 }
 
-.canvas {
-  /* width: 400px;
-  height: 200px; */
-  /* margin-left: 30px;
-  border: 5px solid black; */
-
-  background: rgb(157, 83, 69);
-  
-}
-
 h1,
 h2,
 h3,
@@ -73,7 +63,6 @@ a {
 }
 
 button {
-  /* background-color: transparent; */
   outline: none;
   border: none;
   padding: 0;
@@ -81,7 +70,7 @@ button {
   cursor: pointer;
 }
 
-img{
+img {
   display: block;
   width: 100%;
   height: auto;
@@ -113,11 +102,3 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-/* input[type=number]::-webkit-inner-spin-button {    ????????????
-  -webkit-appearance: textfield;   ИЛИ  none
-} */
-
-/* input[type="number"] {
-  -moz-appearance: textfield;
-} */
