@@ -7,6 +7,7 @@ export const getTypeOperation = (value: boolean) => {
       return "expense";
 
     default:
-      console.log("No such operation");
+      console.log("Invalid value for getTypeOperation");
+      throw new Error("Invalid value for getTypeOperation");
   }
 };
