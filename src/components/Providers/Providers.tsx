@@ -8,10 +8,6 @@ import { trpc } from "@/src/trpc/client";
 import { httpBatchLink } from "@trpc/client";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { SessionProvider } from "next-auth/react";
-
-const clientId =
-  "259286260568-kl6201hqpnakfuu3e8uk4riuojbodkkb.apps.googleusercontent.com";
 
 interface IProps {
   children?: React.ReactNode;
@@ -48,8 +44,7 @@ function Providers({ children }: IProps) {
 
   return (
     <>
-      <GoogleOAuthProvider clientId={clientId}>
-        {/* <SessionProvider> */}
+      <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}>
         <ThemeProvider theme={walletTheme}>
           <trpc.Provider client={trpcClient} queryClient={queryClient}>
             <QueryClientProvider client={queryClient}>
@@ -57,7 +52,6 @@ function Providers({ children }: IProps) {
             </QueryClientProvider>
           </trpc.Provider>
         </ThemeProvider>
-        {/* </SessionProvider> */}
       </GoogleOAuthProvider>
     </>
   );
