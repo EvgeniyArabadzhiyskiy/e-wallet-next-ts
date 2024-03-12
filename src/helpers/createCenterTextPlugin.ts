@@ -2,7 +2,7 @@ import { Plugin } from "chart.js";
 
 export const createCenterTextPlugin = (totalBalance: number) => {
   const plugin: Plugin<"doughnut"> = {
-    id: "center- text",
+    id: "center-text",
     beforeDraw: (chart) => {
       const { ctx, width, height } = chart;
       ctx.restore();
