@@ -23,6 +23,12 @@ async function RootLayout({ children }: IProps) {
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
+        
+        <link rel="preconnect" href="https://www.googleapis.com" />
+        <link rel="preconnect" href="https://oauth2.googleapis.com" />
+
+        <link rel="dns-prefetch" href="https://www.googleapis.com" />
+        <link rel="dns-prefetch" href="https://oauth2.googleapis.com" />
         <Fonts />
       </head>
       <body>
