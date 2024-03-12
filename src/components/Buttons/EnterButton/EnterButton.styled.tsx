@@ -45,3 +45,10 @@ export const StyledEnterBtn = styled.button<IBtnProps>`
     background-color: #064e3b;
   }
 `;
+
+export const FlexWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+`;
