@@ -67,6 +67,7 @@
     "@types/styled-components": "^5.1.26",
     "@types/styled-system": "^5.1.16",
     "gapi-script": "^1.2.0",
+    "google-auth-library": "^9.6.3",
     "next-themes": "^0.2.1",
     "prisma": "^5.10.2",
     "sass": "^1.62.1",
