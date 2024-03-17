@@ -18,12 +18,12 @@ interface IProps {
   children: React.ReactNode;
 }
 
-async function RootLayout({ children }: IProps) {
+function RootLayout({ children }: IProps) {
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
-        
+
         <link rel="preconnect" href="https://www.googleapis.com" />
         <link rel="preconnect" href="https://oauth2.googleapis.com" />
 
