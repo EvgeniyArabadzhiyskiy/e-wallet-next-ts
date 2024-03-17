@@ -12,7 +12,7 @@ export const CommonStyle = css`
   align-items: center;
 `;
 
-export const StyledItem = styled.li<{ $borders: string }>`
+export const StyledItem = styled.li<{ $borders?: string }>`
   position: relative;
   overflow: hidden;
 
