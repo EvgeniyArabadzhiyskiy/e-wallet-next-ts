@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-export const Menu = styled.div<{ $isDelete: boolean; isOpenMenu: boolean }>`
+export const Menu = styled.div<{ $isDelete: boolean; $isOpenMenu: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
