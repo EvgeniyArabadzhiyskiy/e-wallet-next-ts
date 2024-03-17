@@ -31,7 +31,8 @@ function TransactionLoader() {
                 <div
                   style={{ animationDelay: `${i * 0.05}s` }}
                   className={stl.loading}
-                ></div>
+                >
+                </div>
               </StyledItem>
             );
           })}
