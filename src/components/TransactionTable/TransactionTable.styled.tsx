@@ -2,7 +2,7 @@
 
 import styled, { css } from "styled-components";
 
-export const Table = styled.div`
+export const Table = styled.main`
   margin-top: 46px;
 
   @media ${(p) => p.theme.media.large} {
@@ -13,8 +13,6 @@ export const Table = styled.div`
 export const TableBody = styled.ul`
   margin: auto;
   max-width: 280px;
-  /* max-height: 1300px; */ // Чтобы на Mobile версии был скролл не только по списку а в любом месте экрана
-  /* overflow-y: scroll; */
 
   font-size: ${(p) => p.theme.fontSizes.s};
   line-height: 1.5;
@@ -46,7 +44,7 @@ export const TableHeader = styled.div`
     padding: 15px 20px;
     border-radius: 10px;
     border: 2px solid #10b981;
-    
+
     font-weight: ${(p) => p.theme.fontWeights.bold};
   }
 `;
