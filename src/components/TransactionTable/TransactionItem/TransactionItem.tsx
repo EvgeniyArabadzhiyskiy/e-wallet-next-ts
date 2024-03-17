@@ -1,7 +1,6 @@
 import moment from "moment";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { useRemoveTransaction } from "@/src/apiWallet";
-import { useGlobalState } from "../../GlobalProvider/GlobalProvider";
 import { Category } from "../TransactionTable.styled";
 import {
   CategoryName,
@@ -14,6 +13,7 @@ import { getSymbolType } from "@/src/helpers/getSymbolType";
 import TransactionMenu from "../../TransactionMenu";
 import SettingsSvg from "../../SvgComponent/SettingsSvg";
 import { InfiniteData, useQueryClient } from "@tanstack/react-query";
+import { useModalWindow } from "@/src/hooks/useModalWindow";
 
 interface IProps {
   balance: number;
@@ -22,7 +22,6 @@ interface IProps {
   setEditId: Dispatch<SetStateAction<string>>;
   setIsDisabled: Dispatch<SetStateAction<boolean>>;
   isDisabled: boolean;
-  // lastPageNumber: number;
 }
 
 function TransactionItem({
@@ -32,13 +31,12 @@ function TransactionItem({
   setEditId,
   setIsDisabled,
   isDisabled,
-  // lastPageNumber,
 }: IProps) {
   const { id, date, typeOperation, category, comment, amount } = transaction;
   const operationDate = moment(new Date(date)).format("DD.MM.YYYY");
 
   const timeoutId = useRef<NodeJS.Timeout>();
-  const { setModalToggle } = useGlobalState();
+  const setModalToggle = useModalWindow((state) => state.setModalToggle);
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isDelete, setIsDelete] = useState(true);
@@ -53,12 +51,12 @@ function TransactionItem({
 
   const { mutate: removeTransaction, error, isError } = useRemoveTransaction(lastPageNumber);
 
-  const onDelete = (id: string) => {
+  const onDelete = (transactionID: string) => {
     setIsDisabled(true);
     setIsDelete(false);
 
     timeoutId.current = setTimeout(() => {
-      removeTransaction({ id, lastPageNumber });
+      removeTransaction({ transactionID, lastPageNumber });
       setIsDisabled(false);
     }, 2500);
   };
