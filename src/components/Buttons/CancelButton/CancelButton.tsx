@@ -2,17 +2,10 @@
 
 import { StyledCancelBtn } from "./CancelButton.styled";
 
-interface IProps {
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-  cancelText: string;
-}
+interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-function CancelButton({ cancelText, onClick, ...allProps }: IProps) {
-  return (
-    <StyledCancelBtn type="button" onClick={onClick} {...allProps}>
-      {cancelText}
-    </StyledCancelBtn>
-  );
+function CancelButton({ ...allProps }: IProps) {
+  return <StyledCancelBtn type="button" {...allProps} />;
 }
 
 export default CancelButton;
