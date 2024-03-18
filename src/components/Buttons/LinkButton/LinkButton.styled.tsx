@@ -10,10 +10,6 @@ export const StyledLink = styled(Link)<{ $maxWidth: string }>`
   width: 100%;
   max-width: ${(p) => p.$maxWidth};
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   color: #a1a1aa;
   background-color: #022c22;
   border-radius: 10px;
