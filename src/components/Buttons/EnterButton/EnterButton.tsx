@@ -1,29 +1,12 @@
-import { FlexWrapper, StyledEnterBtn } from "./EnterButton.styled";
+import { StyledEnterBtn } from "./EnterButton.styled";
 
-interface IProps {
-  type?: "button" | "submit" | "reset" | undefined;
-  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  enterText: string;
-  disabled?: boolean | undefined;
-  children?: React.ReactNode;
-
+interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   height: number;
   maxWidth: string;
 }
 
-function EnterButton ({ height, maxWidth, type = "submit", onClick, enterText, disabled, children, ...allProps}: IProps)  {
-  return (
-    <StyledEnterBtn  
-      type={type} 
-      height={height} 
-      $maxWidth={maxWidth} 
-      onClick={onClick} 
-      disabled={disabled} 
-      {...allProps}
-    >
-      <FlexWrapper>{children} {enterText}</FlexWrapper>
-    </StyledEnterBtn>
-  );
-};
+function EnterButton({ height, maxWidth, ...allProps }: IProps) {
+  return <StyledEnterBtn height={height} $maxWidth={maxWidth} {...allProps} />;
+}
 
 export default EnterButton;
