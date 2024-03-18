@@ -30,11 +30,14 @@ function AuthError({ href, text, errorMessage, resetError }: IProps) {
 
       <ButtonWrapper>
         <EnterButton
+          type="button"
           height={50}
           maxWidth="180px"
-          enterText="Try again"
           onClick={resetError}
-        />
+        >
+          Try again
+        </EnterButton>
+
         <LinkButton href={href} text={text} maxWidth="180px" />
       </ButtonWrapper>
     </>
