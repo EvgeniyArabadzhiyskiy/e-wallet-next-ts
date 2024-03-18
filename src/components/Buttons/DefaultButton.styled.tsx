@@ -3,7 +3,10 @@
 import styled, { css } from "styled-components";
 
 export const baseBtnStyle = css`
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
   font-size: ${(p) => p.theme.fontSizes.m};
   font-family: ${(p) => p.theme.fonts.body};
