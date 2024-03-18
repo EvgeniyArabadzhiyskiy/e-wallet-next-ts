@@ -24,6 +24,8 @@ export const colors = {
   secondaryBg: "var(--secondary-bg-lgt)",
   loginPageBg: "var(--loginPage-bg-lgt)",
   secondaryText: "var(--secondary-text-lgt)",
+  primaryErrorText: "var(--primary-error-text)",
+  secondaryErrorText: "var(--secondary-error-text)",
   secondaryDarkText: "var(--secondary-dark-text-lgt)",
   secondaryLightText: "var(--secondary-light-text-lgt)",
   gradient: "linear-gradient(rgba(47, 48, 58, 0),rgba(47, 48, 58, 0))",
