@@ -27,6 +27,8 @@
   --secondary-text-lgt: #787272;
   --secondary-dark-text-lgt: #a6a6a6;
   --secondary-light-text-lgt: #e0e0e0;
+  --primary-error-text: #aaa1a7;
+  --secondary-error-text: #10b981;
 
   /* Fonts Sizes */
   --font-xs: 12px;
