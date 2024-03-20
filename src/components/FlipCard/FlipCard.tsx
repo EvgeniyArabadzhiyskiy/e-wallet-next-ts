@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { Card, CardBack, CardFront, InnerCard } from "./FlipCard.styled";
-import TransactionForm from "../TransactionForm";
+
+import CreateTransactionForm from "../CreateTransactionForm";
+import EditTransactionForm from "../EditTransactionForm";
 
 interface IProps {
   modalKey: string;
@@ -12,11 +14,14 @@ interface IProps {
 function FlipCard({ modalKey, editId }: IProps) {
   const [isIncome, setIsIncome] = useState<boolean>(false);
 
+  const FormComponent =
+    modalKey === "ADD" ? CreateTransactionForm : EditTransactionForm;
+
   return (
     <Card>
       <InnerCard $isFlipped={isIncome}>
         <CardFront>
-          <TransactionForm
+          <FormComponent
             setIsIncome={setIsIncome}
             isIncome={isIncome}
             modalKey={modalKey}
@@ -25,7 +30,7 @@ function FlipCard({ modalKey, editId }: IProps) {
         </CardFront>
 
         <CardBack>
-          <TransactionForm
+          <FormComponent
             setIsIncome={setIsIncome}
             isIncome={isIncome}
             modalKey={modalKey}
