@@ -28,11 +28,13 @@ function ErrorPage({ error, resetError }: IProps) {
 
       <ButtonWrapper>
         <EnterButton
+          type="button"
           height={50}
           maxWidth="180px"
-          enterText="Try again"
           onClick={resetError}
-        />
+        >
+          Try again
+        </EnterButton>
 
         <LinkButton href="/" text="Go back home" maxWidth="180px" />
       </ButtonWrapper>
