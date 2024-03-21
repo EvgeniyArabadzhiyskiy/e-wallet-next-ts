@@ -4,7 +4,7 @@ import { ValidationSchema } from "@/src/helpers/formValidation";
 interface IProps<T> {
   initialValues: T;
   validationSchema: ValidationSchema;
-  onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => Promise<void>;
+  onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void;
   render: (formik: FormikProps<T>) => JSX.Element;
 }
 
