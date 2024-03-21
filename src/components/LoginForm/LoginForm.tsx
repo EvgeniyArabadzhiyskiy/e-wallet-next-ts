@@ -29,7 +29,7 @@ export default function LoginForm () {
     }
   });
 
-  const handleSubmit = async (values: TLoginValues) => {
+  const handleSubmit = (values: TLoginValues) => {
     signIn({
       email: values.email,
       password: values.password,
@@ -53,7 +53,7 @@ export default function LoginForm () {
             onSubmit={handleSubmit}
             initialValues={initialValues}
             validationSchema={loginValidator}
-            render={(formik) => <LoginFormFields formik={formik} loading={isLoading} />}
+            render={(formik) => <LoginFormFields formik={formik} isLoading={isLoading} />}
           />
       }
 
