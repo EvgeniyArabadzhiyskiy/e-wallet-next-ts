@@ -17,10 +17,10 @@ import GoogleIconSvg from "../SvgComponent/GoogleIconSvg";
 
 interface IProps {
   formik: FormikProps<TLoginValues>;
-  loading: boolean;
+  isLoading: boolean;
 }
 
-export default function LoginFormFields({ formik, loading }: IProps) {
+export default function LoginFormFields({ formik, isLoading }: IProps) {
   const { isValid, dirty, isSubmitting } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
 
@@ -65,19 +65,21 @@ export default function LoginFormFields({ formik, loading }: IProps) {
           type="submit"
           height={50}
           maxWidth="300px"
-          enterText={loading ? "LOADING..." : "LOG IN"}
           disabled={isDisabled}
-        />
+        >
+          {isLoading ? "LOADING..." : "LOG IN"}
+        </EnterButton>
+
         <LinkButton href="/register" text="REGISTER" maxWidth="300px" />
 
         <EnterButton
           type="button"
           height={50}
           maxWidth="300px"
-          enterText="Sign in with Google"
           onClick={() => googleLogin()}
         >
-          <GoogleIconSvg width={25} height={25}  />
+          <GoogleIconSvg width={25} height={25} /> 
+          <span>Sign in with Google</span>
         </EnterButton>
       </ButtonWrapper>
     </>
