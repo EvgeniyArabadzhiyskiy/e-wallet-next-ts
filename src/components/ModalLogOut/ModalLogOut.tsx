@@ -35,12 +35,15 @@ const ModalLogout = () => {
         </Box>
         <ButtonWrapper>
           <EnterButton
+            type="button"
             height={50}
             maxWidth="300px"
-            enterText="EXIT"
             onClick={() => signOut()}
-          />
-          <CancelButton cancelText="CANCEL" onClick={onCancelClick} />
+          >
+            EXIT
+          </EnterButton>
+
+          <CancelButton onClick={onCancelClick}>CANCEL</CancelButton>
         </ButtonWrapper>
       </Modal>
     </Border>
