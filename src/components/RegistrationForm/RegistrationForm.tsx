@@ -32,7 +32,7 @@ export default function RegistrationForm() {
     }
   });
 
-  const handleSubmit = async (
+  const handleSubmit = (
     { email, password, firstName, confirmPassword }: TRegistrationValues) => {
     signUp({ email, password, firstName, confirmPassword })
 
