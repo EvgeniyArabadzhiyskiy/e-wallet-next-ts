@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useBalanceList } from "@/src/hooks/useBalanceList";
-import { useLazyTransactions, useRemoveTransaction, useStatistic } from "@/src/apiWallet";
+import { useLazyTransactions } from "@/src/apiWallet";
 
 import FlipCard from "../FlipCard";
 import ModalBox from "../ModalWindow";
@@ -11,10 +11,6 @@ import ScrollToTop from "../ScrollToTop";
 import TransactionItem from "./TransactionItem";
 import ButtonAddTransactions from "../Buttons/ButtonAddTransactions";
 import { Category, Table, TableBody, TableHeader } from "./TransactionTable.styled";
-import { InfiniteData, QueryClient, useQueryClient } from "@tanstack/react-query";
-import { ITransactions } from "@/src/types/transactions";
-import { trpc } from "@/src/trpc/client";
-import getQueryClient from "@/src/lib/getQueryClient";
 
 function TransactionTable() {
   const { data: allTransactions = [], listElem, observerElem, isError, error } = useLazyTransactions();
@@ -24,21 +20,6 @@ function TransactionTable() {
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD");
 
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
-  // const [isDis, setIsDis] = useState<boolean>(false);
-
-  const queryClient = useQueryClient();
-  // const cache = queryClient.getQueryCache()
-  // console.log("TransactionTable  cache:", cache.queries);
-
-//   useEffect(() => {
-//     (async () => {
-//       const res = await fetch(`http://localhost:3000/api/current-user`);
-
-//       const data = await res.json();
-// console.log("Data================", data);
-//     })()
-//   })
-
 
   if (isError) {
     throw new Error(error.message)
@@ -82,17 +63,6 @@ function TransactionTable() {
           </TableBody>
         )}
       </Table>
-      {/* <button onClick={() => {
-        // queryClient.removeQueries({ queryKey: ["Statistic"] });
-        // queryClient.removeQueries({ queryKey: [['statisticRouter', 'getStatistic'] ] });
-        // queryClient.removeQueries({ queryKey: [['transactionRouter', 'getBalance'] ] });
-
-        // queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance']] });
-        // queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic']] });
-        // setIsDis(p => !p)
-        // console.log("REMOVE BUTTON", cache.queries);
-      }}>Delete Cache</button> */}
-
       <ButtonAddTransactions setModalKey={setModalKey} />
 
       <ModalBox modalName="transaction">
