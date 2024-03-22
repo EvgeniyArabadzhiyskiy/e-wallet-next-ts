@@ -5,6 +5,7 @@ import { Hydrate, dehydrate } from "@tanstack/react-query";
 import { getAllTransactions } from "../../apiWallet/transaction";
 
 import { getUserID } from "@/src/helpers/getUserID";
+import { prismaControllerWrapper } from "@/src/helpers/prismaControllerWrapper";
 
 async function TransactionWrapper() {
  
@@ -14,12 +15,12 @@ async function TransactionWrapper() {
 
   const balanceQuery = queryClient.prefetchQuery({
     queryKey: [['transactionRouter', 'getBalance'], { type: "query" }], 
-    queryFn: () =>  getBalance(userID),
+    queryFn: () => prismaControllerWrapper(() => getBalance(userID)),
   });
 
   const transactionsQuery = queryClient.prefetchInfiniteQuery({
     queryKey: [['transactionRouter', 'getAllTransactions'], { input: { limit: 10 }, type: "infinite" }],
-    queryFn: () => getAllTransactions(userID),
+    queryFn: () => prismaControllerWrapper(() => getAllTransactions(userID)),
   });
 
   await Promise.allSettled([balanceQuery, transactionsQuery]);
