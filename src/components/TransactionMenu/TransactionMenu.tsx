@@ -22,26 +22,33 @@ function TransactionMenu ({ isDisabled, isOpenMenu, isDelete, setIsOpenMenu, onE
      </WrapperBtn>
       
       <EnterButton 
+        type="button"
         maxWidth="120px"
-        height={40} 
-        enterText="EDIT" 
+        height={40}
         onClick={onEdit} 
-      />
+      >
+        EDIT
+      </EnterButton>
 
       {isDelete 
       ? <EnterButton 
+          type="button"
           maxWidth="120px"
-          height={40} 
-          enterText="DELETE" 
+          height={40}
           onClick={onDelete} 
           disabled={isDisabled}
-        />
+        >
+          DELETE
+        </EnterButton>
+
       : <EnterButton 
+          type="button"
           maxWidth="120px"
-          height={40} 
-          enterText="CANCEL" 
+          height={40}  
           onClick={onClearId} 
-        />
+        >
+          CANCEL
+        </EnterButton>
       }
     </Menu>
   );
