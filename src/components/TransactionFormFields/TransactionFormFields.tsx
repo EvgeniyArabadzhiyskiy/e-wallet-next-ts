@@ -28,9 +28,10 @@ interface IProps {
   setIsIncome: Dispatch<SetStateAction<boolean>>;
   formik: FormikProps<TTransactionValues>;
   modalKey: string;
+  isLoading: boolean;
 }
 
-export default function TransactionFormFields({ formik, isIncome, setIsIncome, modalKey }: IProps) {
+export default function TransactionFormFields({ formik, isIncome, setIsIncome, modalKey, isLoading }: IProps) {
   
   const { setFieldValue, isValid, dirty, isSubmitting, values } = formik;
   const isDisabled = !(isValid && dirty) || isSubmitting;
@@ -45,9 +46,10 @@ export default function TransactionFormFields({ formik, isIncome, setIsIncome, m
   
   const onCancelClick = () => {
     setModalToggle("transaction")
-  }
+  };
 
   const currentDate = moment().format("DD.MM.YYYY");
+
   return (
     <>
       <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
@@ -101,15 +103,16 @@ export default function TransactionFormFields({ formik, isIncome, setIsIncome, m
       </Box>
 
       <ButtonWrapper>
-        <EnterButton 
-          type="submit" 
-          height={50} 
-          maxWidth="300px" 
-          enterText={ modalKey === "ADD" ? "ADD" : "EDIT"} 
-          disabled={isDisabled} 
-        />
+        <EnterButton
+          type="submit"
+          height={50}
+          maxWidth="300px"
+          disabled={isDisabled}
+        >
+          {isLoading ? "LOADING..." : modalKey}
+        </EnterButton>
        
-        <CancelButton cancelText="CANCEL" onClick={onCancelClick} /> 
+        <CancelButton onClick={onCancelClick}>CANCEL</CancelButton>
       </ButtonWrapper>           
     </>
   );
