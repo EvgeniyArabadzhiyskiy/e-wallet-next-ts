@@ -74,21 +74,22 @@ export default function RegisterFormFields  ({ formik, loading }: IProps) {
 
       <Box mb={5} >
         <FormInput 
-            icon={ <UserSvg width={25} height={24} />}
-            type="text"
-            name="firstName" 
-            placeholder="First name"
-            autoComplete="off"
+          icon={ <UserSvg width={25} height={24} />}
+          type="text"
+          name="firstName" 
+          placeholder="First name"
+          autoComplete="off"
         />
-        </Box>
+      </Box>
       <ButtonWrapper>
         <EnterButton 
           type="submit" 
           height={50} 
-          maxWidth="300px" 
-          enterText={loading ? "LOADING..." : "REGISTER"}
+          maxWidth="300px"
           disabled={isDisabled} 
-        />
+        >
+          {loading ? "LOADING..." : "REGISTER"}
+        </EnterButton>
      
         <LinkButton href='/login' text='LOGIN' maxWidth="300px" />
 
@@ -96,10 +97,10 @@ export default function RegisterFormFields  ({ formik, loading }: IProps) {
           type="button"
           height={50}
           maxWidth="300px"
-          enterText="Sign in with Google"
           onClick={() => googleLogin()}
         >
-          <GoogleIconSvg width={25} height={25}  />
+          <GoogleIconSvg width={25} height={25} /> 
+          <span>Sign in with Google</span>
         </EnterButton>
         
       </ButtonWrapper>
