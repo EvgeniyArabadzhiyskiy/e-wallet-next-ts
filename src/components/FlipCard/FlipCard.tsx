@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import { Card, CardBack, CardFront, InnerCard } from "./FlipCard.styled";
-
-import CreateTransactionForm from "../CreateTransactionForm";
-import EditTransactionForm from "../EditTransactionForm";
+import EditTransactionForm from "../TransactionForm/EditTransactionForm";
+import CreateTransactionForm from "../TransactionForm/CreateTransactionForm";
 
 interface IProps {
   modalKey: string;
