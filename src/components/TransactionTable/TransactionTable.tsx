@@ -1,16 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useBalanceList } from "@/src/hooks/useBalanceList";
 import { useLazyTransactions } from "@/src/apiWallet";
 
-import FlipCard from "../FlipCard";
-import ModalBox from "../ModalWindow";
+// import FlipCard from "../FlipCard";
+// import ModalBox from "../ModalWindow";
 import SettingsSvg from "../SvgComponent/SettingsSvg";
 import ScrollToTop from "../ScrollToTop";
 import TransactionItem from "./TransactionItem";
 import ButtonAddTransactions from "../Buttons/ButtonAddTransactions";
 import { Category, Table, TableBody, TableHeader } from "./TransactionTable.styled";
+import dynamic from "next/dynamic";
+
+const ModalBox = dynamic(() => import("../ModalWindow"), {
+  ssr: false,
+});
+
+const FlipCard = dynamic(() => import("../FlipCard"), {
+  ssr: false,
+});
 
 function TransactionTable() {
   const { data: allTransactions = [], listElem, observerElem, isError, error } = useLazyTransactions();
