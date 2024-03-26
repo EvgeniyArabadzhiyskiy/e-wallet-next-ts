@@ -29,10 +29,10 @@ export default function LoginFormFields({ formik, isLoading }: IProps) {
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
     ux_mode: "redirect",
-    redirect_uri: "http://localhost:3000/api/google-redirect",
+    redirect_uri: `${process.env.NEXT_PUBLIC_URL}/api/google-redirect`,
     
   });
-
+  
   return (
     <>
       <Box mb={5}>
