@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const authPage = ["/login", "/register"];
-const protectedPage = [
-  "/home",
-  "/home/statistic",
-  "/home/transactions",
-  "/cart",
-];
+const protectedPage = ["/home", "/home/statistic", "/home/transactions"];
 
 export async function middleware(req: NextRequest) {
   const { cookies, nextUrl } = req;
