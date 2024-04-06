@@ -32,10 +32,11 @@ function RootLayout({ children }: IProps) {
         <Fonts />
       </head>
       <body>
-        <div id="modal-root"></div>
-        <Providers>
+        {/* <div id="modal-root"></div> */}
+        {/* <Providers>
           <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-        </Providers>
+        </Providers> */}
+        { children }
       </body>
     </html>
   );
