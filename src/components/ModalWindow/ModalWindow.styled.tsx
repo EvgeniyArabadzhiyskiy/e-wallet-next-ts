@@ -1,8 +1,9 @@
 "use client";
 
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Overlay = styled.div`
+export const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
@@ -15,8 +16,8 @@ export const Overlay = styled.div`
   z-index: 10;
 `;
 
-export const Modal = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+// export const Modal = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
