@@ -2,6 +2,7 @@
 
 import ModalWindow from "./ModalWindow";
 import { useModalWindow } from "@/src/hooks/useModalWindow";
+import { AnimatePresence } from "framer-motion";
 
 interface IProps {
   children: React.ReactNode;
@@ -15,13 +16,13 @@ function ModalBox({ children, modalName }: IProps) {
   const isOpen = !!isModalOpen[modalName];
 
   return (
-    <>
+    <AnimatePresence>
       {isOpen && (
         <ModalWindow modalName={modalName} setModalToggle={setModalToggle}>
           {children}
         </ModalWindow>
       )}
-    </>
+    </AnimatePresence>
   );
 }
 
