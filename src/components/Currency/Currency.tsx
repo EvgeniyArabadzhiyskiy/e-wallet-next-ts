@@ -1,17 +1,15 @@
 "use client";
 
 import {
-  PrivatTableList,
+  BankTableList,
   CurrencyBox,
   TextTitle,
   CurrencyVektor,
   CurrencyList,
 } from "./Currency.styled";
 import axios from "axios";
-// import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import CurrencyListItem from "./CurrencyListItem";
-
 
 const getApiMono = async () => {
   const res = await axios.get("https://api.monobank.ua/bank/currency");
@@ -32,50 +30,52 @@ const getApiMono = async () => {
   localStorage.setItem("date", JSON.stringify(currentDate));
 
   return currency;
-
 };
 
 const Currency = () => {
-  const [arrow, setArrow] = useState(null);
+  const [currencies, setCurrencies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedApiDate = localStorage.getItem('date');
+    const savedApiDate = localStorage.getItem("date");
     const savedApiMono = localStorage.getItem("getMono");
 
     (async () => {
       if (savedApiMono && savedApiDate) {
         const parsedApiMono = JSON.parse(savedApiMono);
-        const parsedApiDate: number = JSON.parse(savedApiDate) ;
+        const parsedApiDate: number = JSON.parse(savedApiDate);
 
         const currentDate = Date.now();
 
-        const isUpdateApiMono = (currentDate - parsedApiDate) >= 3600000
+        const isUpdateApiMono = currentDate - parsedApiDate >= 3600000;
 
         if (isUpdateApiMono) {
-          getApiMono()
+          getApiMono();
         }
 
-        setArrow(parsedApiMono);
-        return
+        setCurrencies(parsedApiMono);
+        return;
       }
-      
+
       const data = await getApiMono();
-      setArrow(data);
-      
+      setCurrencies(data);
     })();
   }, []);
 
   return (
     <CurrencyBox>
-      <PrivatTableList>
+      <BankTableList>
         <TextTitle>Currency</TextTitle>
         <TextTitle>Purchase</TextTitle>
         <TextTitle>Sale</TextTitle>
-      </PrivatTableList>
+      </BankTableList>
 
       <CurrencyList>
-        {true ? <CurrencyListItem arrow={arrow} /> : <h1>Load Spiner...</h1>}
+        {currencies.length !== 0 ? (
+          <CurrencyListItem currencies={currencies} />
+        ) : (
+          <h1>Loading...</h1>
+        )}
       </CurrencyList>
 
       <CurrencyVektor />
