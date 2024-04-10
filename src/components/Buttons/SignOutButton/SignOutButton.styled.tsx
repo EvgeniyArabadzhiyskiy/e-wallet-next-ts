@@ -1,12 +1,14 @@
 "use client";
 
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-const baseButtonAuth = css`
-  display: flex;
+export const ButtonExit = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
   background-color: transparent;
-  cursor: pointer;
-
   color: ${(p) => p.theme.palette.text.secondaryText};
   font-family: inherit;
   font-size: ${(p) => p.theme.fontSizes.m};
@@ -14,25 +16,22 @@ const baseButtonAuth = css`
   padding-right: 0;
   padding: 8px;
   margin-left: 20px;
-  border-left: 1px solid #bdbdbd;
+  border-left: 1px solid ${(p) => p.theme.palette.text.secondaryText};
   transition: color 300ms linear;
 
+  cursor: pointer;
+
   &:hover {
-    color: #10b981;
+    color: ${(p) => p.theme.colors.hoverBgBtn};
   }
   &:focus {
-    color: #10b981;
-    outline: 1px solid #10b981;
+    color: ${(p) => p.theme.colors.hoverBgBtn};
+    outline: 1px solid ${(p) => p.theme.colors.hoverBgBtn};
   }
-`;
-
-export const ButtonExit = styled.button`
-  ${baseButtonAuth}
 `;
 
 export const Text = styled.span`
   @media ${(p) => p.theme.media.small} {
     display: none;
   }
-  margin-left: 8px;
 `;
