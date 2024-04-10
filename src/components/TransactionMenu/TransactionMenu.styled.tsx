@@ -16,7 +16,7 @@ export const Menu = styled.div<{ $isDelete: boolean; $isOpenMenu: boolean }>`
 
   transform: translateX(100%);
   transition: transform 300ms linear;
-  transform: ${(p) => (p.$isOpenMenu ? "translateX(0%)" : "")};
+  transform: ${(p) => (p.$isOpenMenu && "translateX(0%)")};
 
   &::before {
     content: "";
@@ -25,13 +25,13 @@ export const Menu = styled.div<{ $isDelete: boolean; $isOpenMenu: boolean }>`
     left: 0;
     width: 100%;
     height: 5px;
-    background-color: #5009d2fc;
+    background-color: ${p => p.theme.colors.secondaryBtn};
 
     transform: translateX(0%);
 
-    transition: ${(p) => (!p.$isDelete ? "transform 3000ms linear" : "")};
+    transition: ${(p) => (!p.$isDelete && "transform 2500ms linear")};
 
-    transform: ${(p) => (p.$isDelete ? "translateX(100%)" : "")};
+    transform: ${(p) => (p.$isDelete && "translateX(100%)")};
   }
 `;
 
