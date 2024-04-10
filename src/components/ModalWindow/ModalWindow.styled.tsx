@@ -15,9 +15,3 @@ export const Overlay = styled(motion.div)`
   background-color: #2a2c2d67;
   z-index: 10;
 `;
-
-// export const Modal = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
