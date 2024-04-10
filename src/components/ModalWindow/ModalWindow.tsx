@@ -50,11 +50,11 @@ function ModalWindow({ children, modalName, setModalToggle }: IProps) {
 
   useEffect(() => {
     window.addEventListener("keydown", onEscPress);
-    // document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("keydown", onEscPress);
-      // document.body.style.overflow = "visible";
+      document.body.style.overflow = "visible";
     };
   });
 
