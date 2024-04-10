@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Header from "@/src/components/Header";
 import DashBoardLayout from "@/src/components/DashBoardLayout";
+import AnimateHeader from "@/src/components/AnimateHeader/AnimateHeader";
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
 export default function HomeLayout({children}: {children: React.ReactNode}) {
   return (
     <>
-      <Header />
+      {/* <AnimateHeader> */}
+        <Header />
+      {/* </AnimateHeader> */}
+
       <DashBoardLayout>{children}</DashBoardLayout>
     </>
   );
