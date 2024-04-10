@@ -1,15 +1,18 @@
+"use client";
+
 import { Button } from "./CrossBtn.styled";
 import CrossSvg from "../../SvgComponent/CrossSvg";
 
-interface IProps {
+interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  width?: number;
+  height?: number;
 }
 
-function CrossBtn({ color, onClick, ...allProps }: IProps) {
+function CrossBtn({ color, width = 18, height = 18, ...allProps }: IProps) {
   return (
-    <Button type="button" onClick={onClick} {...allProps}>
-      <CrossSvg width={18} height={18} color={color} />
+    <Button type="button" {...allProps}>
+      <CrossSvg width={width} height={height} color={color} />
     </Button>
   );
 }
