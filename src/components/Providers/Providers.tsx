@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { walletTheme } from "@/src/styles/theme/theme";
 import { trpc } from "@/src/trpc/client";
 import { httpBatchLink } from "@trpc/client";
+import { Toaster } from "sonner";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
@@ -53,6 +54,7 @@ function Providers({ children }: IProps) {
           </trpc.Provider>
         </ThemeProvider>
       </GoogleOAuthProvider>
+      <Toaster position="top-center" richColors toastOptions={{style: {fontSize: "20px"}}} />
     </>
   );
 }
