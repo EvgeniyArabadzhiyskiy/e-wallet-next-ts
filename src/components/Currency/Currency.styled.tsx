@@ -28,7 +28,7 @@ export const CurrencyBox = styled.section`
   }
 `;
 
-export const PrivatTableList = styled.ul`
+export const BankTableList = styled.ul`
   display: flex;
   justify-content: space-evenly;
 
