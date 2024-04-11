@@ -23,7 +23,7 @@ export default async function Header() {
           <HeaderWrapper>
             <Logo />
             <UserBox>
-              <TextName>{user?.firstName}</TextName>
+              {user && <TextName>{user.firstName}</TextName>}
               <SignOutButton />
             </UserBox>
           </HeaderWrapper>
