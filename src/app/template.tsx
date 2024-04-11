@@ -10,8 +10,8 @@ const variants = {
 
 export default function RootTemplate({ children }: PropsWithChildren) {
   return (
-    <AnimatePresence>
-      <motion.div
+    <>
+      <div
         // variants={variants}
         // initial="hidden"
         // animate="enter"
@@ -19,15 +19,16 @@ export default function RootTemplate({ children }: PropsWithChildren) {
         // initial={{ translateX: "-100%" }}
         // animate={{ translateX: "0%" }}
 
-        initial={{ opacity: 0.5, x: -200, y: 0 }}
-        animate={{ opacity: 1, x: 0, y: 0 }}
-        exit={{ opacity: 0, x: -200, y: 0 }}
-        transition={{ duration: 0.3 }}
+        // initial={{ opacity: 0.5, x: -200, y: 0 }}
+        // animate={{ opacity: 1, x: 0, y: 0 }}
+        // exit={{ opacity: 0, x: -200, y: 0 }}
+        // transition={{ duration: 0.3 }}
+
         // transition={{  type: "spring", stiffness: 200  }}
         // transition={{duration: 0.1, type: "spring", stiffness: 200}}
       >
         {children}
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </>
   );
 }
