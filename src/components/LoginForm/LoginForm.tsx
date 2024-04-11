@@ -12,6 +12,7 @@ import Logo from "../Logo";
 import AuthError from "../Errors/AuthError";
 import FormContainer from "../FormContainer";
 import LoginFormFields from "../LoginFormFields";
+import { toast } from "sonner";
 
 
 export default function LoginForm () {
@@ -25,6 +26,7 @@ export default function LoginForm () {
   
   const { mutate: signIn, error, isError, isLoading, reset } = trpc.authRouter.signIn.useMutation({
     onSuccess: () => {
+      toast.success("Signed in successfully");
       router.push('/home/transactions');
     }
   });
