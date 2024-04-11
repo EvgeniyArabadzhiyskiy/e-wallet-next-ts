@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Overlay } from "./ModalWindow.styled";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 const pageAnimationType = {
   hidden: { opacity: 0 },
@@ -72,20 +72,20 @@ function ModalWindow({ children, modalName, setModalToggle }: IProps) {
       // }}
       // exit='hidden'
 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // exit={{ opacity: 0 }}
+      // transition={{ duration: 0.3 }}
       onClick={onBackdropClick}
     >
-      <motion.div
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.9 }}
-        transition={{ duration: 0.3 }}
+      <div
+        // initial={{ scale: 0.9 }}
+        // animate={{ scale: 1 }}
+        // exit={{ scale: 0.9 }}
+        // transition={{ duration: 0.3 }}
       >
         {children}
-      </motion.div>
+      </div>
     </Overlay>,
     modalRoot
   );
