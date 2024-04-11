@@ -74,9 +74,9 @@ function DateInput({ value, date, setDate }: IProps) {
       renderView={(mode, renderDefaultCalendar) =>
         renderView(mode, renderDefaultCalendar)
       }
-      inputProps={{ 
-        
-        placeholder: value, onKeyDown: (e) => e.preventDefault() 
+      inputProps={{
+        placeholder: value, 
+        onKeyDown: (e) => e.preventDefault(), 
       }}
       
     />
