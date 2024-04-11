@@ -1,6 +1,7 @@
 import { trpc } from "../trpc/client";
 import { ITransactions } from "@/src/types/transactions";
 import { InfiniteData, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 export const useRemoveTransaction = (lastPageNumber: number) => {
   const queryClient = useQueryClient();
@@ -63,6 +64,8 @@ export const useRemoveTransaction = (lastPageNumber: number) => {
 
       queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance']] });
       queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic']] });
+
+      toast.success("Transaction deleted");
     },
   });
 
