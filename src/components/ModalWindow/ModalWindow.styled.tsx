@@ -1,9 +1,9 @@
 "use client";
 
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Overlay = styled.div`
+export const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
