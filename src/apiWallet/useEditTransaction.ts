@@ -2,6 +2,7 @@ import { InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { ITransactions } from "../types/transactions";
 import { trpc } from "../trpc/client";
 import { useModalWindow } from "../hooks/useModalWindow";
+import { toast } from "sonner";
 
 export const useEditTransaction = () => {
   const queryClient = useQueryClient();
@@ -43,6 +44,8 @@ export const useEditTransaction = () => {
       queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic']] });
 
       setModalToggle("transaction");
+
+      toast.success("Transaction changed");
     },
   })
 
