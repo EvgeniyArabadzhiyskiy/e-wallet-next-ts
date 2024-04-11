@@ -12,6 +12,7 @@ import AuthError from "../Errors/AuthError";
 import FormContainer from "../FormContainer";
 import RegisterFormFields from "../RegisterFormFields";
 import { trpc } from "@/src/trpc/client";
+import { toast } from "sonner";
 
 
 export default function RegistrationForm() {
@@ -28,6 +29,7 @@ export default function RegistrationForm() {
 
   const { mutate: signUp, isLoading, error, isError, reset } = trpc.authRouter.signUp.useMutation({
     onSuccess: () => {
+      toast.success("Registration successfully");
       router.push('/login');
     }
   });
