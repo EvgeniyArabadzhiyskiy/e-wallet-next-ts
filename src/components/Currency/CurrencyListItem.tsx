@@ -1,16 +1,24 @@
 import { CurrencyItem, Text } from "./Currency.styled";
 
-interface IProps {
-    arrow: any;
+interface Curenccy {
+  currencyCodeA: number;
+  currencyCodeB: number;
+  data: number;
+  rateBuy: number;
+  rateSell: number;
 }
 
-function CurrencyListItem  ({ arrow }: IProps)  {
+interface IProps {
+  currencies: Curenccy[];
+}
+
+function CurrencyListItem({ currencies }: IProps) {
   return (
     <>
-      {arrow
-        ? arrow.map(({ currencyCodeA, rateBuy, rateSell }: any) => (
+      {currencies
+        ? currencies.map(({ currencyCodeA, rateBuy, rateSell }) => (
             <CurrencyItem key={currencyCodeA}>
-              <Text>{currencyCodeA === 840 ? 'USD' : 'EUR'}</Text>
+              <Text>{currencyCodeA === 840 ? "USD" : "EUR"}</Text>
               <Text>{Number(rateBuy).toFixed(2)}</Text>
               <Text>{Number(rateSell).toFixed(2)}</Text>
             </CurrencyItem>
@@ -18,6 +26,6 @@ function CurrencyListItem  ({ arrow }: IProps)  {
         : null}
     </>
   );
-};
+}
 
 export default CurrencyListItem;
