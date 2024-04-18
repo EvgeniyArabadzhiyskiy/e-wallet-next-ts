@@ -8,22 +8,31 @@ import CancelButton from "../Buttons/CancelButton";
 import { trpc } from "@/src/trpc/client";
 import { useRouter } from "next/navigation";
 import { useModalWindow } from "@/src/hooks/useModalWindow";
-import { googleLogout } from '@react-oauth/google';
+import { googleLogout } from "@react-oauth/google";
+import { LOGOUT_KEY } from "@/src/constants/modalKey";
+import { useAnimatedCloseModal } from "@/src/hooks/useAnimatedCloseModal";
+import { useTimeLine } from "@/src/hooks/useTimeLine";
 
 const ModalLogout = () => {
-  const router = useRouter();
+  const timeLine = useTimeLine((state) => state.timeline);
   const setModalToggle = useModalWindow((state) => state.setModalToggle);
-
+  const animatedCloseModal = useAnimatedCloseModal(LOGOUT_KEY);
+  
   const onCancelClick = () => {
-    setModalToggle("logout");
+    animatedCloseModal();
   };
+
+  const router = useRouter();
 
   const { mutate: signOut } = trpc.authRouter.signOut.useMutation({
     onSuccess: () => {
       googleLogout();
-      router.push('/')
-      router.refresh();
-      setModalToggle("logout");
+
+      timeLine?.reversed(timeLine !== undefined).then(() => {
+        setModalToggle(LOGOUT_KEY);
+        router.push("/");
+        router.refresh();
+      });
     },
   });
 
