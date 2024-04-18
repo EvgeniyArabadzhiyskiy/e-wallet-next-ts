@@ -1,52 +1,47 @@
 "use client";
 
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
+
 import { Overlay } from "./ModalWindow.styled";
-import { motion } from "framer-motion";
-
-const pageAnimationType = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
-};
-
-const pageAnimation = {
-  variants: pageAnimationType,
-  initial: "hidden",
-  animate: "show",
-  exit: "hidden",
-};
+import { useTimeLine } from "@/src/hooks/useTimeLine";
+import { useAnimatedCloseModal } from "@/src/hooks/useAnimatedCloseModal";
 
 interface IProps {
   modalName: string;
-  setModalToggle: (key: string) => void;
   children: React.ReactNode;
 }
 
-// const variants = {
-//   active: {
-//       backgroundColor: "#f00"
-//   },
-//   inactive: {
-//     backgroundColor: "#fff",
-//     transition: { duration: 2 }
-//   }
-// }
-
-function ModalWindow({ children, modalName, setModalToggle }: IProps) {
+function ModalWindow({ children, modalName }: IProps) {
   const modalRoot: HTMLDivElement = document.querySelector("#modal-root")!;
 
-  const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      setModalToggle(modalName);
-    }
-  };
+  const setTimeLine = useTimeLine((state) => state.setTimeLine);
 
-  const onEscPress = (e: KeyboardEvent) => {
-    if (e.code === "Escape") {
-      setModalToggle(modalName);
+  const animatedCloseModal = useAnimatedCloseModal(modalName);
+
+  const { contextSafe } = useGSAP(() => {
+    const tl = gsap.timeline();
+    setTimeLine(tl);
+
+    tl.set("#overlay-element", { opacity: 0 })
+      .set("#modal-element", { scale: 0.9 })
+      .to("#overlay-element", { opacity: 1, duration: 0.5 })
+      .to("#modal-element", { scale: 1, duration: 0.5 }, "<");
+  }, [setTimeLine]);
+
+  const onBackdropClick = contextSafe((e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      animatedCloseModal();
     }
-  };
+  });
+
+  const onEscPress = contextSafe((e: KeyboardEvent) => {
+    if (e.code === "Escape") {
+      animatedCloseModal();
+    }
+  });
 
   useEffect(() => {
     window.addEventListener("keydown", onEscPress);
@@ -54,38 +49,13 @@ function ModalWindow({ children, modalName, setModalToggle }: IProps) {
 
     return () => {
       window.removeEventListener("keydown", onEscPress);
-      document.body.style.overflow = "visible";
+      document.body.style.overflow = "unset";
     };
   });
 
   return createPortal(
-    <Overlay
-      // {...pageAnimation}
-      // transition={{ duration: 0.5 }}
-
-      // initial='hidden'
-      // animate="show"
-      // variants={{
-      //   hidden: { opacity: 0 },
-      //   show: {opacity: 1}
-      //   // inactive: {transition: {duration: 2}}
-      // }}
-      // exit='hidden'
-
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      onClick={onBackdropClick}
-    >
-      <motion.div
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.9 }}
-        transition={{ duration: 0.3 }}
-      >
-        {children}
-      </motion.div>
+    <Overlay id="overlay-element" onClick={onBackdropClick}>
+      <div id="modal-element">{children}</div>
     </Overlay>,
     modalRoot
   );
