@@ -8,10 +8,10 @@ import { useModalWindow } from "@/src/hooks/useModalWindow";
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 function SignOutButton({ ...allProps }: IProps) {
-  const setModalToggle = useModalWindow((state) => state.setModalToggle);
+  const setModalOpen = useModalWindow((state) => state.setModalToggle);
 
   return (
-    <ButtonExit type="button" onClick={() => setModalToggle("logout")} {...allProps}>
+    <ButtonExit type="button" onClick={() => setModalOpen("logout")} {...allProps}>
       <FontAwesomeIcon icon={faArrowRightFromBracket} />
       <Text>Exit</Text>
     </ButtonExit>
