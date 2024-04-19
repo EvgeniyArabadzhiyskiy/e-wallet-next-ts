@@ -2,7 +2,6 @@ import { ErrorText } from "../ErrorText.styled";
 import CancelButton from "../../Buttons/CancelButton";
 import { getErrorMessage } from "@/src/helpers/getErrorMessage";
 import { ButtonWrapper } from "./TransactionError.styled";
-import { useModalWindow } from "@/src/hooks/useModalWindow";
 
 interface IProps {
   error: string;
@@ -10,13 +9,10 @@ interface IProps {
 }
 
 function TransactionError({ error, resetError }: IProps) {
-  const setModalToggle = useModalWindow((state) => state.setModalToggle);
-
   const errorMessage = getErrorMessage(error);
 
   const handleCancelError = () => {
     resetError();
-    setModalToggle("transaction");
   }
   return (
     <>
