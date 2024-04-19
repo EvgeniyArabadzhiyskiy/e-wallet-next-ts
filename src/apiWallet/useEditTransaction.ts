@@ -1,12 +1,13 @@
 import { InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { ITransactions } from "../types/transactions";
 import { trpc } from "../trpc/client";
-import { useModalWindow } from "../hooks/useModalWindow";
 import { toast } from "sonner";
+import { TRANSACTION_KEY } from "../constants/modalKey";
+import { useAnimatedCloseModal } from "../hooks/useAnimatedCloseModal";
 
 export const useEditTransaction = () => {
   const queryClient = useQueryClient();
-  const setModalToggle = useModalWindow((state) => state.setModalToggle);
+  const animatedCloseModal = useAnimatedCloseModal(TRANSACTION_KEY);
 
   const mutation = trpc.transactionRouter.editTransaction.useMutation({
     onSuccess: (data) => {
@@ -43,7 +44,7 @@ export const useEditTransaction = () => {
       queryClient.invalidateQueries({ queryKey: [['transactionRouter', 'getBalance']] });
       queryClient.invalidateQueries({ queryKey: [['statisticRouter', 'getStatistic']] });
 
-      setModalToggle("transaction");
+      animatedCloseModal();
 
       toast.success("Transaction changed");
     },
