@@ -14,6 +14,7 @@ import TransactionMenu from "../../TransactionMenu";
 import SettingsSvg from "../../SvgComponent/SettingsSvg";
 import { InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useModalWindow } from "@/src/hooks/useModalWindow";
+import { TRANSACTION_KEY } from "@/src/constants/modalKey";
 
 interface IProps {
   balance: number;
@@ -36,7 +37,7 @@ function TransactionItem({
   const operationDate = moment(new Date(date)).format("DD.MM.YYYY");
 
   const timeoutId = useRef<NodeJS.Timeout>();
-  const setModalToggle = useModalWindow((state) => state.setModalToggle);
+  const setModalOpen = useModalWindow((state) => state.setModalToggle);
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isDelete, setIsDelete] = useState(true);
@@ -68,14 +69,14 @@ function TransactionItem({
   };
 
   const onEdit = (id: string) => {
-    setModalToggle("transaction")
-    setModalKey("EDIT")
-    setEditId(id)
-    setIsOpenMenu(false)
+    setModalOpen(TRANSACTION_KEY);
+    setModalKey("EDIT");
+    setEditId(id);
+    setIsOpenMenu(false);
   }
 
   if (isError) {
-    throw new Error(error.message)
+    throw new Error(error.message);
   }
 
   return (
