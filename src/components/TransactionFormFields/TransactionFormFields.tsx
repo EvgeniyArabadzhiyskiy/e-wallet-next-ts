@@ -21,7 +21,8 @@ import EnterButton from "../Buttons/EnterButton";
 import CancelButton from "../Buttons/CancelButton";
 import { ButtonWrapper } from "../Buttons/DefaultButton.styled";
 import { TTransactionValues } from "@/src/helpers/formValidation";
-import { useModalWindow } from "@/src/hooks/useModalWindow";
+import { TRANSACTION_KEY } from "@/src/constants/modalKey";
+import { useAnimatedCloseModal } from "@/src/hooks/useAnimatedCloseModal";
 
 interface IProps {
   isIncome: boolean;
@@ -42,10 +43,10 @@ export default function TransactionFormFields({ formik, isIncome, setIsIncome, m
     setValue(null);
   };
 
-  const setModalToggle = useModalWindow((state) => state.setModalToggle);
+  const animatedCloseModal = useAnimatedCloseModal(TRANSACTION_KEY);
   
   const onCancelClick = () => {
-    setModalToggle("transaction")
+    animatedCloseModal();
   };
 
   const currentDate = moment().format("DD.MM.YYYY");
