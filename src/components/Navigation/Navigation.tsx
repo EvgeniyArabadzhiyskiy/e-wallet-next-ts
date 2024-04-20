@@ -5,6 +5,7 @@ import StatisticSvg from "../SvgComponent/StatisticSvg";
 import TransactionSvg from "../SvgComponent/TransactionSvg";
 import HomeSvg from "../SvgComponent/HomeSvg";
 import { List, ItemLink, NavLink, LinkText } from "./Navigation.styled";
+import TransitionLink from "../TransitionLink/TransitionLink";
 
 export default function Navigation() {
   const path = usePathname();
@@ -13,22 +14,39 @@ export default function Navigation() {
     <nav>
       <List>
         <ItemLink>
-          <NavLink href="/home" $isActive={path === "/home"}>
+          <TransitionLink href="/home" $isActive={path === "/home"}>
             <HomeSvg width={18} height={18} />
             <LinkText>Home</LinkText>
-          </NavLink>
+          </TransitionLink>
+
+          {/* <NavLink href="/home" $isActive={path === "/home"}>
+            <HomeSvg width={18} height={18} />
+            <LinkText>Home</LinkText>
+          </NavLink> */}
         </ItemLink>
+
         <ItemLink>
-          <NavLink href="/home/transactions" $isActive={path === "/home/transactions"}>
+          <TransitionLink href="/home/transactions" $isActive={path === "/home/transactions"}>
             <TransactionSvg width={18} height={18} />
             <LinkText>Transactions</LinkText>
-          </NavLink>
+          </TransitionLink>
+
+          {/* <NavLink href="/home/transactions" $isActive={path === "/home/transactions"}>
+            <TransactionSvg width={18} height={18} />
+            <LinkText>Transactions</LinkText>
+          </NavLink> */}
         </ItemLink>
+
         <ItemLink>
-          <NavLink href="/home/statistic" $isActive={path === "/home/statistic"}>
+          <TransitionLink href="/home/statistic" $isActive={path === "/home/statistic"}>
             <StatisticSvg width={18} height={18} />
             <LinkText>Statistic</LinkText>
-          </NavLink>
+          </TransitionLink>
+
+          {/* <NavLink href="/home/statistic" $isActive={path === "/home/statistic"}>
+            <StatisticSvg width={18} height={18} />
+            <LinkText>Statistic</LinkText>
+          </NavLink> */}
         </ItemLink>
       </List>
     </nav>
