@@ -32,10 +32,15 @@ function RootLayout({ children }: IProps) {
         <Fonts />
       </head>
       <body>
-        <div id="modal-root"></div>
         <Providers>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          <StyledComponentsRegistry>
+            <div id="transition-element">
+              {children}
+            </div>
+          </StyledComponentsRegistry>
         </Providers>
+        <div id="modal-root"></div>
+        <div id="fixed-button"></div>
       </body>
     </html>
   );
