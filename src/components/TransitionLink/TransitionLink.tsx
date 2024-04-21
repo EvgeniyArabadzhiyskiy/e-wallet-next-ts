@@ -4,21 +4,24 @@ import { gsap } from "gsap";
 import { useRouter } from "next/navigation";
 import { NavLink } from "./TransitionLink.styled";
 import { ReactNode } from "react";
+import { usePageTransition } from "@/src/hooks/useTimeLine";
 
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href: string;
-  $isActive: boolean;
+  $isActive?: boolean | undefined;
   children: ReactNode;
 }
 
 const TransitionLink = ({ href, $isActive, children }: IProps) => {
   const router = useRouter();
 
+  const tl = usePageTransition((state) => state.pageTimeline);
+
   const handleClick = () => {
-    gsap
-      .timeline()
-      .set("#transition-element", { translateX: "0%", delay: 0 })
-      .to("#transition-element", { translateX: "100%", duration: 0.7 })
+    // gsap.timeline()
+      tl?.set("#transition-element", { translateX: "0%", delay: 0 })
+      .to("#transition-element", { translateX: "100%", duration: 0.5 })
+      // tl?.reversed(true)
       .then(() => {
         router.push(href);
       });
