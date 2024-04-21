@@ -34,7 +34,9 @@ function RootLayout({ children }: IProps) {
       <body>
         <Providers>
           <StyledComponentsRegistry>
-            <div id="transition-element">
+            <div id="transition-element"
+            // style={{transform: "translateX(-100%)"}}
+            >
               {children}
             </div>
           </StyledComponentsRegistry>
