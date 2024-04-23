@@ -8,6 +8,7 @@ config.autoAddCss = false;
 
 import Fonts from "../lib/FontsFamily";
 import Providers from "../components/Providers";
+import Spiner from "../components/Spiner";
 
 export const metadata: Metadata = {
   title: "Next.js",
@@ -32,10 +33,11 @@ function RootLayout({ children }: IProps) {
         <Fonts />
       </head>
       <body>
+        {/* <Spiner /> */}
         <Providers>
           <StyledComponentsRegistry>
             <div id="transition-element"
-            // style={{transform: "translateX(-100%)"}}
+            style={{transform: "translateX(-100%)"}}
             >
               {children}
             </div>
