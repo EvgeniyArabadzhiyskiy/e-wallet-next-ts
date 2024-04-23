@@ -12,10 +12,10 @@ interface IModalStore {
 export const useModalWindow = create<IModalStore>()((set) => ({
   isModalOpen: {},
   setModalToggle: (key) =>
-    set((state) => {
+    set((store) => {
       return {
         isModalOpen: {
-          [key]: !state.isModalOpen[key],
+          [key]: !store.isModalOpen[key],
         },
       };
     }),
