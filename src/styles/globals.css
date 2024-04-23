@@ -28,6 +28,7 @@ html {
 body {
   font-family: var(--font-family);
   background-color: #111827;
+  overflow-x: hidden;
 
   scroll-behavior: smooth;
 }
@@ -101,4 +102,24 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.transition-container {
+  /* position: relative; */
+  /* width: 900px; */
+  /* min-height: 100vh; */
+  /* margin: 0 auto; */
+  /* background-color: #7e8796; */
+  /* overflow-x: clip; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+#transition-element {
+  /* transform: translate(0%, 0px); */
+  /* width: 100vw;
+  height: 100vh;
+  overflow-y: auto; */
+ /* transform: translateX(-100%); */
 }
