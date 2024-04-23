@@ -2,7 +2,7 @@
 
 import { styled } from "styled-components";
 
-export const NavLink = styled.button<{ $isActive: boolean }>`
+export const NavLink = styled.button<{ $isActive: boolean | undefined }>`
   display: flex;
   gap: 23px;
   background-color: transparent;
