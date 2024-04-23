@@ -71,8 +71,10 @@ function TransactionTable() {
             <div ref={observerElem} style={{ height: 5 }}></div>
           </TableBody>
         )}
+      {/* <div style={{width:40, height:40, background: "green", }}></div> */}
       </Table>
       <ButtonAddTransactions setModalKey={setModalKey} />
+      {/* <div style={{width:40, height:40, background: "blue", position: "fixed", bottom: "50px", right: 0}}></div> */}
 
       <ModalBox modalName="transaction">
         <FlipCard modalKey={modalKey} editId={editId} />
