@@ -76,6 +76,10 @@ export default function HomePage() {
         current stock price: $3.15 + 0.15
       </canvas>
 
+      <div style={{width: 700, height: 500, background: '#443f806b', }}>
+        <div style={{width: 600, height: 400, background: '#881a5c6b', transform: "translate(200%, 0px)"}}></div>
+      </div>
+        {/* <div style={{width: 600, height: 400, background: '#881a5c6b', }}></div> */}
       {/* <div style={{width: 150, height: 100, background: 'green', position: "absolute", top: 20, left: 20}}></div> */}
     </div>
   );
