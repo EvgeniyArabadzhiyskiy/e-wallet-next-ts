@@ -1,3 +1,86 @@
+.table {
+  margin-top: 46px;
+
+  @media (min-width: 1280px) {
+    width: 715px;
+  }
+}
+
+.table__header {
+  display: none;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.5;
+
+    display: grid;
+    grid-template-columns: 5% 15% 15% 20% 20% 10% 15%;
+    align-items: center;
+
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 2px solid #10b981;
+
+    font-weight: 700;
+  }
+}
+
+.table__category {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+
+  @media (min-width: 768px) {
+    &:nth-child(1) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &:nth-child(3) {
+      text-align: center;
+    }
+
+    &:nth-child(6) {
+      text-align: end;
+    }
+
+    &:nth-child(7) {
+      text-align: end;
+    }
+
+    display: block;
+    padding: 0;
+
+    color: #a1a1aa;
+  }
+}
+
+.table__body {
+  margin: auto;
+  max-width: 280px;
+
+  @media (min-width: 768px) {
+    max-width: inherit;
+    padding: 0 15px 0 20px;
+  }
+}
+
+.table__item {
+  background-color: #ffffff;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    background-color: inherit;
+    height: 52px;
+    margin-bottom: 0;
+    border-radius: inherit;
+    border-bottom: 1px solid #dcdcdf;
+  }
+}
+
 @keyframes loadingAnimation {
   0% {
     background-position: 0% 0;
