@@ -1,17 +1,44 @@
 import stl from "./TransactionLoader.module.scss";
 import SettingsSvg from "../SvgComponent/SettingsSvg";
-import { StyledItem } from "../TransactionTable/TransactionItem/TransactionItem.styled";
-import {
-  Category,
-  Table,
-  TableBody,
-  TableHeader,
-} from "../TransactionTable/TransactionTable.styled";
+// import { StyledItem } from "../TransactionTable/TransactionItem/TransactionItem.styled";
+// import {
+//   Category,
+//   Table,
+//   TableBody,
+//   TableHeader,
+// } from "../TransactionTable/TransactionTable.styled";
 
 function TransactionLoader() {
   return (
     <>
-      <Table>
+      <main className={stl.table}>
+        <div className={stl.table__header}>
+          <p className={stl.table__category}>
+            <SettingsSvg width={14} height={14} />
+          </p>
+          <p className={stl.table__category}>Date</p>
+          <p className={stl.table__category}>Type</p>
+          <p className={stl.table__category}>Category</p>
+          <p className={stl.table__category}>Comment</p>
+          <p className={stl.table__category}>Sum</p>
+          <p className={stl.table__category}>Balance</p>
+        </div>
+
+        <ul className={stl.table__body}>
+          {[...Array(5)].map((_, i) => {
+            return (
+              <li key={i} className={stl.table__item}>
+                <div
+                  style={{ animationDelay: `${i * 0.05}s` }}
+                  className={stl.loading}
+                ></div>
+              </li>
+            );
+          })}
+        </ul>
+      </main>
+
+      {/* <Table>
         <TableHeader>
           <Category>
             <SettingsSvg width={14} height={14} />
@@ -31,13 +58,12 @@ function TransactionLoader() {
                 <div
                   style={{ animationDelay: `${i * 0.05}s` }}
                   className={stl.loading}
-                >
-                </div>
+                ></div>
               </StyledItem>
             );
           })}
         </TableBody>
-      </Table>
+      </Table> */}
     </>
   );
 }
