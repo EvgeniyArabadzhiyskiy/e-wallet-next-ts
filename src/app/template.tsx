@@ -6,6 +6,7 @@ import { PropsWithChildren, useRef } from "react";
 import gsap from "gsap";
 import { usePageTransition } from "../hooks/useTimeLine";
 import { usePathname } from "next/navigation";
+import { useLoading } from "../hooks/useModalWindow";
 
 // const variants = {
 //   hidden: { opacity: 0, x: -200, y: 0 },
@@ -18,22 +19,27 @@ export default function RootTemplate({ children }: PropsWithChildren) {
 
   const setPageTimeline = usePageTransition(state => state.setPageTimeline);
 
-  useGSAP(() => {
-    // gsap.timeline()
+  const { setIsLoading } = useLoading();
 
-    if (pathName.startsWith("/home")) {
-      return
-    }
-    console.log("APP");
+  // useGSAP(() => {
+  //   // gsap.timeline()
+
+  //   if (pathName.startsWith("/home")) {
+  //     return
+  //   }
+  //   console.log("APP");
     
 
-    const tl = gsap.timeline();
-    setPageTimeline(tl);
+  //   const tl = gsap.timeline();
+  //   setPageTimeline(tl);
 
-    tl
-      .set("#transition-element", { translateX: "-100%", delay: 0 })
-      .to("#transition-element", { translateX: "0%", duration: 0.5 });
-  });
+  //   tl
+  //     .set("#transition-element", { translateX: "-100%", delay: 0 })
+  //     .to("#transition-element", { translateX: "0%", duration: 0.5 })
+  //     .then(() => {
+  //       // setIsLoading();
+  //     });
+  // });
 
   return (
     // <div ref={container} className="transition-container">
