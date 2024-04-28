@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 export default function PageTransactions() {
   return (
-    <Suspense fallback={<TransactionLoader />}>
+    // <Suspense fallback={<TransactionLoader />}>
       <TransactionWrapper />
-    </Suspense>
+    // </Suspense>
   );
 }
