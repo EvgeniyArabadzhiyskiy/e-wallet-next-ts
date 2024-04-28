@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { NavLink } from "./TransitionLink.styled";
 import { ReactNode } from "react";
 import { usePageTransition } from "@/src/hooks/useTimeLine";
+import { useLoading } from "@/src/hooks/useModalWindow";
 
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href: string;
@@ -16,6 +17,8 @@ const TransitionLink = ({ href, $isActive, children }: IProps) => {
   const router = useRouter();
 
   const tl = usePageTransition((state) => state.pageTimeline);
+
+  const { setIsLoading } = useLoading();
 
   const handleClick = () => {
     // gsap.timeline()
