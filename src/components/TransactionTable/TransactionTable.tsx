@@ -50,9 +50,10 @@ function TransactionTable() {
           <Category>Balance</Category>
         </TableHeader>
 
-        {allTransactions.length > 0 && (
+        
           <TableBody ref={listElem}>
-            {allTransactions.map((transaction, idx) => {
+            
+            {allTransactions.length > 0 && allTransactions.map((transaction, idx) => {
               const balance = balanceList[idx];
 
               return (
@@ -70,7 +71,7 @@ function TransactionTable() {
 
             <div ref={observerElem} style={{ height: 5 }}></div>
           </TableBody>
-        )}
+        
       {/* <div style={{width:40, height:40, background: "green", }}></div> */}
       </Table>
       <ButtonAddTransactions setModalKey={setModalKey} />
