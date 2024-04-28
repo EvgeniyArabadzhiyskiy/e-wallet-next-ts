@@ -29,6 +29,7 @@ function TransactionTable() {
   const [modalKey, setModalKey] = useState<"ADD" | "EDIT">("ADD");
 
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  console.log("TransactionLoader");
 
   if (isError) {
     throw new Error(error.message)
