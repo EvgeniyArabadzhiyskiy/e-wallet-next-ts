@@ -8,7 +8,7 @@ config.autoAddCss = false;
 
 import Fonts from "../lib/FontsFamily";
 import Providers from "../components/Providers";
-import Spiner from "../components/Spiner";
+// import Spiner from "../components/Spiner";
 
 export const metadata: Metadata = {
   title: "Next.js",
