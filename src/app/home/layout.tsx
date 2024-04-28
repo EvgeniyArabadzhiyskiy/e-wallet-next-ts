@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Header from "@/src/components/Header";
 import DashBoardLayout from "@/src/components/DashBoardLayout";
 import AnimateHeader from "@/src/components/AnimateHeader/AnimateHeader";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -11,11 +12,19 @@ export const metadata: Metadata = {
 export default function HomeLayout({children}: {children: React.ReactNode}) {
   return (
     <>
+    <Link
+        style={{ color: "red", fontSize: 20 }}
+        href={"/"}
+      >
+        Main
+      </Link>
       {/* <AnimateHeader> */}
         <Header />
       {/* </AnimateHeader> */}
 
-      <DashBoardLayout>{children}</DashBoardLayout>
+      <DashBoardLayout>
+        {children}
+      </DashBoardLayout>
     </>
   );
 }
