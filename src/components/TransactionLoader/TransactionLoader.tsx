@@ -1,17 +1,18 @@
 import stl from "./TransactionLoader.module.scss";
 import SettingsSvg from "../SvgComponent/SettingsSvg";
-// import { StyledItem } from "../TransactionTable/TransactionItem/TransactionItem.styled";
-// import {
-//   Category,
-//   Table,
-//   TableBody,
-//   TableHeader,
-// } from "../TransactionTable/TransactionTable.styled";
+import { StyledItem } from "../TransactionTable/TransactionItem/TransactionItem.styled";
+import {
+  Category,
+  Table,
+  TableBody,
+  TableHeader,
+} from "../TransactionTable/TransactionTable.styled";
 
 function TransactionLoader() {
   return (
     <>
-      <main className={stl.table}>
+    {/* <StyledItem></StyledItem> */}
+      {/* <main className={stl.table}>
         <div className={stl.table__header}>
           <p className={stl.table__category}>
             <SettingsSvg width={14} height={14} />
@@ -36,9 +37,9 @@ function TransactionLoader() {
             );
           })}
         </ul>
-      </main>
+      </main> */}
 
-      {/* <Table>
+      <Table>
         <TableHeader>
           <Category>
             <SettingsSvg width={14} height={14} />
@@ -63,7 +64,7 @@ function TransactionLoader() {
             );
           })}
         </TableBody>
-      </Table> */}
+      </Table>
     </>
   );
 }
