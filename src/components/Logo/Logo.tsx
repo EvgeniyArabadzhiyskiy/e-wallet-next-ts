@@ -28,7 +28,7 @@ function Logo() {
     <button onClick={handleClick} style={{backgroundColor: "transparent"}}>
       <LogoWrap>
         <ImgWrapper>
-          <Image src="/images/logo.png" alt="logo" width={40} height={40} />
+          {/* <Image src="/images/logo.png" alt="logo" width={40} height={40} /> */}
         </ImgWrapper>
 
         <LogoText $isLoginPage={isLoginPage}>Wallet</LogoText>
