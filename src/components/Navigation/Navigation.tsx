@@ -14,10 +14,10 @@ export default function Navigation() {
     <nav>
       <List>
         <ItemLink>
-          <TransitionLink href="/home" $isActive={path === "/home"}>
+          {/* <TransitionLink href="/home" $isActive={path === "/home"}>
             <HomeSvg width={18} height={18} />
             <LinkText>Home</LinkText>
-          </TransitionLink>
+          </TransitionLink> */}
 
           {/* <NavLink href="/home" $isActive={path === "/home"}>
             <HomeSvg width={18} height={18} />
@@ -26,27 +26,27 @@ export default function Navigation() {
         </ItemLink>
 
         <ItemLink>
-          <TransitionLink href="/home/transactions" $isActive={path === "/home/transactions"}>
+          {/* <TransitionLink href="/home/transactions" $isActive={path === "/home/transactions"}>
             <TransactionSvg width={18} height={18} />
             <LinkText>Transactions</LinkText>
-          </TransitionLink>
+          </TransitionLink> */}
 
-          {/* <NavLink href="/home/transactions" $isActive={path === "/home/transactions"}>
+          <NavLink href="/home/transactions" $isActive={path === "/home/transactions"}>
             <TransactionSvg width={18} height={18} />
             <LinkText>Transactions</LinkText>
-          </NavLink> */}
+          </NavLink>
         </ItemLink>
 
         <ItemLink>
-          <TransitionLink href="/home/statistic" $isActive={path === "/home/statistic"}>
+          {/* <TransitionLink href="/home/statistic" $isActive={path === "/home/statistic"}>
             <StatisticSvg width={18} height={18} />
             <LinkText>Statistic</LinkText>
-          </TransitionLink>
+          </TransitionLink> */}
 
-          {/* <NavLink href="/home/statistic" $isActive={path === "/home/statistic"}>
+          <NavLink href="/home/statistic" $isActive={path === "/home/statistic"}>
             <StatisticSvg width={18} height={18} />
             <LinkText>Statistic</LinkText>
-          </NavLink> */}
+          </NavLink>
         </ItemLink>
       </List>
     </nav>
