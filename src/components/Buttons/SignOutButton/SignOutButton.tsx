@@ -13,8 +13,8 @@ function SignOutButton({ ...allProps }: IProps) {
 
   return (
     <ButtonExit type="button" onClick={() => setModalOpen("logout")} {...allProps}>
-      {/* <FontAwesomeIcon icon={faArrowRightFromBracket} /> */}
-      <SettingsSvg width={14} height={14} />
+      <FontAwesomeIcon icon={faArrowRightFromBracket} />
+      {/* <SettingsSvg width={14} height={14} /> */}
       <Text>Exit</Text>
     </ButtonExit>
   );
