@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "e-Wallet Statistics",
 };
 
-export default async function PageStatistic() {
+export default function PageStatistic() {
   return (
     <Suspense fallback={<StatisticLoader />}>
       <StatisticWrapper />
