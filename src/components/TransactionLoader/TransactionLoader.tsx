@@ -11,34 +11,6 @@ import {
 function TransactionLoader() {
   return (
     <>
-    {/* <StyledItem></StyledItem> */}
-      {/* <main className={stl.table}>
-        <div className={stl.table__header}>
-          <p className={stl.table__category}>
-            <SettingsSvg width={14} height={14} />
-          </p>
-          <p className={stl.table__category}>Date</p>
-          <p className={stl.table__category}>Type</p>
-          <p className={stl.table__category}>Category</p>
-          <p className={stl.table__category}>Comment</p>
-          <p className={stl.table__category}>Sum</p>
-          <p className={stl.table__category}>Balance</p>
-        </div>
-
-        <ul className={stl.table__body}>
-          {[...Array(5)].map((_, i) => {
-            return (
-              <li key={i} className={stl.table__item}>
-                <div
-                  style={{ animationDelay: `${i * 0.05}s` }}
-                  className={stl.loading}
-                ></div>
-              </li>
-            );
-          })}
-        </ul>
-      </main> */}
-
       <Table>
         <TableHeader>
           <Category>
@@ -65,6 +37,33 @@ function TransactionLoader() {
           })}
         </TableBody>
       </Table>
+
+      {/* <main className={stl.table}>
+        <div className={stl.table__header}>
+          <p className={stl.table__category}>
+            <SettingsSvg width={14} height={14} />
+          </p>
+          <p className={stl.table__category}>Date</p>
+          <p className={stl.table__category}>Type</p>
+          <p className={stl.table__category}>Category</p>
+          <p className={stl.table__category}>Comment</p>
+          <p className={stl.table__category}>Sum</p>
+          <p className={stl.table__category}>Balance</p>
+        </div>
+
+        <ul className={stl.table__body}>
+          {[...Array(5)].map((_, i) => {
+            return (
+              <li key={i} className={stl.table__item}>
+                <div
+                  style={{ animationDelay: `${i * 0.05}s` }}
+                  className={stl.loading}
+                ></div>
+              </li>
+            );
+          })}
+        </ul>
+      </main> */}
     </>
   );
 }
