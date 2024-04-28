@@ -12,7 +12,7 @@ function TransactionLoader() {
   return (
     <>
     {/* <StyledItem></StyledItem> */}
-      <main className={stl.table}>
+      {/* <main className={stl.table}>
         <div className={stl.table__header}>
           <p className={stl.table__category}>
             <SettingsSvg width={14} height={14} />
@@ -37,9 +37,9 @@ function TransactionLoader() {
             );
           })}
         </ul>
-      </main>
+      </main> */}
 
-      {/* <Table>
+      <Table>
         <TableHeader>
           <Category>
             <SettingsSvg width={14} height={14} />
@@ -64,7 +64,7 @@ function TransactionLoader() {
             );
           })}
         </TableBody>
-      </Table> */}
+      </Table>
     </>
   );
 }
