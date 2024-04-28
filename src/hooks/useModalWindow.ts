@@ -20,3 +20,19 @@ export const useModalWindow = create<IModalStore>()((set) => ({
       };
     }),
 }));
+
+
+interface ISpinerStore {
+  isLoading: boolean;
+  setIsLoading: () => void;
+}
+
+export const useLoading = create<ISpinerStore>()((set) => ({
+  isLoading: true,
+  setIsLoading: () =>
+    set((store) => {
+      return {
+        isLoading: !store.isLoading,
+      };
+    }),
+}));
