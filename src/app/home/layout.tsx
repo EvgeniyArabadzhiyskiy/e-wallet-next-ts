@@ -10,17 +10,18 @@ export const metadata: Metadata = {
 };
 
 export default function HomeLayout({children}: {children: React.ReactNode}) {
+  
   return (
     <>
-    <Link
+      {/* <AnimateHeader> */}
+        <Header />
+      {/* </AnimateHeader> */}
+      <Link
         style={{ color: "red", fontSize: 20 }}
         href={"/"}
       >
         Main
       </Link>
-      {/* <AnimateHeader> */}
-        <Header />
-      {/* </AnimateHeader> */}
 
       <DashBoardLayout>
         {children}
