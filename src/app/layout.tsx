@@ -8,6 +8,8 @@ config.autoAddCss = false;
 
 import Fonts from "../lib/FontsFamily";
 import Providers from "../components/Providers";
+import HomeTransitionProvider from "../components/HomeTransitionProvider";
+import TransitionHeader from "../components/Header/TransitionHeader";
 // import Spiner from "../components/Spiner";
 
 export const metadata: Metadata = {
@@ -34,15 +36,19 @@ function RootLayout({ children }: IProps) {
       </head>
       <body>
         {/* <Spiner /> */}
+        <>
         <Providers>
           <StyledComponentsRegistry>
             <div id="transition-element"
             // style={{transform: "translateX(-100%)"}}
+            // style={{transform: "translateY(-500)"}}
+            // style={{opacity: 0}}
             >
-              {children}
+              {children} 
             </div>
           </StyledComponentsRegistry>
         </Providers>
+        </>
         <div id="modal-root"></div>
         <div id="fixed-button"></div>
       </body>
