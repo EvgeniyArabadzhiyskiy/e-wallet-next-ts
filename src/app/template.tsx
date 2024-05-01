@@ -32,7 +32,7 @@ export default function RootTemplate({ children }: PropsWithChildren) {
   // const setDisplayChildren = usesetDisplayChildren(state => state.setDisplayChildren);
 
   // const isMounted = usePageMounted(state => state.isMounted);
-  // const setIsMounted = usePageMounted(state => state.setIsMounted);
+  const setIsMounted = usePageMounted(state => state.setIsMounted);
 
   // console.log(children === displayChildren);
 
@@ -97,9 +97,29 @@ export default function RootTemplate({ children }: PropsWithChildren) {
       //      tl.reverse()
       // })
 
-      gsap.fromTo("#transition-element",{ opacity: 0 }, { opacity: 1, duration: 0.5});
-      const visible = gsap.to("#transition-element", { opacity: 0, duration: 0.5 });
-      tl?.add(visible);
+      // gsap.fromTo("#transition-element",{ opacity: 0 }, { opacity: 1, duration: 0.5});
+      // gsap.from("#transition-element",{ opacity: 0, duration: 0.5 });
+      // gsap.to("#transition-element",{ opacity: 1, duration: 0.5 });
+      // const visible = gsap.to("#transition-element", { opacity: 0, duration: 0.5 });
+      // tl?.add(visible);
+
+      // setIsMounted(false);
+      gsap.set("#transition-element", { autoAlpha: 0, scale: 0.8, xPercent: -100 });
+
+      gsap
+        .timeline({ 
+          // paused: true,
+          // onComplete: () => setIsMounted(true)
+        })
+        .to("#transition-element", { autoAlpha: 1, xPercent: 0, duration: 0.25 })
+        .to("#transition-element", { scale: 1, duration: 0.25 })
+        // .play();
+
+     const ddd = tl
+      .to("#transition-element", { scale: 0.8, duration: 0.2 })
+      .to("#transition-element", { xPercent: 100, autoAlpha: 0, duration: 0.2 })
+
+      tl.add(ddd);
 
       // gsap.fromTo("#transition-element",{ opacity: 0}, { opacity: 1, duration: 0.8});
       // gsap.fromTo("#transition-element",{ translateX: "-100%"}, { translateX: "0%"});
