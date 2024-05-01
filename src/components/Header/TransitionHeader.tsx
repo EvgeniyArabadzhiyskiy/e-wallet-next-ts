@@ -19,17 +19,17 @@ const TransitionHeader = ({ children }: PropsWithChildren) => {
   //     };
   //   }, []);
 
-  useGSAP(
+  // useGSAP(
       
-      () => {
-        console.log("GO");
-      const targets = gsap.utils.toArray(["p"]);
-    //   console.log("TransitionHeader  targets:", targets);
+  //     () => {
+  //       console.log("GO");
+  //     const targets = gsap.utils.toArray(["p"]);
+  //   //   console.log("TransitionHeader  targets:", targets);
 
-      gsap.fromTo(targets, { opacity: 0, x: -300 }, { opacity: 1, x: 0, duration: 0.7 , stagger: 0.2 });
-    },
-    { scope: container }
-  );
+  //     gsap.fromTo(targets, { opacity: 0, x: -300 }, { opacity: 1, x: 0, duration: 0.7 , stagger: 0.2 });
+  //   },
+  //   { scope: container }
+  // );
 
   return <div ref={container}>{children}</div>;
 };
