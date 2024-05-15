@@ -64,7 +64,7 @@ export const Component2 = ({
 
 const itemVariants: Variants = {
   open: {
-    opacity: [0, 1],
+    opacity: 1,
     x: 0,
     // transition: { type: "spring", stiffness: 300, damping: 24 }
     transition: { duration: 2}
