@@ -72,6 +72,7 @@ const itemVariants: Variants = {
   closed: { 
     opacity: 0.5, 
     x: 200, 
+    y: 100,
     transition: { duration: 1 } 
   }
 };
