@@ -73,6 +73,7 @@ const itemVariants: Variants = {
     opacity: 0.5, 
     x: 200, 
     y: 100,
+    backgroundColor: '#fff',
     transition: { duration: 1 } 
   }
 };
