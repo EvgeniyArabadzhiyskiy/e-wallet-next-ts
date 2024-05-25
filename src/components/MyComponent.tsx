@@ -66,8 +66,8 @@ const itemVariants: Variants = {
   open: {
     opacity: 1,
     x: 0,
-    // transition: { type: "spring", stiffness: 300, damping: 24 }
-    transition: { duration: 1}
+    transition: { type: "spring", stiffness: 300, damping: 24 }
+    // transition: { duration: 1}
   },
   closed: { 
     opacity: 0.5, 
