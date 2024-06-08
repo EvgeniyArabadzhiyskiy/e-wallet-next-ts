@@ -64,13 +64,13 @@ export const Component2 = ({
 
 const itemVariants: Variants = {
   open: {
-    opacity: 1,
+    // opacity: 1,
     // x: 0,
     // transition: { type: "spring", stiffness: 300, damping: 24 }
     transition: { duration: 1}
   },
   closed: { 
-    opacity: 0.5, 
+    // opacity: 0.5, 
     // x: 200, 
     // y: 100,
     // backgroundColor: '#fff',
