@@ -42,7 +42,7 @@ function RootLayout({ children }: IProps) {
           <StyledComponentsRegistry>
             <div
               id="transition-element"
-              style={{transform: "translateX(-100%)"}}
+              // style={{transform: "translateX(-100%)"}}
               // style={{transform: "translateY(-500)"}}
               // style={{opacity: 0}}
             >
