@@ -37,7 +37,7 @@ function RootLayout({ children }: IProps) {
         <Fonts />
       </head>
       <body>
-        <Spiner />
+        {/* <Spiner /> */}
         <Providers>
           <StyledComponentsRegistry>
             <div
